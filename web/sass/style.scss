@@ -1,0 +1,60 @@
+/*
+    Estilo ATSA
+1. Fuentes (Google Fonts)
+2. Extra Reset
+3. Variables
+4. gral hmtl body, html: secciones
+5. loader
+6. nav
+7. header
+8. footer
+9. btns-icons
+10. Home page
+11. Main (other pages)
+*/
+
+/* ---- 2 Extra reset ---- */
+@import 'extra-reset';
+/* ---- 3 variables ---- */
+@import 'variables';
+
+/* ---- 4 estilo general ---- */
+html, body {
+    width: 100%;
+    font-family: $fuente-principal, sans-serif;
+    font-size: $fs-normal;
+    line-height: $lh-normal;
+    font-weight: $weight-normal;
+    color: $azul;
+    background-color: $blanco;
+    letter-spacing: $ls-normal;
+}
+
+.container {
+    @media (max-width: $mq-movil) {
+        width: 100%!important;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* ---- 5 loader ---- 
+@import 'loader';*/
+
+/* ---- 6 nav ---- 
+@import 'nav';*/
+
+/* ---- 7 header ---- */
+@import 'header';
+
+/* ---- 8 footer ---- */
+@import 'footer';
+
+/* ---- 9 btns-icon ---- */
+@import 'btns-icons';
+
+/* ---- 10 home page ---- */
+@import 'home';
+
+/* ---- 11 main (other pages) ---- */
+@import 'main';

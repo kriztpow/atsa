@@ -1,0 +1,105 @@
+.redes-sociales-header {
+  li {
+      float: left;
+      
+      a {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+      }
+    }  
+} 
+
+.red-social {
+    background: url(../assets/images/sprite.png) no-repeat;
+}
+
+.red-social-youtube-header {
+    background-position: -1px 5px;
+    &:hover {
+        background-position: -86px -160px;
+    }
+}
+.red-social-facebook-header {
+    background-position: -35px 5px;
+    &:hover {
+        background-position: 1px -160px;
+    }
+}
+.red-social-twitter-header {
+    background-position: -73px 5px;
+    &:hover {
+        background-position: -130px -160px;
+    }
+}
+.red-social-instagram-header {
+    background-position: -112px 5px;
+    &:hover {
+        background-position: -42px -160px;
+    }
+}
+
+.redes-sociales-footer {
+  li {
+      float: left;
+      margin-right: 5px;
+      
+      a {
+          display: inline-block;
+          width: 40px;
+          height: 45px;
+          cursor: pointer;
+          &:hover {
+              opacity: 0.5;
+          }
+      }
+    }  
+}
+
+.red-social-youtube-footer {
+    background-position: -86px -160px;
+}
+.red-social-facebook-footer {
+    background-position: 1px -160px;
+}
+.red-social-twitter-footer {
+    background-position: -130px -160px;
+}
+.red-social-instagram-footer {
+    background-position: -42px -160px;
+}
+
+.redes-sociales-movil {
+    width: 70%;
+    margin: 0 auto;
+    overflow: auto;
+    
+  li {
+      float: left;
+      width: 40%;
+      margin:20px 5%;
+      
+      a {
+          display: block;
+          cursor: pointer;
+          
+          img {
+              width: 100%;
+          }
+      }
+    }  
+}
+
+.red-social-youtube-movil {
+    background-position: -3px -43px;
+}
+.red-social-facebook-movil {
+    background-position: -40px -43px;
+}
+.red-social-twitter-movil {
+    background-position: -78px -43px;
+}
+.red-social-instagram-movil {
+    background-position: -115px -43px;
+}

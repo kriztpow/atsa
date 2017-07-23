@@ -1,0 +1,75 @@
+/*Familia Fuentes*/
+$fuente-principal: 'Roboto',sans-serif;
+$fuente-secundaria: 'Roboto Slab', serif;
+/*tamaños fuentes*/
+$fs-normal: 11pt;
+$lh-normal: 16pt;
+//9px = 75%;
+//24px = 200%;
+/*espaciado de letras*/
+$ls-normal: 0pt;
+/*weight de las fuentes*/
+$weight-bold: 700;
+$weight-medium: 500;
+$weight-normal: 400;
+$weight-light:300;
+
+/*colores*/
+$negro: #000000;
+$blanco: #F2F2F2;
+$celeste:#00acec;
+$rojo: #00ff00;
+$azul:#006a91;
+$gris:#8c8c8c;
+$gris-claro:#e5e5e5;
+$color-menu-principal: #4f4f4f;
+/*transparente*/
+$negro-transparente: rgba(58, 58, 58, 0.3);
+$casi-negro:  rgba(58, 58, 58, 0.7);
+$blanco-transparente: rgba(255,255,255,0.8);
+$gris-transparente: rgba(140,140,140,0.3);;
+$celeste-transparente: rgba(0,172,236,0.5);;
+/*mediaqueries*/
+$mq-bpc: 1440px;
+$mq-pc: 1200px;
+$mq-tablet: 992px;
+$mq-movil: 768px;
+$mq-mini: 480px;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin transition($var) {
+  -webkit-transition: $var;
+     -moz-transition: $var;
+      -ms-transition: $var;
+          transition: $var;
+}
+
+@mixin box-shadow($var) {
+  -webkit-box-shadow: $var;
+     -moz-box-shadow: $var;
+      -ms-box-shadow: $var;
+          box-shadow: $var;
+}
+/*
+
+@media (max-width: $mq-movil) {}
+-webkit-
+   -moz-
+    -ms-
+     -o-
+*/
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */}
+::-moz-placeholder { /* Firefox 19+ */ }
+    
+
+:-ms-input-placeholder { /* IE 10+ */ }
+    
+
+:-moz-placeholder { /* Firefox 18- */ }
+

@@ -1,0 +1,2217 @@
+/*
+ * INDICE
+ * 1. Clases generales
+ * PAGINAS VARIAS que van dentro del main sin ser home:
+ * 2. Autoridades
+ * 3. Leyes laborales-convenios
+ * 4. Delegados gremiales
+ * 5. Contacto
+ * 6. Quienes somos
+ * 7. afiliate
+ * 8. Instituto amado olmos
+ * 9. Cursos de formacion
+ * 10. convenios universitarios
+ * 11. formales no formales
+ * 12. trabajadores
+ * 13. celeste y blanca
+ * 14. Laboratorio de simulación
+ * 15. Preguntas frecuentes
+ * 16. Beneficios
+ * 17. Sanidad en numeros
+ * 18. Viajes
+ * 19. torneos y eventos
+ * 20. hoteles
+ * 21. centro medico prevencion
+*/
+
+.wrapper-page {
+	position: relative;
+	background-color: #fff;
+	padding: 130px 0 80px;
+
+	@media (max-width: $mq-movil) {
+		padding: 100px 0 80px;
+	}
+
+	p {
+		margin: 20px 0;
+	}
+}
+
+.less-padding {
+	padding: 100px 0 80px;
+
+	@media (max-width: $mq-movil) {
+		padding: 40px 0 80px;
+	}
+
+	p {
+		margin: 10px 0;
+	}
+
+}
+
+.p-text-center {
+	text-align: center;
+}
+
+.font-bigger-14 {
+	font-size: 14pt;
+}
+
+.mini-padding-section {
+	padding: 20px 0;
+}
+
+.background-white {
+	background-color: #fff;
+}
+
+.background-gris {
+	background-color: $gris-claro;
+}
+
+
+.tittle-hide {
+	visibility: hidden;
+	position: absolute;
+}
+
+.text-underline {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.main-tittle-page {
+	color: $celeste;
+	font-size: 36pt;
+	line-height: 38pt;
+	margin-bottom: 50px;
+	font-weight: $weight-medium;
+	text-align: center;
+}//h1
+
+.btn-standard {
+	padding: 5px 20px;
+	border: solid 1px $celeste;
+	color: $celeste;
+	font-weight: $weight-medium;
+}
+
+.weight-medium {
+	font-weight: $weight-medium;
+}
+
+/*------------autoridades---------------*/
+
+.staff-lista {
+	margin: 20px auto;
+}
+
+.staff-member {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.staff-img-wrapper {
+	overflow: hidden;
+	width: 110px;
+	height: 110px;
+	margin: 0  auto;
+	border: 1px solid $celeste;
+    @include border-radius(5px);
+
+  	@media (max-width: $mq-pc) {
+    	width: 160px;
+    	height: 160px;
+    }
+
+    @media (max-width: $mq-tablet) {
+    	width: 270px;
+    	height: 270px;
+    }
+
+    @media (max-width: $mq-movil) {
+    	width: 370px;
+    	height: 370px;
+    }
+
+    @media (max-width: $mq-mini) {
+    	width: 240px;
+    	height: 240px;
+    }
+}
+
+.staff-image {
+	width: 110%;
+	margin-left: -5%;
+	@include transition(all 0.5s);
+}
+
+.staff-text {
+	margin: 15px auto 30px;
+}
+
+.staff-name {
+	font-size: 11pt;
+}
+.staff-charge {
+	font-weight: $weight-bold;
+	font-size: 11pt;
+}
+.staff-excerpt {
+	margin: 10px auto 0!important;
+	border-top: 1px solid $celeste;
+	font-size: 11pt;
+	padding: 10px 5px 10px;
+	line-height: 16pt;
+
+	em {
+		font-style: italic;
+		color: $celeste;
+		position: relative;
+
+		&:before {
+			content: '';
+			position: absolute;
+			display: block;
+			left: -25px;
+			top: 1px;
+			height: 15px;
+			width: 20px;
+			background: url(../assets/images/sprite.png);
+			background-position: -205px -226px;
+		}
+	}
+}
+
+
+#vocales-titulares, #vocales-suplentes, #revisores-cuenta {
+	position: relative;
+	margin-top: 80px;
+}
+
+.deco-linea-celeste {
+	border-top: 2px solid $celeste;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+
+	span {
+		content: '';
+		display: block;
+		margin: 0 auto;
+		width: 250px;
+		height: 9px;
+		position: relative;
+		top: -2px;
+		background: #fff url(../assets/images/borde-decoracion-celeste.png);
+	}
+}
+
+.vocales-title {
+	color: $celeste;
+	font-size: 36pt;
+	line-height: 38pt;
+	margin-top: 20px;
+	margin-bottom: 50px;
+	font-weight: $weight-medium;
+	text-transform:uppercase;
+	text-align: center;
+}
+
+.staff-member:hover .staff-image {
+	width: 130%;
+    margin-left: -10%;
+    margin-top: -5%;
+    @include transition(all 0.5s);
+}
+
+/*-------------leyes laborales-convenios---------------*/
+.pdfs-download {
+	margin: 80px auto 30px;
+	font-size: 18pt;
+	line-height: 22pt;
+	font-weight: $weight-light;
+	color: $azul;
+}
+.pdfs-download-item {
+	position: relative;
+	background-color: $gris-transparente;
+	margin: 5px auto;
+	padding: 8px;
+
+	&:hover {
+			color: $celeste;
+			font-weight: $weight-medium;
+			border-left: 4px $celeste solid;
+		}
+
+	a {
+		display: block;
+		width: 80%;
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 5px;
+			display: block;
+			width: 65px;
+			height: 35px;
+			background: url(../assets/images/sprite.png);
+			background-position: -2px -274px;
+		}
+	}
+}
+
+.pdfs-download-acordion {
+	margin: 0px 0 30px 5%;
+	width: 70%;
+	font-size: 14pt;
+	line-height: 18pt;
+
+	@media (max-width: $mq-movil) {
+		width: 80%;
+	}
+
+	@media (max-width: $mq-mini) {
+		width: 90%;
+	}
+
+}
+
+.ui-accordion .ui-accordion-header {
+	display: block;
+	cursor: pointer;
+	position: relative;
+	margin: 2px 0 0 0;
+	padding: .5em .5em .5em .7em;
+	font-size: 100%;
+	/*css agregado al css de jquery ui*/
+	background-color: $gris-transparente;
+	font-size: 18pt;
+	line-height: 22pt;
+	font-weight: $weight-light;
+
+	&:hover {
+		color: $celeste;
+		font-weight: $weight-medium;
+	}
+	&:focus {
+		border: none!important;
+    	outline: none!important;
+	}
+}
+
+.text-title-accordion {
+	width: 80%;
+	display: inline-block;
+}
+
+.icon-cross {
+	content: '';
+	position: absolute;
+	top: 7px;
+	right: 5px;
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: url(../assets/images/sprite.png);
+	background-position: -84px -273px;
+	@include transition(all 0.3s);
+
+}
+
+.icon-cross-open {
+	transform: rotate(45deg);
+	@include transition(all 0.3s);
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: 1em 2.2em;
+	border-top: 0;
+	overflow: auto;
+}
+
+/*------------------delegados gremiales-------------*/
+.title-delegados {
+	//font-family: $fuente-secundaria;
+	font-size: 30pt;
+	line-height: 34pt;
+	font-weight: $weight-bold;
+	text-align: center;
+	margin-bottom: 20px;
+
+	strong {
+		color: $celeste;
+		font-weight: $weight-normal;
+	}
+}
+
+.delegado-item {
+	overflow: auto;
+	margin: 40px 0;
+}
+
+.delegado-img {
+	width: 110px;
+	height: 110px;
+	@include border-radius(50%);
+	overflow: hidden;
+	border: 2px solid $celeste;
+	text-align: center;
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	display: -o-flex;
+	justify-content: center;
+	align-items: center;
+	float: left;
+	margin-right: 30px;
+}
+.delegado-img-wrapper {
+	position: relative;
+	width: 97px;
+	height: 97px;
+	padding: 11px;
+	border: 2px solid $blanco;
+	@include border-radius(50%);
+	overflow: hidden;
+
+	img  {
+		position: absolute;
+		width: 120px;
+		top: -6px;
+		left: -13px;
+	}
+}
+.delegado-data {
+	float: left;
+	margin-top: 45px;
+	width: 160px;
+}
+.delegados-links {
+	overflow: auto;
+}
+.delegado-icon-red {
+	display: block;
+	float: left;
+	margin: 5px 10px;
+	width: 30px;
+	height: 30px;
+	background: url(../assets/images/sprite.png);
+
+	&:hover {
+		opacity: 0.7;
+		filter:Alpha(opacity=70);
+	}
+}
+.delegado-icon-red-facebook {
+	background-position: -153px -279px;
+}
+.delegado-icon-red-twitter {
+	background-position: -199px -279px;
+}
+
+
+
+.box-shadow-up {
+	@include box-shadow(1px -5px 13px $negro-transparente);
+}
+
+/*-------------- contacto -----------------*/
+.contact-boxes {
+	position: relative;
+    border: 1px solid rgba(58, 58, 58, 0.7);
+    padding: 20px 20px;
+    color: #00acec;
+    font-weight: $weight-bold;
+    text-align: center;
+    width: 295px;
+    margin: 50px auto;
+    font-size: 16pt;
+    line-height: 15pt;
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 50px;
+		top: -35px;
+		left: 0;
+		background: url(../assets/images/sprite.png); 
+	}
+}
+
+.contact-boxes-icon-tel {
+	&:before {
+		background-position: 104px -327px;
+	}
+}
+
+.contact-boxes-icon-loc {
+	&:before {
+		background-position: 104px -397px;
+	}
+}
+
+.contact-boxes-icon-email {
+	&:before {
+		background-position: 104px -461px;
+	}
+}
+
+.contact-boxes-small {
+	font-size: 11pt;
+	line-height: 22pt;
+	span {
+		text-transform: uppercase;
+		color: $gris;
+		font-weight: $weight-normal;
+		font-size: 15pt;
+	}
+}
+
+
+.contact-title {
+	font-weight: $weight-medium;
+	font-size: 24pt;
+	line-height: 28pt;
+	margin-bottom: 30px;
+}
+
+.error-msj {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 8pt;
+	color: $azul;
+	font-style: italic;
+	display: none;
+	
+	@media (max-width: $mq-movil) {
+		font-size: 10pt;
+	}
+}
+
+.formulario-principal {
+	margin: 50px auto;
+	label {
+		position: relative;
+		display: block;
+		width: 100%;
+		line-height: 24pt;
+		text-transform: uppercase;
+		color: $gris;
+	}
+	
+	input {
+		width: 100%;
+		border: 1px solid $celeste;
+	}
+
+	select {
+		width: 100%;
+		line-height: 24pt;
+		border: 1px solid $celeste;
+		color: $celeste;
+		font-weight: $weight-medium;
+		background-color: transparent;
+		height: 36px;
+		margin-top: -1px;
+		padding-left: 10px;
+	}
+
+	input[type="submit"] {
+		margin-top: 10px;
+		background-color: $celeste;
+		color: $gris;
+		text-transform: uppercase;
+		padding: 5px 0;
+
+		&:hover {
+			color: $azul;
+		}
+	}
+
+	textarea {
+		width: 100%;
+		line-height: 24pt;
+		border: 1px solid $celeste;
+		color: $celeste;
+		height: 100px;
+	}
+}
+
+.msj-exito {
+	display: block;
+	font-size: 14pt;
+	color: $celeste;
+	font-style: italic;
+	margin: 10px 0;
+	text-align: center;
+	display: none;
+}
+.msj-error {
+	display: block;
+	font-size: 14pt;
+	color: red;
+	font-style: italic;
+	margin: 10px 0;
+	text-align: center;
+	display: none;
+}
+
+
+/*-------------- quienes somos-----------------*/
+#quienes-somos {
+	font-weight: $weight-medium;
+	strong {
+			color: $celeste;
+		}
+}
+
+
+.title-deco-guion {
+	text-align: center;
+
+	h1,h2 {
+		color: $celeste;
+		font-size: 36pt;
+		line-height: 38pt;
+		margin-bottom: 30px;
+		font-weight: $weight-medium;
+		text-align: center;
+		position: relative;
+		display: inline-block;
+
+		span {
+			color: $azul;
+		}
+		&:before {
+			content: '';
+			position: absolute;
+			left: -220px;
+			width: 200px;
+			height: 2px;
+			background-color: $celeste;
+			top: 50%;
+
+			@media (max-width: $mq-tablet) {
+				content: none;
+			}
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			right: -220px;
+			width: 200px;
+			height: 2px;
+			background-color: $celeste;
+			top: 50%;
+
+			@media (max-width: $mq-tablet) {
+				content: none;
+			}
+		}
+
+		@media (max-width: $mq-mini) {
+			font-size: 24pt;
+			line-height: 28pt;
+		}
+	}
+	
+}
+
+.title-sin-guion {
+	text-align: center;
+
+	h1,h2 {
+		color: $celeste;
+		font-size: 36pt;
+		line-height: 38pt;
+		margin-bottom: 30px;
+		font-weight: $weight-medium;
+		text-align: center;
+		position: relative;
+		display: inline-block;
+
+		span {
+			color: $azul;
+		}
+
+		@media (max-width: $mq-mini) {
+			font-size: 24pt;
+			line-height: 28pt;
+		}
+	}
+}
+
+.title-azul {
+	color: $azul!important;
+}
+
+.lista-propositos {
+	margin: 40px auto;
+
+	@media (max-width: $mq-tablet) {
+		margin: 70px auto;
+	}
+}
+
+.parrafo-propositos {
+	position: relative;
+	background: $gris-claro;
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	padding: 60px 10px 10px;
+	@include box-shadow(0px -4px 18px $negro-transparente);
+}
+
+.blur-check {
+	position: absolute;
+	top: -50px;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 106px;
+	text-align: center;
+}
+
+.blur-check-icon {
+	display: inline-block;
+	width: 96px;
+	height: 106px;
+	background: url(../assets/images/sprite.png);
+	background-position: -242px -4px;
+}
+
+/*-------------- afiliate -----------------*/
+
+.lista-afiliate {
+	margin: 40px auto 0;
+
+	@media (max-width: $mq-tablet) {
+		margin: 70px auto;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.parrafo-afiliate {
+	position: relative;
+	font-size: 12pt;
+	font-weight: $weight-medium;
+	line-height: 16pt;
+	background: $gris-claro;
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	padding: 60px 10px 20px;
+	@include box-shadow(0px -4px 18px $negro-transparente);
+}
+
+
+.afiliaciones-alert {
+	font-size: 14pt;
+	line-height: 18pt;
+	position: relative;
+	padding: 5px 10px;
+	margin: 60px auto;
+	width: 80%;
+	max-width: 440px;
+	border: 2px solid $celeste;
+	text-indent: 40px;
+	font-weight: $weight-medium;
+
+	&:before {
+		content: '';
+		display: block;
+		width: 75px;
+		height: 75px;
+		background: #fff url(../assets/images/sprite.png);
+		background-position: -369px -244px;
+		position: absolute;
+		top: -40px;
+		left: -40px;
+	}
+
+	@media (max-width: $mq-mini) {
+		font-size: 11pt;
+		line-height: 13pt;
+	}
+
+}
+
+.formulario-pre-ingreso {
+	h2 {
+		text-transform: uppercase;
+		font-weight: $weight-medium;
+		text-align: center;
+		font-size: 18pt;
+		line-height: 20pt;
+		background-color: $gris-claro;
+		width: 100%;
+		max-width: 480px;
+		margin: 5px auto 30px;
+		padding: 5px 10px;
+	}
+}
+
+.section-pre-ingreso-form {
+	background-color: rgba(0,170,235,0.3);
+	margin: 7px 0 20px;
+	padding: 7px 0;
+}
+
+.nota-aclaratorio-form {
+	font-size: 10pt;
+	float: right;
+
+	@media (max-width: $mq-movil) {
+		float: none;
+		margin-top: 30px!important;
+    	margin-left: 20px!important;
+	}
+}
+
+#pre-ingreso-form {
+	h3 {
+		color: $azul;
+	    text-transform: uppercase;
+	    font-weight: $weight-bold;
+	    font-size: 18pt;
+	    margin: 5px 0;
+	}
+
+	label {
+		display: block;
+		color: $gris;
+		text-transform: uppercase;
+		font-size: 10pt;
+		line-height: 14pt;
+		font-weight: $weight-medium;
+		margin: 5px 0;
+	}
+
+	input {
+		background-color: transparent;
+		color: $gris;
+		border: 1px solid $azul;
+		width: 100%;
+		height: 22px;
+
+		@media (max-width: $mq-movil) {
+			height: 40px;
+		}
+	}
+
+	textarea {
+		width: 90%;
+		height: 100px;
+		border: 1px solid $azul;
+
+		@media (max-width: $mq-movil) {
+			width: 100%;
+		}
+	}
+	input[type="checkbox"] {
+		display: block;
+		width: 22px;
+		height: 22px;
+		border: 1px solid $azul;
+		background-color: transparent;
+		appearance: none;
+ 		-moz-appearance: none;
+ 		-webkit-appearance: none;
+ 		-o-appearance: none;
+ 		-ms-appearance: none;
+	}
+
+	input[type="checkbox"]:checked {
+		background-color: $azul;
+	}
+
+	input[type="submit"] {
+		background-color: $celeste;
+		color: #fff;
+		text-transform: uppercase;
+		font-size: 22pt;
+		border: none;
+		font-weight: $weight-medium;
+		padding: 10px;
+		width: initial;
+		height: initial;
+	}
+}
+
+.pre-afiliacion-exitosa {
+	display: block;
+	font-size: 14pt;
+	color: $celeste;
+	font-style: italic;
+	margin: 10px 0;
+	text-align: center;
+	display: none;
+}
+.pre-afiliacion-error {
+	display: block;
+	font-size: 14pt;
+	color: red;
+	font-style: italic;
+	margin: 10px 0;
+	text-align: center;
+	display: none;
+}
+
+
+
+
+/*-------------- amado olmos - enfermeria -----------------*/
+#instituto-amadeo-olmos {
+	h1 {
+		font-size: 26pt;
+ 		line-height: 30pt;
+		text-transform: uppercase;
+		margin: 20px 0;
+		font-weight: $weight-bold;
+		background-color: $celeste;
+		color: $blanco;
+		padding: 5px 10px;
+		position: relative;
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 145px;
+			height: 50px;
+			background: #fff url(../assets/images/sprite-enfermeria.png);
+			background-position: -207px -44px;
+
+			@media (max-width: $mq-movil) {
+				content: none;
+			}
+
+		}
+	}
+}
+
+ #accordion-enfermeria, #accordion-cursos {
+ 	h3 {
+ 		background-color: $celeste;
+ 		color: $blanco;
+ 		font-size: 18pt;
+ 		line-height: 24pt;
+ 		font-weight: $weight-medium;
+ 		text-transform: uppercase;
+ 		position: relative;
+ 	}
+ }
+
+.icon-suma {
+	width: 52px;
+	height: 52px;
+	display: block;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	background: url(../assets/images/sprite-enfermeria.png);
+	background-position: -23px -754px;
+}
+
+.icon-suma-open {
+	background-position: -23px -688px;
+}
+
+.icon-pdf {
+	@extend .icon-suma;
+	background-position: -17px -829px;	
+}
+
+.download-estudios {
+	display: block;
+	cursor: pointer;
+	position: relative;
+	padding: .5em .5em .5em .7em;
+	font-size: 100%;
+	background-color: $celeste;
+	color: $blanco;
+	font-size: 18pt;
+	line-height: 24pt;
+	font-weight: $weight-medium;
+	text-transform: uppercase;
+	position: relative;
+	margin: 2px auto;
+}
+
+.contenido-accordion-cursos {
+	background-color: $gris-claro;
+	font-weight: $weight-medium;
+	font-size: 14pt;
+ 	line-height: 18pt;
+ 	padding: 10px 20px!important;
+
+ 	strong {
+ 		font-weight: $weight-bold;
+ 	}
+
+ 	li {
+ 		list-style: initial;
+ 		margin-left: 10px;
+ 	}
+}
+
+.docentes-amado-olmos {
+	li {
+		em {
+			font-style: italic;
+		}
+	}
+}
+
+.info-enfermeria {
+	background-color: $gris-claro;
+	color: $celeste;
+	margin: 2px 0;
+	font-size: 13pt;
+	line-height: 16pt;
+	padding: 5px 0;
+	padding-left: 55px;
+	padding-right: 10px;
+	position: relative;
+	font-weight: $weight-light;
+
+	strong {
+		font-weight: $weight-medium;
+	}
+}
+
+h2.info-enfermeria {
+		font-size: 20pt;
+		line-height: 28pt;
+	}
+
+.icon-info {
+	display: block;
+	width: 50px;
+	height: 50px;
+	background: url(../assets/images/sprite-enfermeria.png);
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.icon-info-1 {
+	background-position: -18px -127px;
+}
+
+.icon-info-2 {
+	background-position: -14px -177px;
+}
+
+.icon-info-3 {
+	background-position: -18px -235px;
+}
+
+.icon-info-4 {
+	background-position: -15px -297px;
+}
+
+.icon-info-5 {
+	background-position: -18px -363px;
+}
+
+.icon-info-6 {
+	background-position: -18px -432px;
+}
+
+.info-inscripciones {
+	color: $celeste;
+	padding: 5px 10px;
+	text-align: center;
+	border: 1px solid $celeste;
+	width: 70%;
+	margin: 20px auto;
+	font-weight: $weight-bold;
+
+	h2 {
+		font-size: 20pt;
+		line-height: 24pt;
+		text-transform: uppercase;
+		font-weight: $weight-medium;
+		margin-bottom: 5px;
+	}
+
+	p {
+		margin-top: 0;
+	}
+}
+
+.cuote-enfermeria {
+	background-color: $gris-claro;
+	font-style: italic;
+	text-align: center;
+	width: 70%;
+	margin: 50px auto 80px;
+	font-size: 16pt;
+	line-height: 20pt;
+	position: relative;
+	padding: 40px 20px;
+
+	&:before {
+		content: '';
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		top: -35px;
+		left: 45%;
+		background: url(../assets/images/sprite-enfermeria.png);
+		background-position: -21px -526px;
+	}
+
+	&:after {
+		content: '';
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		bottom: -25px;
+		left: 45%;
+		background: url(../assets/images/sprite-enfermeria.png);
+		background-position: -21px -594px;
+	}
+}
+
+
+/*-------------- instituto de formacion tecnico profesional -----------------*/
+.loop-cursos-formacion-tecnica {
+	margin: 0px auto 80px;
+}
+.curso-formacion-tecnica {
+	position: relative;
+	border: 1px solid $gris;
+	width: 100%;
+	margin: 20px auto;
+	text-align: center;
+
+	img {
+		width: 100%;
+	}
+
+	h1 {
+		font-weight: $weight-bold;
+		text-transform: uppercase;
+		margin: 15px auto 5px;
+		padding: 0 10px;
+		font-size: 9pt;
+		line-height: 11pt;
+	}
+
+	p {
+		margin: 0px auto 10px;
+		color: $negro;
+		padding: 0 10px;
+		font-size: 9pt;
+		line-height: 10pt;
+	}
+
+	a {
+		text-transform: uppercase;
+		font-weight: $weight-light;
+		position: relative;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.8;
+		}
+
+		&:before {
+			content: '';
+			width: 30px;
+			height: 30px;
+			display: block;
+			position: absolute;
+			left: -35px;
+			bottom: -20px;
+			background: $celeste url(../assets/images/sprite.png);
+			background-position: -223px -128px;
+		}
+	}
+}
+
+.nuevo-curso {
+	display: block;
+	width: 72px;
+	height: 72px;
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	z-index: 2;
+	background: url(../assets/images/curso-nuevo.png);
+	background-size: cover;
+}
+
+#accordion-cursos {
+	margin: 0 auto 50px;
+}
+
+.title-cursos {
+	font-size: 28pt!important;
+	color: $azul!important;
+}
+
+/*-------------- convenios universitarios -----------------*/
+.convenios-info {
+	font-size: 18pt;
+	line-height: 20pt;
+	text-align: center;
+}
+
+.convenios-alert {
+	font-size: 13pt;
+	line-height: 18pt;
+	position: relative;
+	text-align: center;
+	padding: 20px 20px 15px;
+	margin: 60px auto;
+	width: 90%;
+	max-width: 435px;
+	border: 2px solid $azul;
+	font-weight: $weight-medium;
+
+	strong {
+		text-transform: uppercase;
+	}
+
+	&:before {
+		content: '';
+		display: block;
+		width: 45px;
+		height: 45px;
+		background: #fff url(../assets/images/sprite.png);
+		background-position: -480px -6px;
+		position: absolute;
+		top: -25px;
+		left: 44%;
+	}
+
+	@media (max-width: $mq-mini) {
+		font-size: 11pt;
+		line-height: 13pt;
+	}
+
+}
+
+//tabs
+.ui-tabs-vertical { 
+	width: 100%;
+}
+.ui-tabs-vertical .ui-tabs-nav { 
+	padding: .2em .1em .2em .2em;
+	float: left;
+	width: 40%;
+
+	@media (max-width: $mq-movil) {
+		float: none;
+		width: 90%;
+		margin: 10px auto;
+	}
+}
+.ui-tabs-vertical .ui-tabs-nav li { 
+	clear: left;
+	width: 85%;
+	margin: 10px -1px .2em 0;
+	font-size: 13pt;
+	font-weight: $weight-medium;
+	line-height: 15pt;
+}
+.ui-tabs-vertical .ui-tabs-nav li a {
+	display:block;
+	padding-bottom: 10px;
+}
+.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { 
+	border-bottom: 1px solid $celeste;
+}
+.ui-tabs-vertical .ui-tabs-panel { 
+	float: right; 
+	width: 60%;
+
+	@media (max-width: $mq-movil) {
+		float: none;
+		width: 90%;
+		margin: 10px auto;
+	}
+
+}
+.tabs-content {
+	font-size: 11pt;
+	font-weight: $weight-medium;
+	line-height: 15pt;
+	h3 {
+		font-weight: $weight-bold;
+		font-size: 14pt;
+		margin: 30px 0 0;
+	}
+	strong {
+		font-weight: $weight-bold;
+	}
+
+	ul {
+		li {
+			margin: 5px 0;
+		}
+	}
+}
+
+/*-------------- formales - no formales -----------------*/
+#formales-no-formales {
+	h1 {
+			font-size: 26pt;
+	 		line-height: 30pt;
+			text-transform: uppercase;
+			margin: 20px 0;
+			font-weight: $weight-bold;
+			background-color: $celeste;
+			color: $blanco;
+			padding: 5px 10px;
+			position: relative;
+	}
+
+	p {
+		font-weight: $weight-medium;
+		font-size: 14pt;
+		margin-bottom: 30px;
+	}
+}
+
+#accordion-cursos-no-formales {
+ 	h3 {
+ 		background-color: $celeste;
+ 		color: $blanco;
+ 		font-size: 18pt;
+ 		line-height: 24pt;
+ 		font-weight: $weight-medium;
+ 		position: relative;
+ 	}
+
+ 	
+ }
+
+.contenido-accordion-cursos-no-formales {
+	background-color: $gris-claro;
+	font-weight: $weight-medium;
+	font-size: 14pt;
+ 	line-height: 18pt;
+ 	padding: 10px 20px!important;
+
+ 	ul {
+		font-weight: $weight-light;
+		color: $celeste;
+		li {
+			margin: 10px auto;
+			list-style: none;
+			font-size: 14pt;
+			line-height: 20pt;
+		}
+	}
+}
+
+/*-------------- trabajadores -----------------*/
+.font-size-18 {
+	font-size: 18pt!important;
+	line-height: 24pt!important;
+}
+
+.inquietudes-sec-mujer {
+	font-size: 14pt;
+	line-height: 20pt;
+	font-weight: $weight-medium;
+	position: relative;
+	margin: 5px 0 20px;
+	padding-left: 50px;
+
+	&:before {
+		content: '';
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 45px;
+		height: 45px;
+		background: url(../assets/images/sprite.png);
+		background-position: -481px -67px; 
+	}
+
+	&:first-child {
+		&:before {
+			top: -10px;
+
+			@media (max-width: $mq-mini) {
+				top: 0;
+			}
+		}
+	}
+}
+
+.margin-top-min {
+	margin-top: 10px;
+}
+
+
+
+.tabs-20 {
+	width: 15%!important;
+	text-align: center;	
+
+	@media (max-width: $mq-movil) {
+		width: 80%!important;
+
+		li {
+			width: 100%!important;
+		}
+	}
+
+}
+
+.tabs-70 {
+	width: 70%!important;	
+
+	@media (max-width: $mq-movil) {
+		width: 90%!important;
+	}
+}
+
+.tabs-content-trabajadores {
+	background: $gris-claro;
+	font-size: 14pt;
+	font-weight: $weight-medium;
+	line-height: 18pt;
+	padding: 10px 20px;
+	@include box-shadow(1px -3px 7px $negro-transparente);
+
+	strong {
+		font-weight: $weight-bold;
+	}
+
+	ul {
+		li {
+			margin: 5px 0;
+			a {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+/*-------------- celeste y blanca -----------------*/
+
+#celeste-blanca {
+	p {
+		font-size: 16pt;
+		line-height: 20pt;
+		text-align: center;
+	}
+}
+
+.celestey-blanca-section {
+	padding: 30px 0;
+}
+
+.alert-celeste {
+	position: relative;
+	margin: 60px auto;
+	width: 90%;
+	max-width: 780px;
+	padding: 60px 25px;
+	background-color: $gris-claro;
+	@include box-shadow(2px -2px 8px $negro-transparente);
+	@media (max-width: $mq-mini) {
+			padding: 60px 10px;
+		}
+
+	&:before {
+		content: '';
+		position: absolute;
+		display: block;
+		top: -50px;
+		left: 45%;
+		width: 96px;
+		height: 110px;
+		background: url(../assets/images/sprite.png);
+		background-position: -463px -141px;
+
+		@media (max-width: $mq-mini) {
+			left: 35%;
+		}
+	}
+	h2 {
+		font-size: 18pt;
+		line-height: 36pt;
+		font-weight: $weight-medium;
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	ul {
+		font-size: 16pt;
+		line-height: 24pt;
+		font-weight: $weight-medium;
+		text-align: center;
+		margin: 30px 0;
+	}
+
+	h4 {
+		color: $celeste;
+		font-size: 18pt;
+		line-height: 24pt;
+		font-weight: $weight-medium;
+		text-align: center;
+	}
+}
+
+/*-------------- Laboratorio de simulación -----------------*/
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.font-size-28pt {
+	font-size: 28pt!important;
+	line-height: 36pt!important;
+}
+
+.weight-medium {
+	font-weight: $weight-medium;
+}
+
+.font-size-14 {
+	font-size: 14pt!important;
+	line-height: 18pt!important;
+}
+
+.objetivos-laboratorio  {
+	padding: 0px 2 15px;
+	border: 2px solid $celeste;
+	margin: 60px auto 70px;
+	width: 95%;
+
+	h2 {
+		text-transform: uppercase;
+		font-size: 28pt;
+		line-height: 36pt;
+		position: relative;
+		top: -23px;
+		color: $celeste;
+		width: 260px;
+		background-color: #fff;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	ul {
+		font-size: 14pt;
+		font-weight: $weight-medium;
+		line-height: 18pt;
+	}
+}
+
+.laboratorio-lista-items {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.laboratorio-item {
+	width: 90%;
+	margin: 20px auto;
+	border: 1px solid $negro;
+	color: #333;
+	font-size: 14pt;
+	line-height: 18pt;
+	text-align: center;
+	padding: 0 10px 10px;
+
+	h1 {
+		text-transform: uppercase;
+		font-size: 16pt;
+		line-height: 22pt;
+		color: $azul;
+		font-weight: $weight-medium;
+	}
+
+	img {
+		width: 100%;
+	}
+}
+
+/*-------------- Preguntas frecuentes -----------------*/
+
+.title-preguntas-frecuentes {
+	background-color: $gris-claro;
+	position: relative;
+	h2 {
+		font-weight: $weight-bold;
+		color: $celeste;
+		font-size: 18pt;
+		line-height: 24pt;
+		padding: 5px 20px;
+		text-align: center;
+
+		@media (max-width: $mq-movil) {
+			padding-left: 60px;
+		}
+	}
+}
+
+.sub-title-preguntas-frecuentes {
+	background-color: $gris-claro;
+	width: 70%;
+	margin: 30px auto;
+	max-width: 480px;
+	@include border-radius(5px);
+
+	h3 {
+		font-weight: $weight-medium;
+		color: $celeste;
+		font-size: 14pt;
+		line-height: 18pt;
+		padding: 5px 20px;
+		text-align: center;
+	}
+}
+
+.parrafo-preguntas-frecuentes {
+	font-weight: $weight-medium;
+	font-size: 14pt;
+	line-height: 18pt;
+	text-align: center;
+	padding: 0 10%;
+	margin: 20px 0;
+
+	a {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	@media (max-width: $mq-movil) {
+			padding: 0 20px;
+		}
+}
+
+.icon-preguntas-frecuentes {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 60px;
+	height: 60px;
+	background: url(../assets/images/sprite.png);
+}
+
+.icon-preguntas-frecuentes-1 {
+	background-position: -562px -1px;
+}
+
+.icon-preguntas-frecuentes-2 {
+	background-position: -562px -81px;
+}
+
+.icon-preguntas-frecuentes-3 {
+	background-position: -562px -186px;
+}
+
+.icon-preguntas-frecuentes-4 {
+	background-position: -562px -267px;
+}
+
+.icon-preguntas-frecuentes-5 {
+	background-position: -562px -370px;
+}
+
+
+/*-------------- beneficios -----------------*/
+.main-title-beneficios {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: $weight-medium;
+	font-size: 24pt;
+	line-height: 36px;
+	text-align: center;
+	background-color: $gris-claro;
+}
+.lista-beneficios {
+	margin: 50px 0;
+}
+.beneficio-item {
+	margin: 50px 0;
+}
+
+.beneficio-imagen {
+	@include box-shadow(3px 4px 6px $negro-transparente);
+}
+
+.data-beneficio {
+	h1 {
+		font-size: 16pt;
+		letter-spacing: 1px;
+		line-height: 36pt;
+		display: inline;
+		color: #333;
+		text-transform: uppercase;
+		font-weight: $weight-medium;
+		margin: 10px 0;
+		border-bottom: 2px solid $celeste;
+		padding: 0 10px;
+	}
+
+	h3 {
+		background-color: $gris-claro;
+		font-weight: $weight-medium;
+		font-size: 16pt;
+		line-height: 22pt;
+		margin: 10px 0;
+		padding: 0 10px;
+
+		strong {
+			text-transform: uppercase;
+		}
+	}
+
+	h2 {
+		background-color: $gris-claro;
+		font-weight: $weight-medium;
+		font-size: 16pt;
+		line-height: 22pt;
+		text-transform: uppercase;
+		margin: 10px 0;
+		padding: 0 10px;
+	}
+}
+
+.requisitos-beneficios-lista  {
+	font-weight: $weight-medium;
+	font-size: 14pt;
+	line-height: 18pt;
+	padding: 0 10px;
+
+	li {
+		margin: 10px 0;
+	}
+}
+
+/*-------------- sanidad en numeros -----------------*/
+
+.sanindad-numeros {
+	margin: 20px auto;
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+/*-------------- viajes -----------------*/
+.viajes {
+	padding: 50px 0;
+}
+
+.alert-viaje-norte {
+	position: relative;
+	margin: 60px auto;
+	width: 90%;
+	max-width: 780px;
+	padding: 60px 25px;
+	background-color: $gris-claro;
+	@include box-shadow(2px -2px 8px $negro-transparente);
+	@media (max-width: $mq-mini) {
+			padding: 60px 10px;
+		}
+
+	&:before {
+		content: '';
+		position: absolute;
+		display: block;
+		top: -50px;
+		left: 45%;
+		width: 96px;
+		height: 110px;
+		background: url(../assets/images/sprite.png);
+		background-position: -463px -141px;
+
+		@media (max-width: $mq-mini) {
+			left: 35%;
+		}
+	}
+	h2 {
+		font-size: 24pt;
+		line-height: 36pt;
+		font-weight: $weight-bold;
+		text-align: center;
+		color: $celeste;
+		margin-top: 20px;
+	}
+
+	ul {
+		font-size: 16pt;
+		line-height: 24pt;
+		font-weight: $weight-bold;
+		text-align: center;
+		margin: 10px 0;
+		list-style: initial;
+    	list-style-position: inside;
+	}
+}
+
+
+.alert-info-viajes {
+	border: 1px solid $celeste;
+	h2 {
+		font-size: 24pt;
+		line-height: 36pt;
+		font-weight: $weight-bold;
+		text-align: center;
+		color: $celeste;
+		position: relative;
+		top: -27px;
+		width: 350px;
+		margin: 0 auto;
+		background-color: #fff;
+		&:before {
+			content: '';
+			position: absolute;
+			display: block;
+			top: -10px;
+			left: -60px;
+			width: 70px;
+			height: 70px;
+			background: url(../assets/images/sprite.png);
+			background-position: -471px -269px;
+
+			@media (max-width: $mq-mini) {
+				content: none;
+			}
+		}
+	}
+
+	p {
+		font-size: 16pt;
+		line-height: 24pt;
+		font-weight: $weight-bold;
+		text-align: center;
+		margin: -15px 0 20px;;
+	}
+}
+/*-------------- torneos y events -----------------*/
+
+.torneos-y-eventos {
+	padding: 50px 0;
+}
+.tittle-deportes {
+	background-color: $celeste;
+	color: $blanco;
+	font-size: 36pt;
+	line-height: 48pt;
+	font-weight: $weight-medium;
+	text-transform: uppercase;
+	position: relative;
+	text-align: center;
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 115px;
+		height: 65px;
+		top: 0;
+		left: 20px;
+		background: url(../assets/images/sprite.png);
+		background-position: -657px -23px;
+
+		@media (max-width: $mq-movil) {
+			content: none;
+		}
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		width: 115px;
+		height: 65px;
+		top: 0;
+		right: 20px;
+		background: url(../assets/images/sprite.png);
+		background-position: -657px -23px;
+
+		@media (max-width: $mq-movil) {
+			content: none;
+		}
+	}
+}
+
+.paragraph-deportes {
+	font-weight: $weight-medium;
+	text-align: center;
+	font-size: 14pt;
+	line-height: 18pt;
+	margin: 40px 0!important;
+}
+
+#accordion-deportes {
+	margin: 50px 0;
+	h3 {
+ 		background-color: $celeste;
+ 		color: $blanco;
+ 		font-size: 16pt;
+ 		line-height: 20pt;
+ 		font-weight: $weight-medium;
+ 		position: relative;
+ 		text-align: center;
+ 	}
+}
+
+.contenido-accordion-deportes {
+	ul {
+		width: 100%;
+		max-width: 780px;
+		margin: 30px auto;
+		font-weight: $weight-light;
+		font-size: 18pt;
+		line-height: 24pt;
+		text-transform: uppercase;
+		color: $celeste;
+
+		li {
+			margin: 10px;
+			border-bottom: 1px solid $celeste;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+}
+
+/*-------------- hoteles -----------------*/
+#hoteles {
+	@media (max-width: $mq-movil) {
+        padding-top: 50px;
+    }
+}
+.header-hoteles {
+    position: relative;
+    z-index: 1;
+    padding-top: 45px;
+
+    @media (max-width: $mq-movil) {
+        display: none; 
+    }
+}
+
+.main-title-hoteles {
+	position: relative;
+	font-size: 24pt;
+	line-height: 28pt;
+	font-weight: $weight-bold;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 20px 0 80px;
+	z-index: 1;
+
+	&:before {
+		content: '';
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		top: -40px;
+		left: 48%;
+		background: url(../assets/images/sprite.png);
+		background-position: -656px -126px;
+	}
+	&:after {
+		content: '';
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		bottom: -40px;
+		left: 48%;
+		background: url(../assets/images/sprite.png);
+		background-position: -656px -126px;
+	}
+}
+.lista-hoteles {}
+
+.hotel-atsa {
+	position: relative;
+	border-bottom: 1px solid $celeste;
+	margin: 60px auto;
+	padding-bottom: 65px;
+	@media (max-width: $mq-tablet) {
+		padding-bottom: 160px;
+	}
+
+	@media (max-width: $mq-movil) {
+		padding-bottom: 50px;
+	}
+}
+
+.img-hotel-atsa {
+	position: relative;
+	background-color: #333;
+	height: 280px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.hotel-tag-location {
+	background-color: #147ba2;
+	color: $blanco;
+	text-transform: uppercase;
+	font-weight: $weight-normal;
+	font-size: 10pt;
+	line-height: 13pt;
+	position: absolute;
+	padding: 5px;
+	top: 5px;
+	left: 5px;
+}
+
+.title-hotel {
+	font-size: 22pt;
+	line-height: 28pt;
+	font-weight: $weight-light;
+	color: #333;
+	border: 1px solid $celeste;
+	display: inline-block;
+	padding: 2px 5px;
+	letter-spacing: 1px;
+	@include border-radius(5px);
+
+	@media (max-width: $mq-movil) {
+		margin-top: 20px;
+	}
+}
+
+.description-hotel {
+	font-weight: $weight-medium;
+	font-size: 14pt;
+	line-height: 18pt;
+	margin: 10px auto;
+}
+
+.servicios-title {
+	font-size: 14pt;
+	line-height: 18pt;
+	font-weight: $weight-medium;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+
+	@media (max-width: $mq-tablet) {
+		margin-top: 40px;
+	}
+}
+
+.lista-servicios-hoteles {
+	margin: 10px auto;
+	font-weight: $weight-medium;
+	font-size: 10pt;
+}
+
+.data-extra-hotel {
+	font-weight: $weight-medium;
+	font-size: 10pt;
+	margin-top: 10px;
+	margin-bottom: 40px;
+
+	@media (max-width: $mq-tablet) {
+		margin-top: 40px;
+	}
+}
+
+.contingente-hotel {
+	width: 100%;
+	max-width: 320px;
+	position: relative;
+	text-align: center;
+	font-weight: $weight-medium;
+	font-size: 10pt;
+	border: 1px solid $celeste;
+	padding: 20px 10px 5px;
+	margin: 10px 0 0;
+
+	@media (max-width: $mq-tablet) {
+		margin-top: 60px;
+	}
+
+	@media (max-width: $mq-movil) {
+		margin-top: 40px;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 45px;
+		height: 35px;
+		top: -20px;
+		left: 45%;
+		background: url(../assets/images/sprite.png);
+		background-position: -567px -455px;
+	}
+}
+
+.icon-servicios {
+	position: absolute;
+	bottom: 5px;
+	width: 65%;
+	height: 150px;
+
+	@media (max-width: $mq-tablet) {
+		width: 100%;
+	}
+
+	@media (max-width: $mq-movil) {
+		height: 50px;
+		position: static;
+	}
+}
+
+.img-icon-servicios-hotel {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	@media (max-width: $mq-pc) {
+		width: 70%;
+	}
+
+	@media (max-width: $mq-movil) {
+		width: 100%;
+	}
+}
+
+.img-icon-tipo-hotel {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 122px;
+	width: 122px;
+
+	@media (max-width: $mq-movil) {
+		display: none;
+	}
+}
+
+/*-------------- centro medico prevencion -----------------*/
+#centro-medico-prevencion {
+	background: #fff;
+}
+
+.centro-medico-prevencion {
+	padding: 20px 0 40px;
+}
+
+.centro-medico-prevencion-descripcion {
+	font-size: 14pt;
+	line-height: 18pt;
+	font-weight: $weight-medium;
+	margin: 10px 0;
+}
+
+.logo-estar-bien {
+	width: 80%;
+	max-width: 380px;
+	margin: 30px auto;
+}
+.prevencion-boxes {
+	position: relative;
+    border: 1px solid $celeste;
+    padding: 20px 20px;
+    color: $celeste;
+    font-weight: $weight-bold;
+    text-align: center;
+    width: 295px;
+    margin: 50px auto;
+    font-size: 16pt;
+    line-height: 22pt;
+    height: 90px;
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 50px;
+		top: -35px;
+		left: 0;
+		background: url(../assets/images/sprite.png); 
+	}
+}
+
+.prevencion-boxes-icon-tel {
+	&:before {
+		background-position: 104px -327px;
+	}
+}
+
+.prevencion-boxes-icon-loc {
+	&:before {
+		background-position: 104px -397px;
+	}
+}
+
+.prevencion-boxes-icon-time {
+	&:before {
+		background-position: 104px -523px;
+	}
+}
+
+.prevencion-boxes-small {
+	font-size: 11pt;
+	line-height: 22pt;
+	span {
+		text-transform: uppercase;
+		color: $gris;
+		font-weight: $weight-normal;
+		font-size: 15pt;
+	}
+}
+
+.programa-prevencion {
+	ul {
+		padding-left: 30px;
+	}
+}
+
+.pp-titulo-prevencion {
+	font-weight: $weight-medium;
+	font-size: 12pt;
+	line-height: 16pt;
+	margin: 20px 0;
+}
+
+.pp-lista-prevencion {
+	list-style: initial;
+}
+
+.pp-destacado-prevencion {
+	font-weight: $weight-medium;;
+}
+
+.pp-subtitulo-prevencion {
+	font-weight: $weight-medium;;
+	text-transform: uppercase;
+}
+
+.pp-parrafo-prevencion {
+	font-size: 12pt;
+	margin: 5px 0;
+}
+/*-------------- otra pagina -----------------*/
