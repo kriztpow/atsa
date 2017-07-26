@@ -1,7 +1,7 @@
 <article id="trabajadores" class="class="wrapper-home">
 <header class="header-home">
         <?php
-            getTemplate( 'slider-trabajadores' );
+            getSliders( 'trabajadores' );
         ?>
     </header>
     <section class="mini-padding-section">
@@ -55,22 +55,22 @@
 		<div id="trabajadores-tabs">
 			<ul class="tabs-20">
 				<li>
-					<a href="#2014">
+					<a class="urltochange" href="#2014">
 						2014
 					</a>
 				</li>
 			    <li>
-			    	<a href="#2015">
+			    	<a class="urltochange" href="#2015">
 			    		2015
 			    	</a>
 			    </li>
 			    <li>
-			    	<a href="#2016">
+			    	<a class="urltochange" href="#2016">
 			    		2016
 			    	</a>
 			    </li>
 			    <li>
-			    	<a href="#docs-interes">
+			    	<a class="urltochange" href="#docs-interes">
 			    		Documentos de interes
 			    	</a>
 			    </li>
@@ -142,8 +142,16 @@
 <script src="js/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function () {
+    	//arregla los url para que funcionen las tabs
+        var base = window.location.href
+        $('.urltochange').each( function (){
+            var baseurl = this.href;
+            var url = this.href.split("#")[1];
+            var newURL = base + '#' + url;
+            $(this).attr('href',newURL);
+        });
     	$( "#trabajadores-tabs" ).tabs({active : 0}).addClass( "ui-tabs-vertical ui-helper-clearfix" );
-    $( "#trabajadores-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+    	$( "#trabajadores-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
     });//ready
 	
 </script>

@@ -2,7 +2,7 @@
     <!--------- header -------------->
     <header class="header-home">
         <?php
-            getTemplate( 'slider-home' );
+            getSliders( 'home' );
         ?>
         <nav class="menu-shorcuts-wrapper">
             <div class="container">
@@ -139,7 +139,6 @@
                 </div>
                 
                 <div class="conectados-video">
-                    <!--<img src="assets/images/temp/frame-video.png" class="img-responsive">-->
                     <div class="wrapper-iframe-video">
                         <iframe src="https://www.youtube.com/embed/rYHyEBCMO4s" frameborder="0" allowfullscreen></iframe>
                      </div>

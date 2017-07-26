@@ -9,8 +9,8 @@
 
 require_once 'connect.php';
 
-//busca el template $name = nombre del archivo sin extensión
-function getTemplate ( $name ) {
+//busca el template $name = nombre del archivo sin extensión, se le puede pasar datos por un array
+function getTemplate ( $name, $data = array() ) {
 	$error = '404';
 	$namePage = TEMPLATEDIR . '/'. $name. '.php';
 
@@ -215,6 +215,7 @@ function metaDescriptionText ( $pageActual, $noticia, $curso, $categoriaNoticias
 */
 
 function connectDB () {
+	global $connection;
   $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   // Test if connection succeeded
   if( mysqli_connect_errno() ) {
@@ -649,3 +650,27 @@ function hotelesLoopHTML () {
 		
 	}//ELSE
 } //singlePostHTML()
+
+
+//busca el slider en base de datos de acuerdo a su 'ubicacion' pasada
+function getSliders( $slider ) {
+
+	$connection = connectDB();
+	$tabla = 'sliders';
+	$query  = "SELECT * FROM " .$tabla. " WHERE slider_ubicacion='".$slider."' ";
+		
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div></div>';
+	} else {
+
+		while ( $row = $result->fetch_array(MYSQLI_ASSOC) ) {
+			$dataSlider[] = $row;
+		}
+		
+		//selecciona el template html y le pasa la info
+		getTemplate( 'sliders', $dataSlider);
+
+	}//else
+} //getSliders()

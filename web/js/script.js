@@ -30,8 +30,13 @@ $(document).ready(function(){
         var mainMenu = $('.main-menu');
         var subMenu = $('.main-menu-sub1',this);
         if (subMenu.css('height') == '0px') {
+            //estas tres lineas averiguan cuanto alto ocuparía el menú al 100%
+            subMenu.height('100%');
+            var newHeight = subMenu.height() + 'px';
+            subMenu.height('0');
+            //ahora que ya tenemos el alto, se anima
             subMenu.animate({
-                'height': '200px'
+                'height': newHeight
             });
             $(this).addClass('main-menu-open-movil');
             mainMenu.css('height', '100%');

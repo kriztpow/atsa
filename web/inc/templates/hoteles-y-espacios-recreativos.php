@@ -11,7 +11,7 @@
 <article id="hoteles" class="wrapper-home">
 	<header class="header-hoteles">
         <?php
-            getTemplate( 'slider-hoteles' );
+            getSliders( 'hoteles' );
         ?>
     </header>
 
@@ -58,7 +58,7 @@
     						<div class="col-md-4 col-sm-6">
                             <div class="img-hotel-atsa"
                             <?php if ($thumnailhotel != '') {
-                                echo 'style="background-image: url(uploads/images/hoteles/'.$thumnailhotel.')"';
+                                echo 'style="background-image: url(uploads/images/'.$thumnailhotel.')"';
                                 } ?>
     							 >
     								<span class="hotel-tag-location">
@@ -112,11 +112,11 @@
     					</div><!-- //.row -->
 
     					<div class="icon-servicios">
-    						<img src="uploads/images/hoteles/<?php echo $iconServiciosHotel; ?>" alt="Hoteles ATSA" class="img-icon-servicios-hotel">
+    						<img src="uploads/images/<?php echo $iconServiciosHotel; ?>" alt="Hoteles ATSA" class="img-icon-servicios-hotel">
     						<?php
 								if ( $iconTipoHotel != '' ) { ?>
 
-								<img src="uploads/images/hoteles/<?php echo $iconTipoHotel; ?>" alt="Hoteles ATSA" class="img-icon-tipo-hotel">
+								<img src="uploads/images/<?php echo $iconTipoHotel; ?>" alt="Hoteles ATSA" class="img-icon-tipo-hotel">
 
 								<?php 
 								} ?>

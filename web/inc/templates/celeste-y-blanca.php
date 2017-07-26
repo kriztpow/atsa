@@ -1,7 +1,7 @@
 <article id="celeste-blanca" class="wrapper-home">
 	<header class="header-home">
         <?php
-            getTemplate( 'slider-celesteyblanca' );
+        	getSliders( 'celeste' );
         ?>
     </header>
     <section class="celestey-blanca-section">

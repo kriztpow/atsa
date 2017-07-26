@@ -1,7 +1,7 @@
 <article id="viajes" class="wrapper-home">
 	<header class="header-hoteles">
         <?php
-            getTemplate( 'slider-viajes' );
+            getSliders( 'viajes' );
         ?>
     </header>
     <section class="viajes">

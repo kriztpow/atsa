@@ -36,7 +36,7 @@
 				
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/asistencia-respiratoria-mecanica.png" alt="Cursos ATSA">
+						<img src="uploads/images/asistencia-respiratoria-mecanica.png" alt="Cursos ATSA">
 						<h1>Asistencia respiratoria mecánica</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -48,7 +48,7 @@
 				
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/arritmias-cardiacas.png" alt="Cursos ATSA">
+						<img src="uploads/images/arritmias-cardiacas.png" alt="Cursos ATSA">
 						<h1>Arritmias Cardíacas</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -60,7 +60,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/educacion-enfermeria.png" alt="Cursos ATSA">
+						<img src="uploads/images/educacion-enfermeria.png" alt="Cursos ATSA">
 						<h1>Educación para Enfermería</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -72,7 +72,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/control-infecciones.png" alt="Cursos ATSA">
+						<img src="uploads/images/control-infecciones.png" alt="Cursos ATSA">
 						<h1>Control de infecciones</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -84,7 +84,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/cuidados-cardiologicos.png" alt="Cursos ATSA">
+						<img src="uploads/images/cuidados-cardiologicos.png" alt="Cursos ATSA">
 						<h1>Cuidados Cardiológicos</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -96,7 +96,7 @@
 				
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/coaching-enfermeras.png" alt="Cursos ATSA">
+						<img src="uploads/images/coaching-enfermeras.png" alt="Cursos ATSA">
 						<h1>Coaching para enfermeras</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -108,7 +108,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/electrocardiografia.png" alt="Cursos ATSA">
+						<img src="uploads/images/electrocardiografia.png" alt="Cursos ATSA">
 						<h1>Electrocardiografía</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -120,7 +120,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/computacion-enfermeras.png" alt="Cursos ATSA">
+						<img src="uploads/images/computacion-enfermeras.png" alt="Cursos ATSA">
 						<h1>Computación para enfermería</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -132,7 +132,7 @@
 				
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/uti-basico.png" alt="Cursos ATSA">
+						<img src="uploads/images/uti-basico.png" alt="Cursos ATSA">
 						<h1>UTI (Nivel Básico)</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -144,7 +144,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/uti-avanzado.png" alt="Cursos ATSA">
+						<img src="uploads/images/uti-avanzado.png" alt="Cursos ATSA">
 						<h1>UTI (Nivel Avanzado)</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -156,7 +156,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/endoscopia-dijestiva.png" alt="Cursos ATSA">
+						<img src="uploads/images/endoscopia-dijestiva.png" alt="Cursos ATSA">
 						<h1>Endoscopía Digestiva</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -168,7 +168,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/colangiopancreatografia.png" alt="Cursos ATSA">
+						<img src="uploads/images/colangiopancreatografia.png" alt="Cursos ATSA">
 						<h1>Colangiopancreatografía</h1>
 						<p>
 							Modalidad Presencial<br>
@@ -180,7 +180,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/enfermeria-cuidados-cardiologicos-avanzados.png" alt="Cursos ATSA">
+						<img src="uploads/images/enfermeria-cuidados-cardiologicos-avanzados.png" alt="Cursos ATSA">
 						<span class="nuevo-curso"></span>
 						<h1>Enfermería en Cuidados Cardiológicos Avanzados</h1>
 						<p>
@@ -193,7 +193,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/rol-enfermeria-situaciones-criticas.png" alt="Cursos ATSA">
+						<img src="uploads/images/rol-enfermeria-situaciones-criticas.png" alt="Cursos ATSA">
 						<span class="nuevo-curso"></span>
 						<h1>Rol de enfermería en situaciones críticas</h1>
 						<p>
@@ -206,7 +206,7 @@
 
 				<li class="col-lg-3 col-md-4 col-sm-6">
 					<article class="curso-formacion-tecnica">
-						<img src="uploads/images/cursos/densitometria-osea.png" alt="Cursos ATSA">
+						<img src="uploads/images/densitometria-osea.png" alt="Cursos ATSA">
 						<span class="nuevo-curso"></span>
 						<h1>Densitometría Osea</h1>
 						<p>

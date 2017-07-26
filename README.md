@@ -17,6 +17,11 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 2.3
+* Slider con base de datos
+* Se borran todos los archivos de sliders y se remplaza por uno solo.
+* Todas las imagenes re organizadas, se suben directo a upload/images sin subcarpeta. Salvo las del grid del home que tiene su carpeta simple
+
 ### Versión 2.2
 * Base de datos noticias (el index busca si es noticias en la base de datos)
 * Paginación cada 10 post

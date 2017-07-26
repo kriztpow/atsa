@@ -7,7 +7,7 @@
     		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">
 		    	<article class="staff-member">
 					<div class="staff-img-wrapper">
-						<img class="staff-image" src="uploads/images/autoridades/hector.jpg" alt="Nombre - Cargo - ATSA BsAS">
+						<img class="staff-image" src="uploads/images/hector.jpg" alt="Nombre - Cargo - ATSA BsAS">
 					</div>
 
 					<div class="staff-text">
@@ -28,7 +28,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/mabel-vergara.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/mabel-vergara.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -47,7 +47,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/hugo-lujan.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/hugo-lujan.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -65,7 +65,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/pablo-guzetti.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/pablo-guzetti.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -83,7 +83,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/lucio-rojas.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/lucio-rojas.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -101,7 +101,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/javier-pokoik.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/javier-pokoik.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -123,7 +123,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/diego-sisto.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/diego-sisto.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -147,7 +147,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/ximena.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/ximena.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -166,7 +166,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/abel-ramirez.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/abel-ramirez.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -186,7 +186,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/norberto.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/norberto.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -208,7 +208,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/abel-frias.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/abel-frias.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -228,7 +228,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/norma-lopez.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/norma-lopez.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -251,7 +251,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/graciela-jara.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/graciela-jara.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -271,7 +271,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/susan-turner.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/susan-turner.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -294,7 +294,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/raul-leite.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/raul-leite.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -312,7 +312,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/ruben-perez.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/ruben-perez.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -334,7 +334,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/romero.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/romero.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -354,7 +354,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/cristina-quevedo.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/cristina-quevedo.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -373,7 +373,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/monica-consoni.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/monica-consoni.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">
@@ -392,7 +392,7 @@
 		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 		    		<article class="staff-member">
 		    			<div class="staff-img-wrapper">
-		    				<img class="staff-image" src="uploads/images/autoridades/sergio-romero.jpg" alt="Nombre - Cargo - ATSA BsAS">
+		    				<img class="staff-image" src="uploads/images/sergio-romero.jpg" alt="Nombre - Cargo - ATSA BsAS">
 		    			</div>
 
 		    			<div class="staff-text">

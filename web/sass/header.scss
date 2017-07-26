@@ -544,12 +544,12 @@
     li {
         float: none;
         line-height: 13pt;
-        padding: 10px 10px;
+        padding: 0;
         min-width: 200px;
         background-color: $blanco-transparente;
         
         &:first-child {
-            margin-top: 16px;
+            margin-top: 15px;
         }
         
         &:hover {
@@ -557,7 +557,9 @@
         }
 
         a {
-            padding: 6px 0;
+            padding: 16px 10px;
+            display: inline-block;
+            width: 100%;
         }
     }   
 }
@@ -651,7 +653,7 @@
 
         li {
             float: none;
-            padding: 10px 20px;
+            padding: 0px 10px;
             text-align: left;
             border-top: 1px solid $celeste;
             border-bottom: none;

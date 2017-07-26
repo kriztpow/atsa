@@ -2,7 +2,7 @@
     <!--------- header -------------->
     <header class="header-home">
         <?php
-            getTemplate( 'slider-prevencion' );
+            getSliders( 'prevencion' );
         ?>
     </header>
     <section class="centro-medico-prevencion">

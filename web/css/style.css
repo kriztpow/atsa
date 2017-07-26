@@ -584,15 +584,17 @@ html, body {
   .main-menu-sub1 li {
     float: none;
     line-height: 13pt;
-    padding: 10px 10px;
+    padding: 0;
     min-width: 200px;
     background-color: rgba(255, 255, 255, 0.8); }
     .main-menu-sub1 li:first-child {
-      margin-top: 16px; }
+      margin-top: 15px; }
     .main-menu-sub1 li:hover {
       color: #00acec; }
     .main-menu-sub1 li a {
-      padding: 6px 0; }
+      padding: 16px 10px;
+      display: inline-block;
+      width: 100%; }
 
 /*animaciones sub-menus css*/
 .main-menu li:hover > .main-menu-sub1 {
@@ -669,7 +671,7 @@ html, body {
     overflow: hidden; }
     .main-menu-sub1 li {
       float: none;
-      padding: 10px 20px;
+      padding: 0px 10px;
       text-align: left;
       border-top: 1px solid #00acec;
       border-bottom: none; }

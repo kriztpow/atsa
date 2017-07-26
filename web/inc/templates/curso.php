@@ -86,7 +86,7 @@ global $dataCurso;
 
 
 			<div class="col-md-4">
-	    		<img class="img-responsive" src="uploads/images/cursos/<?php echo $dataCurso['imagen']; ?>">
+	    		<img class="img-responsive" src="uploads/images/<?php echo $dataCurso['imagen']; ?>">
 	    		<div>
 	    			<h2 class="info-enfermeria"><span class="icon-info icon-info-1"></span>
 	    				<?php echo $dataCurso['certificado']; ?>

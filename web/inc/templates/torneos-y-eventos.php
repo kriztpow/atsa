@@ -1,7 +1,7 @@
 <article id="torneos-y-eventos" class="wrapper-home">
 	<header class="header-hoteles">
         <?php
-            getTemplate( 'slider-deportes' );
+            getSliders( 'deportes' );
         ?>
     </header>
 	<section class="torneos-y-eventos">

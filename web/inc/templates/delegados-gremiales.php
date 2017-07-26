@@ -29,7 +29,7 @@
 		    				<article>
 		    					<div class="delegado-img">
 		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/delegados/alicia-carnucchio.jpg" alt="Delegado ATSA">
+		    							<img src="uploads/images/alicia-carnucchio.jpg" alt="Delegado ATSA">
 		    						</div>
 		    					</div>
 		    					<div class="delegado-data">
@@ -43,7 +43,7 @@
 		    				<article>
 		    					<div class="delegado-img">
 		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/delegados/jose-jelvez.jpg" alt="Delegado ATSA">
+		    							<img src="uploads/images/jose-jelvez.jpg" alt="Delegado ATSA">
 		    						</div>
 		    					</div>
 		    					<div class="delegado-data">
@@ -60,7 +60,7 @@
 		    				<article>
 		    					<div class="delegado-img">
 		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/delegados/sergio-doubrova.jpg" alt="Delegado ATSA">
+		    							<img src="uploads/images/sergio-doubrova.jpg" alt="Delegado ATSA">
 		    						</div>
 		    					</div>
 		    					<div class="delegado-data">
@@ -74,7 +74,7 @@
 		    				<article>
 		    					<div class="delegado-img">
 		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/delegados/cecilia-pogonza.jpg" alt="Delegado ATSA">
+		    							<img src="uploads/images/cecilia-pogonza.jpg" alt="Delegado ATSA">
 		    						</div>
 		    					</div>
 		    					<div class="delegado-data">
@@ -90,7 +90,7 @@
 		    				<article>
 		    					<div class="delegado-img">
 		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/delegados/alejandra-sandoval.jpg" alt="Delegado ATSA">
+		    							<img src="uploads/images/alejandra-sandoval.jpg" alt="Delegado ATSA">
 		    						</div>
 		    					</div>
 		    					<div class="delegado-data">
@@ -103,7 +103,7 @@
 		    				<article>
 		    					<div class="delegado-img">
 		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/delegados/fabian-rivas.jpg" alt="Delegado ATSA">
+		    							<img src="uploads/images/fabian-rivas.jpg" alt="Delegado ATSA">
 		    						</div>
 		    					</div>
 		    					<div class="delegado-data">
