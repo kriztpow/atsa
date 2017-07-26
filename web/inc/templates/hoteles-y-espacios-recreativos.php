@@ -6,10 +6,6 @@
  * hoteles template
  * Template que muestra hoteles por ahora buscando el array de hoteles en archivo data
 */
-require_once 'inc/data.php';
-//por ahora busca los datos en la variable
-	global $hotelesAtsa;
-
 ?>
 
 <article id="hoteles" class="wrapper-home">
@@ -24,19 +20,36 @@ require_once 'inc/data.php';
     		<h1 class="main-title-hoteles">Conoce nuestros hoteles</h1>
 
     		<ul class="lista-hoteles">
-    		<?php 
-    		for ($i = 0; $i < count($hotelesAtsa); $i++) {
-    			$locationTag           = $hotelesAtsa[$i]['locationTag'];
-				$titleHotel            = $hotelesAtsa[$i]['titleHotel'];
-				$descriptionHotel      = $hotelesAtsa[$i]['descriptionHotel'];
-				$listaServiciosHotel   = $hotelesAtsa[$i]['listaServiciosHotel'];
-				$dataExtraHotel        = $hotelesAtsa[$i]['dataExtraHotel'];
-				$iconTipoHotel         = $hotelesAtsa[$i]['iconTipoHotel'];
-				$iconServiciosHotel    = $hotelesAtsa[$i]['iconServiciosHotel'];
-				$infoContingentesHotel = $hotelesAtsa[$i]['infoContingentesHotel'];
-                $thumnailhotel         = $hotelesAtsa[$i]['thumnailhotel'];
 
-			?>
+    		<?php 
+            //busca los hoteles en la base de datos y los muestra
+    		$connection = connectDB();
+            $tabla = 'hoteles';
+            $query  = "SELECT * FROM " .$tabla;
+
+            $result = mysqli_query($connection, $query);
+
+            if ( $result->num_rows == 0 ) {
+            echo '<div>No hay ningún hotel cargado</div>';
+            } else {
+
+                while ( $row = $result->fetch_array() ) {
+                    $rows[] = $row;
+                }
+
+                foreach ($rows as $row ) { 
+                    $locationTag           = $row['hotel_location'];
+                    $titleHotel            = $row['hotel_titulo'];
+                    $descriptionHotel      = $row['hotel_descripcion'];
+                    $listaServiciosHotel   = $row['hotel_servicios'];
+                    $dataExtraHotel        = $row['hotel_dataextra'];
+                    $iconTipoHotel         = $row['hotel_icontipo'];
+                    $iconServiciosHotel    = $row['hotel_iconservicios'];
+                    $thumnailhotel         = $row['hotel_thumnail'];
+                    $infoContingentesHotel = $row['hotel_contingente'];
+                   
+
+                ?>
     		
     		<!-- HOTEL -->
     			<li>
@@ -111,10 +124,12 @@ require_once 'inc/data.php';
     					</div>
     				</article>
     			</li><!-- //HOTEL -->
-<?php } ?>
+                <?php
+                }//FOREACH
+            }//ELSE
+            ?>
     		</ul><!-- // .lista-hoteles -->
     	</div>
     </section>
 
-    <footer></footer>
 </article>

@@ -23,6 +23,14 @@ $curso             = 'none';
 //definir $pageActual
 $pageActual = pageActual();
 
+//estas dos funciones se definen aquí, para poder usar la info de las cuales en las meta tag y titulos para el SEO
+if ( $noticiaSingle ) {
+	$dataNoticia = singlePostHTML ( $noticia );
+}
+if ( $curso != 'none' ) {
+	$dataCurso = singleCursoHTML ( $curso );
+}
+
 /*
  *
  * LISTO, ahora se arma el html:
@@ -65,7 +73,6 @@ include 'head.php';
 				    		if ( $noticiaSingle ) {
 				    		//si es noticia se busca el template del single y muestra la noticia individual
 				    			getTemplate( 'noticia-single' );
-				    			
 				    		} else {
 				    		//sino, hace el loop de categorias
 				    			loopNoticiasHTML ( $categoriaNoticias );
@@ -73,7 +80,14 @@ include 'head.php';
 					    	?>
 					    </ul>
 					</div><!-- //#noticias-loop -->
-
+					<?php 
+					//si no es un loop mostrar boton para cargar más noticias
+					if (!$noticiaSingle) { ?>
+					<div class="container-fluid load-more-by-ajax">
+						<button id="<?php echo $categoriaNoticias; ?>" class="load-more-news">Cargar más</button>
+						<p class="loading-news-ajax"></p>
+					</div>
+					<?php } ?>
 				</main><!------- // cierre main section ------>
 			</div><!-- //.col -->
 			<div class="col-md-4 col-lg-3">

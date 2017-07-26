@@ -11,7 +11,7 @@ require_once 'inc/functions.php';
 
 //toma la variable que viene del index.php para saber en que página se está navegando
 global $pageActual;
-
+global $dataNoticia;
 
 ?>
 
@@ -20,9 +20,9 @@ global $pageActual;
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo SeoTitlePage($pageActual); ?></title>
+	<title><?php echo SeoTitlePage( $pageActual ); ?></title>
 <meta name="keywords" content="ATSA, Buenos Aires, trabajadores, sindical, gremio, medicamentos, salud, FATSA">
-<meta name="description" content="Asociación de trabajadores de la Sanidad Argentina, Buenos Aires. Somos Trabajadores que prestamos servicios en todo establecimiento dedicado a la generación y distribución de medicamentos y a la preservación o recuperación de la Salud. Nos unimos bajo el mismo gremio para defender nuestros derechos llevando las banderas de la UNIDAD y SOLIDARIDAD, con convicción y consciencia sindical.">
+<meta name="description" content="<?php echo metaDescriptionText ( $pageActual, $noticia, $curso, $categoriaNoticias ); ?>">
 <base href="<?php echo urlBase(); ?>" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -49,6 +49,5 @@ global $pageActual;
 <![endif]-->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/modernizr.custom.26633.js"></script>
-
 </head>
 <body>

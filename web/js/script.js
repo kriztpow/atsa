@@ -4,6 +4,7 @@
  * b) navegación fija con scroll
  * c) click and scroll
  * d) formularios ajax
+ * e) Ajax: cargar más noticias
  * 2. Ajustes css jquery
  * 3. Slider home
 */
@@ -262,6 +263,40 @@ $(document).ready(function(){
         });//cierre ajax
     
     });//cierra submit formulario afiliate
+
+
+    //cargar más ajax
+    var currentPage = 1;
+
+    $('.load-more-news').click(function( event ){
+        event.preventDefault();
+        
+        console.log('cargarmas');
+        var contenedorNews = $('.loop-noticia');
+        var contenedorAjax = $('.loading-news-ajax');
+        var actualCategoria = this.id;
+        $.ajax( {
+            type: 'POST',
+            url: 'inc/scripts/ajax-noticias-cargarmas.php',
+            data: {
+                page: currentPage + 1,
+                categoria: actualCategoria,
+            },
+            beforeSend: function() {
+                contenedorAjax.html('cargando');
+                console.log('cargando');
+            },
+            success: function ( response ) {
+                    currentPage++;
+                    contenedorNews.append(response);
+                    contenedorAjax.html('');
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax
+
+    })//load-more-news
 
 
 

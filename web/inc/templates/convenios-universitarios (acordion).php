@@ -1,5 +1,4 @@
 <article id="convenios-universitarios" class="wrapper-page less-padding">
-
     <div class="container">
 		<div class="title-deco-guion">
 		    <h1 class="title-azul">
@@ -16,24 +15,14 @@
 	    </h5>
 
 		<div id="universidades">
-			<ul>
-				<li>
-					<a href="#UIsalud" class="urltochange">
-						Universidad Isalud
-					</a>
-				</li>
-			    <li>
-			    	<a href="#UAI" class="urltochange">
-			    		Universidad Abierta Inteamericana
-			    	</a>
-			    </li>
-			    <li>
-			    	<a href="#Fdocencia" class="urltochange">
-			    		Fundación Docencia e Investigación para la Salud
-			    	</a>
-			    </li>
-			</ul>
-			<div id="UIsalud" class="tabs-content">
+			<!-- item tab -->
+	   		<h3>
+		  		<span class="text-title-accordion">
+			  		Universidad Isalud
+			  	</span>
+			  <span class="icon-suma"></span>
+			</h3>
+			<div class="contenido-accordion-cursos">
 				<p>
 					A partir de este convenio tanto los Técnicos en Enfermería como los Técnicos Radiólogos pueden obtener su título de grado: la Licenciatura en Enfermería y la Licenciatura en Producción de Bioimágenes. Además, ofrecemos la Especialidad en Cuidados críticos del adulto y anciano para los Licenciados en Enfermería y la Profesionalización para los Auxiliares.
 				</p>
@@ -143,11 +132,17 @@
 					<li>-Último Recibo de Sueldo</li>
 					<li>-Carnet sindical</li>
 				</ul>
-				
+			</div>
 
-		  	</div>
-		  	<div id="UAI" class="tabs-content">
-		    	<p>
+			<!-- item tab -->
+	   		<h3>
+		  		<span class="text-title-accordion">
+			  		Universidad Abierta Inteamericana
+			  	</span>
+			  <span class="icon-suma"></span>
+			</h3>
+			<div class="contenido-accordion-cursos">
+				<p>
 		    		A través de Extensión Universitaria ofrecemos el Curso de Auxiliar de Farmacia, pensado para reconvertir al personal idóneo que trabaja en la farmacia hospitalaria y capacitar a nuevos trabajadores que estén interesados en esta área.
 		    	</p>
 
@@ -168,10 +163,17 @@
 					<li>-Carnet sindical</li>
 					<li>-DNI (Original y copia)</li>
 				</ul>
+			</div>
 
-		  	</div>
-		  	<div id="Fdocencia" class="tabs-content">
-		    	<p>
+			<!-- item tab -->
+	   		<h3>
+		  		<span class="text-title-accordion">
+			  		Fundación Docencia e Investigación para la Salud
+			  	</span>
+			  <span class="icon-suma"></span>
+			</h3>
+			<div class="contenido-accordion-cursos">
+				<p>
 		    		A partir de una alianza con la Confederación de Clínicas y Sanatorios (CONFECLISA), nace la Fundación Docencia e Investigación para la Salud con el objetivo de lograr la educación e instrucción de todos los trabajadores de la salud mediante la enseñanza en todos los niveles del conocimiento, que les permita lograr habilidades y destrezas para el ejercicio de oficios y profesiones.
 		    	</p>
 		    	<p>
@@ -210,27 +212,21 @@
 					<li>-Carnet Obra social</li>
 					<li>-Partida de nacimiento</li>
 				</ul>
-		  	</div>
+			</div>
+			
+		  	
 		</div>
 	</div>
 </article>
 <script src="js/jquery-ui.min.js"></script>
 <script>
-	
-    </script>
-<script>
     $(document).ready(function () {
-
-    	//arregla los url para que funcionen las tabs
-        var base = window.location.href
-        $('.urltochange').each( function (){
-            var baseurl = this.href;
-            var url = this.href.split("#")[1];
-            var newURL = base + '#' + url;
-            $(this).attr('href',newURL);
-        });
-    	$( "#universidades" ).tabs({active : 0}).addClass( "ui-tabs-vertical ui-helper-clearfix" );
-    	$( "#universidades li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+    	$( "#universidades" ).accordion({
+    		collapsible: true,
+    		active : false,
+    		heightStyle: "content"
+    	}
+    	);
     });//ready
 	
 </script>

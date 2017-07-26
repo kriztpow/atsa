@@ -6,10 +6,11 @@
  * FOOTER
  * Contenido: Legales agencia Scripts y cierre html
 */
+require_once 'inc/functions.php';
 
 //cierre base de datos
-	//mysqli_close($connection);
-
+	$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+	closeDataBase($connection);
 ?>
 <!------- scripts ------>
 <span style="visibility:hidden;" class="sr-only">Desarrollo: <a href="http://lacueva.tv">LaCueva.tv</a></span>

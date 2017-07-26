@@ -105,13 +105,15 @@
 }
 
 .slides {
-    
+    list-style: none!important;
+    padding: 0!important;
 }
 
 .slide-item {
     position: absolute;
     width: 100%;
     height: 100%;
+    list-style: none;
 }
 
 .slide-background-img {
@@ -217,6 +219,7 @@
     -ms-justify-content: center;
     -o-justify-content: center;
     cursor:pointer;
+    list-style: none;
 }
 
 .slider-control-left:hover .icon-control-left {

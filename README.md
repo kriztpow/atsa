@@ -3,15 +3,10 @@
 (PHP - HTML5 - JQUERY)
 Inicio: 11-06-17
 
-## Data online lacueva-sitios.com
-* Base de datos: jv000140_atsa
-* Us: jv000140_atsa
-* Pw: pula17RIwi
-* ftp.jv000140.ferozo.com
-
 ## Librerías utilizadas
 * Jquery 3.1.1
 * Jquery UI (personalizado, accordion y tabs)
+>>>> NOTA: cuando se usa la etiqueta base en el head, las tabs no funcionan, para que funcionen hay que escribir el href completo, es decir, en vez de #id http://dominio.com/#id. Para solucionarlo yo hice script de javascript para que tomen el url correcto del navegador y lo agreguen al id y siempre funcione
 * Bootstrap (personalizado solo con grid y algunos accesorios, mínimos)
 * agregado un chat, librería: 'mylivechat'
 * html5shiv.js (para internet explorer vieo)
@@ -21,6 +16,14 @@ Inicio: 11-06-17
 * Google analytics  
 
 ## VERSIONES:
+
+### Versión 2.2
+* Base de datos noticias (el index busca si es noticias en la base de datos)
+* Paginación cada 10 post
+* Cargar más noticias mediante ajax
+* Hoteles cargados en base de datos
+* Cursos tecnico profesional cargados en base de datos
+* SE ELIMINA ARCHIVO DATA.PHP
 
 ### Versión 2.1 (23.7.17)
 * Permalinks (links bonitos) habilitados por completo
