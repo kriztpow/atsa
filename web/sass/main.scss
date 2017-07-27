@@ -22,6 +22,7 @@
  * 19. torneos y eventos
  * 20. hoteles
  * 21. centro medico prevencion
+ * 22. search
 */
 
 .wrapper-page {
@@ -2214,4 +2215,16 @@ h2.info-enfermeria {
 	font-size: 12pt;
 	margin: 5px 0;
 }
+
+/*-------------- search -----------------*/
+.resultados-busqueda {
+	list-style: square;
+
+	li {
+		margin: 10px 0;
+		font-size: 13pt;
+		line-height: 16pt;
+	}
+}
+
 /*-------------- otra pagina -----------------*/

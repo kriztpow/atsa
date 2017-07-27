@@ -64,6 +64,11 @@
 		  				</a>
 		  			</li>
 		  			<li>
+		  				<a href="uploads/pdfs/3-fecha-futbol-b.pdf" target="_blank">
+		  					3º Fecha Fútbol 11 (B)
+		  				</a>
+		  			</li>
+		  			<li>
 		  				<a href="uploads/pdfs/2-fecha-futbol-11-b.pdf" target="_blank">
 		  					2º Fecha Fútbol 11 (B)
 		  				</a>

@@ -29,6 +29,7 @@ Inicio: 11-06-17
 * Hoteles cargados en base de datos
 * Cursos tecnico profesional cargados en base de datos
 * SE ELIMINA ARCHIVO DATA.PHP
+* Corregí el bug de tabs de jquery ui que sucede cuando usas la etiqueta base en head
 
 ### Versión 2.1 (23.7.17)
 * Permalinks (links bonitos) habilitados por completo

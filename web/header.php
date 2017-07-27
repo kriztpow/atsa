@@ -29,7 +29,7 @@ global $pageActual;
                 <span class="tog3-fixed"></span>
                 <strong>MENU</strong>
             </button>
-            <form id="search-form" name="search-form" method="post">
+            <form id="search-form" name="search-form" method="post" action="inc/scripts/search.php">
                 <input type="text" name="input-search" id="input-search" required placeholder="Buscar">
                 <button type="submit"><span class="img-buscar"></span></button>
             </form>

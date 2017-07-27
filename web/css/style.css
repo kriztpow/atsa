@@ -1908,6 +1908,7 @@ html, body {
  * 19. torneos y eventos
  * 20. hoteles
  * 21. centro medico prevencion
+ * 22. search
 */
 .wrapper-page {
   position: relative;
@@ -3700,6 +3701,14 @@ h2.info-enfermeria {
 .pp-parrafo-prevencion {
   font-size: 12pt;
   margin: 5px 0; }
+
+/*-------------- search -----------------*/
+.resultados-busqueda {
+  list-style: square; }
+  .resultados-busqueda li {
+    margin: 10px 0;
+    font-size: 13pt;
+    line-height: 16pt; }
 
 /*-------------- otra pagina -----------------*/
 
