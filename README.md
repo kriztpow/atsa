@@ -18,6 +18,7 @@ Inicio: 11-06-17
 ## VERSIONES:
 
 ### Versión 2.3
+* Subida Online 30/07/17
 * Slider con base de datos
 * Se borran todos los archivos de sliders y se remplaza por uno solo.
 * Todas las imagenes re organizadas, se suben directo a upload/images sin subcarpeta. Salvo las del grid del home que tiene su carpeta simple
