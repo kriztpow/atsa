@@ -22,6 +22,9 @@ Inicio: 11-06-17
 * Slider con base de datos
 * Se borran todos los archivos de sliders y se remplaza por uno solo.
 * Todas las imagenes re organizadas, se suben directo a upload/images sin subcarpeta. Salvo las del grid del home que tiene su carpeta simple
+* se corrigió el menú para que funcione mejor
+* algunos ajustes de estilo corregidos
+* agregué noticias debajo de la noticia single para conituar navegando
 
 ### Versión 2.2
 * Base de datos noticias (el index busca si es noticias en la base de datos)
