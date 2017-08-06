@@ -120,9 +120,6 @@
 								Certificado médico (Todos los meses cuando viene a cobrar debe traerlo con fecha actualizada).
 							</li>
 							<li>
-								Carnet del Sindicato
-							</li>
-							<li>
 								Carnet Sindical (original y 1 fotocopia)
 							</li>
 							<li>

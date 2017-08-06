@@ -146,6 +146,7 @@ aside {
         font-weight: $weight-light;
         font-size: 12pt;
         line-height: 16pt;
+        padding: 0 4px;
         &:hover {
             font-style: italic;
             font-size: 16pt;
@@ -170,6 +171,10 @@ aside {
     clear: both;
     margin: 50px auto;
     overflow: auto;
+
+    @media (max-width: $mq-movil) {
+        display: none;
+    }
 
     h3 {
         text-align: center;
@@ -263,6 +268,10 @@ aside {
     position: relative;
     overflow: hidden;
     height: 250px;
+
+    @media (max-width: $mq-pc) {
+        height: 190px;        
+    }
 
     img {
         width: 170%;

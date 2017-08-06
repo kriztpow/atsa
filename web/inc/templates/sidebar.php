@@ -14,14 +14,9 @@
 		Etiquetas
 	</h2>
 	<div class="etiquetas-noticias">
-		<a href="/noticias/categoria/nacionales">nacionales</a>,
-		<a href="/noticias/categoria/ATSA">ATSA</a>,
-		<a href="/noticias/categoria/internacionales">internacionales</a>,
-		<a>Cultura</a>,
-		<a>Voces de Sanidad</a>,
-		<a>Espacio Audiovisual</a>,
-		<a>Convenios de trabajo</a>,
-		<a>Beneficios</a>
+
+		<?php printTags(); ?>
+		
 	</div>
 </section>
 

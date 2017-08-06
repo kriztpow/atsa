@@ -17,6 +17,12 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 3 - AUTOADMINISTRABLE
+* Detalles de modulo de auto administración va en otro lugar
+* Le agregué en el loop de noticias una especie de programación. Ya que omite toda noticia que tenga fecha después de hoy. Entonces si al editar se pone una fecha superior queda programada.
+* agregué sistema de etiquetas
+* Agregué el SEO de facebook, toma la imagen destacada de la noticia, titulo y descripción
+
 ### Versión 2.3
 * Subida Online 30/07/17
 * Slider con base de datos

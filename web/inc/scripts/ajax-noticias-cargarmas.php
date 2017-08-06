@@ -7,18 +7,17 @@
  * carga mas noticias
 */
 require '../functions.php';
-sleep(1);
 $noticiasPorPagina = 5;
 $connection = connectDB();
 $tabla = 'noticias';
 $pageActual = isset( $_POST['page'] ) ? intval( $_POST['page'] ) : 2;
 $categoria = isset( $_POST['categoria'] ) ? $_POST['categoria'] : 'none';
 
+$query  = "SELECT *  FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".( ($pageActual-1 )*$noticiasPorPagina).", ".$noticiasPorPagina." ";
+
 if ( $categoria != 'none' ) {
 		$query  = "SELECT *  FROM " .$tabla. " WHERE post_status='publicado' AND post_categoria= '".$categoria."' ORDER by post_fecha desc LIMIT ".( ($pageActual-1 )*$noticiasPorPagina).", ".$noticiasPorPagina." ";
 	}
-
-$query  = "SELECT *  FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".( ($pageActual-1 )*$noticiasPorPagina).", ".$noticiasPorPagina." ";
 
 $result = mysqli_query($connection, $query);
 

@@ -218,6 +218,11 @@
                 <li><a href="#"><img src="uploads/images/grid-home/48.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/49.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/50.jpg"/></a></li>
+                <li><a href="#"><img src="uploads/images/grid-home/51.jpg"/></a></li>
+                <li><a href="#"><img src="uploads/images/grid-home/52.jpg"/></a></li>
+                <li><a href="#"><img src="uploads/images/grid-home/53.jpg"/></a></li>
+                <li><a href="#"><img src="uploads/images/grid-home/54.jpg"/></a></li>
+                <li><a href="#"><img src="uploads/images/grid-home/55.jpg"/></a></li>
             </ul>
 
         </div>

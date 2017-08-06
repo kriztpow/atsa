@@ -14,9 +14,11 @@ require_once 'inc/functions.php';
 $noticiaSingle     = false;
 $esNoticias        = false;
 $esCategoria       = false;
+$tag               = false;
 //estos links o slugs especificos indican como buscar en la base de datos ya que representan los titulos de la noticia, categoria o curso
 $categoriaNoticias = 'none';
 $noticia           = 'none';
+$etiqueta          = 'none';
 $curso             = 'none';
 
 //definir $pageActual
@@ -29,6 +31,8 @@ if ( $noticiaSingle ) {
 if ( $curso != 'none' ) {
 	$dataCurso = singleCursoHTML ( $curso );
 }
+
+
 
 /*
  *
@@ -72,6 +76,9 @@ include 'head.php';
 				    		if ( $noticiaSingle ) {
 				    		//si es noticia se busca el template del single y muestra la noticia individual
 				    			getTemplate( 'noticia-single' );
+				    		} else if ( $tag ) {
+				    			//si es etiqueta busca la etiqueta
+				    			searchPostWithTags($etiqueta);
 				    		} else {
 				    		//sino, hace el loop de categorias
 				    			loopNoticiasHTML ( $categoriaNoticias );

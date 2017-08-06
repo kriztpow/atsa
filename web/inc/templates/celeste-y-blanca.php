@@ -35,7 +35,7 @@
 			    		<li class="col-md-4 col-md-offset-2 col-sm-6 col-xs-12">
 		    				<div class="contact-boxes contact-boxes-small contact-boxes-icon-loc">
 		    					<span>Dónde estamos</span><br>
-		    					<strong class="text-uppercase">Saavedra 166</strong>
+		    					<strong class="text-uppercase">Saavedra 189</strong>
 		    				</div>
 		    			</li>
 		    			<li class="col-md-4  col-sm-6 col-xs-12">

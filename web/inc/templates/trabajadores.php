@@ -77,7 +77,7 @@
 			</ul>
 			<div id="2014" class="tabs-content-trabajadores tabs-70">
 				<ul>
-					<li>- Encuentro Nacional Mujeres. 
+					<li>- Encuentro de Mujeres ATSA. 
 						<a href="uploads/pdfs/encuentro-mujeres-atsa-2014.pdf" target="_blank">Click aquí</a>
 					</li>
 					<li>- Ley voto femenino: película” Las Muchachas”. 

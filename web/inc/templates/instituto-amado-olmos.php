@@ -201,7 +201,7 @@
 </article>
 <aside>
 	<?php
-        getTemplate( 'slider-enfermeria' );
+        getSliders( 'enfermeria' );
     ?>
 </aside>
 <script src="js/jquery-ui.min.js"></script>
