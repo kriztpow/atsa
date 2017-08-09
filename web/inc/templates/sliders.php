@@ -31,12 +31,16 @@
                             <h1 class="slide-title">
                                 <a href="<?php echo $data[$i]['slider_link'] ?>" title="Leer más">
                                 <?php echo $data[$i]['slider_titulo'] ?>
-                                    <span class="slide-link-movil">Leer más</span>
+                                    <?php if ( $data[$i]['slider_link'] != '' ) { ?>
+                                        <span class="slide-link-movil">Leer más</span>
+                                    <?php } ?>
                                 </a>
                             </h1>
                             <p class="slide-text">
                                 <?php echo $data[$i]['slider_texto'] ?>
-                                <a class="slide-link" href="<?php echo $data[$i]['slider_link'] ?>">Leer más</a>
+                                <?php if ( $data[$i]['slider_link'] != '' ) { ?>
+                                    <a class="slide-link" href="<?php echo $data[$i]['slider_link'] ?>">Leer más</a>
+                                <?php } ?>
                             </p>
                         </div>
                         <?php }//if ?>

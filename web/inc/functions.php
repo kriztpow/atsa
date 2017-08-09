@@ -812,7 +812,7 @@ function getSliders( $slider ) {
 
 	$connection = connectDB();
 	$tabla = 'sliders';
-	$query  = "SELECT * FROM " .$tabla. " WHERE slider_ubicacion='".$slider."' ";
+	$query  = "SELECT * FROM " .$tabla. " WHERE slider_ubicacion='".$slider."' ORDER by slider_orden asc";
 		
 	$result = mysqli_query($connection, $query);
 	
