@@ -498,10 +498,10 @@ aside {
             display: block;
             margin: 50px auto;
         }
+    }
 
-        a {
-            text-decoration: underline;
-        }
+    a {
+        text-decoration: underline;
     }
 
     ul {
@@ -525,4 +525,38 @@ aside {
 
 .noticia-footer {
     margin: 80px 0 0px;
+}
+
+.share-redes-wrapper {
+    overflow: auto;
+    position: relative;
+    width: 100%;
+}
+.share-redes {
+    float: right;
+
+    li {
+        float: left;
+        margin: 5px;
+    }
+}
+
+.email-share-btn {
+    background-color: $azul;
+    color: #fff;
+    padding: 0 6px;
+    font-size: 8pt;
+    line-height: 15pt;
+    font-weight: $weight-bold;
+    @include border-radius(5px);
+    
+}
+.print-share-btn {
+    background-color: $celeste;
+    color: #fff;
+    padding: 0 6px;
+    font-size: 8pt;
+    line-height: 15pt;
+    font-weight: $weight-bold;
+    @include border-radius(5px);
 }

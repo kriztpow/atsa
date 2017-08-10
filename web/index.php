@@ -90,8 +90,10 @@ include 'head.php';
 					//si no es un loop mostrar boton para cargar más noticias
 					if (!$noticiaSingle) { ?>
 					<div class="container-fluid load-more-by-ajax">
+						<?php if ( !$tag ) { ?>
 						<button id="<?php echo $categoriaNoticias; ?>" class="load-more-news">Cargar más</button>
 						<p class="loading-news-ajax"></p>
+						<?php } ?>	
 					</div>
 					<?php } ?>
 				</main><!------- // cierre main section ------>

@@ -550,7 +550,7 @@ function loopNoticiasHTML ( $categoria ) {
 							} ?>
 						</div>
 						<p class="excerpt-news">
-							<?php echo $resumen; ?>
+							<?php echo $bajada; ?>
 						</p>
 					</section>
 					<footer>
@@ -576,7 +576,7 @@ function singlePostHTML ( $noticia ) {
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) {
-		echo '<div>Esta noticia no fue encontrada</div>';
+		header("Location: /404");
 	} else {
 
 		$data = mysqli_fetch_array($result);
@@ -783,7 +783,7 @@ function searchPostWithTags($tag) {
 								} ?>
 							</div>
 							<p class="excerpt-news">
-								<?php echo $resumen; ?>
+								<?php echo $bajada; ?>
 							</p>
 						</section>
 						<footer>

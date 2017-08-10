@@ -162,6 +162,10 @@
     }
 }
 
+.slide-data-transparent {
+    background: transparent!important;
+}
+
 .slide-title {
     font-size: 14pt;
     font-weight: $weight-bold;
@@ -276,3 +280,4 @@
         display: none;
     }
 }
+

@@ -9,7 +9,7 @@
 require_once 'inc/functions.php';
 
 //cierre base de datos
-	//$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+	$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 	closeDataBase($connection);
 ?>
 <!------- scripts ------>

@@ -24,12 +24,10 @@
                         <figure class="slide-background-img">
                             <img src="uploads/images/<?php echo $data[$i]['slider_imagen']; ?>">
                         </figure>
-                        
-                        <?php if ($data[$i]['slider_titulo'] != '' || $data[$i]['slider_texto'] != '') { ?>
+                        <?php 
+                            if ($data[$i]['slider_titulo'] != '') {
+                        ?>
                         <div class="slide-data">
-                        <?php } else { ?>
-                        <div class="slide-data slide-data-transparent">
-                        <?php } ?>
                             <h1 class="slide-title">
                                 <a href="<?php echo $data[$i]['slider_link'] ?>" title="Leer más">
                                 <?php echo $data[$i]['slider_titulo'] ?>
@@ -45,7 +43,7 @@
                                 <?php } ?>
                             </p>
                         </div>
-                        
+                        <?php }//if ?>
                     </article>
                 </li>
                 <!-- // slide item -->

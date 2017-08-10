@@ -92,7 +92,7 @@
     			<li class="col-md-4 col-sm-6 col-xs-12">
     				<div class="contact-boxes contact-boxes-small contact-boxes-icon-email">
     					<span>Escribinos</span><br>
-    					info@atsa.org.ar
+    					infoweb@atsa.org.ar
     				</div>
     			</li>
     		</ul>

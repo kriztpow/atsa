@@ -159,7 +159,7 @@
     </footer>
     <aside>
         <div id="ri-grid" class="ri-grid ri-grid-size-2">
-            <img class="ri-loading-image" src="assets/images/temp/grid-temp/loading.gif"/>
+            <img class="ri-loading-image" src="assets/images/loading.gif"/>
             <ul>
                 <li><a href="#"><img src="uploads/images/grid-home/01.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/02.jpg"/></a></li>
@@ -171,7 +171,7 @@
                 <li><a href="#"><img src="uploads/images/grid-home/08.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/09.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/10.jpg"/></a></li>
-                <li><img src="uploads/images/grid-home/11.jpg"/></li>
+                <li><a href="#"><img src="uploads/images/grid-home/11.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/12.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/13.jpg"/></a></li>
                 <li><a href="#"><img src="uploads/images/grid-home/14.jpg"/></a></li>

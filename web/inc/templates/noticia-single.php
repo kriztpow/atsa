@@ -8,8 +8,8 @@
 
 global $dataNoticia;
 $imgGaleria = $dataNoticia['imgGaleria'];
-
 ?>
+
 <li class="loop-noticias-item">
 	<article class="noticia-index">
 		<header>
@@ -34,7 +34,27 @@ $imgGaleria = $dataNoticia['imgGaleria'];
 				<?php 
 				} ?>
 			</div>
-
+			<aside class="share-redes-wrapper">
+				<ul class="share-redes">
+					<li>
+						<a  target="_blank" class="twitter-share-button" href="https://twitter.com/intent/tweet?text=<?php echo $dataNoticia['titulo']; ?>&url=<?php echo urlBase() . '/noticias/' .$dataNoticia['url']; ?>&via=AtsaBsAs" >
+							Tweet
+						</a>
+					</li>
+					<li>
+						<div class="fb-share-button" data-href="<?php echo urlBase() . '/noticias/' .$dataNoticia['url']; ?>" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlBase() . '/noticias/' .$dataNoticia['url']; ?>&amp;src=sdkpreparse">Compartir</a></div>
+					</li>
+					<li class="email-share-btn">
+						<a href="mailto:?subject=<?php echo $dataNoticia['titulo']; ?>&amp;body=<?php echo $dataNoticia['bajada']; ?> | <?php echo urlBase() . '/noticias/' .$dataNoticia['url']; ?>"
+   title="Compartir por Email">
+						  Email
+						</a>
+					</li>
+					<li class="print-share-btn">
+						<a href="#" onclick="window.print();">Imprimir</a>
+					</li>
+				</ul>
+			</aside>
 			<div class="title-news">
 				<h1>
 					<?php echo $dataNoticia['titulo']; ?>
@@ -117,3 +137,32 @@ $imgGaleria = $dataNoticia['imgGaleria'];
 		</footer>
 	</article>
 </li>
+<!--redes sociales -->
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.10";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>

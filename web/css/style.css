@@ -1210,6 +1210,9 @@ html, body {
       -o-justify-content: center;
       text-align: center; } }
 
+.slide-data-transparent {
+  background: transparent !important; }
+
 .slide-title {
   font-size: 14pt;
   font-weight: 700;

@@ -29,7 +29,7 @@ if ( count($dataNoticia) > 0 ) {
 
 <!-- SEO SECCTION -->
 <meta name="keywords" content="ATSA, Buenos Aires, trabajadores, sindical, gremio, medicamentos, salud, FATSA">
-<meta name="description" content="<?php echo metaDescriptionText ( $pageActual, $noticia, $curso, $categoriaNoticias ); ?>">
+<meta name="description" content="<?php echo $dataNoticia['resumen']; ?>">
 <?php  if ($noticiaSEO) { ?>
 
 <link rel="canonical" href="<?php echo urlBase() . '/noticias/'. $dataNoticia['url']; ?>" />
