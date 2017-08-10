@@ -22,6 +22,8 @@ Inicio: 11-06-17
 * Le agregué en el loop de noticias una especie de programación. Ya que omite toda noticia que tenga fecha después de hoy. Entonces si al editar se pone una fecha superior queda programada.
 * agregué sistema de etiquetas
 * Agregué el SEO de facebook, toma la imagen destacada de la noticia, titulo y descripción
+* agregué compartir con facebook, twitter e imprimir.
+* Agregue para compartir por email, pero con mailto
 
 ### Versión 2.3
 * Subida Online 30/07/17
