@@ -362,7 +362,7 @@ function archivoNoticias () {
 	$tabla        = 'noticias';
 	$query        = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha DESC";
 	$ActualDate   = getdate();
-	$mesActual    = $ActualDate[mon]+1; //al mes actual suma 1
+	$mesActual    = $ActualDate['mon']+1; //al mes actual suma 1
 	$primerMes    = true;
 	$result       = mysqli_query($connection, $query);
 	$cantidadPost = $result->num_rows;
@@ -630,7 +630,7 @@ function singleCursoHTML ( $curso ) {
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) {
-		echo '<div>No hay ningún hotel cargado</div>';
+		echo '<div>No hay ningún curso cargado</div>';
 	} else {
 
 		$data = mysqli_fetch_array($result);
@@ -654,13 +654,13 @@ function singleCursoHTML ( $curso ) {
 		return $dataCurso;
 		
 	}//ELSE
-} //singlePostHTML()
+} //singlecurso()
 
-//busca el curso en particular y recoge los datos para pasar al template
+//busca los hoteles y recoge los datos para pasar al template
 function hotelesLoopHTML () {
 	$connection = connectDB();
 	$tabla = 'hoteles';
-	$query  = "SELECT * FROM " .$tabla. " WHERE curso_slug='".$curso."' LIMIT 1 ";
+	$query  = "SELECT * FROM " .$tabla. " WHERE hotel_dataextra='hotel' LIMIT 1 ";
 		
 	$result = mysqli_query($connection, $query);
 	
@@ -829,3 +829,342 @@ function getSliders( $slider ) {
 
 	}//else
 } //getSliders()
+
+
+
+/*
+muestra los links que estan cargados de la sección deportes
+*/
+function showLinksDeportes () {
+	$connection = connectDB();
+	$tabla = 'deportes';
+	$secciones = array();
+	$textoSecciones = array();
+	$ordenSecciones = array();
+	//queries según parámetros
+	$query  = "SELECT deportes_seccion,deportes_texto,deportes_orden FROM " .$tabla. " WHERE deportes_post_type='section' ORDER by deportes_orden";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		echo 'No hay ninguna cargada';
+	} else { 
+
+	while ($row = $result->fetch_array()) {
+				$rows[] = $row;
+		}
+		//recorremos cada uno de los item de la seccion
+		foreach ($rows as $row ) { 
+			$seccion = $row['deportes_seccion'];
+			$textoSeccion = $row['deportes_texto'];
+			$ordenSeccion = $row['deportes_orden'];
+			array_push($secciones, $seccion);
+			array_push($textoSecciones, $textoSeccion);
+			array_push($ordenSecciones, $ordenSeccion);
+		}//for each de cada seccion
+
+		
+		//ahora q ya están los nombres de las secciones, recorremos cada una
+
+		for ($i=0; $i < count($secciones); $i++) { 
+			
+			$query  = "SELECT * FROM " .$tabla. " WHERE deportes_seccion='".$secciones[$i]."' and deportes_post_type='link' ORDER by deportes_orden";	
+			$result2 = mysqli_query($connection, $query);
+			
+			if ( $result2->num_rows == 0 ) {
+				continue;
+			 } else { 
+				//se arma el html. Primero va el titulo de la sección
+				?>
+				<!-- item tab -->
+				<h3>
+					<span class="text-title-accordion">
+							<?php echo $textoSecciones[$i]; ?>
+					</span>
+				<span class="icon-suma"></span>
+				</h3>
+				<div class="contenido-accordion-deportes">
+					<ul>
+			
+				<?php
+				while ($rowitem = $result2->fetch_array()) {					
+
+					$orden = $rowitem['deportes_orden'];
+					$IDItem = $rowitem['deportes_id'];
+					$textoItem = $rowitem['deportes_texto'];
+					$urlItem = $rowitem['deportes_url'];
+					
+					?>
+						<li>
+							<a href="<?php echo '/uploads/pdfs/' . $urlItem; ?>" target="_blank">
+								<?php echo $textoItem; ?>
+							</a>
+						</li>	
+
+				<?php }//while
+				
+				//cierre de la seccion
+				?>
+					</ul>
+				</div>
+			<?php }//else
+
+		}//for de secciones
+
+	}//else
+
+}//showLinksDeportes()
+
+/*
+muestra los links que estan cargados de la sección convenios
+*/
+function showLinksConvenios () {
+	$connection = connectDB();
+	$tabla = 'convenios';
+	$secciones = array();
+	$textoSecciones = array();
+	$ordenSecciones = array();
+	//queries según parámetros
+	$query  = "SELECT convenios_seccion,convenios_texto,convenios_orden FROM " .$tabla. " WHERE convenios_post_type='section' ORDER by convenios_orden";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		echo 'No hay ninguna cargada';
+	} else { 
+
+	while ($row = $result->fetch_array()) {
+				$rows[] = $row;
+		}
+		//recorremos cada uno de los item de la seccion
+		foreach ($rows as $row ) { 
+			$seccion = $row['convenios_seccion'];
+			$textoSeccion = $row['convenios_texto'];
+			$ordenSeccion = $row['convenios_orden'];
+			array_push($secciones, $seccion);
+			array_push($textoSecciones, $textoSeccion);
+			array_push($ordenSecciones, $ordenSeccion);
+		}//for each de cada seccion
+
+		
+		//ahora q ya están los nombres de las secciones, recorremos cada una
+
+		for ($i=0; $i < count($secciones); $i++) { 
+			
+			$query  = "SELECT * FROM " .$tabla. " WHERE convenios_seccion='".$secciones[$i]."' and convenios_post_type='link' ORDER by convenios_orden";	
+			$result2 = mysqli_query($connection, $query);
+			
+			if ( $result2->num_rows == 0 ) {
+				continue;
+			 } else { 
+				//se arma el html. Primero va el titulo de la sección
+				?>
+				<!-- item tab -->
+				<h3 class="ui-accordion-header-open">
+				  	<span class="text-title-accordion">
+				  		<?php echo $textoSecciones[$i]; ?>
+				  	</span>
+				  	<span class="icon-cross"></span>
+				</h3>
+				
+				<div>
+					<ul class="pdfs-download pdfs-download-acordion">
+			
+				<?php
+				while ($rowitem = $result2->fetch_array()) {					
+
+					$orden = $rowitem['convenios_orden'];
+					$IDItem = $rowitem['convenios_id'];
+					$textoItem = $rowitem['convenios_texto'];
+					$urlItem = $rowitem['convenios_url'];
+					$linkItem = $rowitem['convenios_link'];
+					
+					?>
+						<li class="pdfs-download-item">
+							<?php if ( $linkItem == '1' ) { ?>
+							<a href="<?php echo $urlItem; ?>" target="_blank">
+							<?php } else { ?>
+							<a href="<?php echo 'uploads/pdfs/' . $urlItem; ?>" target="_blank">
+							<?php } ?>
+								<?php echo $textoItem; ?>
+							</a>
+						</li>	
+
+				<?php }//while
+				
+				//cierre de la seccion
+				?>
+					</ul>
+				</div>
+			<?php }//else
+
+		}//for de secciones
+
+	}//else
+
+}//showLinksConvenios()
+
+
+function showLeyes() {
+	$connection = connectDB();
+	$tabla = 'convenios';
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE convenios_seccion='leyes' ORDER by convenios_orden";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		echo 'No hay ninguna cargada';
+	} else { 
+
+	while ($rowitem = $result->fetch_array()) {					
+
+		$orden = $rowitem['convenios_orden'];
+		$IDItem = $rowitem['convenios_id'];
+		$textoItem = $rowitem['convenios_texto'];
+		$urlItem = $rowitem['convenios_url'];
+		$linkItem = $rowitem['convenios_link'];
+		
+		if ( $linkItem == '0') { ?>
+			<li class="pdfs-download-item">
+	    		<a href="uploads/pdfs/<?php echo $urlItem; ?>" target="_blank">
+	    			<?php echo $textoItem; ?>
+	    		</a>
+	    	</li>
+		<?php } else {
+
+		?>
+			<li class="pdfs-download-item">
+	    		<a href="<?php echo $urlItem; ?>" target="_blank">
+	    			<?php echo $textoItem; ?>
+	    		</a>
+	    	</li>
+
+	<?php }//else
+		}//while
+	}//else
+}//showLeyes()
+
+//mmustra autoridades, vocales, delegados. Primer parámetro elige cual tipo de staff, el segundo estilo: uno para delegados (de dos en dos), otro para unico (sin lista) y otro normal (li)
+function showStaff( $delegados, $style = 'default') {
+	$connection = connectDB();
+	$tabla = 'staff';
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE staff_post_type='".$delegados."' ORDER by staff_orden";	
+	$result = mysqli_query($connection, $query);
+	$count = 1;
+
+	if ( $result->num_rows == 0 ) {
+		echo 'No hay nada cargado';
+	} else { 
+
+		while ($row = $result->fetch_array()) {			
+$count++;
+			$nombre = $row['staff_nombre'];
+			$cargo = $row['staff_cargo'];
+			$img = $row['staff_image'];
+			$trabajo = $row['staff_trabajo'];
+			$redSocial = $row['staff_redsocial'];
+			
+			if ( $style == 'unique' ) { ?>
+
+				<article class="staff-member">
+	    			<?php if ( $img != '' ) { ?>
+	    			<div class="staff-img-wrapper">
+	    				<img class="staff-image" src="uploads/images/<?php echo $img; ?>" alt="<?php echo $nombre; ?> - Cargo - ATSA BsAS">
+	    			</div>
+	    			<?php } ?>
+	    			<div class="staff-text">
+	    				<h1 class="staff-name"><?php echo $nombre; ?></h1>
+	    				<h5 class="staff-charge"><?php echo $cargo; ?></h5>
+	    				<p class="staff-excerpt">
+							<?php echo $trabajo; ?>
+							<?php if ( $redSocial != '' ) { ?>
+							<br>
+							<em>
+								<?php echo $redSocial; ?>
+							</em>
+							<?php } ?>
+						</p>
+	    			</div>
+		    		</article>
+				<?php } elseif ( $style == 'columnsx2' ) {
+					
+					
+					?>
+					<div class="col-sm-4">
+						<!---- item Delegado ---->
+		    			<li class="delegado-item">
+		    				<article>
+		    					<div class="delegado-img">
+		    						<div class="delegado-img-wrapper">
+		    							<img src="uploads/images/<?php echo $img; ?>" alt="Delegado ATSA">
+		    						</div>
+		    					</div>
+		    					<div class="delegado-data">
+		    						<h1><?php echo $nombre; ?></h1>
+		    					</div>
+		    				</article>
+		    			</li>
+		    		</div>
+					<?php 
+
+				} else {
+
+			//estilo default son columnas con imagenes
+			?>
+				<!-- staff member -->
+		    	<li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+		    		<article class="staff-member">
+		    			<?php if ( $img != '' ) { ?>
+		    			<div class="staff-img-wrapper">
+		    				<img class="staff-image" src="uploads/images/<?php echo $img; ?>" alt="<?php echo $nombre; ?> - Cargo - ATSA BsAS">
+		    			</div>
+		    			<?php } ?>
+		    			<div class="staff-text">
+		    				<h1 class="staff-name"><?php echo $nombre; ?></h1>
+		    				<h5 class="staff-charge"><?php echo $cargo; ?></h5>
+		    				<p class="staff-excerpt">
+								<?php echo $trabajo; ?>
+								<?php if ( $redSocial != '' ) { ?>
+								<br>
+								<em>
+									<?php echo $redSocial; ?>
+								</em>
+								<?php } ?>
+							</p>
+		    			</div>
+		    		</article>
+		    	</li><!-- // cols -->
+		    	<!-- // staff member -->
+			<?php }
+			
+		}//while
+	}//else
+}//showStaff()
+
+//recupera los datos de viajes
+function searchViajesData () {
+	$connection = connectDB();
+	global $dataViajes;
+	$dataViajes = array();
+
+	//queries según parámetros
+	$query  = "SELECT * FROM hoteles WHERE hotel_dataextra='viajes' LIMIT 1 ";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		return $dataViajes;
+	} else {
+		$row = $result->fetch_array();
+		
+			$dataViajes = array(
+				'hotel_id' => $row['hotel_ID'],
+				'texto_superior' => $row['hotel_contingente'],
+				'texto_contacto' => $row['hotel_servicios'],
+				'titulo_promocion' => $row['hotel_titulo'],
+				'texto_principal' => $row['hotel_descripcion'],
+			);
+			
+	}//else 
+
+	mysqli_close($connection);
+	return $dataViajes;
+} //searchViajesData()

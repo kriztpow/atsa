@@ -7,7 +7,7 @@
  * Pagina que muestra los cursos
 */
 
-//recupera la info del curso
+//recupera la info del curso, la función que crea esa global se ejecuta en el index.php
 global $dataCurso;
 
 ?>
@@ -32,7 +32,7 @@ global $dataCurso;
 
 	    		<div id="accordion-cursos">
 	    		<?php
-	    			if ( $dataCurso['destinatarios'] != 'none' ) {
+	    			if ( $dataCurso['destinatarios'] != '' ) {
 	    				?>
 	    				<!-- item tab -->
 					   		<!-- item tab -->
@@ -56,10 +56,10 @@ global $dataCurso;
 					  <span class="icon-suma"></span>
 					</h3>
 				  	<div class="contenido-accordion-cursos">
-				  		<?php echo $dataCurso['general']; ?>
+				  		<p><?php echo $dataCurso['general']; ?></p>
 				  	</div><!-- //item tab -->
 				  	<?php 
-				  	if ( $dataCurso['especifico'] != 'none' ) { ?>
+				  	if ( $dataCurso['especifico'] != '' ) { ?>
 				  	<!-- item tab -->
 			   		<h3>
 				  		<span class="text-title-accordion">
@@ -79,7 +79,7 @@ global $dataCurso;
 					  <span class="icon-suma"></span>
 					</h3>
 				  	<div class="contenido-accordion-cursos">
-				  		<?php echo $dataCurso['requisitos']; ?>
+				  		<p><?php echo $dataCurso['requisitos']; ?></p>
 				  	</div><!-- //item tab -->
 			  	</div><!-- //#accordion-cursos -->
 			</div><!-- //.col-md-8 -->
@@ -94,12 +94,15 @@ global $dataCurso;
 
 	    			<ul>
 	    				<li class="info-enfermeria"><span class="icon-info icon-info-3"></span>
+	    					Cursada:<br>
 	    					<?php echo $dataCurso['cursada']; ?>
 	    				</li>
 	    				<li class="info-enfermeria"><span class="icon-info icon-info-5"></span>
+	    					Centro y Lugar donde se cursa<br>
 	    					<?php echo $dataCurso['lugar']; ?>
 	    				</li>
 	    				<li class="info-enfermeria"><span class="icon-info icon-info-6"></span>
+	    					Horarios de cursada<br>
 	    					<?php echo $dataCurso['horarios']; ?>
 	    				</li>
 	    			</ul>
@@ -107,6 +110,9 @@ global $dataCurso;
 	    	</div><!-- //.col-md-4 -->
 
 		</div><!-- //.row -->
+		<div class="btn-mas-cursos-wrapper">
+			<a href="/instituto-de-formacion-tecnico" class="btn-mas-cursos">ver más cursos</a>
+		</div>
     </div><!-- //.container -->
 </article>
 

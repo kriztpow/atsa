@@ -109,6 +109,21 @@
 	margin: 20px auto;
 }
 
+.staff-lista-picture {
+	li {
+		height: 320px;
+		@media (max-width: $mq-pc) {
+			height: 350px;
+		}
+		@media (max-width: $mq-tablet) {
+			height: 460px;
+		}
+		@media (max-width: $mq-movil) {
+			height: auto;
+		}
+	}
+}
+
 .staff-member {
 	width: 90%;
 	margin: 0 auto;
@@ -356,6 +371,10 @@
 .delegado-item {
 	overflow: auto;
 	margin: 40px 0;
+	height: 200px;
+	@media (max-width: $mq-movil) {
+		height: auto;
+	}
 }
 
 .delegado-img {
@@ -974,15 +993,11 @@
  	li {
  		list-style: initial;
  		margin-left: 10px;
- 	}
-}
 
-.docentes-amado-olmos {
-	li {
-		em {
+ 		em {
 			font-style: italic;
 		}
-	}
+ 	}
 }
 
 .info-enfermeria {
@@ -1000,6 +1015,10 @@
 	strong {
 		font-weight: $weight-medium;
 	}
+}
+
+.info-enfermeria>p {
+	margin:0;
 }
 
 h2.info-enfermeria {
@@ -1172,6 +1191,14 @@ h2.info-enfermeria {
 .title-cursos {
 	font-size: 28pt!important;
 	color: $azul!important;
+}
+
+.btn-mas-cursos {
+	background-color: #00acec;
+    color: #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 /*-------------- convenios universitarios -----------------*/

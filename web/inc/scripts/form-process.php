@@ -9,7 +9,7 @@ function recogeDato($campo){
 $paraSubscriptor = 'voces@atsa.org.ar';
 $paraContacto    = 'web@atsa.org.ar';
 $paraPieForm     = 'web@atsa.org.ar';
-$paraAfiliate    = 'web@atsa.org.ar';
+$paraAfiliate    = 'asesoramiento@atsa.org.ar';
 
 $form_type      = recogeDato('form_type'); 
 $cabeceras      = 'MIME-Version: 1.0' . "\r\n";

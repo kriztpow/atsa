@@ -23,95 +23,9 @@
 
     		<ul>
     			<div class="row">
-    				<div class="col-sm-4">
-    					<!---- item Delegado ---->
-		    			<li class="delegado-item">
-		    				<article>
-		    					<div class="delegado-img">
-		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/alicia-carnucchio.jpg" alt="Delegado ATSA">
-		    						</div>
-		    					</div>
-		    					<div class="delegado-data">
-		    						<h1>Cra Alicia Carnucchio</h1>
-		    					</div>
-		    				</article>
-		    			</li>
+    				
+    			<?php showStaff( 'delegados_gremiales', 'columnsx2' ); ?>
 
-		    			<!---- item Delegado ---->
-		    			<li class="delegado-item">
-		    				<article>
-		    					<div class="delegado-img">
-		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/jose-jelvez.jpg" alt="Delegado ATSA">
-		    						</div>
-		    					</div>
-		    					<div class="delegado-data">
-		    						<h1>Cro. José Luis Alberto Jelvez</h1>
-		    					</div>
-		    				</article>
-		    			</li>
-
-		    		</div><!---- //.col-sm-4 ---->
-
-		    		<div class="col-sm-4">
-		    			<!---- item Delegado ---->
-		    			<li class="delegado-item">
-		    				<article>
-		    					<div class="delegado-img">
-		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/sergio-doubrova.jpg" alt="Delegado ATSA">
-		    						</div>
-		    					</div>
-		    					<div class="delegado-data">
-		    						<h1>Cro. Sergio Doubrova</h1>
-		    					</div>
-		    				</article>
-		    			</li>
-
-		    			<!---- item Delegado ---->
-		    			<li class="delegado-item">
-		    				<article>
-		    					<div class="delegado-img">
-		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/cecilia-pogonza.jpg" alt="Delegado ATSA">
-		    						</div>
-		    					</div>
-		    					<div class="delegado-data">
-		    						<h1>Cra. Cecilia Pogonza</h1>
-		    					</div>
-		    				</article>
-		    			</li>
-
-		    		</div><!---- //.col-sm-4 ---->
-		    		<div class="col-sm-4">
-		    			<!---- item Delegado ---->
-		    			<li class="delegado-item">
-		    				<article>
-		    					<div class="delegado-img">
-		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/alejandra-sandoval.jpg" alt="Delegado ATSA">
-		    						</div>
-		    					</div>
-		    					<div class="delegado-data">
-		    						<h1>Cra. Alejandra Sandoval</h1>
-		    					</div>
-		    				</article>
-		    			</li>
-		    			<!---- item Delegado ---->
-		    			<li class="delegado-item">
-		    				<article>
-		    					<div class="delegado-img">
-		    						<div class="delegado-img-wrapper">
-		    							<img src="uploads/images/fabian-rivas.jpg" alt="Delegado ATSA">
-		    						</div>
-		    					</div>
-		    					<div class="delegado-data">
-		    						<h1>Cro. Fabian Rivas</h1>
-		    					</div>
-		    				</article>
-		    			</li>
-    				</div><!---- //.col-sm-4 ---->
     			</div><!---- //.row ---->
     		</ul>
     	</div><!---- //.container ---->

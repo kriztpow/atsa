@@ -1976,6 +1976,18 @@ html, body {
 .staff-lista {
   margin: 20px auto; }
 
+.staff-lista-picture li {
+  height: 320px; }
+  @media (max-width: 1200px) {
+    .staff-lista-picture li {
+      height: 350px; } }
+  @media (max-width: 992px) {
+    .staff-lista-picture li {
+      height: 460px; } }
+  @media (max-width: 768px) {
+    .staff-lista-picture li {
+      height: auto; } }
+
 .staff-member {
   width: 90%;
   margin: 0 auto;
@@ -2193,7 +2205,11 @@ html, body {
 
 .delegado-item {
   overflow: auto;
-  margin: 40px 0; }
+  margin: 40px 0;
+  height: 200px; }
+  @media (max-width: 768px) {
+    .delegado-item {
+      height: auto; } }
 
 .delegado-img {
   width: 110px;
@@ -2703,9 +2719,8 @@ html, body {
   .contenido-accordion-cursos li {
     list-style: initial;
     margin-left: 10px; }
-
-.docentes-amado-olmos li em {
-  font-style: italic; }
+    .contenido-accordion-cursos li em {
+      font-style: italic; }
 
 .info-enfermeria {
   background-color: #e5e5e5;
@@ -2720,6 +2735,9 @@ html, body {
   font-weight: 300; }
   .info-enfermeria strong {
     font-weight: 500; }
+
+.info-enfermeria > p {
+  margin: 0; }
 
 h2.info-enfermeria {
   font-size: 20pt;
@@ -2858,6 +2876,13 @@ h2.info-enfermeria {
 .title-cursos {
   font-size: 28pt !important;
   color: #006a91 !important; }
+
+.btn-mas-cursos {
+  background-color: #00acec;
+  color: #fff;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 700; }
 
 /*-------------- convenios universitarios -----------------*/
 .convenios-info {

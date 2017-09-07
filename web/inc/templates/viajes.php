@@ -1,3 +1,16 @@
+<?php 
+/*
+ * Sitio web: ATSA
+ * @LaCueva.tv
+ * Since 2.0
+ * viajes template
+ * Template que muestra los viajes
+*/
+searchViajesData();
+global $dataViajes;
+
+?>
+
 <article id="viajes" class="wrapper-home">
 	<header class="header-hoteles">
         <?php
@@ -12,26 +25,18 @@
 			    </h1>
 		    </div>
 		    <p class="p-text-center font-size-14">
-		    	Para todos los afliados y su grupo familiar organizamos viajes especiales a distintas provincias del país.
+		    	<?php echo $dataViajes['texto_superior']; ?>
 		    </p>
 
 		    <div class="alert-viaje-norte">
-		    	<h2>¡Viajá al Norte argentino con ATSA BsAs!</h2>
+		    	<h2><?php echo $dataViajes['titulo_promocion']; ?></h2>
 
-		    	<ul>
-		    		<li>9 días / 6 noches</li>
-		    		<li>Media Pensión</li>
-		    		<li>Micro Cama</li>
-		    		<li><a href="http://www.ghalahotel.com.ar/" target="_blank" class="text-underline">
-		    		Hotel Ghala – Salta</a></li>
-		    		<li>Salida: 29/10/2017</li>
-		    		<li>Regreso: 6/11/2017</li>
-		    	</ul>
+		    	<?php echo $dataViajes['texto_principal']; ?>
 		    </div>
 
 		    <div class="alert-info-viajes">
 		    	<h2>¿Querés saber más?</h2>
-		    	<p>Comunicate con la Secretaría de Turismo al 4959-7100 (int. 7106/7108)</p>
+		    	<p><?php echo $dataViajes['texto_contacto']; ?></p>
 		    </div>
 		</div>
 	</section>

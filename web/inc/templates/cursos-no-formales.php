@@ -6,109 +6,6 @@
  * CURSOS-FORMALES-NO-FORMALES.PHP
  * Pagina que muestra los cursos no formales
 */
-require_once 'inc/config.php';
-require_once 'inc/functions.php';
-
-//array o lista de cursos, luego será remplazada por la data de la base de datos
-$dataCursosNoFormales = array(
-	array(
-		'tituloCurso' => 'Curso de masajes terapéuticos | Nivel Básico',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Curso de masajes terapéuticos - Nivel avanzado',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Curso de cosmetología - Nivel básico',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Curso de cosmetología - Nivel avanzado',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Curso de manicuría',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Inglés Nivel inicial',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Inglés Nivel avanzado',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Facturación',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Liquidación de sueldos y jornales',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Computación Curso Junior',
-		'duracionCurso' => 'Duración: 4 meses - 1 vez por semana',
-		'horasCurso' => '2.30 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Computación Curso Senior',
-		'duracionCurso' => 'Duración: 3 meses - 1 vez por semana',
-		'horasCurso' => '2.30 horas reloj',
-	),
-	array(
-		'tituloCurso' => 'Power Point e internet',
-		'duracionCurso' => 'Duración: 3 meses - 1 vez por semana',
-		'horasCurso' => '2 horas reloj',
-	),
-
-);//fin array data cursos
-
-//función que hace loop en la data mostrando los cursos
-function htmlCursosNoFormales ($data) {
-	
-	for ($i=0; $i < count($data); $i++) { 
-		$tituloCurso = $data[$i]['tituloCurso'];
-		$duracionCurso = $data[$i]['duracionCurso'];
-		$horasCurso = $data[$i]['horasCurso'];
-
-		$htmlToPrint = '';
-
-		//$htmlToPrint .= '<!-- item tab -->';
-		$htmlToPrint .= '<h3>';
-		$htmlToPrint .= '<span class="text-title-accordion">';
-		$htmlToPrint .= $tituloCurso;
-		$htmlToPrint .= '</span>';
-		$htmlToPrint .= '<span class="icon-suma"></span>';
-		$htmlToPrint .= '</h3>';
-		$htmlToPrint .= '<div class="contenido-accordion-cursos-no-formales">';
-		$htmlToPrint .= '<ul>';
-		$htmlToPrint .= '<li class="info-enfermeria"><span class="icon-info icon-info-3"></span>';
-		$htmlToPrint .= $duracionCurso;
-		$htmlToPrint .= '</li>';
-		$htmlToPrint .= '<li class="info-enfermeria"><span class="icon-info icon-info-6"></span>';
-		$htmlToPrint .= $horasCurso;
-		$htmlToPrint .= '</li>';
-		$htmlToPrint .= '</ul>';
-		$htmlToPrint .= '</div>';
-		
-		echo $htmlToPrint;
-	
-	}//bucle for
-
-	
-
-}//htmlCursosNoFormales()
 
 
 ?>
@@ -125,8 +22,45 @@ function htmlCursosNoFormales ($data) {
 	    <!----------lista de cursos -------->
 	    		<div id="accordion-cursos-no-formales">
 
-			   		<?php htmlCursosNoFormales($dataCursosNoFormales); ?>
-
+	    		<?php
+	    		$connection = connectDB();
+				$tabla = 'cursos';
+				$query  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='no_formal' ORDER by curso_orden ";
+					
+				$result = mysqli_query($connection, $query);
+				
+				if ( $result->num_rows == 0 ) {
+					echo 'No hay ningún curso cargado';
+				} else {
+					while ($row = $result->fetch_array()) {
+	    		?>
+			   		<h3>
+			   			<span class="text-title-accordion">
+			   			<?php echo $row['curso_titulo']; ?>
+			   			<span class="icon-suma"></span>
+			   			</span>
+			   		</h3>
+			   		<div class="contenido-accordion-cursos-no-formales">
+			   			<ul>
+							<li class="info-enfermeria">
+								<span class="icon-info icon-info-3"></span>
+								<?php echo $row['curso_lugar']; ?>
+							</li>
+							<li class="info-enfermeria">
+								<span class="icon-info icon-info-6"></span>
+								<?php echo $row['curso_horarios']; ?>
+							</li>
+							<?php if ( $row['curso_resumen'] != '' ) { ?>
+							<li class="info-enfermeria">
+								
+								<?php echo $row['curso_resumen']; ?>
+							</li>
+							<?php } ?>
+						</ul>
+					</div>
+				<?php }//while 
+				}//else
+				?>
 			   	</div><!-- //#accordion -->
 	    	</div><!-- //.col-md-6 -->
 	    	
@@ -156,7 +90,7 @@ function htmlCursosNoFormales ($data) {
 	    			</h2>
 
 	    			<p>
-	    				Saavedra 166. ATSA,<br> Secretaría de Culrura, PB.<br>
+	    				Saavedra 166. ATSA,<br> Secretaría de Cultura, PB.<br>
 	    				Horario de Atención: 10 a 18 horas
 	    			</p>
 	    		</div>

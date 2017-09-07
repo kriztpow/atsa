@@ -17,6 +17,10 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 3.1 - AUTOADMINISTRABLE
+* Lo estático se toma de la base de datos, modulos: deportes, leyes, convenios, autoridades
+
+
 ### Versión 3 - AUTOADMINISTRABLE
 * Detalles de modulo de auto administración va en otro lugar
 * Le agregué en el loop de noticias una especie de programación. Ya que omite toda noticia que tenga fecha después de hoy. Entonces si al editar se pone una fecha superior queda programada.

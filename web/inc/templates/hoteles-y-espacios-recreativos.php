@@ -4,7 +4,7 @@
  * @LaCueva.tv
  * Since 2.0
  * hoteles template
- * Template que muestra hoteles por ahora buscando el array de hoteles en archivo data
+ * Template que muestra hoteles cargados en la bd
 */
 ?>
 
@@ -25,7 +25,7 @@
             //busca los hoteles en la base de datos y los muestra
     		$connection = connectDB();
             $tabla = 'hoteles';
-            $query  = "SELECT * FROM " .$tabla;
+            $query  = "SELECT * FROM " .$tabla. " WHERE hotel_dataextra='hotel'";
 
             $result = mysqli_query($connection, $query);
 
@@ -71,9 +71,9 @@
     							<h1 class="title-hotel">
     								<?php echo $titleHotel; ?>
     							</h1>
-    							<p class="description-hotel">
+    							<div class="description-hotel">
     								<?php echo $descriptionHotel; ?>
-    							</p>
+    							</div>
     						</div><!-- //.col -->
 
     						<div class="col-md-4 col-sm-12">
@@ -82,21 +82,13 @@
     									<h2 class="servicios-title">
     										Servicios
     									</h2>
-    									<p class="lista-servicios-hoteles">
+    									<div class="lista-servicios-hoteles">
     											<?php echo $listaServiciosHotel; ?>
-    									</p>
+    									</div>
     								</div>
     								<div class="col-sm-6 col-md-12">
     								<?php
-    									if ( $dataExtraHotel != 'none' ) { ?>
-
-    									<div class="data-extra-hotel">
-    										<?php echo $dataExtraHotel; ?>
-    									</div>
-
-    									<?php 
-    									}
-
+    									
     									if ( $infoContingentesHotel != 'none' ) { ?>
 
     								 	<div class="contingente-hotel">
@@ -112,15 +104,17 @@
     					</div><!-- //.row -->
 
     					<div class="icon-servicios">
+                            <?php
+                            if ( $iconServiciosHotel != '' ) { ?>
     						<img src="uploads/images/<?php echo $iconServiciosHotel; ?>" alt="Hoteles ATSA" class="img-icon-servicios-hotel">
-    						<?php
-								if ( $iconTipoHotel != '' ) { ?>
+                            <?php 
+                            } 
+							if ( $iconTipoHotel != '' ) { ?>
 
-								<img src="uploads/images/<?php echo $iconTipoHotel; ?>" alt="Hoteles ATSA" class="img-icon-tipo-hotel">
+							<img src="uploads/images/<?php echo $iconTipoHotel; ?>" alt="Hoteles ATSA" class="img-icon-tipo-hotel">
 
-								<?php 
-								} ?>
-    						
+							<?php 
+							} ?>
     					</div>
     				</article>
     			</li><!-- //HOTEL -->
