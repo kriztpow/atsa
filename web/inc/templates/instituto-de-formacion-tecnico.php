@@ -62,6 +62,7 @@
 				</li><!-- //.col-md-3 .col-sm-6 -->
 			<?php }//while
 				}//else
+				mysqli_close($connection);
 			?>
 			</ul><!-- //.row -->
 

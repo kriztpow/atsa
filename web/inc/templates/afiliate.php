@@ -37,7 +37,7 @@
 		    </p>
 
 			<h5 class="afiliaciones-alert">
-				También podés concurrir personalmente a Saavedra 166, entre piso, sector de Afiliaciones.
+				También podés concurrir personalmente a Saavedra 166, Planta Baja, sector de Afiliaciones.
 			</h5>
 
 		</div>

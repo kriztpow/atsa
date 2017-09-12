@@ -60,6 +60,7 @@
 					</div>
 				<?php }//while 
 				}//else
+				mysqli_close($connection);
 				?>
 			   	</div><!-- //#accordion -->
 	    	</div><!-- //.col-md-6 -->

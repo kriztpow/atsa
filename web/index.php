@@ -32,8 +32,6 @@ if ( $curso != 'none' ) {
 	$dataCurso = singleCursoHTML ( $curso );
 }
 
-
-
 /*
  *
  * LISTO, ahora se arma el html:

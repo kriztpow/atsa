@@ -89,6 +89,7 @@ function pageActual () {
 			if ( $slug == 'curso' ) {
 				$cursos = $parseUrl;
 				$curso  = $cursos[2];
+				echo $curso;
 			}
 		}
 	} 
@@ -352,7 +353,7 @@ function NoticiasRecientesHTML ( $cantPosts, $categoria = 'none', $exclude = 'no
 	<?php }
 		}//cierra for each
 	} //else
-	
+	mysqli_close($connection);
 }//NoticiasRecientesHTML()
 
 
@@ -463,6 +464,7 @@ function archivoNoticias () {
 				}
 		}//for each
 	}//else
+	mysqli_close($connection);
 } //archivoNoticias ()
 
 
@@ -564,6 +566,7 @@ function loopNoticiasHTML ( $categoria ) {
 
 		}//FOREACH
 	}//ELSE
+	mysqli_close($connection);
 } //loopNoticiasHTML()
 
 
@@ -619,6 +622,7 @@ function singlePostHTML ( $noticia ) {
 		return $dataNoticia;
 		
 	}//ELSE
+	mysqli_close($connection);
 } //singlePostHTML()
 
 //busca el curso en particular y recoge los datos para pasar al template
@@ -654,6 +658,7 @@ function singleCursoHTML ( $curso ) {
 		return $dataCurso;
 		
 	}//ELSE
+	mysqli_close($connection);
 } //singlecurso()
 
 //busca los hoteles y recoge los datos para pasar al template
@@ -685,6 +690,7 @@ function hotelesLoopHTML () {
 		}	
 		
 	}//ELSE
+	mysqli_close($connection);
 } //singlePostHTML()
 
 //muestra etiquetas en sidebar u otro lado
@@ -699,7 +705,7 @@ function printTags() {
 		<a href="/noticias/etiquetas/<?php echo $row['tag_name']; ?>" class="btn-tag-name"><?php echo $row['tag_name']; ?></a>	
 	<?php }
 
-	
+	mysqli_close($connection);
 }//printTags()
 
 function searchPostWithTags($tag) {
@@ -828,6 +834,7 @@ function getSliders( $slider ) {
 		getTemplate( 'sliders', $dataSlider);
 
 	}//else
+	mysqli_close($connection);
 } //getSliders()
 
 
@@ -911,7 +918,7 @@ function showLinksDeportes () {
 		}//for de secciones
 
 	}//else
-
+	mysqli_close($connection);
 }//showLinksDeportes()
 
 /*
@@ -999,7 +1006,7 @@ function showLinksConvenios () {
 		}//for de secciones
 
 	}//else
-
+	mysqli_close($connection);
 }//showLinksConvenios()
 
 
@@ -1040,6 +1047,7 @@ function showLeyes() {
 	<?php }//else
 		}//while
 	}//else
+	mysqli_close($connection);
 }//showLeyes()
 
 //mmustra autoridades, vocales, delegados. Primer parámetro elige cual tipo de staff, el segundo estilo: uno para delegados (de dos en dos), otro para unico (sin lista) y otro normal (li)
@@ -1138,6 +1146,7 @@ $count++;
 			
 		}//while
 	}//else
+	mysqli_close($connection);
 }//showStaff()
 
 //recupera los datos de viajes
@@ -1168,3 +1177,32 @@ function searchViajesData () {
 	mysqli_close($connection);
 	return $dataViajes;
 } //searchViajesData()
+
+function showPageHtml($id) {
+	$connection = connectDB();
+	$tabla = 'pages';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " WHERE page_ID='".$id."'";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
+		echo 'No existe esta página';
+	
+	} else {
+		$row = $result->fetch_array(); 
+		$pageID = $row['page_ID'];
+		$pageTitulo = $row['page_titulo'];
+		$pageContenido = $row['page_text'];
+		$pageImagen = $row['page_imagen'];
+
+		?>
+		<h1 class="sr-only">
+			<?php echo $pageTitulo; ?>
+		</h1>
+		<?php echo $pageContenido; ?>
+	<?php
+	}//else
+	mysqli_close($connection);
+}; //showPageHtml($id)

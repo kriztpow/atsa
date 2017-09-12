@@ -3165,6 +3165,14 @@ h2.info-enfermeria {
 .laboratorio-lista-items {
   width: 90%;
   margin: 0 auto; }
+  .laboratorio-lista-items li {
+    height: 670px; }
+    @media (max-width: 1200px) {
+      .laboratorio-lista-items li {
+        height: 700px; } }
+    @media (max-width: 992px) {
+      .laboratorio-lista-items li {
+        height: auto; } }
 
 .laboratorio-item {
   width: 90%;
@@ -3208,27 +3216,35 @@ h2.info-enfermeria {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px; }
-  .sub-title-preguntas-frecuentes h3 {
-    font-weight: 500;
-    color: #00acec;
-    font-size: 14pt;
-    line-height: 18pt;
-    padding: 5px 20px;
-    text-align: center; }
 
-.parrafo-preguntas-frecuentes {
+.parrafo-preguntas-frecuentes h3 {
+  background-color: #e5e5e5;
+  width: 70%;
+  margin: 30px auto;
+  max-width: 480px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #00acec;
+  font-size: 14pt;
+  line-height: 18pt;
+  padding: 5px 20px;
+  text-align: center; }
+.parrafo-preguntas-frecuentes p {
   font-weight: 500;
   font-size: 14pt;
   line-height: 18pt;
   text-align: center;
   padding: 0 10%;
   margin: 20px 0; }
-  .parrafo-preguntas-frecuentes a {
-    text-decoration: underline;
-    cursor: pointer; }
-  @media (max-width: 768px) {
-    .parrafo-preguntas-frecuentes {
-      padding: 0 20px; } }
+.parrafo-preguntas-frecuentes a {
+  text-decoration: underline;
+  cursor: pointer; }
+@media (max-width: 768px) {
+  .parrafo-preguntas-frecuentes {
+    padding: 0 20px; } }
 
 .icon-preguntas-frecuentes {
   position: absolute;
@@ -3236,8 +3252,7 @@ h2.info-enfermeria {
   top: 0;
   display: block;
   width: 60px;
-  height: 60px;
-  background: url(../assets/images/sprite.png); }
+  height: 60px; }
 
 .icon-preguntas-frecuentes-1 {
   background-position: -562px -1px; }
@@ -3708,28 +3723,56 @@ h2.info-enfermeria {
     font-weight: 400;
     font-size: 15pt; }
 
-.programa-prevencion ul {
-  padding-left: 30px; }
+/*.programa-prevencion {
+	ul {
+		padding-left: 30px;
+	}
+}
 
 .pp-titulo-prevencion {
+	font-weight: $weight-medium;
+	font-size: 12pt;
+	line-height: 16pt;
+	margin: 20px 0;
+}
+
+.pp-lista-prevencion {
+	list-style: initial;
+}
+
+.pp-destacado-prevencion {
+	font-weight: $weight-medium;;
+}
+
+.pp-subtitulo-prevencion {
+	font-weight: $weight-medium;;
+	text-transform: uppercase;
+}
+
+.pp-parrafo-prevencion {
+	font-size: 12pt;
+	margin: 5px 0;
+}
+*/
+.programa-prevencion ul {
+  padding-left: 30px; }
+  .programa-prevencion ul li {
+    list-style: initial; }
+.programa-prevencion h4 {
   font-weight: 500;
   font-size: 12pt;
   line-height: 16pt;
   margin: 20px 0; }
-
-.pp-lista-prevencion {
-  list-style: initial; }
-
-.pp-destacado-prevencion {
-  font-weight: 500; }
-
-.pp-subtitulo-prevencion {
+.programa-prevencion h5 {
   font-weight: 500;
   text-transform: uppercase; }
-
-.pp-parrafo-prevencion {
+.programa-prevencion p {
   font-size: 12pt;
   margin: 5px 0; }
+.programa-prevencion strong {
+  font-weight: 500; }
+.programa-prevencion em {
+  font-style: italic; }
 
 /*-------------- search -----------------*/
 .resultados-busqueda {

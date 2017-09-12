@@ -1559,6 +1559,18 @@ h2.info-enfermeria {
 .laboratorio-lista-items {
 	width: 90%;
 	margin: 0 auto;
+
+	li {
+		height: 670px;
+
+		@media (max-width: $mq-pc) {
+			height: 700px;
+		}
+
+		@media (max-width: $mq-tablet) {
+			height: auto;
+		}
+	}
 }
 
 .laboratorio-item {
@@ -1609,8 +1621,15 @@ h2.info-enfermeria {
 	margin: 30px auto;
 	max-width: 480px;
 	@include border-radius(5px);
+}
 
+.parrafo-preguntas-frecuentes {
 	h3 {
+		background-color: $gris-claro;
+		width: 70%;
+		margin: 30px auto;
+		max-width: 480px;
+		@include border-radius(5px);
 		font-weight: $weight-medium;
 		color: $celeste;
 		font-size: 14pt;
@@ -1618,16 +1637,15 @@ h2.info-enfermeria {
 		padding: 5px 20px;
 		text-align: center;
 	}
-}
 
-.parrafo-preguntas-frecuentes {
-	font-weight: $weight-medium;
-	font-size: 14pt;
-	line-height: 18pt;
-	text-align: center;
-	padding: 0 10%;
-	margin: 20px 0;
-
+	p {
+		font-weight: $weight-medium;
+		font-size: 14pt;
+		line-height: 18pt;
+		text-align: center;
+		padding: 0 10%;
+		margin: 20px 0;
+	}
 	a {
 		text-decoration: underline;
 		cursor: pointer;
@@ -1645,7 +1663,7 @@ h2.info-enfermeria {
 	display: block;
 	width: 60px;
 	height: 60px;
-	background: url(../assets/images/sprite.png);
+	//background: url(../assets/images/sprite.png);
 }
 
 .icon-preguntas-frecuentes-1 {
@@ -2212,7 +2230,7 @@ h2.info-enfermeria {
 	}
 }
 
-.programa-prevencion {
+/*.programa-prevencion {
 	ul {
 		padding-left: 30px;
 	}
@@ -2241,6 +2259,41 @@ h2.info-enfermeria {
 .pp-parrafo-prevencion {
 	font-size: 12pt;
 	margin: 5px 0;
+}
+*/
+.programa-prevencion {
+	ul {
+		padding-left: 30px;
+
+		li {
+			list-style: initial;
+		}
+	}
+
+	h4 {
+		font-weight: $weight-medium;
+		font-size: 12pt;
+		line-height: 16pt;
+		margin: 20px 0;
+	}
+
+	h5{
+		font-weight: $weight-medium;;
+		text-transform: uppercase;
+	}
+
+	p {
+		font-size: 12pt;
+		margin: 5px 0;
+	}
+
+	strong {
+		font-weight: $weight-medium;
+	}
+
+	em {
+		font-style: italic;
+	}
 }
 
 /*-------------- search -----------------*/

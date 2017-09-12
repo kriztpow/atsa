@@ -9,7 +9,7 @@
 			<h1 class="sr-only">Trabajadores</h1>
 
 		    <p class="p-text-center font-size-14 weight-medium">
-		    	Este espacio está dirigido a todos nuestros compañeros y compañeras con el objetivo de refexionar sobre los roles de género en nuestra sociedad, desnaturalizar las características culturales que los determinan y los papeles que se le atribuyen a cada uno, especialmente dentro del ámbito laboral.<br>
+		    	Este espacio está dirigido a todos nuestros compañeros y compañeras con el objetivo de reflexionar sobre los roles de género en nuestra sociedad, desnaturalizar las características culturales que los determinan y los papeles que se le atribuyen a cada uno, especialmente dentro del ámbito laboral.<br>
 		    	A tal fin, nos proponemos introducir la Perspectiva de Género e incorporar la igualdad de trato y de oportunidades entre hombres y mujeres en la discusión de condiciones de trabajo.
 		    </p>
 		</div>

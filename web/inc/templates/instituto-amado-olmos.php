@@ -133,7 +133,9 @@ $connection = connectDB();
 	    </blockquote>
 	</div><!-- //.container -->
 
-	<?php }//else ?>
+	<?php }//else 
+	mysqli_close($connection);
+	?>
 
 </article>
 <aside>
