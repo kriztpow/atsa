@@ -63,8 +63,11 @@ include 'head.php';
 		<div class="row">
 			<div class="col-md-8 col-lg-9">
 				<main role="main" class="main">
-					<h1 class="sr-only">Últimas noticias ATSA Buenos Aires</h1>
-
+					<?php 
+					    	//si es una noticia muestra el post
+				    	if ( !$noticiaSingle ) { ?>
+						<h1 class="sr-only">Últimas noticias ATSA Buenos Aires</h1>
+					<?php } ?>
 					<div id="noticias-loop" class="container-fluid">
 						
 					    <ul class="loop-noticia">
@@ -85,14 +88,20 @@ include 'head.php';
 					    </ul>
 					</div><!-- //#noticias-loop -->
 					<?php 
-					//si no es un loop mostrar boton para cargar más noticias
-					if (!$noticiaSingle) { ?>
-					<div class="container-fluid load-more-by-ajax">
-						<?php if ( !$tag ) { ?>
-						<button id="<?php echo $categoriaNoticias; ?>" class="load-more-news">Cargar más</button>
-						<p class="loading-news-ajax"></p>
-						<?php } ?>	
-					</div>
+				    	//si es una noticia muestra el post
+			    		if ( !$noticiaSingle ) { ?>
+					<aside class="loop-recientes-footer-single-wrapper noticia-index">
+						<h3>
+							Últimas noticias destacadas
+						</h3>
+						<ul class="loop-recientes-footer-single">
+							<?php 
+							 if ( $categoriaNoticias == '' ) {
+							 	$categoriaNoticias = 'none';
+							 }
+							NoticiasRecientesHTML( '2', $categoriaNoticias, 'none', true, 3); ?>
+						</ul>
+					</aside>
 					<?php } ?>
 				</main><!------- // cierre main section ------>
 			</div><!-- //.col -->

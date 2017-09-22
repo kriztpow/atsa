@@ -42,11 +42,11 @@
                             <div class="container-fluid">
                                 <h1>Voces de sanidad</h1>
                                 <p>Todas las voces de nuestro gremio se encuentran en este espacio. Inaugura la primera edición nuestro Secretario General, Héctor Daer.</p>
-                                <a href="" class="read-more-btn">Próximamente</a>
+                                <a href="http://www.atsa.org.ar/voces-de-sanidad/" target="_blank" class="read-more-btn">¡Visitanos!</a>
                                 <form method="post" id="subscribe-form" name="subscribe-form">
-                                    <input type="email" name="email-subs" placeholder="ingresa tu email">
+                                    <input type="email" name="email-subs" placeholder="ingresa tu email" required>
                                     <input type="submit" value="Subscribirse">
-                                    <span class="load-ajax-suscribe">Se ha suscribido correctamente</span>
+                                    <span class="load-ajax-suscribe">Gracias por suscribirse</span>
                                 </form>
                             </div>
                         </div>

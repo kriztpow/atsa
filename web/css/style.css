@@ -3783,5 +3783,117 @@ h2.info-enfermeria {
     line-height: 16pt; }
 
 /*-------------- otra pagina -----------------*/
+.loop-recientes {
+  overflow: auto; }
+  .loop-recientes li {
+    margin: 20px auto;
+    clear: both;
+    overflow: auto;
+    position: relative; }
+
+.loop-recientes-footer-single-wrapper {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin: 50px auto;
+  overflow: auto; }
+  @media (max-width: 768px) {
+    .loop-recientes-footer-single-wrapper {
+      display: none; } }
+  .loop-recientes-footer-single-wrapper h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14pt;
+    font-weight: 500;
+    margin: 20px 0;
+    padding: 25px 0; }
+
+.loop-recientes-footer-single {
+  overflow: auto;
+  columns: 2; }
+
+.loop-recientes-item {
+  cursor: pointer;
+  overflow: auto; }
+
+.loop-recientes-item > a:hover h1 {
+  color: #006a91 !important; }
+.loop-recientes-item > a:hover p {
+  color: #006a91 !important; }
+.loop-recientes-item > a:hover .recientes-img-loop {
+  opacity: 0.7;
+  filter: Alpha(opacity=70); }
+
+.noticia-recientes-item {
+  overflow: auto;
+  position: relative; }
+
+.recientes-img-loop {
+  width: 35%;
+  float: left;
+  height: 65px;
+  overflow: hidden; }
+  @media (max-width: 992px) {
+    .recientes-img-loop {
+      float: none;
+      width: 90%;
+      margin: 20px auto;
+      height: auto;
+      max-height: 320px; } }
+  .recientes-img-loop img {
+    min-width: 100%;
+    width: 100%; }
+    @media (max-width: 992px) {
+      .recientes-img-loop img {
+        width: 100%; } }
+
+.recientes-text-loop {
+  width: 65%;
+  float: left;
+  padding: 0 10px; }
+  .recientes-text-loop h1 {
+    font-weight: 500;
+    font-size: 11pt;
+    margin-bottom: 5px;
+    color: #000000; }
+  .recientes-text-loop p {
+    color: #8c8c8c; }
+
+.content-archivo li {
+  list-style-type: initial; }
+
+.loop-recientes-item-row {
+  cursor: pointer; }
+  .loop-recientes-item-row:hover {
+    opacity: 0.6; }
+
+.recientes-img-loop-row {
+  position: relative;
+  overflow: hidden;
+  height: 250px; }
+  @media (max-width: 1200px) {
+    .recientes-img-loop-row {
+      height: 190px; } }
+  .recientes-img-loop-row img {
+    width: 170%;
+    position: absolute;
+    left: -30%; }
+
+.recientes-text-loop-row {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background: rgba(58, 58, 58, 0.7);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px; }
+  .recientes-text-loop-row h1 {
+    color: #fff;
+    margin: 0;
+    border-bottom: none !important; }
 
 /*# sourceMappingURL=style.css.map */

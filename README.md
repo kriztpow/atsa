@@ -17,6 +17,18 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 3.3 - AUTOADMINISTRABLE
+* Link de Voces de sanidad habilitado
+
+### Versión 3.2 - AUTOADMINISTRABLE
+* Slider del home clickqeable. OK
+* solo las últimas tres noticias ok
+* no hay más cargar mas,
+* se ven dos ultimas noticias destacadas (como en las noticias individuales), ya que si pongo 3 tengo que editar todo de nuevo y no llego a hacerlo. si querés pongo 4, pero tiene que ser par.
+* cuando ingresas a una noticia en particular quieren que el título permanezca arriba como cuando estás en la home de las noticias y no después de la foto porque se pierde. OK (creo, según entendí)
+* ya no se pueden suscribir sin poner email :D
+* corregí el mensaje por el que me mandaste "Gracias por suscribirse"
+
 ### Versión 3.1 - AUTOADMINISTRABLE
 * Lo estático se toma de la base de datos, modulos: deportes, leyes, convenios, autoridades
 

@@ -13,6 +13,11 @@ $imgGaleria = $dataNoticia['imgGaleria'];
 <li class="loop-noticias-item">
 	<article class="noticia-index">
 		<header>
+		
+			<h1>
+				<?php echo $dataNoticia['titulo'] ?>
+			</h1>
+		
 			<div class="main-img-news">
 				<div class="date-news">
 					<p>
@@ -55,11 +60,11 @@ $imgGaleria = $dataNoticia['imgGaleria'];
 					</li>
 				</ul>
 			</aside>
-			<div class="title-news">
+			<!--<div class="title-news">
 				<h1>
-					<?php echo $dataNoticia['titulo']; ?>
+					<?php //echo $dataNoticia['titulo']; ?>
 				</h1>
-			</div>
+			</div>-->
 		</header>
 		<section>
 			<div class="content-news">

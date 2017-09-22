@@ -2308,3 +2308,156 @@ h2.info-enfermeria {
 }
 
 /*-------------- otra pagina -----------------*/
+.loop-recientes {
+    overflow: auto;
+    li {
+        margin: 20px auto;
+        clear: both;
+        overflow: auto;
+        position: relative;
+    }
+}
+
+.loop-recientes-footer-single-wrapper {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin: 50px auto;
+    overflow: auto;
+
+    @media (max-width: $mq-movil) {
+        display: none;
+    }
+
+    h3 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 14pt;
+        font-weight: 500;
+        margin: 20px 0;
+        padding: 25px 0;
+    }
+}
+
+.loop-recientes-footer-single {
+    overflow: auto;
+    columns: 2;
+}
+
+.loop-recientes-item {
+    cursor: pointer;
+    overflow: auto;
+}
+
+.loop-recientes-item>a:hover {
+    h1 {color: $azul!important;}
+    p {color: $azul!important;}
+    .recientes-img-loop {opacity:0.7;filter:Alpha(opacity=70)}
+}
+
+.noticia-recientes-item {
+    overflow: auto;
+    position: relative;
+}
+//cada article individual de noticia
+.recientes-img-loop {
+    width: 35%;
+    float: left;
+    height: 65px;
+    overflow: hidden;
+
+    @media (max-width: $mq-tablet) {
+        float: none;
+        width: 90%;
+        margin: 20px auto;
+        height: auto;
+        max-height: 320px;
+    }
+
+    img {
+        min-width: 100%;
+        width: 100%;
+
+        @media (max-width: $mq-tablet) {
+            width: 100%;
+        }
+    }
+
+
+}
+
+.recientes-text-loop {
+    width: 65%;
+    float: left;
+    padding: 0 10px;
+    h1 {
+        font-weight: $weight-medium;
+        font-size: 11pt;
+        margin-bottom: 5px;
+        color: $negro;
+    }
+
+    p {
+        color: $gris;
+    }
+}
+
+.content-archivo {
+    li {
+        list-style-type: initial;
+    }
+}
+
+//loop recientes en formato row
+.loop-recientes-item-row {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.recientes-img-loop-row {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+
+    @media (max-width: $mq-pc) {
+        height: 190px;        
+    }
+
+    img {
+        width: 170%;
+        position: absolute;
+        left: -30%;
+    }
+}
+
+.recientes-text-loop-row {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background: $casi-negro;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    h1 {
+        color: #fff;
+        margin: 0;
+        border-bottom: none!important;
+    }
+}
+
+.noticia-index {
+    h1 {
+        font-size: 16pt;
+        line-height: 24pt;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        border-bottom: 2px solid $celeste;
+    }
+}

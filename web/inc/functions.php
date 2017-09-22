@@ -247,11 +247,17 @@ function closeDataBase( $connection ){
 }
 
 //muestra las noticias recientes se puede especificar la cant de post, la categoria y se puede excluir una noticia. Además tiene estilo columna para sidebar por default o row
-function NoticiasRecientesHTML ( $cantPosts, $categoria = 'none', $exclude = 'none', $style = false ) {
+function NoticiasRecientesHTML ( $cantPosts, $categoria = 'none', $exclude = 'none', $style = false, $offset = 0 ) {
 	$noticiasPorPagina = $cantPosts;
 	$connection = connectDB();
 	$fecha_actual = strtotime(date("d-m-Y H:i:00"));
 	$tabla = 'noticias';
+
+	if ( $offset != '0' ) {
+		$noticiasPorPagina = $offset.','.$cantPosts;
+		//$noticiasPorPagina = '3,2';
+	}
+
 	$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
 
 	if ( $categoria != 'none' ) {
@@ -266,6 +272,7 @@ function NoticiasRecientesHTML ( $cantPosts, $categoria = 'none', $exclude = 'no
 	
 	if ( $result->num_rows == 0 ) {
 		echo '<div>Ninguna noticia ha sido cargada todavía</div>';
+		echo $query;
 	} else {
 
 		while ($row = $result->fetch_array()) {
@@ -471,7 +478,7 @@ function archivoNoticias () {
 //muestra html del loop de noticias de acuerdo a su categoría
 function loopNoticiasHTML ( $categoria ) {
 	$fecha_actual = strtotime(date("d-m-Y H:i:00"));
-	$noticiasPorPagina = 5;
+	$noticiasPorPagina = 3;
 	$connection = connectDB();
 	$tabla = 'noticias';
 	$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";

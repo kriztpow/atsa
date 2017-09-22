@@ -20,33 +20,38 @@
             for ($i=0; $i < count($data); $i++) { ?>    
                 <!-- slide item -->
                 <li class="slide-item">
-                    <article>
-                        <figure class="slide-background-img">
-                            <img src="uploads/images/<?php echo $data[$i]['slider_imagen']; ?>">
-                        </figure>
-                        
-                        <?php if ($data[$i]['slider_titulo'] != '' || $data[$i]['slider_texto'] != '') { ?>
-                        <div class="slide-data">
-                        <?php } else { ?>
-                        <div class="slide-data slide-data-transparent">
-                        <?php } ?>
-                            <h1 class="slide-title">
-                                <a href="<?php echo $data[$i]['slider_link'] ?>" title="Leer más">
-                                <?php echo $data[$i]['slider_titulo'] ?>
+                    <?php if ( $data[$i]['slider_link'] != '' ) { ?>
+                    <a href="<?php echo $data[$i]['slider_link'] ?>">
+                    <?php } else { ?>
+                    <a>
+                    <?php } ?>
+                        <article>
+                            <figure class="slide-background-img">
+                                <img src="uploads/images/<?php echo $data[$i]['slider_imagen']; ?>">
+                            </figure>
+                            
+                            <?php if ($data[$i]['slider_titulo'] != '' || $data[$i]['slider_texto'] != '') { ?>
+                            <div class="slide-data">
+                            <?php } else { ?>
+                            <div class="slide-data slide-data-transparent">
+                            <?php } ?>
+                                <h1 class="slide-title">
+                                    <a href="<?php echo $data[$i]['slider_link'] ?>" title="Leer más">
+                                    <?php echo $data[$i]['slider_titulo'] ?>
+                                        <?php if ( $data[$i]['slider_link'] != '' ) { ?>
+                                            <span class="slide-link-movil">Leer más</span>
+                                        <?php } ?>
+                                    </a>
+                                </h1>
+                                <p class="slide-text">
+                                    <?php echo $data[$i]['slider_texto'] ?>
                                     <?php if ( $data[$i]['slider_link'] != '' ) { ?>
-                                        <span class="slide-link-movil">Leer más</span>
+                                        <a class="slide-link" href="<?php echo $data[$i]['slider_link'] ?>">Leer más</a>
                                     <?php } ?>
-                                </a>
-                            </h1>
-                            <p class="slide-text">
-                                <?php echo $data[$i]['slider_texto'] ?>
-                                <?php if ( $data[$i]['slider_link'] != '' ) { ?>
-                                    <a class="slide-link" href="<?php echo $data[$i]['slider_link'] ?>">Leer más</a>
-                                <?php } ?>
-                            </p>
-                        </div>
-                        
-                    </article>
+                                </p>
+                            </div>
+                        </article>
+                    </a>
                 </li>
                 <!-- // slide item -->
             <?php 
