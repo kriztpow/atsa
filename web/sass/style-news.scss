@@ -509,6 +509,13 @@ aside {
         padding-left: 20px;
         margin: 20px 0;
     }
+
+    strong {
+	font-weight: bold;
+    }
+    em {
+	font-style:italic;
+    }
 }
 
 .wrapper-iframe-video {

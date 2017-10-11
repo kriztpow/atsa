@@ -1639,6 +1639,10 @@ aside {
   list-style: square;
   padding-left: 20px;
   margin: 20px 0; }
+.content-news strong {
+  font-weight: bold; }
+.content-news em {
+  font-style: italic; }
 
 .wrapper-iframe-video {
   margin: 20px 0 50px;
