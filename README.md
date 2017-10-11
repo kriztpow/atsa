@@ -17,6 +17,10 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 3.4 - AUTOADMINISTRABLE
+* Cambios en voces de sanidad
+* Publicado 3 noticias, 1 por categoría (versión estática)
+
 ### Versión 3.3 - AUTOADMINISTRABLE
 * Link de Voces de sanidad habilitado
 
