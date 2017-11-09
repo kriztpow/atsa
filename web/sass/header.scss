@@ -575,7 +575,7 @@
     left: -150px;
     width: 230px;
 
-    @media (max-width: $mq-movil) {
+    @media (max-width: $mq-tablet) {
         left: 0;
     }
 }
@@ -639,7 +639,7 @@
 }
 
 /*queries .main-menu-sub1*/
-@media (max-width: $mq-movil) {
+@media (max-width: $mq-tablet) {
     .main-menu-sub1 {
         position: relative;
         background-color: $blanco;
