@@ -1,3 +1,32 @@
+<?php 
+/*pagina de inicio autoadministrable
+ * @since 4.0
+ *
+ *   1.ESPACIO AUDIOVISUAL:
+ *   Título, video, parrafo
+ *   2. VOCES:
+ *   imagen, parrafo
+ *   3. AFILIATE:
+ *   titulo, texto, imagen, url
+ *   4. BANNERS CUADRADOS:
+ *   Cambio de fotos
+ *   5. CONECTADOS:
+ *   Texto y video
+ *   6. FRASE (ya que estamos):
+ *  texto
+ *
+*/
+
+
+
+$homeContent = getHome();
+
+//videos
+$audiovisualVideo = explode('=', $homeContent['audiovisual']['video']);
+$conectadosVideo = explode('=', $homeContent['conectados']['video']);
+
+
+?>
 <article id="home-page" class="wrapper-home">
     <!--------- header -------------->
     <header class="header-home">
@@ -22,12 +51,16 @@
                 <li>
                     <article class="article-otro-link" id="espacio-audiovisual">
                         <div class="wrapper-iframe-video">
-                            <iframe src="https://www.youtube.com/embed/jsKIHJ4TJ6w?rel=0" frameborder="0" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/<?php echo $audiovisualVideo[1]; ?>?rel=0" frameborder="0" allowfullscreen></iframe>
                         </div>
                         <div class="data-link">
                                 <div class="container-fluid">
-                                    <h1>¡Esto fue La Fiesta de Todos 2017!</h1>
-                                    <p>Como todos los años compartimos una hermoso día con compañeros y familia en nuestro predio en Pontevedra.</p>
+                                    <h1>
+                                        <?php echo $homeContent['audiovisual']['titulo']; ?>
+                                    </h1>
+                                    <p>
+                                        <?php echo $homeContent['audiovisual']['parrafo']; ?>
+                                    </p>
                                 </div>
                             </div>
                     </article>
@@ -36,13 +69,17 @@
                  <li>
                     <article class="article-otro-link">
                         <figure>
-                            <img src="assets/images/voces-sanidad.jpg" alt="Espacio Audiovisual">
+                            <img src="uploads/images/<?php echo $homeContent['voces']['imagen']; ?>" alt="Espacio Audiovisual">
                         </figure>
                         <div class="data-link">
                             <div class="container-fluid">
-                                <h1>Voces de sanidad</h1>
-                                <p>Todas las voces de nuestro gremio se encuentran en este espacio. Inaugura la primera edición nuestro Secretario General, Héctor Daer.</p>
-                                <a href="http://www.atsa.org.ar/voces-de-sanidad/" target="_blank" class="read-more-btn">¡Visitanos!</a>
+                                <h1>
+                                    <?php echo $homeContent['voces']['titulo']; ?>
+                                </h1>
+                                <p>
+                                    <?php echo $homeContent['voces']['parrafo']; ?>
+                                </p>
+                                <a href="<?php echo $homeContent['voces']['parrafo']; ?>" target="_blank" class="read-more-btn">¡Visitanos!</a>
                                 <form method="post" id="subscribe-form" name="subscribe-form">
                                     <input type="email" name="email-subs" placeholder="ingresa tu email" required>
                                     <input type="submit" value="Subscribirse">
@@ -54,16 +91,20 @@
                 </li>
                 
                  <li>
-                    <a href="afiliate" title="Afiliate">
+                    <a href="<?php echo $homeContent['afiliate']['url']; ?>" title="Afiliate">
                         <article class="article-otro-link">
                             <figure>
-                                <img src="uploads/images/afiliate.jpg" alt="Afiliate a ATSA">
+                                <img src="uploads/images/<?php echo $homeContent['afiliate']['imagen']; ?>" alt="Afiliate a ATSA">
                             </figure>
                             <div class="data-link">
                                 <div class="container-fluid">
-                                    <h1>¿Querés formar parte de ATSA Bs As? </h1>
-                                    <p>Ingresá acá para afiliarte al gremio de los trabajadores de la Sanidad. </p>
-                                    <a href="afiliate" class="read-more-btn">Afiliate aquí</a>
+                                    <h1>
+                                        <?php echo $homeContent['afiliate']['titulo']; ?>
+                                    </h1>
+                                    <p>
+                                        <?php echo $homeContent['afiliate']['parrafo']; ?>
+                                    </p>
+                                    <a href="<?php echo $homeContent['afiliate']['url']; ?>" class="read-more-btn">Afiliate aquí</a>
                                 </div>
                             </div>
                         </article>
@@ -82,7 +123,7 @@
                         <a href="#ri-grid" class="click-scroll">
                         <article class="noticia-destacada">
                             <figure>
-                                <img src="assets/images/rostros-icon-home.gif" class="img-responsive">
+                                <img src="uploads/images/<?php echo $homeContent['banners'][0]; ?>" class="img-responsive">
                             </figure>
                         </article>
                         </a>
@@ -91,7 +132,7 @@
                         <a href="celeste-y-blanca">
                         <article class="noticia-destacada">
                             <figure>
-                                <img src="assets/images/casa-icon-home.jpg" class="img-responsive">
+                                <img src="uploads/images/<?php echo $homeContent['banners'][1]; ?>" class="img-responsive">
                             </figure>
                         </article>
                         </a>
@@ -100,7 +141,7 @@
                         <a href="programas-prevencion">
                         <article class="noticia-destacada">
                             <figure>
-                                <img src="assets/images/estrabien-icon-home.jpg" class="img-responsive">
+                                <img src="uploads/images/<?php echo $homeContent['banners'][2]; ?>" class="img-responsive">
                             </figure>
                         </article>
                         </a>
@@ -109,13 +150,8 @@
                         <a href="trabajadores">
                         <article class="noticia-destacada">
                             <figure>
-                                <img src="assets/images/trabajadores-icon-home.jpg" class="img-responsive">
+                                <img src="uploads/images/<?php echo $homeContent['banners'][3]; ?>" class="img-responsive">
                             </figure>
-                            <!--<div class="data-article">
-                                <h1>Título noticia</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut minim veniam.</p>
-                                <a href="#">Leer más</a>
-                            </div>-->
                         </article>
                         </a>
                     </li>
@@ -130,17 +166,14 @@
         <div class="secction-conectados-wrapper">
             <div class="container-fluid">
                 <div class="conectados-content">
-                    <h3>Conectados somos más fuertes</h3>
-                    <p>ATSA Bs As está presente en Facebook, Twitter, Instagram y Youtube. SEGUINOS para informarte, opinar, debatir y pertenecer también en el mundo digital.</p>
-                    <h4>¿Qué es Conectados?</h4>
-                    <p>Conectados es una manera de seguir construyendo nuestro gremio todos juntos. A través de nuestras redes sociales nos encontramos, nos mantenemos unidos y seguimos sumando fuerzas frente a los que cuestionan nuestros derechos.</p>
+                    <?php echo $homeContent['conectados']['texto']; ?>
                     
-                    <p><a href="http://www.youtube.com/user/atsabsas" target="_blank" rel="external">Ver más videos</a></p>
+                    <p><a href="<?php echo $homeContent['conectados']['url']; ?>" target="_blank" rel="external">Ver más videos</a></p>
                 </div>
                 
                 <div class="conectados-video">
                     <div class="wrapper-iframe-video">
-                        <iframe src="https://www.youtube.com/embed/rYHyEBCMO4s" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/<?php echo $conectadosVideo[1]; ?>" frameborder="0" allowfullscreen></iframe>
                      </div>
                 </div>
             </div>
@@ -153,7 +186,7 @@
         
         <q>
             <div class="container-fluid">
-                Resistimos, cuestionamos y reclamamos. Construimos, nos organizamos y nos fortalecemos. Nuestro trabajo nos enorgullece y nos une. Cada paso que damos juntos se refleja en un derecho ganado. Sigamos avanzando.
+                <?php echo $homeContent['frase']; ?>
             </div>
         </q>
     </footer>

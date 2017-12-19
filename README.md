@@ -17,6 +17,12 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+#### Versión 4 - AUTOADMINISTRABLE  
+(18/12/17)  
+
+* Cambios en inicio, ahora la pagina es autoadministrable.
+* Cree un nuevo item en la base de datos para que busque ahí todos los datos de la página de inicio
+
 ### Versión 3.4 - AUTOADMINISTRABLE
 * Cambios en voces de sanidad
 * Publicado 3 noticias, 1 por categoría (versión estática)

@@ -1213,3 +1213,52 @@ function showPageHtml($id) {
 	}//else
 	mysqli_close($connection);
 }; //showPageHtml($id)
+
+
+//busca en la bd todos los parametros del home y los devuelve en una array
+function getHome() {
+	$connection = connectDB();
+	$tabla = 'homepage';
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " ";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		echo 'No hay nada cargado';
+	} else { 
+
+	$data = $result->fetch_array();
+		
+	}
+
+	$homeContent = array(
+	    'audiovisual' => array(
+	        'titulo' => $data['audiovisual_titulo'],
+	        'video' => $data['audiovisual_video'],
+	        'parrafo' => $data['audiovisual_parrafo'],
+	    ),
+	    'voces' => array(
+	        'titulo' => $data['voces_titulo'],
+	        'imagen' => $data['voces_imagen'],
+	        'parrafo' => $data['voces_parrafo'],
+	        'url' => $data['voces_url'],
+	    ),
+	    'afiliate' => array(
+	        'titulo' => $data['afiliate_titulo'],
+	        'imagen' => $data['afiliate_imagen'],
+	        'parrafo' => $data['afiliate_parrafo'],   
+	        'url' => $data['afiliate_url'],
+	    ),
+	    'banners' => unserialize($data['banners']),
+	    'conectados' => array(
+	        'texto' => $data['conectados_texto'],
+	        'video' => $data['conectados_video'],
+	        'url' => $data['conectados_url'],
+	    ),
+	    'frase' => $data['frase'],
+	);
+
+	//devuelve el array de contenido
+	return $homeContent;
+}
