@@ -79,7 +79,7 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
                                 <p>
                                     <?php echo $homeContent['voces']['parrafo']; ?>
                                 </p>
-                                <a href="<?php echo $homeContent['voces']['parrafo']; ?>" target="_blank" class="read-more-btn">¡Visitanos!</a>
+                                <a href="<?php echo $homeContent['voces']['url']; ?>" target="_blank" class="read-more-btn">¡Visitanos!</a>
                                 <form method="post" id="subscribe-form" name="subscribe-form">
                                     <input type="email" name="email-subs" placeholder="ingresa tu email" required>
                                     <input type="submit" value="Subscribirse">
