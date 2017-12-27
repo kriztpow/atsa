@@ -17,7 +17,10 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
-#### Versión 4 - AUTOADMINISTRABLE  
+### Versión 5 - AUTOADMINISTRABLE
+* Se le suma la página de Voces de sanidad, agregué un nuevo administrador, para administrar esa página
+
+### Versión 4 - AUTOADMINISTRABLE  
 (18/12/17)  
 
 * Cambios en inicio, ahora la pagina es autoadministrable.

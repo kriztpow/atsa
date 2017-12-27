@@ -1,0 +1,4 @@
+<?php
+/*
+MANEJA LOS SUSCRIPTORES
+*/
