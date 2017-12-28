@@ -85,11 +85,8 @@ if( isAjax() ) {
 			
 			$newPosts = getPosts( $categoria, $cantPost, 'none', 'publicado', $offset );
 
-			for ($i=0; $i < count($newPosts); $i++) { 
-	    		echo '<li>';
-	    			getTemplate( 'loop-posts', $newPosts[$i] );
-	    		echo '</li>';
-	    	}
+			getTemplate( 'posts-loop', $newPosts );
+
 		break;
 
 

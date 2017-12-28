@@ -9,7 +9,7 @@
 				<li>
 					<a href="<?php echo MAINSURL; ?>/publicaciones">Publicaciones</a>
 				</li>
-			<?php if ( $data != '' ) : ?>
+			<?php if ( $data != 'none' ) : ?>
 				<li>
 					<a href="<?php echo MAINSURL; ?>/publicaciones/<?php echo $data; ?>">
 						<?php echo $data; ?>

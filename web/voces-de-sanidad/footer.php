@@ -60,7 +60,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!--<script src="http://maps.googleapis.com/maps/api/js?v=3"></script>-->
     <script src="<?php echo MAINSURL; ?>/js/timber.master.min.js"></script>
-    <!--<script src="js/timber.js"></script>-->
+    <script src="<?php echo MAINSURL; ?>/js/script.js"></script>
    <script>
         /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -71,34 +71,6 @@
         ga('require', 'displayfeatures');
         ga('send', 'pageview');*/
 
-    </script>
-    <script>
-        /*
-        POPUP
-        */
-        var popup = $( '.popup' );
-        var popupIMG = $( '.popup img' );
-        var tiempo = 10000;
-        if ( popup.length != 0 ) {
-            var closeX = $( '.close-popup' );
-            var closeBTN = $( '.cerrar-popup' );
-            
-            function openPop () {
-                popup.addClass('popup-active');
-                popupIMG.fadeIn();
-            }
-            
-            setTimeout( openPop, tiempo);
-            
-            function closePopup() {
-                popup.removeClass('popup-active');
-                popupIMG.fadeOut(tiempo);
-            }
-
-            closeX.click(closePopup);
-            closeBTN.click(closePopup);
-
-        }
     </script>
 </body>
 </html>

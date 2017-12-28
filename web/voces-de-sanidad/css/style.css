@@ -62,3 +62,12 @@
   -ms-justify-content: center;
   -o-justify-content: center;
   justify-content: center; }
+
+  .load-more-wrapper {
+  position: relative;
+  text-align: center;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+  margin-bottom: 50px; }

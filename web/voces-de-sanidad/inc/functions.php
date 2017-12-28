@@ -528,7 +528,14 @@ function getSinglePostbyId ( $id, $op ) {
 	$query  = "SELECT * FROM " .$tabla;
 	$query .= " WHERE post_id" . $op . "'" . $id . "'";
 	$query .= " AND post_fecha <= '". $fecha_actual. "'";
-	$query .= " ORDER BY post_id desc LIMIT 1";
+
+	if ($op == '<' ) {
+		$query .= " ORDER BY post_id desc LIMIT 1";	
+	} else {
+		$query .= " ORDER BY post_id asc LIMIT 1";
+	}
+
+	
 
 	$result = mysqli_query($connection, $query);
 
