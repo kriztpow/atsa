@@ -8,7 +8,7 @@
 */
 
 require_once 'config.php';
-require_once 'lib/mobile-detect/Mobile_Detect.php';
+require_once 'mobile-detect/Mobile_Detect.php';
 
 //busca la página $name = nombre del archivo sin extensión
 function getPage( $name ) {
@@ -167,12 +167,35 @@ ESTA FUNCIÓN TOMA LA VARIANTE DE ALGUNAS PAGINAS POR EJEMPLO NOTICIAS, EL SLUG 
 @return: string
 */
 function getPageVar ( $uri ) {
-	$slug = '';
+	$categoria = '';
 
 	//si es categoria, entonces no hay nada que decir
 	if ( es_categoria( $uri ) ){
 		return;
 	} 
+	
+	//si figura variable noticia en el url, entonces es facil:
+	$cat = isset($_REQUEST['cat'])?$_REQUEST['cat']:'none';
+	if ( $cat != 'none' ) {
+		$categoria = $cat;
+		return $categoria;
+	} 
+
+	//si no hay variables hay que parsear el url para buscar informacion
+	$parseUrl = explode('/', $uri);
+	
+	//si por el contrario hay un indice 2 y este no es la "/" entonces hay info que rescatar
+	if ( isset($parseUrl[2]) && $parseUrl[2] != '' ) {
+		$categoria = $parseUrl[2];
+	} 
+	
+	return $categoria;
+
+}
+
+//ESTA FUNCION DEVUELVE EL SLUG PARA BUSCAR LA NOTICIA
+function getSlug ( $uri ) {
+	$slug = '';
 	
 	//si figura variable noticia en el url, entonces es facil:
 	$noticia = isset($_REQUEST['noticia'])?$_REQUEST['noticia']:'none';
@@ -185,8 +208,8 @@ function getPageVar ( $uri ) {
 	$parseUrl = explode('/', $uri);
 	
 	//si por el contrario hay un indice 2 y este no es la "/" entonces hay info que rescatar
-	if ( isset($parseUrl[2]) && $parseUrl[2] != '' ) {
-		$slug = $parseUrl[2];
+	if ( isset($parseUrl[3]) && $parseUrl[3] != '' ) {
+		$slug = $parseUrl[3];
 	} 
 	
 	return $slug;
@@ -329,7 +352,7 @@ function showMenu( $menu, $active = null, $hide = false ) {
 
 //devuelve el título de la página para <head><title>
 function SeoTitlePage ( $page ) {
-    $tituloBase   = SITETITLE;
+    $tituloBase = SITETITLE;
 
     //titulo cuando no es home ni noticias
     if ( $page != 'inicio' ) {
@@ -438,6 +461,36 @@ function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status
 	return $loop;
 }
 
+
+//busca los posts destacados para el slider
+function getPostsSlider( $number = -1 ) {
+	$connection = connectDB();
+	$tabla = 'noticias';
+
+	$query  = "SELECT * FROM " .$tabla;
+	$query .= " WHERE post_status='publicado' AND post_destacado='1'";
+	if ( $number != -1 ) {
+		$query .= " LIMIT ".$number." ";
+	}
+	
+	$result = mysqli_query($connection, $query);
+	
+	closeDataBase( $connection );
+
+	if ( $result->num_rows == 0 ) {
+		$loop = 'none';
+	} else {
+
+		while ($row = $result->fetch_array()) {
+				$loop[] = $row;
+			}
+
+	}
+	
+	return $loop;
+}
+
+
 //recupera los post individualmente de acuerdo al url
 function getSinglePost ( $slug ) {
 
@@ -460,6 +513,36 @@ function getSinglePost ( $slug ) {
 
 	}
 
+	closeDataBase( $connection );
+
+	return $post;
+}
+
+//recupera los post individualmente de acuerdo al id
+function getSinglePostbyId ( $id, $op ) {
+
+	$connection = connectDB();
+	$fecha_actual = date("Y-m-d");
+	$tabla = 'noticias';
+
+	$query  = "SELECT * FROM " .$tabla;
+	$query .= " WHERE post_id" . $op . "'" . $id . "'";
+	$query .= " AND post_fecha <= '". $fecha_actual. "'";
+	$query .= " ORDER BY post_id desc LIMIT 1";
+
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		$post = 'none';
+
+	} else {
+
+		$post = mysqli_fetch_array($result);
+
+	}
+
+	closeDataBase( $connection );
+	
 	return $post;
 }
 
@@ -488,12 +571,24 @@ function getPagination( $categoria, $postPerPage ) {
 	<?php
 }
 
-//muestra los recientes para el single
-function paginationSingle( $categoria, $cantPost, $exclude ) {
-	$posts = getPosts( $categoria, $cantPost, $exclude );
 
-	getTemplate( 'pagination-single', $posts);
+
+
+//busca el previo y el próximo post y publican si existen
+function getNextPrevious ( $id ) {
+	$post1 = getSinglePostbyId( $id, '<');
+	$post2 = getSinglePostbyId( $id, '>');
+
+	$postsURLs = array(
+		isset($post1['post_url']) ? $post1['post_url'] : 'none',
+		isset($post1['post_url']) ? $post1['post_categoria'] : 'none',
+	 	isset($post2['post_url']) ? $post2['post_url'] : 'none',
+	 	isset($post2['post_url']) ? $post2['post_categoria'] : 'none',
+	);
+	
+	return $postsURLs;
 }
+
 
 //busca la documentación cargada
 function getDocumentation ( $section = 'none', $subSection = 'none' ) {
@@ -568,7 +663,7 @@ function showPopupImg () {
 	
 	mysqli_close($connection);
 	if ( $urlPoup == NULL ) {
-		echo MAINSURL . '/assets/images/popupdefault.png';
+		echo MAINSURL . '/images/popupdefault.png';
 	} else {
 		echo UPLOADSURL . '/' . $urlPoup;
 	}

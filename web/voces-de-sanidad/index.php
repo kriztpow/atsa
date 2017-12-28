@@ -11,4 +11,29 @@ $dispositivo = dispositivo();
 global $pageActual;
 $pageActual = pageActual( cleanUri() );
 
-getPage( $pageActual );
+
+include 'header.php';
+
+if ($pageActual == 'inicio' ) {
+	/*
+	 * Pagina inicio
+	*/
+	
+	getTemplate( 'hero-slider' );
+
+} elseif ($pageActual == 'contacto' || $pageActual == 'suscribirse' ) {
+	/*
+	 * Pagina Contacto o suscripcion
+	*/
+
+	getTemplate( 'contact' );
+
+} else {
+	/*
+	 * Pagina de archivo o single
+	*/
+	
+	getTemplate( 'archivo' );
+}
+
+include 'footer.php';

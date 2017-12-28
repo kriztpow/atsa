@@ -1,89 +1,51 @@
 <?php
 /*
- * Sitio web: Colegio Buenos Aires
+ * Sitio web: Voces de sanidad
  * @LaCueva.tv
  * Since 1.0
  * SIDEBAR TEMPLATE
  * Cada widget es un template también
 */
-
-global $pageActual;
-$widgets = array();
-
-switch ( $pageActual ) {
-	case 'inscripciones':
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'noticias', 'campus', 'edad-feliz', 'xhendra', 'calendario'
-		);
-		break;
-
-	case 'contacto':
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'inscripciones', 'campus', 'noticias',);
-		break;
-	
-	case 'institucional':
-		$widgets = array( 
-			'contacto', 'noticias', 'campus', 'calendario', 'edad-feliz', 'xhendra', 
-		);
-		break;
-
-	case 'noticias':
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'campus', 'inscripciones', 'edad-feliz', 'calendario', 'contacto'
-		);
-		break;
-
-	case 'edad-feliz':
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'campus', 'noticias', 'calendario', 'xhendra', 'contacto'
-		);
-		break;
-
-	case 'niveles':
-		$widgets = array( 
-			'bienvenidos', 'campus', 'noticias', 'inscripciones', 'calendario', 'niveles','edad-feliz', 'xhendra', 'contacto'
-		);
-		break;
-
-	case 'jornada-complementaria':
-	case 'documentacion':
-		$widgets = array( 
-			'contacto', 'noticias', 'campus', 'xhendra', 
-		);
-	break;
-
-	case 'campus-virtual':
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'noticias', 'contacto', 'xhendra', 
-		);
-	break;
-
-	case 'campo-deportes':
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'campus', 'noticias', 'calendario', 'edad-feliz',
-		);
-		break;
-
-	default:
-		$widgets = array( 
-			'bienvenidos', 'niveles', 'campus', 'noticias', 'calendario', 'edad-feliz', 'xhendra', 'contacto'
-		);
-		break;
-}
-
 ?>
+<aside class="column width-3 pull-9 sidebar left">
+	<div class="sidebar-inner">
+		<div class="widget">
+			<div class="box bkg-grey-ultralight mb-50">
+				<h3 class="widget-title">Acerca de nosotros</h3>
+				<p>
+					<?php echo ABOUTUS; ?>
+				<p>
+			</div>
+		</div>
+		<div class="widget">
+			<h3 class="widget-title">Secciones</h3>
+			<ul>
+				<li><a href="<?php echo MAINSURL; ?>/publicaciones/editorial">Editorial</a></li>
+				<li><a href="<?php echo MAINSURL; ?>/publicaciones/nacional">Nacional</a></li>
+				<li><a href="<?php echo MAINSURL; ?>/publicaciones/internacional">Internacional</a></li>
+			</ul>
+		</div>
+		
+		<div class="widget">
+			<h3 class="widget-title">Noticias recientes</h3>
+			<ul class="list-group">
 
-<ul class="sidebar-widgets">
+			<?php 
+			$posts = getPosts( 'none', 5, $data );
 
-<?php 
+			for ($i=0; $i < count($posts); $i++) { ?>
+				<li>
+					<span class="post-info"><span class="post-date">
+						<?php echo tuneandoFecha( $posts[$i]['post_fecha'] ); ?>
+					</span></span>
+					<a href="<?php echo MAINSURL . '/publicaciones/' . $posts[$i]['post_categoria'] . '/' . $posts[$i]['post_url']; ?>">
+						<?php echo $posts[$i]['post_titulo']; ?>
+					</a>
+				</li>					
+			<?php } ?>
 
-for ($i=0; $i < count($widgets); $i++) { 
-	$widget = 'widget-' . $widgets[$i];
-	echo '<li>';
-		getTemplate( $widget );
-	echo '</li>';
-}
-
-?>
-</ul>
+			</ul>
+		</div>
+		
+	</div>
+</aside>

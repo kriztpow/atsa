@@ -1,0 +1,64 @@
+.popup {
+  position: fixed;
+  z-index: 111111;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  background-color: rgba(43, 67, 110, 0.8);
+  display: none; }
+  .popup div {
+    position: relative; }
+  .popup img {
+    width: 100%;
+    max-width: 768px;
+    display: none; }
+
+.close-popup {
+  display: block;
+  position: absolute;
+  z-index: 1111;
+  top: -25px;
+  right: -25px;
+  width: 50px;
+  height: 50px;
+  background: url(../images/sprite.png);
+  background-position: -192px -113px;
+  cursor: pointer; }
+  .close-popup:hover {
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5; }
+
+.cerrar-popup {
+  width: 100px;
+  border: 1px solid #808080;
+  background-color: transparent;
+  color: #808080;
+  display: block;
+  font-size: 80%;
+  padding: 5px;
+  text-transform: uppercase;
+  margin: 10px 0;
+  cursor: pointer; }
+  .cerrar-popup:hover {
+    color: #fff;
+    border-color: #fff; }
+
+.popup-active {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center; }

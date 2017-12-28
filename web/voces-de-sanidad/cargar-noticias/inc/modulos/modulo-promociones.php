@@ -16,7 +16,7 @@ function showPopupImg () {
 	
 	closeDataBase($connection);
 	if ( $imgPoup == NULL ) {
-		echo '<img id="popupImg" class="img-responsive" src="'.MAINURL.'/administrador/assets/images/popupdefault.png">';
+		echo '<img id="popupImg" class="img-responsive" src="'.URLADMINISTRADOR.'/assets/images/popupdefault.png">';
 	} else {
 		echo '<img id="popupImg" class="img-responsive" src="'.UPLOADSURLIMAGES .'/'.$imgPoup.'">';
 	}

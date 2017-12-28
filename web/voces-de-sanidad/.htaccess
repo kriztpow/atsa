@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+#esto lo puse yo
+RewriteEngine On
+RewriteBase /voces-de-sanidad
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+
+
+#esto ya estaba
+RewriteCond %{HTTP_HOST} ^mob\.atsa\.org\.ar$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.mob\.atsa\.org\.ar$
+RewriteRule ^/?$ "http\:\/\/www\.atsa\.org\.ar\/MOB\/PC_Tablet\/Main\/Home\.php" [R=301,L]
+# evitar el listado de carpetas
+Options All -Indexes
+IndexIgnore *
+
+</IfModule>
