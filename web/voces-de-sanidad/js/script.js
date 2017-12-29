@@ -35,6 +35,9 @@ $(document).ready(function(){
                 },
                 success: function ( response ) {
                     //console.log(response);
+                    $('.grid-item').css('position','relative');
+                    $('.grid-item').css('left','0');
+                    $('.grid-item').css('top','0');
                     contenedor.append(response);
                     loader.fadeOut();
                     resto = resto - cantPost;

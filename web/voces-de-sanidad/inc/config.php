@@ -7,7 +7,7 @@
  * Contenido: conneccion
 */
 define ( 'VERSION', '1.0' );
-define ( 'CANTPOST', 3 );
+define ( 'CANTPOST', 10 );
 //CARPETAS
 define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
