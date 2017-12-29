@@ -24,18 +24,54 @@
                                 <p><?php echo ABOUTUS; ?></p>
                             </div>
                         </div>
+                        
                         <div class="column width-4 offset-2 right left-on-mobile">
                             <div class="widget">
-                                <a href="<?php echo MAINSURL; ?>/contacto" class="button rounded medium bkg-theme bkg-hover-green color-white color-hover-white mb-10 left">
+                                <a data-content="inline" data-aux-classes="tml-newsletter-modal rounded" data-toolbar="" data-modal-mode data-modal-width="600" data-lightbox-animation="fadeIn" href="#subscribe-modal" class="lightbox-link button rounded medium bkg-theme bkg-hover-green color-white color-hover-white mb-10 left">
                                     <span class="icon-email medium left"></span>
                                     <span class="button-content">
-                                        <small>Hablamos?</small>Clic!
+                                        <small>Hace Clic!</small>Suscribirte
                                     </span>
                                 </a>
                             </div>
                         </div>
+
+                        <!-- Subscribe Modal Simple -->
+                        <div id="subscribe-modal" class="pt-70 pb-50 hide">
+                            <div class="row">
+                                <div class="column width-12 center">
+
+                                    <!-- Info -->
+                                    <h3 class="mb-10">Suscribite</h3>
+                                    <p class="mb-30">Para mantenerte al tanto de las novedades.</p>
+                                    <!-- Info End -->
+
+                                    <!-- Signup -->
+                                    <div class="signup-form-container">
+                                        <form class="signup-form merged-form-elements" action="php/subscribe.php" method="post" novalidate>
+                                            <div class="row">
+                                                <div class="column width-8">
+                                                    <div class="field-wrapper">
+                                                        <input type="email" name="email" class="form-email form-element rounded large left" placeholder="Correo electrónico*" tabindex="2" required>
+                                                    </div>
+                                                </div>
+                                                <div class="column width-4">
+                                                    <input type="submit" value="Subscribirse" class="form-submit button rounded large bkg-theme bkg-hover-green color-white color-hover-white">
+                                                </div>
+                                            </div>
+                                            <input type="text" name="honeypot" class="form-honeypot form-element">
+                                        </form>
+                                        <div class="form-response show"></div>
+                                    </div>
+                                    <!-- Signup End -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Subscribe Modal Simple -->
                     </div>
                 </div>
+
                 <div class="footer-bottom">
                     <div class="row">
                         <div class="column width-12">

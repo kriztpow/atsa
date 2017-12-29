@@ -98,16 +98,9 @@ function pageActual ( $uri ) {
 	else {
 		//BUSCAR PAGE EN EL URL, por defecto sería home
 		$slug = isset($_REQUEST['page'])?$_REQUEST['page']:'inicio';
-		$noticia = isset($_REQUEST['noticia'])?$_REQUEST['noticia']:'none';
-		$cat = isset($_REQUEST['cat'])?$_REQUEST['cat']:'none';
-
-		if ( $noticia != 'none' ) {
-			$slug = $noticia;
-		}
-
-		if ( $cat != 'none' ) {
-			$slug = $cat;
-		}
+		
+		$newParse = explode('?', $RequestURI);
+		$slug = $newParse[0];
 	}
 
 	return $slug;

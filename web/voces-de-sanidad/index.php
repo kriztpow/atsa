@@ -11,29 +11,39 @@ $dispositivo = dispositivo();
 global $pageActual;
 $pageActual = pageActual( cleanUri() );
 
-
 include 'header.php';
 
-if ($pageActual == 'inicio' ) {
-	/*
-	 * Pagina inicio
-	*/
-	
-	getTemplate( 'hero-slider' );
+switch ($pageActual) {
+	case 'inicio' :
+		/*
+		 * Pagina inicio
+		*/
+		
+		getTemplate( 'hero-slider' );
 
-} elseif ($pageActual == 'contacto' || $pageActual == 'suscribirse' ) {
+		break;
+	
+	case 'contacto' :
 	/*
-	 * Pagina Contacto o suscripcion
+	 * Pagina Contacto
 	*/
 
 	getTemplate( 'contact' );
 
-} else {
+	break;
+
+	case 'suscribirse' :
 	/*
-	 * Pagina de archivo o single
+	 * Pagina suscripcion
 	*/
+
+	getTemplate( 'suscribe' );
+
+	break;
 	
-	getTemplate( 'archivo' );
+	default:
+		getTemplate( 'archivo' );
+		break;
 }
 
 include 'footer.php';
