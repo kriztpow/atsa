@@ -48,7 +48,7 @@
 
                                     <!-- Signup -->
                                     <div class="signup-form-container">
-                                        <form class="signup-form merged-form-elements" action="php/subscribe.php" method="post" novalidate>
+                                        <form id="formulario-registro-footer" class=" merged-form-elements" method="post">
                                             <div class="row">
                                                 <div class="column width-8">
                                                     <div class="field-wrapper">
@@ -61,7 +61,7 @@
                                             </div>
                                             <input type="text" name="honeypot" class="form-honeypot form-element">
                                         </form>
-                                        <div class="form-response show"></div>
+                                        <div class="response-msj-footer form-response show"></div>
                                     </div>
                                     <!-- Signup End -->
 

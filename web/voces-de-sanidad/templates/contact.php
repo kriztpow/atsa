@@ -104,7 +104,7 @@ $imageHeaderDefault = MAINSURL . '/images/header-logo2.png';
 		<div class="column width-8 offset-2">
 			<h3 class="mb-50">Dejanos un mensaje...</h3>
 			<div class="contact-form-container">
-				<form class="contact-form" action="php/send-email.php" method="post" novalidate>
+				<form id="formulario-contacto" method="post">
 					<div class="row">
 						<div class="column width-6">
 							<input type="text" name="fname" class="form-fname form-element rounded large" placeholder="Nombre*" tabindex="1" required>
@@ -129,7 +129,7 @@ $imageHeaderDefault = MAINSURL . '/images/header-logo2.png';
 						</div>
 						<div class="column width-12">
 							<div class="field-wrapper pt-10 pb-10">
-							 	<input id="checkbox-1" class="form-element checkbox rounded" name="checkbox-1" type="checkbox">
+							 	<input id="checkbox-1" class="form-element checkbox rounded" name="suscription" type="checkbox">
 								<label for="checkbox-1" class="checkbox-label">Quiero suscribirme a Voces de Sanidad</label>
 							</div>
 						</div>
@@ -138,7 +138,7 @@ $imageHeaderDefault = MAINSURL . '/images/header-logo2.png';
 						</div>
 					</div>
 				</form>
-				<div class="form-response"></div>
+				<div class="form-response form-response-contact"></div>
 			</div>
 		</div>
 	</div>

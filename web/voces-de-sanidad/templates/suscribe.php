@@ -37,7 +37,10 @@ if ( $email != '' ) {
 		/*
 		 * no encuentra email, vuelve a ponerlo en vacio
 		*/
-		$email = '';		
+		$email = '';
+		$msj_NoEncontrado = '<div class="form-response" style="position: relative; margin-bottom: 20px;">
+				Email no encontrado, puede completar su suscripción aquí
+			</div>';		
 		
 	} else {
 		/*
@@ -45,11 +48,11 @@ if ( $email != '' ) {
 		*/
 		$data = mysqli_fetch_array($result);
 		
-		if ($emailCode != $data['susc_code_registro'] ) {
+		if ( $emailCode != $data['susc_code_registro'] || $emailCode == '' || $data['susc_code_registro'] = ''  ) {
 			$verified = false;
 		}
 
-		if (  ($fecha_actual - $data['susc_fecha_email']) >= 3 ) {
+		if (  ($fecha_actual - $data['susc_fecha_email']) >= 1 ) {
 			$expired = true;
 		}
 
@@ -59,10 +62,7 @@ if ( $email != '' ) {
 		$suscTel = $data['susc_telefono'];
 		
 	}
-	
-
-}
-
+}//if email
 ?>
 
 <!-- Full Width Slider Section -->
@@ -93,11 +93,24 @@ if ( $email != '' ) {
 
 <!--Contact Form -->
 <section class="section-block replicable-content contact-2">
+
+<?php 
+/*
+ * Si el código es verificado se muestra el formulario
+*/
+if ( $verified && ! $expired) :
+?>
+
 	<div class="row">
 		<div class="column width-8 offset-2">
 			<h3 class="mb-50">Aquí puedes completar la información...</h3>
+			<?php 
+			if ( isset($msj_NoEncontrado) ) {
+				echo $msj_NoEncontrado;
+			}
+			?>
 			<div class="contact-form-container">
-				<form class="contact-form" action="php/send-email.php" method="post" novalidate>
+				<form id="formulario-registro" method="post">
 					<div class="row">
 						<div class="column width-12">
 							<input type="email" name="email" class="form-email form-element rounded large" tabindex="1" <?php if ($email != '') { echo 'value="'.$email.'"'; } else { echo 'placeholder="Correo electrónico*" required'; } ?>>
@@ -132,9 +145,38 @@ if ( $email != '' ) {
 						</div>
 					</div>
 				</form>
-				<div class="form-response"></div>
+				<div class="form-response form-response-registro"></div>
 			</div>
 		</div>
 	</div>
+
+
+<?php 
+/*
+ * Si el código no es verificado o está expirado se muestra el botón para pedir nuevo código
+*/
+else :
+?>
+
+<div class="row">
+		<div class="column width-8 offset-2">
+			<h3 class="mb-50">Re suscribirse...</h3>
+			<div class="contact-form-container">
+				<div class="row">
+					<p>
+						El tiempo de confirmación ha expirado por no haber completado la información. Haciendo clic en el botón puede volver a repetir el proceso.
+					</p>
+
+					<a class="resuscribirse-btn button rounded medium bkg-theme bkg-hover-green color-white color-hover-white">
+						Volver a procesar
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<?php endif; ?>
+
+
 </section>
 <!--Contact Form End -->

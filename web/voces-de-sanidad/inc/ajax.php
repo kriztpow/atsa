@@ -17,64 +17,6 @@ if( isAjax() ) {
 	
 	switch ( $function ) {
 		/*
-		 * Maneja el formulario de contacto
-		*/
-		case 'contact-form':
-		
-			$nombre     = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-			$email      = isset($_POST['email']) ? $_POST['email'] : '';
-			$asunto     = isset($_POST['subject']) ? $_POST['subject'] : 'Formulario de Contacto';
-			$mensaje    = isset($_POST['msj']) ? $_POST['msj'] : '';
-			$bodyEmail  = 'Nombre: ' . $nombre . '<br>';
-			$bodyEmail .= 'email: ' . $email . ' <br>';
-			$bodyEmail .= 'Mensaje: ' . $mensaje . ' <br>';
-
-			$emailTo    = LINK_EMAIL;
-			
-			require_once('lib/PHPMailer/src/PHPMailer.php');
-			require_once('lib/PHPMailer/src/SMTP.php');
-			require_once('lib/PHPMailer/src/Exception.php');
-
-			$mail = new PHPMailer;
-			//Tell PHPMailer to use SMTP
-			$mail->isSMTP();
-			//Enable SMTP debugging
-			// 0 = off (for production use)
-			// 1 = client messages
-			// 2 = client and server messages
-			$mail->SMTPDebug = 0;
-			//Set the hostname of the mail server
-			$mail->Host = 'mail.colegiobuenosaires.edu.ar';
-			//Set the SMTP port number - likely to be 25, 465 or 587
-			$mail->Port = 587;
-			//Whether to use SMTP authentication
-			$mail->SMTPAuth = true;
-			$mail->CharSet = "utf-8";
-			//Username to use for SMTP authentication
-			$mail->Username = 'info@colegiobuenosaires.edu.ar';
-			//Password to use for SMTP authentication
-			$mail->Password = 'OtGOoX6X2rn7';
-			//Set who the message is to be sent from
-			$mail->setFrom('info@colegiobuenosaires.edu.ar', utf8_decode($nombre));
-			//Set an alternative reply-to address
-			$mail->addReplyTo($email, $nombre);
-			//Set who the message is to be sent to
-			$mail->addAddress($emailTo, 'Colegio Buenos Aires');
-			//Set the subject line
-			$mail->Subject = $asunto;
-			//Read an HTML message body from an external file, convert referenced images to embedded,
-			
-			$mail->MsgHTML($bodyEmail);
-			//send the message, check for errors
-			if (!$mail->send()) {
-			    echo 'Mailer Error: ' . $mail->ErrorInfo;
-			} else {
-			    echo 'ok';
-			}
-		
-		break;		
-
-		/*
 		 * carga más noticias
 		*/
 		case 'load-more':
@@ -89,6 +31,92 @@ if( isAjax() ) {
 
 		break;
 
+		/*
+		 * Maneja el formulario de contacto
+		*/
+		case 'contact-form':
+			$mensajeExito = 'Recibimos su consulta, responderemos a la brevedad';
+			$emailFrom         = EMAIL;
+			$emailNotificacion = EMAIL;
+			$nombre            = isset($_POST['fname']) ? $_POST['fname'] : '';
+			$apellido          = isset($_POST['lname']) ? $_POST['lname'] : '';
+			$email             = isset($_POST['email']) ? $_POST['email'] : '';
+			$telefono          = isset($_POST['telephone']) ? $_POST['telephone'] : '';
+			$suscription       = isset($_POST['suscription']) ? $_POST['suscription'] : 'off';
+			$asunto            = isset($_POST['subject']) ? $_POST['subject'] : 'Formulario de Contacto';
+			$mensaje           = isset($_POST['message']) ? $_POST['message'] : '';
+			$bodyEmail         = 'Nombre: ' . $nombre . ' ' . $apellido . '<br>';
+			$bodyEmail        .= 'email: ' . $email . ' <br>';
+			$bodyEmail        .= 'telefono: ' . $telefono . ' <br>';
+			$bodyEmail        .= 'Mensaje: ' . $mensaje . ' <br>';
+
+			$emailTo    = EMAIL;
+			
+			
+			require_once('lib/PHPMailer/src/PHPMailer.php');
+			require_once('lib/PHPMailer/src/SMTP.php');
+			require_once('lib/PHPMailer/src/Exception.php');
+
+			$mail = new PHPMailer;
+			//Tell PHPMailer to use SMTP
+			$mail->isSMTP();
+			//Enable SMTP debugging
+			// 0 = off (for production use)
+			// 1 = client messages
+			// 2 = client and server messages
+			$mail->SMTPDebug = 0;
+			//Set who the message is to be sent from
+			$mail->setFrom($emailFrom, 'Voces de Sanidad');
+			//Set an alternative reply-to address
+			$mail->addReplyTo($email, $nombre);
+			//Set who the message is to be sent to
+			$mail->addAddress($emailTo, $nombre);
+			//Set the subject line
+			$mail->Subject = $asunto;
+			//Read an HTML message body from an external file, convert referenced images to embedded,
+			
+			$mail->MsgHTML($bodyEmail);
+			//send the message, check for errors
+			if (!$mail->send()) {
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo $mensajeExito;
+			}
+			
+
+			if ( $suscription == 'on') {
+				//NO OLVIDARSE DE REGISTRAR EL USUARIO -> SUSCRIBE FOOTER
+			}
+		break;		
+
+		/*
+		 * Maneja el formulario de suscripcion para completar los datos
+		*/
+
+		case 'suscribe-form' :
+			$mensajeExito = 'Todos los datos han sido guardados';
+
+			//toma los datos del formulario
+			//chequea si el email ya existe
+			//si el email ya existe actualiza el usuario y si hay mensaje se envia al administrador
+			//si el email no existe crea un nuevo registro con todo los datos sin enviar email al usuario pero envia una NOTIFICACION al administrador
+
+		break;
+
+		/*
+		 * suscripción solo del email, link del footer
+		*/
+		case 'suscribe-footer' :
+			$mensajeExito = 'Su email ha sido registrado, chequee su bandeja de entrada';
+			
+			//toma el email del usuario u otra data (nombre, apellido, etc)
+			//crea una nueva entrada con el email y genera un codigo
+			//envia un email al usuario para que cree el registro
+			//envia una notificación al administrador que se registro un nuevo usuario y el mensaje que este puso
+
+		break;
+		
+
 
 
 	}//switch
@@ -97,4 +125,13 @@ if( isAjax() ) {
 //sino es peticion ajax se cancela
 } else{
     throw new Exception("Error Processing Request", 1);   
+}
+
+function suscription() {
+	$email;
+	$nombre;
+	$apellido;
+	$telefono;
+	$dni;
+
 }

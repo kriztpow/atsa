@@ -30,7 +30,7 @@ define('LINK_FACEBOOK', 'http://www.facebook.com/pages/ATSA-Bs-As/11687422168381
 define('LINK_INSTAGRAM', '#');
 define('LINK_TWITTER', 'http://twitter.com/AtsaBsAs');
 define('LINK_YOUTUBE', '#');
-define('EMAIL', 'voces@atsa.org.ar');
+define('EMAIL', 'info@lacueva.tv');
 
 //textos:
 define('ABOUTUS', 'Todas las voces de nuestro gremio se unen en este espacio. Dirigentes, delegad@s, compañer@s, artistas y especialistas narran historias, comparten reflexiones y proponen caminos para enfrentar nuevas realidades con innovación, solidaridad y, sobre todo, unidad.');
