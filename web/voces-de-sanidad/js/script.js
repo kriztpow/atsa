@@ -1,4 +1,4 @@
-var baseUrl = 'http://' + window.location.host + '/voces-de-sanidad';
+var baseUrl = 'http://' + window.location.host + '/voces';
 var uploadsUrl = baseUrl + '/contenido'
 var functionsDir = baseUrl + '/inc';
 
@@ -117,7 +117,10 @@ $(document).ready(function(){
                 //devuelve el boton a su estado original
                 btnSubmit.val(textoBtn);
                 //muestra texto de respuesta a usuario
-                //msjRespuesta.text(response);
+                msjRespuesta.text(response);
+                if (response == 'Recibimos su consulta, responderemos a la brevedad') {
+                    $('#formulario-contacto')[0].reset();
+                }
             },
             error: function ( ) {
                 console.log('error');
@@ -158,7 +161,7 @@ $(document).ready(function(){
                 //devuelve el boton a su estado original
                 btnSubmit.val(textoBtn);
                 //muestra texto de respuesta a usuario
-                //$(msjRespuesta[1]).text(response)
+                $(msjRespuesta[1]).text(response)
             },
             error: function ( ) {
                 console.log('error');
@@ -196,11 +199,10 @@ $(document).ready(function(){
             },
             success: function ( response ) {
                 console.log(response);
-
                 //devuelve el boton a su estado original
                 btnSubmit.val(textoBtn);
                 //muestra texto de respuesta a usuario
-                //msjRespuesta.text(response);
+                msjRespuesta.text(response);
             },
             error: function ( ) {
                 console.log('error');
