@@ -94,7 +94,19 @@ if ( $slug == '' ) :
 
 	$post = getSinglePost ( $slug );
 	$categoria = getPageVar( cleanUri() );
-	
+	$video = false;
+	$galeria = false;
+
+	//template video
+	if ( $post['post_video'] != '' ) {
+		$video = true;
+		$videoUrl = explode('=', $post['post_video'])[1];
+	}
+	//template galeria de fotos
+	if ( $post['post_galeria'] == '1' ) {
+		$galeria = true;
+
+	}
 	?>
 
 	<!-- Full Width Slider Section -->
@@ -150,6 +162,51 @@ if ( $slug == '' ) :
 			<!-- Content Inner -->
 			<div class="column width-9 push-3 content-inner blog-single-post">
 				<div class="post">
+
+				<?php if ( $video ) : ?>
+					<iframe src="https://www.youtube.com/embed/<?php echo $videoUrl; ?>" frameborder="0" allowfullscreen width="100%" height="450px"></iframe>
+				<?php endif; ?>
+
+				<?php if ( $galeria ) : ?>
+					<!-- Content Slider -->
+					<div id="content-slider" class="section-block" style="padding-top: 0;">
+						<div class="row">
+							<div class="column width-10 offset-1 center">
+								
+								<div class="tm-slider-container content-slider" data-animation="slide" data-scale-min-height="100" data-scale-under="960" data-width="1250" data-height="800">
+									<ul class="tms-slides">
+
+									<?php 
+									$imgGaleria = unserialize( $post['post_imagenesGal'] );
+									
+									for ($i=0; $i < count($imgGaleria); $i++) { ?>
+										<li class="tms-slide" data-image data-force-fit data-overlay-bkg-color="#000000" data-overlay-bkg-opacity="0.1">
+											<div class="tms-content">
+												<div class="tms-content-inner center">
+													<div class="row">
+														<div class="column width-10 offset-1">
+															<h3 class="tms-caption title-medium color-white lspacing-medium mb-5 mb-mobile-30"
+																data-animate-in="preset:slideInLeftShort;duration:1000ms;"
+																data-no-scale
+															>
+																<?php echo $post['post_titulo']; ?>
+															</h3>
+														</div>
+													</div>
+												</div>
+											</div>
+											<img data-src="<?php echo UPLOADSURL . '/' . $imgGaleria[$i]; ?>" data-retina src="<?php echo UPLOADSURL . '/' . $imgGaleria[$i]; ?>" alt="<?php echo $post['post_titulo']; ?>"/>
+										</li>
+									<?php }
+									?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Content Slider End -->
+				<?php endif; ?>
+				
 					<div class="post-content">
 						
 						<?php echo $post['post_contenido']; ?>

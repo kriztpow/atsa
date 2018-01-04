@@ -14,6 +14,7 @@
 a) noticias
 b) imagenes
 c) Sliders
+d) contactos
 
 */
 /* ---- 1 reset ---- */
@@ -688,6 +689,18 @@ ul.dropdown-menu {
   margin-left: 20px !important;
   width: 30px !important; }
 
+.popup-url-input {
+  width: 40px;
+  display: inline-block;
+  vertical-align: top; }
+
+.popup-url-label {
+  font-size: 120%;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin: 10px 10px 10px 0px !important;
+  display: inline-block; }
+
 /* ---- 7 seccion noticias ---- */
 .loop-noticias-backend {
   list-style: none;
@@ -1029,5 +1042,20 @@ ul.dropdown-menu {
   text-align: right;
   display: inline-block;
   padding: 5px 30px; }
+
+.contacts-container {
+  margin: 50px auto; }
+
+.tabla-suscriptores td {
+  padding: 1%;
+  vertical-align: middle; }
+.tabla-suscriptores thead {
+  font-size: 110%;
+  font-weight: bold; }
+  .tabla-suscriptores thead tr {
+    border: 1px solid #666;
+    background-color: #ccc; }
+.tabla-suscriptores tbody tr {
+  border: 1px solid #666; }
 
 /*# sourceMappingURL=style-admin.css.map */

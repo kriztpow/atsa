@@ -1,4 +1,4 @@
-var baseUrl = 'http://' + window.location.host + '/voces';
+var baseUrl = 'http://' + window.location.host + '/voces-de-sanidad';
 var uploadsUrl = baseUrl + '/contenido'
 var functionsDir = baseUrl + '/inc';
 
@@ -112,7 +112,7 @@ $(document).ready(function(){
                 btnSubmit.val('enviando');
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
 
                 //devuelve el boton a su estado original
                 btnSubmit.val(textoBtn);
@@ -156,7 +156,7 @@ $(document).ready(function(){
                 btnSubmit.val('enviando');
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
 
                 //devuelve el boton a su estado original
                 btnSubmit.val(textoBtn);
@@ -198,7 +198,7 @@ $(document).ready(function(){
                 btnSubmit.val('enviando');
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
                 //devuelve el boton a su estado original
                 btnSubmit.val(textoBtn);
                 //muestra texto de respuesta a usuario

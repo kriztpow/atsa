@@ -461,7 +461,7 @@ function getPostsSlider( $number = -1 ) {
 	$tabla = 'noticias';
 
 	$query  = "SELECT * FROM " .$tabla;
-	$query .= " WHERE post_status='publicado' AND post_destacado='1'";
+	$query .= " WHERE post_status='publicado' AND post_destacado='1' ORDER by post_fecha desc";
 	if ( $number != -1 ) {
 		$query .= " LIMIT ".$number." ";
 	}
@@ -603,7 +603,7 @@ function getDocumentation ( $section = 'none', $subSection = 'none' ) {
 		$query .= " AND docs_subsection = '".$subSection."'";
 	}
 	
-	$query .= " AND post_type = 'link' ORDER by docs_orden desc ";
+	$query .= " AND post_type = 'link' ORDER by docs_orden asc ";
 	
 	$result = mysqli_query($connection, $query);
 	

@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-	/*
-	* Save button
-	*/	
-
 	$('#popUpActive').click(function( event ){
 		promoActivate = 0;
 		mensaje = 'Promoción desactivada';
@@ -31,7 +27,40 @@ $(document).ready(function(){
 				},
 		});//cierre ajax
 
-	})//click save
+	});
+
+	//guarda el url al hacer clic fuera del input
+	$( '#popupurl' ).change(function() {
+		urlVal = $(this).val()
+	  	mensaje = 'Url Guardado';
+	  	url_validate = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+
+		if( !url_validate.test(urlVal) && urlVal != '' && urlVal != '#' ){
+		   $('.error-tag').text('url inválido');
+		}
+		else{
+			//guarda el url
+		  	$.ajax( {
+					type: 'POST',
+					url: ajaxFunctionDir + '/url-promo.php',
+					data: {
+						url: urlVal,
+					},
+					success: function ( response ) {
+						if ( response == 'ok') {
+							$('.error-tag').text(mensaje);
+						} else {
+							$('.error-tag').text('hubo un error');
+						}
+					},
+					error: function ( ) {
+						console.log('error');
+					},
+			});//cierre ajax
+	  	}
+	});
+
+
 
 	$(document).on('click','.up-new-promo',function(){
 		$( "#dialog" ).dialog({
@@ -75,4 +104,3 @@ $(document).ready(function(){
 	});
 
 });//ready	
-

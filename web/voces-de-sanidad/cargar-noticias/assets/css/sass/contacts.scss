@@ -1,0 +1,24 @@
+.contacts-container {
+	margin:50px auto;
+}
+
+.tabla-suscriptores {
+	
+	td {
+		padding: 1%;
+		vertical-align: middle;
+	}
+	thead{
+		font-size: 110%;
+		font-weight: bold;
+		tr {
+			border: 1px solid #666;
+			background-color: #ccc;
+		}
+	}
+	tbody{
+		tr {
+			border: 1px solid #666;
+		}
+	}
+}

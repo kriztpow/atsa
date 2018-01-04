@@ -10,6 +10,12 @@ global $dispositivo;
 $dispositivo = dispositivo();
 global $pageActual;
 $pageActual = pageActual( cleanUri() );
+global $isArchivo;
+$isArchivo = false;
+
+if ($pageActual != 'inicio' && $pageActual != 'contact' && $pageActual != 'suscribirse') {
+	$isArchivo = true;	
+}
 
 include 'header.php';
 

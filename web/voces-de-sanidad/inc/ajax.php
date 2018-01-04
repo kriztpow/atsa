@@ -94,7 +94,7 @@ if( isAjax() ) {
 			// 0 = off (for production use)
 			// 1 = client messages
 			// 2 = client and server messages
-			$mail->SMTPDebug = 0;
+			$mail->SMTPDebug = 2;
 			$mail->CharSet = 'UTF-8';
 			//Set who the message is to be sent from
 			$mail->setFrom($emailFrom, 'Voces de Sanidad');
@@ -286,18 +286,18 @@ function newSuscriptor( $email, $nombre = '', $apellido = '', $telefono = '', $d
 
 function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 	$emailFrom         = EMAIL;
-	$emailNotificacion = EMAIL;
-	$emailTo           = EMAIL;
+	$emailNotificacion = 'info@lacueva.tv';
+	$emailTo           = 'info@lacueva.tv';
 	require_once('PHPMailer/src/PHPMailer.php');
 	require_once('PHPMailer/src/SMTP.php');
 	require_once('PHPMailer/src/Exception.php');
 
 	if ( $mensaje == '' ) {
 		$mensaje = 'Email Nuevo: ' . $email . ' <br>';
-		$mensaje .= 'Puede ver el nuevo suscriptor aquí: <a href="'.MAINSURL.'/cargar-noticias/" target="_blank">Click aquí</a>';
+		$mensaje .= 'Puede ver el nuevo suscriptor aquí: <a href="'.MAINSURL.'/cargar-noticias/index.php?admin=contacts" target="_blank">Click aquí</a>';
 	} else {
 		$mensaje .= '<br><br>';
-		$mensaje .= 'Puede ver el nuevo suscriptor aquí: <a href="'.MAINSURL.'/cargar-noticias/" target="_blank">Click aquí</a>';
+		$mensaje .= 'Puede ver el nuevo suscriptor aquí: <a href="'.MAINSURL.'/cargar-noticias/index.php?admin=contacts" target="_blank">Click aquí</a>';
 	}
 	 
 	$mail = new PHPMailer;
@@ -326,14 +326,14 @@ function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 	if (!$mail->send()) {
 	    //echo 'Mailer Error: ' . $mail->ErrorInfo;
 	} else {
-	    echo 'notificado';
+	    return 'notificado';
 	}
 }
 
 
 function sendEmailToSuscriber ( $email, $code ) {
 	$emailFrom         = EMAIL;
-	$emailNotificacion = EMAIL;
+	$emailNotificacion = 'info@lacueva.tv';
 	$emailTo           = $email;
 	require_once('PHPMailer/src/PHPMailer.php');
 	require_once('PHPMailer/src/SMTP.php');
@@ -370,7 +370,7 @@ function sendEmailToSuscriber ( $email, $code ) {
 	if (!$mail->send()) {
 	    //echo 'Mailer Error: ' . $mail->ErrorInfo;
 	} else {
-	    echo 'link-enviado';
+	    return 'link-enviado';
 	}
 }
 

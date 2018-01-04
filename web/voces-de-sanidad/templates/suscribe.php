@@ -121,11 +121,11 @@ if ( $verified && ! $expired) :
 							<input type="text" name="fname" class="form-fname form-element rounded large" placeholder="Nombre*" tabindex="2" required value="<?php echo $suscNombre; ?>">
 						</div>
 						<div class="column width-6">
-							<input type="text" name="lname" class="form-lname form-element rounded large" placeholder="Apellido" tabindex="3" <?php echo $suscApellido; ?>>
+							<input type="text" name="lname" class="form-lname form-element rounded large" tabindex="3" <?php if ($suscApellido != '') { echo 'value="'.$suscApellido.'"'; } else { echo 'placeholder="Apellido"'; } ?>>
 						</div>
 						
 						<div class="column width-6">
-							<input type="number" name="telephone" class="form-website form-element rounded large" placeholder="Teléfono" tabindex="4" <?php echo $suscTel; ?>>
+							<input type="number" name="telephone" class="form-website form-element rounded large" tabindex="4" <?php if ($suscTel != '') { echo 'value="'.$suscTel.'"'; } else { echo 'placeholder="Teléfono"'; } ?>>
 						</div>
 						
 						<div class="column width-6">
@@ -133,7 +133,7 @@ if ( $verified && ! $expired) :
 						</div>
 
 						<div class="column width-6">
-							<input type="number" name="dni" class="form-website form-element rounded large" placeholder="DNI" tabindex="5" <?php echo $suscDni; ?>>
+							<input type="number" name="dni" class="form-website form-element rounded large" tabindex="5" <?php if ($suscDni != '') { echo 'value="'.$suscDni.'"'; } else { echo 'placeholder="DNI"'; } ?>>
 						</div>
 					</div>
 					<div class="row">

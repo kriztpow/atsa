@@ -174,7 +174,7 @@ $destacado    = isset($dataPost['destacado']) ? $dataPost['destacado'] : '0';
 						<div>
 	<!------ VIDEO DESTACADO DE LA NOTICIA ---------->
 							<div class="form-group">
-								<label for="post_video">Url del video<br>
+								<label for="post_video">Url del video
 								<small>Copiar url de Youtube</small> </label>
 								<input id="post_video" name="post_video" value="<?php echo $video; ?>">
 							</div>
