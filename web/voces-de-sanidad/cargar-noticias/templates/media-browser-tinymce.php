@@ -20,9 +20,9 @@ load_module( 'medios' );
 	<title>Archivo de imágenes</title>
 
 <!-- jQquery UI css -->
-  <link href="<?php echo MAINURL; ?>/administrador/assets/css/jquery-ui.min.css" rel="stylesheet">
+  <link href="<?php echo MAINURL; ?>/cargar-noticias/assets/css/jquery-ui.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-  <link href="<?php echo MAINURL; ?>/administrador/assets/css/style-admin.css" rel="stylesheet">
+  <link href="<?php echo MAINURL; ?>/cargar-noticias/assets/css/style-admin.css" rel="stylesheet">
 
 </head>
 <body>
@@ -87,12 +87,12 @@ load_module( 'medios' );
 
 <!------- // fin contenido ------>
 <!------- scripts ------>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/jquery-3.1.1.min.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/jquery-ui.min.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/admin-script.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/lib/tinymce/tinymce.min.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-noticias.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
+<script src="<?php echo MAINURL; ?>/cargar-noticias/assets/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo MAINURL; ?>/cargar-noticias/assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo MAINURL; ?>/cargar-noticias/assets/js/admin-script.js"></script>
+<script src="<?php echo MAINURL; ?>/cargar-noticias/assets/lib/tinymce/tinymce.min.js"></script>
+<script src="<?php echo MAINURL; ?>/cargar-noticias/assets/js/modulo-noticias.js"></script>
+<script src="<?php echo MAINURL; ?>/cargar-noticias/assets/js/modulo-medios.js"></script>
 <script type="text/javascript" language="javascript">
 
 function fileValidation( file ){
@@ -120,7 +120,7 @@ $( function() {
 $(document).on('click','li.medio',function(){
 	item_url = $(this).find('img').data("src");
 	if ( fileValidation( item_url ) ) {
-		item_url = uploadsDir + '/archivos/' + item_url;
+		item_url = uploadsDir + item_url;
 	} else {
 		item_url = uploadsDir + '/' + item_url;
 	}
@@ -163,7 +163,7 @@ $('#upload_file').submit(function( event ){
 					//se recodifica el json
 					response = $.parseJSON(response);
 					if ( fileValidation( response[0] ) ) {
-						urlimg = uploadsDir + '/archivos/' + response[0];
+						urlimg = uploadsDir + response[0];
 					} else {
 						urlimg = uploadsDir + '/' + response[0];
 					}

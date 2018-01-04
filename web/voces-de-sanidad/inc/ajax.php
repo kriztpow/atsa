@@ -38,8 +38,8 @@ if( isAjax() ) {
 			$mensajeExito = 'Recibimos su consulta, responderemos a la brevedad';
 			$mensajeSuscripcion = '';
 			$emailFrom         = EMAIL;
-			$emailNotificacion = 'info@lacueva.tv';
-			$emailTo           = 'info@lacueva.tv';;
+			$emailNotificacion = 'josefina@conjuro.biz';
+			$emailTo           = 'josefina@conjuro.biz';;
 			$nombre            = isset($_POST['fname']) ? $_POST['fname'] : '';
 			$apellido          = isset($_POST['lname']) ? $_POST['lname'] : '';
 			$email             = isset($_POST['email']) ? $_POST['email'] : '';
@@ -286,8 +286,8 @@ function newSuscriptor( $email, $nombre = '', $apellido = '', $telefono = '', $d
 
 function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 	$emailFrom         = EMAIL;
-	$emailNotificacion = 'info@lacueva.tv';
-	$emailTo           = 'info@lacueva.tv';
+	$emailNotificacion = 'josefina@conjuro.biz';
+	$emailTo           = 'josefina@conjuro.biz';
 	require_once('PHPMailer/src/PHPMailer.php');
 	require_once('PHPMailer/src/SMTP.php');
 	require_once('PHPMailer/src/Exception.php');
@@ -333,7 +333,7 @@ function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 
 function sendEmailToSuscriber ( $email, $code ) {
 	$emailFrom         = EMAIL;
-	$emailNotificacion = 'info@lacueva.tv';
+	$emailNotificacion = 'josefina@conjuro.biz';
 	$emailTo           = $email;
 	require_once('PHPMailer/src/PHPMailer.php');
 	require_once('PHPMailer/src/SMTP.php');
