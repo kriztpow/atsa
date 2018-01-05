@@ -83,7 +83,7 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
                                 <form method="post" id="subscribe-form" name="subscribe-form">
                                     <input type="email" name="email-subs" placeholder="ingresa tu email" required>
                                     <input type="submit" value="Subscribirse">
-                                    <span class="load-ajax-suscribe">Gracias por suscribirse</span>
+                                    <span class="load-ajax-suscribe">Gracias por suscribirse, revisa tu bandeja de entrada</span>
                                 </form>
                             </div>
                         </div>

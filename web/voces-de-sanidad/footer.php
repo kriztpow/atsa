@@ -1,6 +1,6 @@
 <?php
 /*
- * Sitio web: COLEGIO DE BUENOS AIRES
+ * Sitio web: Voces de Sanidad
  * @LaCueva.tv
  * Since 1.0
  * FOOTER

@@ -1,6 +1,6 @@
 <?php 
 /*
- * Sitio web: Colegio Buenos Aires
+ * Sitio web: Voces de Sanidad
  * @LaCueva.tv
  * Since 1.0
  * CONFIG

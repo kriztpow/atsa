@@ -1,6 +1,6 @@
 <?php 
 /*
- * Sitio web: MVL
+ * Sitio web: voces de sanidad
  * @LaCueva.tv
  * Since 1.0
  * FUNCTIONS
@@ -38,8 +38,8 @@ if( isAjax() ) {
 			$mensajeExito = 'Recibimos su consulta, responderemos a la brevedad';
 			$mensajeSuscripcion = '';
 			$emailFrom         = EMAIL;
-			$emailNotificacion = 'josefina@conjuro.biz';
-			$emailTo           = 'josefina@conjuro.biz';;
+			$emailNotificacion = EMAIL;
+			$emailTo           = EMAIL;
 			$nombre            = isset($_POST['fname']) ? $_POST['fname'] : '';
 			$apellido          = isset($_POST['lname']) ? $_POST['lname'] : '';
 			$email             = isset($_POST['email']) ? $_POST['email'] : '';
@@ -48,6 +48,12 @@ if( isAjax() ) {
 			$asunto            = isset($_POST['subject']) ? $_POST['subject'] : 'Formulario de Contacto Voces de Sanidad';
 			$mensaje           = isset($_POST['message']) ? $_POST['message'] : '';
 			
+			$email             = filter_var($email,FILTER_SANITIZE_EMAIL);
+			$nombre            = filter_var($nombre,FILTER_SANITIZE_STRING);
+			$apellido          = filter_var($apellido,FILTER_SANITIZE_STRING);
+			$mensaje           = filter_var($mensaje,FILTER_SANITIZE_STRING);
+			$telefono          = filter_var($telefono,FILTER_SANITIZE_NUMBER_INT);
+
 			$bodyEmail         = 'Nombre: ' . $nombre . ' ' . $apellido . '<br>';
 			$bodyEmail        .= 'email: ' . $email . ' <br>';
 			$bodyEmail        .= 'telefono: ' . $telefono . ' <br>';
@@ -130,6 +136,13 @@ if( isAjax() ) {
 			$dni          = isset($_POST['dni']) ? $_POST['dni'] : '';
 			$mensaje      = isset($_POST['message']) ? $_POST['message'] : '';
 			
+			$email             = filter_var($email,FILTER_SANITIZE_EMAIL);
+			$nombre            = filter_var($nombre,FILTER_SANITIZE_STRING);
+			$apellido          = filter_var($apellido,FILTER_SANITIZE_STRING);
+			$mensaje           = filter_var($mensaje,FILTER_SANITIZE_STRING);
+			$telefono          = filter_var($telefono,FILTER_SANITIZE_NUMBER_INT);
+			$dni               = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
+
 			$bodyEmail         = 'Nombre: ' . $nombre . ' ' . $apellido . '<br>';
 			$bodyEmail        .= 'email: ' . $email . ' <br>';
 			$bodyEmail        .= 'telefono: ' . $telefono . ' <br>';
@@ -175,6 +188,8 @@ if( isAjax() ) {
 			$mensajeyaExiste = 'Este email ya ha sido registrado con anterioridad, ante cualquier duda puede escribir a '. EMAIL;
 			$mensajeParcial = 'No pudimos escribirle un email, pero el usuario ya ha sido registrado, muchas gracias.';
 			$email  = isset($_POST['email']) ? $_POST['email'] : '';
+
+			$email = filter_var($email,FILTER_SANITIZE_EMAIL);
 
 			//si hay un email y no devuelve ningun usuario se continua
 			if ( $email != '' && empty( isUser($email) ) ) {
@@ -286,8 +301,8 @@ function newSuscriptor( $email, $nombre = '', $apellido = '', $telefono = '', $d
 
 function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 	$emailFrom         = EMAIL;
-	$emailNotificacion = 'josefina@conjuro.biz';
-	$emailTo           = 'josefina@conjuro.biz';
+	$emailNotificacion = EMAIL;
+	$emailTo           = EMAIL;
 	require_once('PHPMailer/src/PHPMailer.php');
 	require_once('PHPMailer/src/SMTP.php');
 	require_once('PHPMailer/src/Exception.php');
@@ -317,7 +332,7 @@ function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 	//Set who the message is to be sent to
 	$mail->addAddress($emailTo, 'Voces De Sanidad');
 	//Set the subject line
-	$mail->Subject = 'Nuevo Suscriptor registrado';
+	$mail->Subject = 'Nuevo Suscriptor registrado en Voces';
 	$mail->IsHTML(true);
 	//Read an HTML message body from an external file, convert referenced images to embedded,
 	$mail->MsgHTML($mensaje);
@@ -333,7 +348,7 @@ function sendNotificationSuscrition ( $email, $mensaje = '' ) {
 
 function sendEmailToSuscriber ( $email, $code ) {
 	$emailFrom         = EMAIL;
-	$emailNotificacion = 'josefina@conjuro.biz';
+	$emailNotificacion = EMAIL;
 	$emailTo           = $email;
 	require_once('PHPMailer/src/PHPMailer.php');
 	require_once('PHPMailer/src/SMTP.php');

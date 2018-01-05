@@ -140,6 +140,7 @@ $(document).ready(function(){
             },
             success: function ( response ) {
                 console.log(response);
+                imgAjax.text(response);
                 imgAjax.fadeIn();
                 //$(formulario).reset();
             },

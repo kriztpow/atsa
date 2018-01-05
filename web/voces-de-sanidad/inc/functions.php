@@ -1,6 +1,6 @@
 <?php 
 /*
- * Sitio web: MVL
+ * Sitio web: Voces de Sanidad
  * @LaCueva.tv
  * Since 1.0
  * FUNCTIONS

@@ -1058,4 +1058,13 @@ ul.dropdown-menu {
 .tabla-suscriptores tbody tr {
   border: 1px solid #666; }
 
+.del-user {
+  cursor: pointer; }
+  .del-user:hover {
+    opacity: 0.7; }
+  .del-user img {
+    display: block;
+    width: 80%;
+    margin: 0 auto; }
+
 /*# sourceMappingURL=style-admin.css.map */

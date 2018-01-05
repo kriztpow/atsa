@@ -7,6 +7,7 @@
 */
 load_module( 'contactos' );
 ?>
+
 <!---------- noticias ---------------->
 <div class="contenido-modulo">
 	<div class="container">
@@ -20,6 +21,9 @@ load_module( 'contactos' );
 			  <button id="export_excel" type="button" class="btn btn-default">
 			  	Exportar a Excel
 			  </button>
+			  <button id="new-suscriptor" type="button" class="btn btn-primary">
+			  	Nuevo Suscriptor
+			  </button>
 			  
 			</div>
 			<table class="tabla-suscriptores">
@@ -31,20 +35,23 @@ load_module( 'contactos' );
 						<td width="30%">
 							email:
 						</td>
-						<td width="20%">
+						<td width="15%">
 							Nombre:
 						</td>
-						<td width="10%">
+						<td width="15%">
 							Apellido:
 						</td>
 						<td width="10%">
 							DNI:
 						</td>
-						<td width="15%">
+						<td width="10%">
 							Teléfono
 						</td>
-						<td width="10%">
+						<td width="8%">
 							Fecha: <small>(registro)</small>
+						</td>
+						<td width="5%">
+							
 						</td>
 					</tr>
 				</thead>
@@ -74,6 +81,11 @@ load_module( 'contactos' );
 						<td>
 							<?php echo date('d.m.y' ,strtotime($suscriptores[$i]['susc_fecha_email']) ); ?>
 						</td>
+						<td>
+							<button title="Borrar suscriptor" class="del-user" data-id="<?php echo $suscriptores[$i]['susc_id']; ?>">
+								<img src="<?php echo URLADMINISTRADOR; ?>/assets/images/delbtn.png" alt="Borrar usuario">
+							</button>
+						</td>
 					</tr>
 						<?php 
 					}
@@ -83,12 +95,15 @@ load_module( 'contactos' );
 		</div>
 
 		<form action="inc/export_excel.php" method="post" target="_blank" id="FormularioExportacion">
-		<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
-	</form>
+			<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
+		</form>
 
 	</div><!-- // container gral modulo -->
 </div><!-- // container -->
 <!-- botones del modulo -->
+<div id="formulario-suscriptor">
+	
+</div>
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
 </footer>
