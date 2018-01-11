@@ -17,6 +17,9 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 6 - AUTOADMINISTRABLE  
+* Se le suma la página del Complejo de Cultural, agregué un nuevo administrador, para administrar esa página  
+
 ### Versión 5 - AUTOADMINISTRABLE
 * Se le suma la página de Voces de sanidad, agregué un nuevo administrador, para administrar esa página
 
