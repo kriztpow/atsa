@@ -75,7 +75,10 @@ $item = 1;
 					<!-- col -->
 					<div class="col-50">
 						<div class="form-group input-sliders">
-							<label for="slider_titulo-<?php echo $item; ?>">Titulo a mostrar</label>
+							<label for="slider_titulo-<?php echo $item; ?>">Titulo a mostrar<?php if ($sliderUbicacion == 'galeria') {
+									echo ': <strong><small>Poner el guión "-" como separador para hacer el efecto de colores</small></strong>';
+								} ?>
+							</label>
 							<input type="text" name="slider_titulo-<?php echo $item; ?>" id="slider_titulo-<?php echo $item; ?>" value="<?php echo $sliderTitulo; ?>">
 						</div>
 
@@ -93,6 +96,12 @@ $item = 1;
 							<label for="slider_texto-<?php echo $item; ?>">Texto slider</label>
 							<textarea id="slider_texto-<?php echo $item; ?>" name="slider_texto-<?php echo $item; ?>"><?php echo $sliderTexto; ?></textarea>
 						</div>
+					<?php if ($sliderUbicacion == 'galeria') { ?>
+						<p>
+							<strong>NOTA:</strong> El texto del slider es el texto que figura adentro, cuando se hace clic en la imagen.
+							El título, por otra parte, aparece sobre la imagen sin hacer clic. Se escribe separado por un guión "-", de un lado del guión esta un color y del otro el otro color (ver pagina). Es un texto corto.
+						</p>
+					<?php } ?>
 						
 					</div><!-- //col -->
 				</div><!-- //row -->

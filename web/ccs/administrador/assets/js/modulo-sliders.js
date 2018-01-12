@@ -88,10 +88,10 @@ $(document).ready(function (){
 			orden = 0;
 			$(ID.find('input')[4]).val(orden);
 		}
-		if ( textoBtn == '') {
+		/*if ( textoBtn == '') {
 			textoBtn = 'Leer más';
 			$(ID.find('input')[3]).val(textoBtn);
-		}
+		}*/
 		
 		$.ajax( {
 	            type: 'POST',
