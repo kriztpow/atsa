@@ -72,7 +72,7 @@
       <section>
         <div class="modulo-wrapper">
           <h2>Promociones</h2>
-          <p>Activar/desactivar promoc, agregar imagen prediseñada.</p>
+          <p>Activar/desactivar promoc, cargar imagen.</p>
           <p><a class="btn btn-primary" href="index.php?admin=promociones" role="button">Modificar promociones</a></p>
         </div>
       </section><!-- //modulo -->
