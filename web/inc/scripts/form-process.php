@@ -29,7 +29,7 @@ switch ( $form_type ) {
 		global $exito;
 		$emailSubscriptor = recogeDato('email-subs'); 
 		$emailSubscriptor = filter_var($emailSubscriptor,FILTER_SANITIZE_EMAIL);
-		$mensajeRespuesta = 'El registro no ha terminado, chequee su bandeja de entrada';
+		$mensajeRespuesta = '';
 		$asunto = 'Nuevo Suscriptor registrado en ATSA';
 		$mensaje = 'Suscriptor nuevo: ' . $emailSubscriptor;
 		$mensaje .= 'Puede ver el nuevo suscriptor aquí: <a href="'.urlBase().'/voces-de-sanidad/cargar-noticias/index.php?admin=contacts" target="_blank">Click aquí</a>';
@@ -37,8 +37,9 @@ switch ( $form_type ) {
 
 		$usuario = nuevoSuscriptor ($emailSubscriptor, $paraSubscriptor);
 
-		if ($usuario) {
+		if ($usuario == 'ok' ) {
 			mail($paraSubscriptor, $asunto, $mensaje, $cabeceras);
+			$mensajeRespuesta = 'El registro no ha terminado, chequee su bandeja de entrada';
 		} 
 
 		if ($usuario == 'falta-email') {
@@ -54,7 +55,6 @@ switch ( $form_type ) {
 		if ($usuario == 'fatal-error') {
 			$mensajeRespuesta = 'Hubo un error, intente registrarse más tarde';
 		}
-
 
 		$exito = 1;
 		echo $mensajeRespuesta;
@@ -285,7 +285,7 @@ switch ( $form_type ) {
 
 function connectDBVoces() {
 	global $connectionVoces;
-	$connectionVoces = mysqli_connect('localhost', 'dbuser', '123', 'voces-sanidad');
+	$connectionVoces = mysqli_connect('localhost', 'derechoc_coco', 'd6m=fD1=ZqKt', 'derechoc_voces-sanidad');
   // Test if connectionVoces succeeded
   if( mysqli_connect_errno() ) {
     die("Database connectionVoces failed: " . mysqli_connect_error() . 
@@ -367,7 +367,7 @@ function nuevoSuscriptor ( $email, $emailFrom ) {
 			    //echo 'Mailer Error: ' . $mail->ErrorInfo;
 			    return 'falta-email';
 			} 
-			return true;
+			return 'ok';
 			
 		}
 	} else {
