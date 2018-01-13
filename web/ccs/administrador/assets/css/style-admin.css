@@ -865,6 +865,15 @@ ul.dropdown-menu {
   border: 1px solid #aaa;
   margin: 10px auto; }
 
+.wrapper-cursos {
+  padding: 20px 5px;
+  margin-bottom: 50px; }
+  .wrapper-cursos li {
+    margin: 20px auto;
+    border-bottom: 1px solid #aaa; }
+    .wrapper-cursos li:last-child {
+      border-bottom: none; }
+
 /* ---- 7 seccion noticias ---- */
 .loop-noticias-backend {
   list-style: none;

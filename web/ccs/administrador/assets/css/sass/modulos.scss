@@ -135,3 +135,16 @@
   margin: 10px auto;
 }
 
+.wrapper-cursos {
+  padding: 20px 5px;
+  margin-bottom: 50px;
+
+  li {
+    margin: 20px auto;
+    border-bottom: 1px solid #aaa;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
