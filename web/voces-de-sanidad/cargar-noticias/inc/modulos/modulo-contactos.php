@@ -7,7 +7,7 @@ MANEJA LOS SUSCRIPTORES
 function getContacts () {
 	$connection = connectDB();
 	$tabla      = 'suscriptores';
-	$query      = "SELECT * FROM " .$tabla. " ORDER by susc_fecha_email asc ";
+	$query      = "SELECT * FROM " .$tabla. " ORDER by susc_fecha_email desc ";
 	$result     = mysqli_query($connection, $query);
 	closeDataBase($connection);
 
