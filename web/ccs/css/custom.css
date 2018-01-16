@@ -1874,7 +1874,8 @@ nav {
 
     z-index: 16;
 
-    min-height: 850px;
+    /*min-height: 850px;*/
+    min-height: 580px;
 
 }
 
@@ -7365,5 +7366,130 @@ outline: none !important;
 /* end fixes */
 
 
+/*LACUEVA.TV*/
+.about_mainfoto {
+  width: 100%;
+  height: 100%;
+}
+
+.tabs_about {
+  position: relative;
+  overflow: hidden;
+}
+
+.about_backfoto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    height: 100%;
+}
+
+.mask {
+  position: relative;
+  z-index: 1;
+}
+
+.about_columns {
+
+    text-align: left;
+
+    width: 90%;
+
+    margin: 0 auto;
+
+    list-style-type: circle;
+
+    display: block;
+
+    font-weight: 300;
+
+}
+
+.about_test {
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+    list-style-type: circle;
+    display: block;
+    font-weight: 300;
+    display: inline-block;
+    vertical-align: top;
+    margin: 30px 5% 50px;
+    padding-left: 20px;
+
+}
+
+.about_test h4 {
+    width: 92%;
+    display: inline-block;
+    //margin-top: -5px;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 100;
+    color: #c37cff;
+    text-align: right;
+}
+
+.about_test p {
+    width: 95%;
+    display: inline-block;
+    padding-left: 3px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.about-column2 {
+  columns: 2;
+}
+
+.about_columns {
+  margin-bottom: 30px;
+}
+
+.about_columns .list h4 {
+  margin-right: 8%;
+}
+
+.cursos-image-left {
+  width: 100%;
+  height: 100%;
+}
 
 
+@media (max-width: 768px) {
+  .about-column2 {
+    columns: 1;
+    padding-left: 0;
+  }
+
+  .about_columns {
+    padding-left: 0;
+  }
+
+  .about_columns .list h4 {
+    margin-right: 0;
+  }
+
+  .about_columns .list.right p {
+   margin-right: 0; 
+  }
+
+  .about_test h4 {
+    text-align: center;
+  }
+}
+
+.navi_container {
+  width: 90%;
+}
+
+.cursos_texto {
+  font-weight: 600;
+  margin: 20px 0 0;
+  padding: 0 10px;
+}
+
+.cursos-horarios {
+  font-weight: 600;
+}

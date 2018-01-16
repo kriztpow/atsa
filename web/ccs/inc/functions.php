@@ -1,43 +1,109 @@
 ﻿<?php 
- 
-
- $agenda =    [
- 			   "VIERNES 01 SEP","01", "Septiembre",
- 			   "VIERNES 08 SEP","08", "Septiembre",
- 			   "SABADO 09 SEP", "09", "Septiembre", 
- 			   "SABADO 16 SEP", "16",  "Septiembre"
- 			   ];
-/*
-1 COL: HORA
-2 COL: TEXTO
-3 COL: SUBTITULO
-4 COL: Color: green, violet, lightblue o lo que se quiera poner
-*/
- 
-$dia1 = [  
-				"21:00 hs | La Peña de la Sanidad| | blue"
-
-		 ];
 
 
+// BASE DE DATOS
+define('DB_SERVER', 'localhost');
+define('DB_USER', 'dbuser');
+define('DB_PASS', '123');
+define('DB_NAME', 'complejo-sanidad');
+define('URLBASE', 'http://'.$_SERVER['HTTP_HOST'] . '/ccs' );
+define('UPLOADCONTENT', URLBASE . '/contenido' );
+define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates');
 
- $dia2 = [ 
-				"19:30 hs | Muestra de pintura y escultura | 'En el principio...' de Alfredo Bravo | violet"
-		]; 
+//busca el template $name = nombre del archivo sin extensión
+function getTemplate ($name, $data = array() ) {
+
+	$namePage = TEMPLATEDIR . '/'. $name. '.php';
+	if (is_file($namePage)) {
+		include $namePage;
+	}
+}
 
 
- $dia3 = [
-		"20:00 hs | Obra de teatro 'Los años oscuros' | En 1978 un grupo de jóvenes universitarios busca intensamente a su amigo Eduardo.    En Argentina, el mundial escondía la obra macabra de muertes y desapariciones orquestada por  la dictadura militar. En honor a la verdad y la justicia, los protagonistas asumen el compromiso de informar lo que está sucediendo poniendo en peligro sus vidas. Los gritos del pueblo festejando los goles se contraponen a los gritos desgarradores de aquellos que están siendo torturados. Entonces solo queda emprender una lucha desigual y peligrosa para resistir y encontrar al fin la luz.    
-  | violet"
-		];
 
-	 	 
-$dia4 = [  
-		"20:00 hs | Obra de Títeres para adultos 'Oscar' | Óscar Adelmar Ortiga, quizás el arquero más recordado por unos pocos, pero el menos recordado por unos cuantos. Sueños y frustraciones de un arquero de fútbol que no pudo ser. Óscar es la historia de un deportista que pudo llegar a estar en lo más alto de su categoría pero que por esas vicisitudes de la vida, terminó en lo más bajo de un desolado bar de Liniers. Es aquí donde Óscar, una noche, encuentra a alguien que lo escucha, un simple pibe de barrio que está de turno en aquel sucucho. | violet"
-		];
+function connectDB () {
+	global $connection;
+	$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+  // Test if connection succeeded
+  if( mysqli_connect_errno() ) {
+    die("Database connection failed: " . mysqli_connect_error() . 
+         " (" . mysqli_connect_errno() . ")"
+    );
+  }
+  if (!mysqli_set_charset($connection, "utf8")) {
+    printf("Error cargando el conjunto de caracteres utf8: %s\n", mysqli_error($connection));
+    exit();
+	} else {
+		mysqli_character_set_name($connection);
+	}
+  return $connection;
+}
+
+//cierre base de datos
+function closeDataBase($connection){
+	if ( isset($connection) ) {
+    	mysqli_close($connection);
+    }
+}
 
 
-?>
+//trae el contenido de textos de la página de inicio
+function getHomeContent( $page ) {
+	$connection = connectDB();
+	$tabla = 'pages';
 
+	$query  = "SELECT * FROM " .$tabla. " WHERE page_name='".$page."' LIMIT 1";
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		return false;
+	} else {
+		$page = $result->fetch_array();
 
- 
+		return $page;
+	}
+}
+
+//recupera los sliders
+function getSliders ($slug) {
+	$connection = connectDB();
+	$tabla = 'sliders';
+	
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE slider_ubicacion='".$slug."' ORDER by slider_orden asc";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div class="container error-tag">Todavía no hay ninguno cargado</div>';
+	} else {
+		
+		while ($row = $result->fetch_array()) {
+				$sliders[] = $row;
+		}//while
+
+		closeDataBase($connection);
+		return $sliders;
+	}//else 
+}
+
+function getCursos () {
+	$connection = connectDB();
+	$tabla = 'cursos';
+	
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " ORDER by curso_orden asc";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div class="container error-tag">Todavía no hay ninguno cargado</div>';
+	} else {
+		
+		while ($row = $result->fetch_array()) {
+				$cursos[] = $row;
+		}//while
+
+		closeDataBase($connection);
+		return $cursos;
+	}//else 
+}
