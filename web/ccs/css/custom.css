@@ -1874,8 +1874,8 @@ nav {
 
     z-index: 16;
 
-    /*min-height: 850px;*/
-    min-height: 580px;
+    min-height: 850px;
+    
 
 }
 
@@ -7456,6 +7456,94 @@ outline: none !important;
   height: 100%;
 }
 
+#sh_carousel .carousel-inner {
+    min-height: 420px;
+}
+
+.btn-calendario-wrapper {
+  margin-bottom: 50px;
+  text-align: right;
+  margin-right: 50px;
+}
+
+.navi_container {
+  width: 90%;
+}
+
+.cursos_texto {
+  font-weight: 600;
+  margin: 20px 0 0;
+  padding: 0 10px;
+}
+
+.cursos-horarios {
+  font-weight: 600;
+}
+
+.calendar-wrapper {
+    margin: 120px 10px 20px;
+    padding: 0;
+    position: relative;
+}
+
+ #calendar {
+  position: relative;
+    width: 100%;
+    max-width: 70%;
+    margin: 0 auto;
+}
+ 
+.evento-wrapper {
+  position: absolute;
+  width: 14%;
+  height: auto;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  padding: 10px ;
+  top: 0%;
+  right: 0%;
+  left: 0;
+  z-index: 9;
+}
+
+.evento-wrapper h1 { 
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.evento-wrapper h4 {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.evento-wrapper p {
+  font-size: 13px;
+  text-align: justify;
+}
+
+.evento-wrapper p small {
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 30px;
+  display: block;
+}
+
+.evento-categoria-color-cursos {
+  color: green;
+}
+
+.evento-categoria-color-musica {
+  color: lightblue;
+}
+
+.evento-categoria-color-espectaculos {
+  color: violet;
+}
+
+
+
 
 @media (max-width: 768px) {
   .about-column2 {
@@ -7478,18 +7566,18 @@ outline: none !important;
   .about_test h4 {
     text-align: center;
   }
-}
 
-.navi_container {
-  width: 90%;
-}
+  .btn-calendario-wrapper {
+    margin-bottom: 50px;
+    text-align: center;
+    margin-right: 0;
+  }
 
-.cursos_texto {
-  font-weight: 600;
-  margin: 20px 0 0;
-  padding: 0 10px;
-}
+  #calendar {
+    position: relative;
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+  }
 
-.cursos-horarios {
-  font-weight: 600;
 }

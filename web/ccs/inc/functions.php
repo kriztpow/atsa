@@ -107,3 +107,60 @@ function getCursos () {
 		return $cursos;
 	}//else 
 }
+
+
+//recupera los eventos
+function getAgenda ($number = -1) {
+	$connection = connectDB();
+	$tabla = 'agenda';
+	$fechaActual = date('Y-m-d');
+	//queries según parámetros
+	//$query  = "SELECT * FROM " .$tabla. " WHERE agenda_fecha_in >= '".$fechaActual."' ORDER by agenda_fecha_in asc";	
+	$query  = "SELECT * FROM " .$tabla. " ORDER by agenda_fecha_in asc";
+
+	if ( $number != -1 ) {
+		$query .=  " LIMIT ".$number." ";
+	}
+
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div class="container error-tag">Todavía no hay ninguno cargado</div>';
+	} else {
+		
+		while ($row = $result->fetch_array()) {
+				$agenda[] = $row;
+		}//while
+
+		closeDataBase($connection);
+		return $agenda;
+	}//else 
+}
+
+
+//recupera los eventos por fecha
+function getEvensByTheDate ($date) {
+	$connection = connectDB();
+	$tabla = 'agenda';
+
+	$date2 = strtotime ( '+1 day' , strtotime ( $date ) ) ;
+	$date2 = date ( 'Y-m-j' , $date2 );
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE agenda_fecha_in >= '".$date."' AND agenda_fecha_in < '".$date2."'  ORDER by agenda_fecha_in asc";	
+
+
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div class="container error-tag">No hay ningún evento este día</div>';
+	} else {
+		
+		while ($row = $result->fetch_array()) {
+				$agenda[] = $row;
+		}//while
+
+		closeDataBase($connection);
+		return $agenda;
+	}//else 
+}
