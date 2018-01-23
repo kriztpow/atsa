@@ -47,7 +47,7 @@ Complejo Cultural Sanidad </title>
     <span class="icon-bar">
     </span>
     </button>
-    <a class="navbar-brand" href="#home_slider">
+    <a class="navbar-brand" href="<?php echo URLBASE; ?>">
     <img src="images/logo2.png"  width="200px" height="80px" style="margin-top:-35px;margin-left: -110px;" /></a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
@@ -226,8 +226,8 @@ Complejo Cultural Sanidad </title>
   });
 
 </script>
-<script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=75668146"></script>
-    <script>
+<!--<script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=75668146"></script>-->
+    <!--<script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -237,6 +237,6 @@ Complejo Cultural Sanidad </title>
     ga('require', 'displayfeatures');
     ga('send', 'pageview');
 
-  </script>
+  </script>-->
 </body>
 </html>

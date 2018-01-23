@@ -47,7 +47,7 @@ Complejo Cultural Sanidad </title>
     <span class="icon-bar">
     </span>
     </button>
-    <a class="navbar-brand" href="#home_slider">
+    <a class="navbar-brand" href="<?php echo URLBASE; ?>">
     <img src="images/logo2.png"  width="200px" height="80px" style="margin-top:-35px;margin-left: -110px;" /></a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
