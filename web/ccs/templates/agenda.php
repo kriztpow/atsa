@@ -2,6 +2,8 @@
 
 $events = getAgenda( 4 );
 
+if ($events) : 
+
 $mesesAbr  = array('Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic');
 $meses  = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
 $dias = array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sabado');
@@ -174,3 +176,14 @@ $dias = array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', '
 
   </div>
 </div>
+
+<?php else : ?>
+
+  <div class="notes-wrapper">No hay ningun evento cargado.</div>
+  <div class="btn-calendario-wrapper">
+      <a href="<?php echo URLBASE; ?>/calendario.php" target="_blank" class="schedule_reservation wow btn eventime_button  fadeInRight">
+           Ver calendario
+      </a>
+    </div>
+
+<?php endif;

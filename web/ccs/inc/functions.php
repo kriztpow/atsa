@@ -149,7 +149,7 @@ function getAgenda ( $number = -1, $all = false, $categoria = 'none' ) {
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) {
-		return;
+		return false;
 	} else {
 		
 		while ($row = $result->fetch_array()) {

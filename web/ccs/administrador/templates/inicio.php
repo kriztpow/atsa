@@ -1,3 +1,6 @@
+<?php 
+global $userStatus;
+?>
 <!---------- ACCESOS DIRECTOS A LOS MODULOS ---------------->
 <div class="container wrapper-modulos">
   <div class="row">
@@ -77,7 +80,8 @@
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->
-
+    
+    <?php if ( $userStatus == '0' ) : ?>
     <div class="col-30">
       <!-- modulo -->
       <section>
@@ -88,6 +92,6 @@
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->
-
+    <?php endif; ?>
   </div><!-- //row -->
 </div><!-- //containre -->

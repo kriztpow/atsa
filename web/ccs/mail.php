@@ -16,7 +16,7 @@ if(true) {
     $mess = $_POST['msg']; // not required
     $address = $_POST['address']; // not required
     $price = (isset($_POST['price'])) ? $_POST['price'] : ''; // required
-     
+    $telephone =  $_POST['telephone']; // not required
     $error_message = "";
     $error_classes = array();
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';

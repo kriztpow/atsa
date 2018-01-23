@@ -46,6 +46,7 @@ if(!defined("SECUREACCESS"))
         <div id="menu-top" class="menus-top-wrapper">
   <!--menu modulo asinado-->
           <ul class="menu-top menu-left">
+          <?php if ( $userStatus == '0' ) : ?>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Noticias<span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -57,7 +58,7 @@ if(!defined("SECUREACCESS"))
                 </li>
               </ul>
             </li>
-
+          <?php endif; ?>
   <!--MENU EDITOR: administrar pagina-->
           <?php if ( $userStatus == '0' || $userStatus == '1' ) : ?>
             <li class="dropdown">
