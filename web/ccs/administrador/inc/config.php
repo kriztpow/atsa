@@ -33,9 +33,19 @@ $usertype = array(
 	array( 'status' => '1', 'nombre' => 'Editor'),
 );
 //variables de definicion de administrador
-global $categorias;//define las categorias para cargar noticias
-$categorias = array(
-	array( 'slug' => 'espectaculos', 'nombre' => 'Espectáculos y Muestras'),
-	array( 'slug' => 'cursos', 'nombre' => 'Cursos y Talleres'),
-	array( 'slug' => 'penas', 'nombre' => 'Peñas'),
+
+global $categoriasAgenda;
+$categoriasAgenda = array(
+	array(
+		'slug' => 'muestras',
+		'nombre' => 'Cursos, muestras y Talleres',
+	),
+	array(
+		'slug' => 'musica',
+		'nombre' => 'Peñas',
+	),
+	array(
+		'slug' => 'espectaculos',
+		'nombre' => 'Espectáculos',
+	),
 );

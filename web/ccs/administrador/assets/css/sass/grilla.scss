@@ -91,20 +91,29 @@
   }  
 }
 
+.col-40 {
+  width: 100%;
+  padding: 5px 20px;
+  @media (min-width: $md) {
+    width: 40%; 
+    padding: 5px 10px; 
+  }  
+}
+
+.col-60 {
+  width: 100%;
+  padding: 5px 20px;
+  @media (min-width: $md) {
+    width: 60%; 
+    padding: 5px 10px; 
+  }  
+}
+
 .col-70 {
   width: 100%;
   padding: 5px 20px;
   @media (min-width: $md) {
     width: 70%; 
-    padding: 5px 10px; 
-  }  
-}
-
-.col-20 {
-  width: 100%;
-  padding: 5px 20px;
-  @media (min-width: $md) {
-    width: 20%; 
     padding: 5px 10px; 
   }  
 }
@@ -117,3 +126,6 @@
     padding: 5px 10px; 
   }  
 }
+
+
+

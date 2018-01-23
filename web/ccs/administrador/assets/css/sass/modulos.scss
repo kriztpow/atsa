@@ -148,3 +148,16 @@
     }
   }
 }
+
+.lista-eventos {
+  padding: 30px 0;
+
+  li {
+    margin: 20px auto;
+    border-bottom: 1px solid #aaa;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

@@ -54,6 +54,10 @@ function get_footer_scripts ($modulo) { ?>
 	<!------- scripts modulos ------>
 	<?php 
 	switch ( $modulo ) {
+		case 'agenda': ?>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-agenda.js"></script>
+		<?php break;
+
 		case 'cursos': ?>
 			<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
 			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-cursos.js"></script>

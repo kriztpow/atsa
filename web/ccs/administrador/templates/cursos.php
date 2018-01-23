@@ -30,7 +30,7 @@ $cursos = listaCurso ();
 			$curso = $cursos[$i];
 			templateCursoAdmin( $curso );
 	
-	}//for
+		}//for
 	}//else
 	?>
 		</ul>
