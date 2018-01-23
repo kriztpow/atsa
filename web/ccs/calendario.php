@@ -78,8 +78,8 @@ Complejo Cultural Sanidad </title>
       </li>
        <li>
       <a href="http://www.atsa.org.ar">
-      
-      Atsa Buenos Aires </a>
+        Atsa Buenos Aires
+      </a>
       </li>
     </ul>
   </div>
@@ -91,13 +91,21 @@ Complejo Cultural Sanidad </title>
 
 <div class='calendar-wrapper'>
   <div id='calendar'></div>
+
+  <div class="notes-wrapper">
+    <p>El color <span style="color: green;">VERDE</span> representa los <span style="color: green;">Cursos, Talleres y sus Muestras</span>, el <span style="color: violet;">VIOLETA</span> los <span style="color: violet;">espectáculos</span> y el <span style="color: lightblue;">CELESTE</span> las <span style="color: lightblue;">Peñas.</span></p>
+  </div>
+
 </div>
-
-
-
+  
 <!-- End Contact -->
   <footer></footer>
-     
+      <?php 
+    $eventsMusica = getAgenda( -1, true, 'musica');
+    $eventsMuestras = getAgenda( -1, true, 'muestras');
+    $eventsEspectaculos = getAgenda( -1, true, 'espectaculos');
+    
+  ?>
 
 <!-- Scripts -->
 <script type="text/javascript" src="js/jquery-2.2.1.js"></script>
@@ -110,6 +118,8 @@ Complejo Cultural Sanidad </title>
 <script src='js/locale-all.js'></script>
 <script>
 
+ 
+
   $(document).ready(function() {
 
     $('#calendar').fullCalendar({
@@ -119,21 +129,22 @@ Complejo Cultural Sanidad </title>
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
+        right: 'month,agendaWeek,listYear'
       },
       views: {
-        listWeek: { buttonText: 'Agenda' }
+        listYear: { buttonText: 'Todos' }
       },
       //editable: true,
       eventMouseover : function(calEvent, jsEvent, view) {
-
         
-        var fecha = calEvent.start._i.split('T');
-        console.log(fecha[1])
-        var html = '<article class="evento-wrapper"><h1>'+calEvent.title+'</h1><p>'+calEvent.description+'</p><h4><strong>Fecha</strong>: '+fecha[0]+'</h4>';
+        var fecha = calEvent.start._i.split(' ');
+        
+        f = fecha[0].split( '-' );
+
+        var html = '<article class="evento-wrapper"><h1>'+calEvent.title+'</h1><p>'+calEvent.description+'</p><h4><strong>Fecha</strong>: '+f[2] + '-' + f[1] + '-' + f[0]+'</h4>';
 
         if (fecha[1] != undefined ) {
-          html += '<h4>'+fecha[1]+'</h4>';
+          html += '<h4><strong>Hora</strong>: '+fecha[1].substr(0,fecha[1].length-3)+' hs</h4>';
         }
           html += '<p><small>Hace clic en el evento del calendario para reservar y ver más info.</small></p></article>';
         
@@ -143,7 +154,6 @@ Complejo Cultural Sanidad </title>
       eventMouseout : 
       function(calEvent, jsEvent, view) {
 
-          //console.log(calEvent)
           $('.evento-wrapper').remove();
       },
       //eventLimit: true, // allow "more" link when too many events
@@ -151,67 +161,60 @@ Complejo Cultural Sanidad </title>
 
         // your event source
         {
-            events: [ // put the array in the `events` property
+            events: [ // put the array in the `events` property muestras
+            <?php 
+            for ($i=0; $i < count($eventsMuestras); $i++) { ?>
+              
                 {
-                    title  : 'event1',
-                    start  : '2018-01-01'
+                    title  : '<?php echo $eventsMuestras[$i]['agenda_titulo']; ?>',
+                    description : '<?php echo $eventsMuestras[$i]['agenda_descripcion']; ?>',
+                    start  : '<?php echo $eventsMuestras[$i]['agenda_fecha_in']; ?>',
+                    end    : '<?php echo $eventsMuestras[$i]['agenda_fecha_out']; ?>',
+                    url    : '<?php echo $eventsMuestras[$i]['agenda_url']; ?>',
                 },
-                {
-                    title  : 'event2',
-                    start  : '2018-01-05',
-                    end    : '2010-01-07',
-                    description : 'este sería un texto basico de algo',
-                },
-                {
-                    title  : 'event3',
-                    start  : '2018-01-09T12:30:00',
-                }
+            
+            <?php } ?>
             ],
             color: 'green',     // an option!
             textColor: 'white', // an option!
             backgroundColor: 'green',
         },
         {
-            events: [ // put the array in the `events` property
+            events: [ // put the array in the `events` property espectaculos
+                
+            <?php 
+            for ($i=0; $i < count($eventsEspectaculos); $i++) { ?>
+              
                 {
-                    title  : 'event1',
-                    start  : '2017-12-31T13:30:00'
+                    title  : '<?php echo $eventsEspectaculos[$i]['agenda_titulo']; ?>',
+                    description : '<?php echo $eventsEspectaculos[$i]['agenda_descripcion']; ?>',
+                    start  : '<?php echo $eventsEspectaculos[$i]['agenda_fecha_in']; ?>',
+                    end    : '<?php echo $eventsEspectaculos[$i]['agenda_fecha_out']; ?>',
+                    url    : '<?php echo $eventsEspectaculos[$i]['agenda_url']; ?>',
                 },
-                {
-                    title  : 'event1261',
-                    start  : '2018-01-05T13:30:00'
-                },
-                {
-                    title  : 'event2',
-                    start  : '2018-01-12T13:00:00',
-                    end    : '2010-01-12T13:30:00'
-                },
-                {
-                    title  : 'event3',
-                    start  : '2018-01-06T13:30:00',
-                    description: 'decime algo lo bastante largo',
-                }
+            
+            <?php } ?>
+
             ],
             color: 'violet',     // an option!
             textColor: 'white', // an option!
             backgroundColor: 'violet',
         },
         {
-            events: [ // put the array in the `events` property
+            events: [ // put the array in the `events` property celeste
+            <?php 
+            for ($i=0; $i < count($eventsMusica); $i++) { ?>
+              
                 {
-                    title  : 'event1',
-                    start  : '2018-01-01T13:30:00'
+                    title  : '<?php echo $eventsMusica[$i]['agenda_titulo']; ?>',
+                    description : '<?php echo $eventsMusica[$i]['agenda_descripcion']; ?>',
+                    start  : '<?php echo $eventsMusica[$i]['agenda_fecha_in']; ?>',
+                    end    : '<?php echo $eventsMusica[$i]['agenda_fecha_out']; ?>',
+                    url    : '<?php echo $eventsMusica[$i]['agenda_url']; ?>',
                 },
-                {
-                    title  : 'event2',
-                    start  : '2018-01-05T13:00:00',
-                    end    : '2010-01-07T13:30:00'
-                },
-                {
-                    title  : 'event3',
-                    start  : '2018-01-09T13:30:00',
-                    url    : 'http://atsa.org.ar'
-                }
+            
+            <?php } ?>
+
             ],
             color: 'lightblue',     // an option!
             textColor: 'white', // an option!
@@ -223,7 +226,5 @@ Complejo Cultural Sanidad </title>
   });
 
 </script>
-
-
 </body>
 </html>
