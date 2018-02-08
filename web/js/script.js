@@ -180,6 +180,7 @@ $(document).ready(function(){
                 console.log('enviando formulario');
             },
             success: function ( response ) {
+                
                 if ( response == 1 ) {
                     $( '.msj-exito' ).fadeIn();
                     formulario.reset();

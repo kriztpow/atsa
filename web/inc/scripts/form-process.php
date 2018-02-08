@@ -13,6 +13,20 @@ $paraContacto    = 'web@atsa.org.ar';
 $paraPieForm     = 'web@atsa.org.ar';
 $paraAfiliate    = 'asesoramiento@atsa.org.ar';
 
+//emails segun sección
+$Gremiales = 'gremiales@atsa.org.ar';		
+$Cultura = 'secretariadecultura@atsa.org.ar';
+$Deportes = 'turismo1@atsa.org.ar';
+$Turismo = 'turismo@atsa.org.ar';
+$Prensa = 'web@atsa.org.ar';
+$AccionSocial = 'accionsocial@atsa.org.ar';
+$Mujer = 'mujer@atsa.org.ar';
+$AsistenciaSocial = 'web@atsa.org.ar';
+$Legales = 'web@atsa.org.ar';
+$Finanzas = 'web@atsa.org.ar';
+$Vitalicios = 'web@atsa.org.ar';
+$Complejo = 'complejocultural@atsa.org.ar';		
+
 $form_type      = recogeDato('form_type'); 
 $cabeceras      = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras     .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -65,6 +79,21 @@ switch ( $form_type ) {
 		global $cabeceras;
 		global $paraContacto;
 		global $exito;
+		
+		global $Gremiales;
+		global $Cultura;
+		global $Deportes;
+		global $Turismo;
+		global $Prensa;
+		global $AccionSocial;
+		global $Mujer;
+		global $AsistenciaSocial;
+		global $Legales;
+		global $Finanzas;
+		global $Vitalicios;
+		global $Complejo;
+
+
 		$email        = recogeDato('email');
 		$nombre       = recogeDato('name');
 		$emailConfirm = recogeDato('email-confirm');
@@ -79,9 +108,74 @@ switch ( $form_type ) {
 		$mensaje .= 'Section: ' . $section . '<br>';
 		$mensaje .= $texto;
 
+		//contactos segun sección
+
+		switch ($section) {
+			case 'gremiales':
+				$paraContacto = $Gremiales;
+				
+				break;
+			
+			case 'cultura':
+				$paraContacto = $Cultura;
+				
+				break;
+
+			case 'deporte':
+				$paraContacto = $Deportes;
+				
+				break;
+
+			case 'turismo':
+				$paraContacto = $Turismo;
+				
+				break;
+
+			case 'prensa_y_Difusión':
+				$paraContacto = $Prensa;
+				
+				break;
+
+			case 'accion_social':
+				$paraContacto = $AccionSocial;
+				
+				break;
+
+			case 'genero':
+				$paraContacto = $Mujer;
+				
+				break;
+
+			case 'asistencia_social':
+				$paraContacto = $AsistenciaSocial;
+				
+				break;
+
+			case 'legales':
+				$paraContacto = $Legales;
+				
+				break;
+
+			case 'finanzas':
+				$paraContacto = $Finanzas;
+				
+				break;
+
+			case 'vitalicios':
+				$paraContacto = $Vitalicios;
+				
+				break;
+
+			case 'complejo_cultural':
+				$paraContacto = $Complejo;
+				
+				break;
+		}
+		
 		mail($paraContacto, $asunto, $mensaje, $cabeceras);
 		$exito = 1;
 		echo $exito;
+
 		break;
 
 //formulario del footer
