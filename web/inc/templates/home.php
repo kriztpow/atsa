@@ -164,7 +164,7 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
     
     <section>
         <div class="secction-conectados-wrapper">
-            <div class="container-fluid">
+            <div class="container-fluid" style="width:100%">
                 <div class="conectados-content">
                     <?php echo $homeContent['conectados']['texto']; ?>
                     
