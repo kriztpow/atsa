@@ -40,7 +40,7 @@ if ( count($dataNoticia) > 0 ) {
 <meta property="og:url" content="<?php echo urlBase() . '/noticias/'. $dataNoticia['url']; ?>" />
 <meta property="og:site_name" content="<?php echo urlBase(); ?>" />
 <meta property="og:image" content="<?php echo urlBase() . '/uploads/images/'. $dataNoticia['imgDestacada']; ?>" />
-<meta property="article:publisher" content="http://www.facebook.com/pages/ATSA-Bs-As/116874221683810" />
+<meta property="article:publisher" content="//www.facebook.com/pages/ATSA-Bs-As/116874221683810" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="<?php echo $dataNoticia['resumen']; ?>" />
 <meta name="twitter:title" content="<?php echo $dataNoticia['titulo']; ?>" />
@@ -72,20 +72,20 @@ if ( count($dataNoticia) > 0 ) {
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
     <!-- bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo urlBase(); ?>/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php 
     	if ( $pageActual == 'noticias' ) {
-    		echo MAINNEWSCSSURL;
+    		echo urlBase() . '/' . MAINNEWSCSSURL;
     	} else {
-			echo MAINCSSURL;
+			echo urlBase() . '/' . MAINCSSURL;
     	}
     ?>" rel="stylesheet">
 
 <!--[if lt IE 9]>
 	<script src="js/html5shiv/dist/html5shiv.js"></script>
 <![endif]-->
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/modernizr.custom.26633.js"></script>
+<script src="<?php echo urlBase(); ?>/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo urlBase(); ?>/js/modernizr.custom.26633.js"></script>
 </head>
 <body>

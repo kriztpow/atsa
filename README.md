@@ -17,6 +17,10 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 7 - SSL
+* Le agregué a la funcion url_base() el https para que funcione bien.
+
+
 ### Versión 6 - AUTOADMINISTRABLE  
 * Se le suma la página del Complejo de Cultural, agregué un nuevo administrador, para administrar esa página  
 

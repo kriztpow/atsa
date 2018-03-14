@@ -23,7 +23,7 @@ function getTemplate ( $name, $data = array() ) {
 
 //devuelve la url base para que los scripts, css, e imagenes funcionen perfecto con las permalinks
 function urlBase() {
-	$urlBase = 'http://'.$_SERVER['HTTP_HOST'];
+	$urlBase = 'https://'.$_SERVER['HTTP_HOST'];
 	return $urlBase;
 }
 
