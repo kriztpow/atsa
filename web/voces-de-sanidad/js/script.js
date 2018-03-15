@@ -1,4 +1,4 @@
-var baseUrl = 'http://' + window.location.host + '/voces-de-sanidad';
+var baseUrl = 'https://' + window.location.host + '/voces-de-sanidad';
 var uploadsUrl = baseUrl + '/contenido'
 var functionsDir = baseUrl + '/inc';
 

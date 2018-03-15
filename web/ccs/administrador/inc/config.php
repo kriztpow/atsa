@@ -12,7 +12,7 @@ define ( 'UPLOADSIMAGES', dirname( __FILE__ ) . '/../../contenido' );
 define ( 'UPLOADSFILES', dirname( __FILE__ ) . '/../../contenido/archivos' );
 //URL
 define ('CARPETASERVIDOR', '/ccs' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
+define ('MAINURL', 'https://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('URLADMINISTRADOR', MAINURL . '/administrador' );//esta variable define la carpeta del administrador - también debe cambianser en el .js
 define ('UPLOADSURL', MAINURL . '/contenido');//carpeta donde esta el contenido subido por el usuario
 define ('UPLOADSURLIMAGES', UPLOADSURL . '');//carpeta  de imagenes (por si tiene distintas carpetas de contenido)

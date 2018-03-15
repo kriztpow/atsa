@@ -19,7 +19,7 @@ Complejo Cultural Sanidad </title>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Google Font Raleway -->
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,700,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,100,700,300' rel='stylesheet' type='text/css'>
 <!-- Font Awsome Icons CSS -->
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <!-- Custom CSS -->
@@ -78,7 +78,7 @@ Complejo Cultural Sanidad </title>
       Contacto </a>
       </li>
        <li>
-      <a href="http://www.atsa.org.ar">
+      <a href="https://www.atsa.org.ar">
       
       Atsa Buenos Aires </a>
       </li>

@@ -12,7 +12,7 @@ define ( 'UPLOADSIMAGES', dirname( __FILE__ ) . '/../../contenido' );
 define ( 'UPLOADSFILES', dirname( __FILE__ ) . '/../../contenido/archivos' );
 //URL
 define ('CARPETASERVIDOR', '/voces-de-sanidad' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
+define ('MAINURL', 'https://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('URLADMINISTRADOR', MAINURL . '/cargar-noticias' );
 define ('UPLOADSURL', MAINURL . '/contenido');
 define ('UPLOADSURLIMAGES', MAINURL . '/contenido');

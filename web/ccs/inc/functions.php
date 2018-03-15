@@ -2,10 +2,10 @@
 
 // BASE DE DATOS
 define('DB_SERVER', 'localhost');
-define('DB_USER', 'dbuser');
-define('DB_PASS', '123');
-define('DB_NAME', 'complejo-sanidad');
-define('URLBASE', 'http://'.$_SERVER['HTTP_HOST'] . '/ccs' );
+define('DB_USER', 'derechoc_coco');
+define('DB_PASS', 'd6m=fD1=ZqKt');
+define('DB_NAME', 'derechoc_complejo');
+define('URLBASE', 'https://'.$_SERVER['HTTP_HOST'] . '/ccs' );
 define('UPLOADCONTENT', URLBASE . '/contenido' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates');
 

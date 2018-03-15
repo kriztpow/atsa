@@ -16,7 +16,7 @@
 */
 
 //urls:
-var baseUrl = 'http://' + window.location.host + '/voces-de-sanidad';
+var baseUrl = 'https://' + window.location.host + '/voces-de-sanidad';
 var administradorUrl = baseUrl + '/cargar-noticias';
 var uploadsDir = baseUrl + '/contenido';
 var functionsDir = administradorUrl + '/inc';

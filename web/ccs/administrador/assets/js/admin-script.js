@@ -16,7 +16,7 @@
 */
 
 //urls:
-var baseUrl = 'http://' + window.location.host + '/ccs';
+var baseUrl = 'https://' + window.location.host + '/ccs';
 var administradorUrl = baseUrl + '/administrador';
 var uploadsDir = baseUrl + '/contenido';
 var functionsDir = administradorUrl + '/inc';
@@ -104,6 +104,10 @@ $(document).ready(function() {
 /*LOG IN*/
 
 $(document).ready(function (){
+
+	//var url = functionsDir + '/sesion.php';
+    var url = 'https://atsa.org.ar/ccs/administrador/inc/sesion.php';
+
 	$('#login').submit(function(event){
 		event.preventDefault();
 		var formulario = this;
@@ -112,7 +116,7 @@ $(document).ready(function (){
 
 		$.ajax( {
 			type: 'POST',
-			url: functionsDir + '/sesion.php',
+			url: url,
 			data: data,
 			success: function ( response ) {
 				if ( response == 1 ) {

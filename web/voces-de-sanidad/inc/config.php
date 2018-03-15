@@ -13,7 +13,7 @@ define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 //urls
 define ('CARPETASERVIDOR', '/voces-de-sanidad' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
+define ('MAINSURL', 'https://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('UPLOADSURL', MAINSURL . '/contenido');
 //base de datos
 define("DB_SERVER", "localhost");
@@ -26,9 +26,9 @@ define('METADESCRIPTION', 'Todas las voces de nuestro gremio se unen en este esp
 define('METAKEYS', 'ATSA, Buenos Aires, Hector Daer, FATSA, Sanidad, trabajadores de la salud,');
 
 //LINKS:
-define('LINK_FACEBOOK', 'http://www.facebook.com/pages/ATSA-Bs-As/116874221683810');
+define('LINK_FACEBOOK', 'https://www.facebook.com/pages/ATSA-Bs-As/116874221683810');
 define('LINK_INSTAGRAM', '#');
-define('LINK_TWITTER', 'http://twitter.com/AtsaBsAs');
+define('LINK_TWITTER', 'https://twitter.com/AtsaBsAs');
 define('LINK_YOUTUBE', '#');
 define('EMAIL', 'voces@atsa.org.ar');
 
