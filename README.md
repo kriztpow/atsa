@@ -17,6 +17,9 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 8 - AFILIATE  
+* Creación landing page para afiliarse con manejo de usuarios
+
 ### Versión 7 - SSL
 * Le agregué a la funcion url_base() el https para que funcione bien.
 

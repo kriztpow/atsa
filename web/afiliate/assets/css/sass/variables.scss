@@ -1,0 +1,89 @@
+/*FUENTES*/
+$fuente-principal: sans-serif;
+//$fuente-secundaria: 'Myriad Pro', $fuente-principal;
+
+/*COLORES*/
+$color-blanco: #fff;
+$color-negro: #333;
+
+/*GRID OPTIONS*/
+$xs: 576px; //<576px
+$sm: 767px; //<768px
+$md: 992px; //<992px
+$lg: 1200px; //<1200px
+$xlg: 1500px;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin transition($var) {
+  -webkit-transition: $var;
+     -moz-transition: $var;
+      -ms-transition: $var;
+          transition: $var;
+}
+
+@mixin box-shadow($var) {
+  -webkit-box-shadow: $var;
+     -moz-box-shadow: $var;
+      -ms-box-shadow: $var;
+          box-shadow: $var;
+}
+
+@mixin text-shadow($var) {
+  -webkit-text-shadow: $var;
+     -moz-text-shadow: $var;
+      -ms-text-shadow: $var;
+          text-shadow: $var;
+}
+
+@mixin transform($var) {
+  -webkit-transform: $var;
+     -moz-transform: $var;
+      -ms-transform: $var;
+          transform: $var;
+}
+
+
+@mixin clip-path($clip) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
+
+/*
+@media (min-width: $md) {}
+-webkit-
+-moz-
+-ms-
+-o-
+
+display: flex;
+display: -o-flex;
+display: -ms-flex;
+display: -moz-flex;
+display: -webkit-flex;
+-webkit-align-items: center;
+-moz-align-items: center;
+-ms-align-items: center;
+-o-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+-o-justify-content: center;
+justify-content: center;
+
+
+&:hover {
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+*/

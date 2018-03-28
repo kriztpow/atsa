@@ -1,0 +1,97 @@
+.background-more-info.open-background {
+	animation-name: fade-in;
+	opacity: 0;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	display: flex;
+	display: -o-flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	display: -webkit-flex;
+	/*-webkit-align-items: center;
+	-moz-align-items: center;
+	-ms-align-items: center;
+	-o-align-items: center;
+	align-items: center;*/
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	-ms-justify-content: center;
+	-o-justify-content: center;
+	justify-content: center;
+}
+
+@keyframes fade-in {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+
+
+//animaciones por clase in-view
+.paquete-menos18.in-view .paquete-hover {
+	animation-name: fade-in-scroll;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-delay: 0.3s;
+}
+
+@keyframes fade-in-scroll {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+.paquete-menos18.in-view .paquete-botones {
+	animation-name: translateX-50;
+	opacity: 0;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+}
+
+@keyframes translateX-50 {
+	from {transform:translateX(50%);opacity: 0;}
+	to {transform:translateX(0%);opacity: 1;}
+}
+
+
+//animaciones por clase hover-animation
+.paquete-hover.hover-animation .paquete-botones {
+	opacity: 0;
+	animation-name: translateX-20;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes translateX-20 {
+	from {transform:translateX(20%);opacity: 0;}
+	to {transform:translateX(0%);opacity: 1;}
+}
+
+.animation-element {
+	opacity: 0;
+	position: relative;
+}
+
+.animation-element.slide-up.in-view-2 {
+	animation-name: slide-up;
+	animation-duration: 1s;
+	animation-delay: 0.5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+	from {opacity: 0;transform:translateY(100px);}
+	to {opacity: 1;transform:translateY(0px);}
+}
+
+.animation-element.fade-in-scroll.in-view-2 {
+	animation-name: fade-in;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
