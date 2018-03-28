@@ -1,10 +1,14 @@
 <?php 
 /*
- * Sitio web: TROOPS
+ * Sitio web: atsa - afiliate
  * @LaCueva.tv
  * Since 1.0
  * FUNCTIONS
- * 
+ *
+ * CONTENIDO 
+ * 1. funciones básicas
+ * 2. funciones con base de datos
+ * 3. funciones con web service 
 */
 
 require_once 'config.php';
@@ -80,163 +84,6 @@ function pageActual ( $uri ) {
 
 }//pageActual()
 
-//esta funcion devuelve el nombre de la categoria o nada sino lo es 
-function ver_categoria ( $uri ) {
-	global $categorias;
-	//ver si figura la variable cat en el url, en ese caso es categoria
-	$cat = isset($_REQUEST['cat']) ? $_REQUEST['cat'] : 'none';
-
-	$parseUrl = explode('/', $uri);
-	$RequestURI = $parseUrl[1];
-
-	for ($i=0; $i < count($categorias); $i++) { 
-		if ( $categorias[$i]['slug'] == $RequestURI ) {
-		$cat = $RequestURI;
-		break;
-		}
-	}
-
-	return $cat;
-
-}
-
-//esta funcion devuelve el nombre true si es categoria y false si no lo es
-function es_categoria ( $uri ) {
-	global $categorias;
-	//ver si figura la variable cat en el url, en ese caso es categoria
-	$cat = isset($_REQUEST['cat'])?$_REQUEST['cat']:'none';
-	if ( $cat != 'none' ) {
-		return true;
-	} 
-	//si el url es bonito hay que parsearlo para buscar las categorias
-	$parseUrl = explode('/', $uri);
-
-	if ( count( $parseUrl ) >= 3 && $parseUrl[2] != '' ){
-		//si el index 2 figura en el url significa que es single
-		return false;
-	} else {
-		$RequestURI = $parseUrl[1];
-
-		for ($i=0; $i < count($categorias); $i++) { 
-			if ( $categorias[$i]['slug'] == $RequestURI ) {
-			return true;
-			break;
-			}
-		}
-		//sino encuentra la categoria en el url, entonces no lo es
-		return false;
-	}	
-}
-
-/*
-ESTA FUNCIÓN TOMA LA VARIANTE DE ALGUNAS PAGINAS POR EJEMPLO NOTICIAS, EL SLUG ES UNA CATEGORIA O EL URL DE UNA NOTICIA
-@return: string
-*/
-function getPageVar ( $uri ) {
-	$slug = '';
-
-	//si es categoria, entonces no hay nada que decir
-	if ( es_categoria( $uri ) ){
-		return;
-	} 
-	
-	//si figura variable noticia en el url, entonces es facil:
-	$noticia = isset($_REQUEST['noticia'])?$_REQUEST['noticia']:'none';
-	if ( $noticia != 'none' ) {
-		$slug = $noticia;
-		return $slug;
-	} 
-
-	//si no hay variables hay que parsear el url para buscar informacion
-	$parseUrl = explode('/', $uri);
-	
-	//si por el contrario hay un indice 2 y este no es la "/" entonces hay info que rescatar
-	if ( isset($parseUrl[2]) && $parseUrl[2] != '' ) {
-		$slug = $parseUrl[2];
-	} else {
-		//y por ultimo la info a mostrar también puede estar en el indice 1 si este no es categoria
-		$slug = $parseUrl[1];
-	}
-
-	return $slug;
-
-}
-//esta función toma el nombre de la categoría para mostrarlo en el front en caso de que sea distinto el nombre del slug
-function getNameCategoria( $categoria ) {
-	global $categorias;
-	for ($i=0; $i < count($categorias) ; $i++) { 
-		if ($categorias[$i]['slug'] == $categoria ) {
-			return $categorias[$i]['nombre'];
-			break;
-		}
-	}
-}
-
-//acorta el texto
-function acortaTexto( $texto, $cantPalabras = 50, $final = null ) {
-	if ( null === $final ) {
-	$final = '&hellip;';
-	}	
-	$textoOriginal = $texto;
-	
-	//quitar html
-	$texto = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $texto );
-	$texto = strip_tags($texto);
-	
-	//reducir texto y agregar el final
-	 $words_array = preg_split( "/[\n\r\t ]+/", $texto, $cantPalabras + 1, PREG_SPLIT_NO_EMPTY );
-	$sep = ' ';
-	
-	//devolver texto reducido
-	if ( count( $words_array ) > $cantPalabras ) {
-		array_pop( $words_array );
-		$texto = implode( $sep, $words_array );
-		$texto = $texto . $final;
-	} else {
-		$texto = implode( $sep, $words_array );
-	}
-	return $texto;
-}
-
-//devuelve el título de la página para <head><title>
-function SeoTitlePage ( $page ) {
-    $tituloBase   = SITETITLE;
-
-    //titulo cuando no es home ni noticias
-    if ( $page != 'inicio' && $page != 'noticias' ) {
-        //si la página no es home hay que separar la url que está unido por "-" para armar un nuevo título
-        $pageActualTitle = explode('-', $page);
-        $pageSEOTitle = ' |';
-        for ($i=0; $i < count($pageActualTitle); $i++) { 
-            $pageSEOTitle .= ' ';
-            $pageSEOTitle .= ucfirst($pageActualTitle[$i]);
-        }
-
-        $tituloBase .= $pageSEOTitle;
-    }
-
-    return $tituloBase;
-} //SeoTitlePage()
-
-
-//define el metadescription en la etiqueta Head para SEO
-function metaDescriptionText ( $pageActual, $noticia, $curso, $categoriaNoticias ) {
-	$metaDescription = METADESCRIPTION;
-	
-
-	if ( $noticia != 'none') {
-		global $dataNoticia;
-		$base = ' | Asociación de trabajadores de la Sanidad Argentina, Buenos Aires.';
-		$metaDescription = $dataNoticia['resumen'] . $base;
-	}
-
-	if ( $categoriaNoticias != 'none') {
-		$metaDescription = 'Últimas noticias ' .$categoriaNoticias. '. Asociación de trabajadores de la Sanidad Argentina, Buenos Aires.';
-	}
-
-	return $metaDescription;
-
-}//metaDescriptionText()
 
 /**
  * Checks if a request is a AJAX request
@@ -245,6 +92,10 @@ function metaDescriptionText ( $pageActual, $noticia, $curso, $categoriaNoticias
 function isAjax() {
     return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']  == 'XMLHttpRequest');
 }
+
+
+
+
 
 
 /*
@@ -281,3 +132,59 @@ function closeDataBase( $connection ){
 
 
 
+
+/*
+ *
+ *	FUNCIONES WEB SERVICE
+ *
+*/
+
+/*
+ * CHEC CUIL, 
+ * REQUIRED, CUIL
+ * Chequea si el cuil existe
+ * REF:
+ * Error 1: no existe el cuil
+ * Error 2: Falta ingresar cuil
+*/
+function checkCuil ( $cuil ) {
+
+	if ( $cuil == '' ) {
+		echo 'error-2';//falta ingresar cuil
+		return;
+	} 
+
+	$client = new SoapClient('http://www.sanidadsistemas.com.ar/sanidadws2/ws.asmx?wsdl',
+		array(
+			'trace'=>true,
+			'exceptions'=>false
+		) 
+	);
+	
+	$result = $client->SolidaridadQuery(array('cuil'=>$cuil));
+	
+	$result = json_decode($result->SolidaridadQueryResult);
+
+	if ( ! empty($result) ) {
+
+		$usuario  = array(
+			'cuit' => $result[0]->cuit,
+			'sucursal' => $result[0]->sucursal,
+			'razonSocial' => $result[0]->razonSocial,
+			'cuil' => $result[0]->cuil,
+			'nombreApellido' => $result[0]->nomreApellido,
+			'ff' => $result[0]->ff,
+			'mesDDJJ' => $result[0]->mesDDJJ,
+			'anioDDJJ' => $result[0]->anioDDJJ,
+			'idConvenio' => $result[0]->idConvenio,
+			'idRama' => $result[0]->idRama,
+			'nonmbreConvenio' => $result[0]->nombreConvenio,
+		);
+		print_r($usuario);
+	}
+	
+	else {
+		echo 'error-1'; //no existe cuil
+	}
+
+}

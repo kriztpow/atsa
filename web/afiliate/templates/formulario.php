@@ -1,12 +1,9 @@
-<?php
-	/*$client = new SoapClient('http://www.sanidadsistemas.com.ar/sanidadws2/ws.asmx?wsdl');
-	$result = $client->SolidaridadQuery('20054113154');
 
-	var_dump($result);*/
-
-phpinfo();
-?>
 
 <div class="section-wrapper">
 formulario
+<form method="POST" name="first-form" id="first-form">
+	<input type="text" name="cuil" value="20054113154">
+	<input type="submit" value="enviar" style="background: red;padding: 10px 30px;">
+</form>
 </div>
