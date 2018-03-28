@@ -43,10 +43,10 @@
 <meta name="theme-color" content="#ffffff">
     
     <!-- Custom CSS -->
-    <link href="<?php echo MAINSURL; ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo MAINSURL; ?>/assets/css/style.css" rel="stylesheet">
 
 <!--[if lt IE 9]>
-    <script src="<?php echo MAINSURL; ?> /assets/js/html5shiv/dist/html5shiv.js"></script>
+    <script src="<?php echo MAINSURL; ?>/assets/js/html5shiv/dist/html5shiv.js"></script>
 <![endif]-->
 <script src="<?php echo MAINSURL; ?>/assets/js/modernizr.custom.26633.js"></script>
 </head>

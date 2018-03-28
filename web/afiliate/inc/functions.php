@@ -55,13 +55,7 @@ function cleanUri() {
 */
 function pageActual ( $uri ) {
 	$slug = 'inicio'; //slug por defecto
-	/*if ( $_SERVER["PHP_SELF"] == '/index.php' ) {
-	 
-	} else {
-		//echo $_SERVER["PHP_SELF"];
-		//echo $_SERVER["REQUEST_URI"];
-	}*/
-	//borramos la barra / luego del dominio:
+	
 	$url = $uri;
 	$parseUrl = explode('/', $url);
 	$RequestURI = $parseUrl[1];
@@ -81,21 +75,6 @@ function pageActual ( $uri ) {
 		}
 
 	} 
-	//en cambio, si aparece el ? o el & el url funciona con ids, ejecuta la segunda opcion
-	else {
-		//BUSCAR PAGE EN EL URL, por defecto sería home
-		$slug = isset($_REQUEST['page'])?$_REQUEST['page']:'inicio';
-		$noticia = isset($_REQUEST['noticia'])?$_REQUEST['noticia']:'none';
-		$cat = isset($_REQUEST['cat'])?$_REQUEST['cat']:'none';
-
-		if ( $noticia != 'none' ) {
-			$slug = $noticia;
-		}
-
-		if ( $cat != 'none' ) {
-			$slug = $cat;
-		}
-	}
 
 	return $slug;
 

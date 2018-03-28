@@ -1,99 +1,79 @@
 @font-face {
-    font-family: 'NB International Pro';
-    src: url('../fonts/nbinternationalpro-regular.eot');
-    src: url('../fonts/nbinternationalpro-regular.WOFF') format('woff'),
-        url('../fonts/nbinternationalpro-regular.ttf') format('truetype'),
-        url('../fonts/nbinternationalpro-regular.svg') format('svg');
-    /*src: local('NB International Pro'),
-         url('../fonts/nbinternationalpro-regular.ttf') format('truetype');*/
+    font-family: 'Akrobat';
+    src: local('Akrobat Regular'), local('akrobat-regular'), 
+        url('../fonts/akrobat-regular.woff') format('woff'),
+        url('../fonts/akrobat-regular.otf') format('opentype'),
+        url('../fonts/akrobat-regular.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'NB International Pro Light';
-    src: url('../fonts/nbinternationalpro-light.eot');
-    src: url('../fonts/nbinternationalpro-light.WOFF') format('woff'),
-        url('../fonts/nbinternationalpro-light.ttf') format('truetype'),
-        url('../fonts/nbinternationalpro-light.svg') format('svg');
-    /*src: local('NB International Pro Light'),
-    url('../fonts/nbinternationalpro-light.ttf') format('truetype');*/
-    font-weight: light;
-    font-style: normal;
-}
-
-
-//MONOSPACED
-@font-face {
-    font-family: 'NB International Pro Mono';
-    src: url('../fonts/nbinternationalpro-monospaced.eot');
-    src: url('../fonts/nbinternationalpro-monospaced.WOFF') format('woff'),
-        url('../fonts/nbinternationalpro-monospaced.ttf') format('truetype'),
-        url('../fonts/nbinternationalpro-monospaced.svg') format('svg');
-    /*src: local('NB International Pro Mono'),
-         url('../fonts/nbinternationalpro-monospaced.ttf') format('truetype');*/
-    font-weight: normal;
-    font-style: normal;
-}
-
-//FUENTE TITULOS
-@font-face {
-    font-family: 'Champagne & Limousines';
-    src: url('../fonts/champagne&limousines.eot');
-    src: url('../fonts/champagne&limousines.WOFF') format('woff'),
-        url('../fonts/champagne&limousines.ttf') format('truetype'),
-        url('../fonts/champagne&limousines.svg') format('svg');
-    /*src: local('Champagne & Limousines'),
-         url('../fonts/champagne&limousines.ttf') format('truetype');*/
-    font-weight: normal;
+    font-family: 'Akrobat';
+    src: local('Akrobat Thin'), local('akrobat-thin'), 
+        url('../fonts/akrobat-thin.woff') format('woff'),
+        url('../fonts/akrobat-thin.otf') format('opentype'),
+        url('../fonts/akrobat-thin.svg') format('svg');
+    font-weight: 100;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Champagne & Limousines Italic';
-    src: url('../fonts/champagne&limousinesitalic.eot');
-    src: url('../fonts/champagne&limousinesitalic.WOFF') format('woff'),
-        url('../fonts/champagne&limousinesitalic.ttf') format('truetype'),
-        url('../fonts/champagne&limousinesitalic.svg') format('svg');
-    /*src: local('Champagne & Limousines Italic'),
-         url('../fonts/champagne&limousinesitalic.ttf') format('truetype');*/
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Champagne & Limousines Bold';
-    src: url('../fonts/champagne&limousinesbold.eot');
-    src: url('../fonts/champagne&limousinesbold.WOFF') format('woff'),
-        url('../fonts/champagne&limousinesbold.ttf') format('truetype'),
-        url('../fonts/champagne&limousinesbold.svg') format('svg');
-    /*src: local('Champagne & Limousines Bold Italic'),
-         url('../fonts/champagne&limousinesbold.ttf') format('truetype');*/
-    font-weight: bold;
+    font-family: 'Akrobat';
+    src: local('Akrobat Extra Light'), local('akrobat-extra-light'), 
+        url('../fonts/akrobat-extralight.woff') format('woff'),
+        url('../fonts/akrobat-extralight.otf') format('opentype'),
+        url('../fonts/akrobat-extralight.svg') format('svg');
+    font-weight: 200;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Champagne & Limousines Bold Italic';
-    src: url('../fonts/champagne&limousines-bold-italic.eot');
-    src: url('../fonts/champagne&limousines-bold-italic.WOFF') format('woff'),
-        url('../fonts/champagne&limousines-bold-italic.ttf') format('truetype'),
-        url('../fonts/champagne&limousines-bold-italic.svg') format('svg');
-    /*src: local('Champagne & Limousines Bold Italic'),
-         url('../fonts/champagne&limousines-bold-italic.ttf') format('truetype');*/
-    font-weight: bold;
-    font-style: italic;
+    font-family: 'Akrobat';
+    src: local('Akrobat Light'), local('akrobat-light'), 
+        url('../fonts/akrobat-light.woff') format('woff'),
+        url('../fonts/akrobat-light.otf') format('opentype'),
+        url('../fonts/akrobat-light.svg') format('svg');
+    font-weight: 300;
+    font-style: normal;
 }
 
-
-//FUENTE SEGUNDA
 @font-face {
-    font-family: 'Myriad Pro';
-    src: url('../fonts/myriadpro-regular.eot');
-    src: url('../fonts/myriadpro-regular.WOFF') format('woff'),
-        url('../fonts/myriadpro-regular.ttf') format('truetype'),
-        url('../fonts/myriadpro-regular.svg') format('svg');
-    /*src: url('../fonts/myriadpro-regular.ttf') format('truetype');*/
-    font-weight: normal;
+    font-family: 'Akrobat';
+    src: local('Akrobat Semi Bold'), local('akrobat-semi-bold'), 
+        url('../fonts/akrobat-semibold.woff') format('woff'),
+        url('../fonts/akrobat-semibold.otf') format('opentype'),
+        url('../fonts/akrobat-semibold.svg') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: local('Akrobat Bold'), local('akrobat-bold'), 
+        url('../fonts/akrobat-bold.woff') format('woff'),
+        url('../fonts/akrobat-bold.otf') format('opentype'),
+        url('../fonts/akrobat-bold.svg') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: local('Akrobat Extra Bold'), local('akrobat-extra-bold'), 
+        url('../fonts/akrobat-extrabold.woff') format('woff'),
+        url('../fonts/akrobat-extrabold.otf') format('opentype'),
+        url('../fonts/akrobat-extrabold.svg') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akrobat';
+    src: local('Akrobat Black'), local('akrobat-black'), 
+        url('../fonts/akrobat-black.woff') format('woff'),
+        url('../fonts/akrobat-black.otf') format('opentype'),
+        url('../fonts/akrobat-black.svg') format('svg');
+    font-weight: 900;
     font-style: normal;
 }

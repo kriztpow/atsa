@@ -7,7 +7,6 @@
 */
 ?>
 <!------- scripts ------>
-<span style="visibility:hidden;" class="sr-only">Desarrollo: <a href="http://lacueva.tv">LaCueva.tv</a></span>
     <script src="<?php echo MAINSURL; ?>/assets/js/jquery-3.2.1.min.js"></script>
     <script src="<?php echo MAINSURL; ?>/assets/js/script.js"></script>
 

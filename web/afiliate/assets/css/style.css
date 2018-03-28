@@ -1,0 +1,253 @@
+@charset "UTF-8";
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Reset
+2.0 Fuentes
+3.0 VARIABLES
+4.0 GENERAL
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+1.0 Reset
+--------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+  clear: both; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a, a:hover {
+  color: inherit;
+  text-decoration: none; }
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+/*para ocultar texto y que lo lean los lectores de no videntes*/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0; }
+
+/*para eliminar los float*/
+header, section, footer, aside {
+  clear: both; }
+
+/*imagen al 100% de ancho responsive*/
+.image-responsive {
+  width: 100%;
+  height: auto; }
+
+/*input al 100%*/
+input, select {
+  display: block;
+  width: 100%; }
+
+/*elimina el diseño por defecto en el iphone*/
+input[type=submit] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0; }
+
+button {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0; }
+
+/*--------------------------------------------------------------
+2.0 Fuentes
+--------------------------------------------------------------*/
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Regular"), local("akrobat-regular"), url("../fonts/akrobat-regular.woff") format("woff"), url("../fonts/akrobat-regular.otf") format("opentype"), url("../fonts/akrobat-regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Thin"), local("akrobat-thin"), url("../fonts/akrobat-thin.woff") format("woff"), url("../fonts/akrobat-thin.otf") format("opentype"), url("../fonts/akrobat-thin.svg") format("svg");
+  font-weight: 100;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Extra Light"), local("akrobat-extra-light"), url("../fonts/akrobat-extralight.woff") format("woff"), url("../fonts/akrobat-extralight.otf") format("opentype"), url("../fonts/akrobat-extralight.svg") format("svg");
+  font-weight: 200;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Light"), local("akrobat-light"), url("../fonts/akrobat-light.woff") format("woff"), url("../fonts/akrobat-light.otf") format("opentype"), url("../fonts/akrobat-light.svg") format("svg");
+  font-weight: 300;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Semi Bold"), local("akrobat-semi-bold"), url("../fonts/akrobat-semibold.woff") format("woff"), url("../fonts/akrobat-semibold.otf") format("opentype"), url("../fonts/akrobat-semibold.svg") format("svg");
+  font-weight: 600;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Bold"), local("akrobat-bold"), url("../fonts/akrobat-bold.woff") format("woff"), url("../fonts/akrobat-bold.otf") format("opentype"), url("../fonts/akrobat-bold.svg") format("svg");
+  font-weight: 700;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Extra Bold"), local("akrobat-extra-bold"), url("../fonts/akrobat-extrabold.woff") format("woff"), url("../fonts/akrobat-extrabold.otf") format("opentype"), url("../fonts/akrobat-extrabold.svg") format("svg");
+  font-weight: 800;
+  font-style: normal; }
+@font-face {
+  font-family: 'Akrobat';
+  src: local("Akrobat Black"), local("akrobat-black"), url("../fonts/akrobat-black.woff") format("woff"), url("../fonts/akrobat-black.otf") format("opentype"), url("../fonts/akrobat-black.svg") format("svg");
+  font-weight: 900;
+  font-style: normal; }
+/*--------------------------------------------------------------
+3.0 variables
+--------------------------------------------------------------*/
+/*FUENTES*/
+/*COLORES*/
+/*GRID OPTIONS*/
+/*
+@media (min-width: $md) {}
+-webkit-
+-moz-
+-ms-
+-o-
+
+display: flex;
+display: -o-flex;
+display: -ms-flex;
+display: -moz-flex;
+display: -webkit-flex;
+-webkit-align-items: center;
+-moz-align-items: center;
+-ms-align-items: center;
+-o-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+-o-justify-content: center;
+justify-content: center;
+
+
+&:hover {
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+*/
+/*--------------------------------------------------------------
+4.0 General
+--------------------------------------------------------------*/
+html, body {
+  font-family: "Akrobat", sans-serif;
+  color: #333;
+  background-color: #005e89;
+  font-size: 5vw;
+  line-height: 4vh;
+  height: 100%; }
+  @media (min-width: 576px) {
+    html, body {
+      font-size: 4vw;
+      line-height: 3.5vh; } }
+  @media (min-width: 767px) {
+    html, body {
+      font-size: 3.5vw;
+      line-height: 3.5vh; } }
+  @media (min-width: 992px) {
+    html, body {
+      font-size: 16px;
+      line-height: 20px; } }
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  clear: both;
+  height: 100%; }
+
+.inner-wrapper {
+  height: 100%;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.section-wrapper {
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  -o-flex-grow: 1;
+  flex-grow: 1;
+  width: 100%; }
+  @media (min-width: 992px) {
+    .section-wrapper {
+      width: 50%; } }
+
+.container {
+  padding: 0 20px; }
+  @media (min-width: 576px) {
+    .container {
+      padding: 0 25px; } }
+  @media (min-width: 992px) {
+    .container {
+      padding: 0 50px; } }
+  @media (min-width: 1200px) {
+    .container {
+      padding: 0 8%; } }
+  @media (min-width: 1500px) {
+    .container {
+      padding: 0 10%; } }
+
+/*# sourceMappingURL=style.css.map */
