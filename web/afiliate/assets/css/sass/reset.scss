@@ -79,11 +79,16 @@ header, section, footer, aside {
 input, select {
     display: block;
     width: 100%;
-}
-/*elimina el diseño por defecto en el iphone*/
-input[type=submit] {
     -webkit-appearance: none;
     -webkit-border-radius: 0;
+}
+
+input:focus {
+    outline: none;
+}
+
+label:focus {
+    outline: none;   
 }
 
 button {

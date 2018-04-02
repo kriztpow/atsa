@@ -7,20 +7,30 @@ if ( dispositivo () == 'pc' ) {
 
 ?>
 <div class="section-wrapper">
-	<div>
-		<h2>
-			Viví el sindicato más grande de Capital Federal
-		</h2>
+	<div class="container">
+		<div class="intro-sanidad-wrapper">
+			<h2>
+				Viví el sindicato más grande de Capital Federal
+			</h2>
 
-		<img src="<?php echo MAINSURL . '/assets/images/' . $imagen; ?>" alt="#vivíSanidad" class="image-responsive">
+			<img src="<?php echo MAINSURL . '/assets/images/' . $imagen; ?>" alt="#vivíSanidad">
 
-	</div>
 
-	<div>
+			<h5>#vivíSanidad</h5>
+		</div>
 
-		#vivíSanidad
 
-		Conocé todo lo que tenemos para vos acá
-		<a href="https://atsa.org.ar">atsa.org.ar</a>		
+		<div class="footer-bottom">
+
+			<h4>
+				Conocé todo lo que tenemos para vos acá
+			</h4>
+			<div class="btn-atsa-wrapper-intro">
+				<a href="https://atsa.org.ar" target="_blank" class="btn-contorno">
+					atsa.org.ar
+				</a>
+			</div>
+
+		</div>
 	</div>
 </div>

@@ -14,11 +14,10 @@ $pageActual = pageActual( cleanUri() );
 include 'header.php'; ?>
 
 <div class="wrapper">
-
+	<div class="wrapper-background"></div>
 	<div class="inner-wrapper">
 		
-		<?php 
-			
+		<?php 	
 			switch ($pageActual) {
 				case 'error':
 					getTemplate('error');
@@ -33,11 +32,10 @@ include 'header.php'; ?>
 					
 					getTemplate('intro-vivi-sanidad');
 
-					getTemplate('formulario');
+					getTemplate('wrapper-formularios');
 
 					break;
 			}
-
 		?>
 
 	</div>
