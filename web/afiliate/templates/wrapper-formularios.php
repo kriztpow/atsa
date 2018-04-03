@@ -7,7 +7,6 @@
 
 global $pageActual;
 
-
 ?>
 
 <div class="section-wrapper form-wrapper">
@@ -17,15 +16,7 @@ global $pageActual;
 
 		<div class="contenedor-formulario">
 
-			<?php 
-				if ($pageActual == 'formulario1') {
-					getTemplate( 'formulario1' ); 	
-				}
-				if ($pageActual == 'formulario2') {
-					getTemplate( 'formulario2' ); 	
-				}
-				 
-			?>
+			<?php getTemplate( 'formulario1' ); ?>
 
 		</div>
 		

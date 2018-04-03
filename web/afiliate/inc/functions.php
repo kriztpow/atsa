@@ -130,6 +130,161 @@ function closeDataBase( $connection ){
     }
 }
 
+/*
+ *	guarda nuevo usuario en base de datos
+ *
+*/
+function loadNewUser( $usuario, $dataFormulario ) {
+	$connection = connectDB();
+	$tabla = 'afiliados';
+	$fecha_actual = date("Y-m-d");
+
+	//apellido y nombre lo pasa a minúsculas
+	$apellido     = isset($_POST['lastname']) ? strtolower($_POST['lastname']) : '';
+	$nombre       = isset($_POST['name']) ? strtolower($_POST['name']) : '';
+	$cuit         = isset($_POST['cuit']) ? $_POST['cuit'] : '';
+	$cuil         = isset($_POST['cuil']) ? $_POST['cuil'] : '';
+	$dni          = isset($_POST['dni']) ? $_POST['dni'] : '';
+	$fechaIngreso = isset($_POST['date-start']) ? $_POST['date-start'] : '';
+
+	//SANITIZE:
+	$apellido     = filter_var(ucwords($apellido),FILTER_SANITIZE_STRING);
+	$apellido     = mysqli_real_escape_string($connection, $apellido);
+	$nombre       = filter_var(ucwords($nombre),FILTER_SANITIZE_STRING);
+	$nombre       = mysqli_real_escape_string($connection, $nombre);
+	$cuit         = filter_var($cuit,FILTER_SANITIZE_NUMBER_INT);
+	$cuit         = mysqli_real_escape_string($connection, $cuit);
+	$cuil         = filter_var($cuil,FILTER_SANITIZE_NUMBER_INT);
+	$cuil         = mysqli_real_escape_string($connection, $cuil);
+	$dni          = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
+	$dni          = mysqli_real_escape_string($connection, $dni);
+
+	//los datos de la empresa vienen de la otra base de datos externa
+	$empresa = array(
+		'razon-social'    => $usuario['razonSocial'],
+		'cuit-empresa'    => $usuario['cuit'],
+    	'sucursal'        => $usuario['sucursal'],
+    	'fecha-ingreso'   => $usuario['mesDDJJ']. '/' .$usuario['anioDDJJ'],
+    	'id-convenio'     => $usuario['idConvenio'],
+    	'id-rama'         => $usuario['idRama'],
+    	'nombre-convenio' => $usuario['nonmbreConvenio'],
+	);
+
+	$empresa = serialize($empresa);
+
+
+	//registrar afiliado nuevo	
+	$query = "INSERT INTO $tabla (member_cuil,member_cuit,member_dni, member_apellido, member_nombre, member_fecha_ingreso, member_empresa ) VALUES ('$cuil', '$cuit', '$dni', '$apellido', '$nombre', ";//continua el query debajo
+
+	if ( $fechaIngreso > $fecha_actual || $fechaIngreso == '' || $fechaIngreso == '0000-00-00' ) {
+		$query .= "NULL ";
+	} else {
+		$query .= "'".$fechaIngreso."'";
+	}
+
+	$query .= ", '$empresa')";
+
+	$nuevoMembert = mysqli_query($connection, $query); 
+	$memberID = mysqli_insert_id($connection);
+
+	closeDataBase( $connection );
+
+	//retorna el id del usuario para el nuevo formulario
+	return $memberID;		
+}
+
+/*
+ *	actualiza el usuario en base de datos local de acuerdo a su id
+ *
+*/
+function updateUser( $data ) {
+	$connection = connectDB();
+	$tabla = 'afiliados';
+
+	if ( !isset($_POST['id-member']) || $_POST['id-member'] == '') {
+		return 'error';
+	}
+	
+	$member_id     = $_POST['id-member'];
+	$member_email  = isset($_POST['member_email']) ? strtolower($_POST['member_email']) : '';
+	$member_tel    = isset($_POST['member_tel']) ? $_POST['member_tel'] : '';
+	$member_movil  = isset($_POST['member_cellphone']) ? $_POST['member_cellphone'] : '';
+	$member_street = isset($_POST['member_street']) ? strtolower($_POST['member_street']) : '';
+	$member_number = isset($_POST['member_number']) ? $_POST['member_number'] : '';
+	$member_city   = isset($_POST['member_city']) ? strtolower($_POST['member_city']) : '';
+	$job_street    = isset($_POST['job_street']) ? strtolower($_POST['job_street']) : '';
+	$job_number    = isset($_POST['job_number']) ? $_POST['job_number'] : '';
+	$job_city      = isset($_POST['job_city']) ? strtolower($_POST['job_city']) : '';
+
+	//SANITIZE:
+	$member_email  = filter_var($member_email,FILTER_SANITIZE_EMAIL);
+	$member_email  = mysqli_real_escape_string($connection, $member_email);
+	$member_tel    = filter_var($member_tel,FILTER_SANITIZE_NUMBER_INT);
+	$member_tel    = mysqli_real_escape_string($connection, $member_tel);
+	$member_movil  = filter_var($member_movil,FILTER_SANITIZE_NUMBER_INT);
+	$member_movil  = mysqli_real_escape_string($connection, $member_movil);
+	$member_street = filter_var(ucwords($member_street),FILTER_SANITIZE_STRING);
+	$member_street = mysqli_real_escape_string($connection, $member_street);
+	$member_number = filter_var($member_number,FILTER_SANITIZE_NUMBER_INT);
+	$member_number = mysqli_real_escape_string($connection, $member_number);
+	$member_city   = filter_var(ucwords($member_city),FILTER_SANITIZE_STRING);
+	$member_city   = mysqli_real_escape_string($connection, $member_city);
+	$job_street    = filter_var(ucwords($job_street),FILTER_SANITIZE_STRING);
+	$job_street    = mysqli_real_escape_string($connection, $job_street);
+	$job_number    = filter_var($job_number,FILTER_SANITIZE_NUMBER_INT);
+	$job_number    = mysqli_real_escape_string($connection, $job_number);
+	$job_city      = filter_var(ucwords($job_city),FILTER_SANITIZE_STRING);
+	$job_city      = mysqli_real_escape_string($connection, $job_city);
+
+	//ahora se arman las variables para cargar la base de datos
+	//1. la dirección del afiliado va con calle y número
+	$member_domicilio = $member_street . ' ' . $member_number;
+	
+	//2. los datos de la empresa, primero recupera los que ya están para sumarles los nuevos
+	$dataAfiliado  = getDataAfiliado($member_id);
+	//recuperamos los datos viejos
+	$empresa       = unserialize($dataAfiliado['member_empresa']);
+	//agregamos los datos nuevos
+	$empresa['empresa_domicilio'] = $job_street . ' ' . $job_number;
+	$empresa['empresa_localidad'] = $job_city;
+	//volvemos a serializar para guardar en bd
+	$empresa       = serialize($empresa);
+
+	$query = "UPDATE ".$tabla." SET member_email='".$member_email."',member_telefono='".$member_tel."', member_movil='".$member_movil."', member_domicilio='".$member_domicilio."', member_localidad='".$member_city."', member_empresa='".$empresa."' WHERE member_id='".$member_id."' LIMIT 1";
+
+
+	$update = mysqli_query($connection, $query); 
+	
+	closeDataBase( $connection );
+
+	if ($update) {
+		return 'ok';
+	} else {
+		return 'error';
+	}
+}
+
+
+/*
+ *	recupera datos del afiliado de acuerdo a su id
+ *
+*/
+function getDataAfiliado( $id ) {
+	$connection = connectDB();
+	$tabla = 'afiliados';
+	
+	$query  = "SELECT * FROM " .$tabla. " WHERE member_id='".$id."'";
+
+	$result = mysqli_query($connection, $query);
+	
+	closeDataBase( $connection );
+	if ( $result->num_rows == 0 ) {
+		return null;
+	} else {
+		$afiliado = mysqli_fetch_array($result);
+	}
+	return $afiliado;
+}
 
 
 
@@ -150,8 +305,7 @@ function closeDataBase( $connection ){
 function checkCuil ( $cuil ) {
 
 	if ( $cuil == '' ) {
-		echo 'error-2';//falta ingresar cuil
-		return;
+		return 'error-2';//falta ingresar cuil
 	} 
 
 	$client = new SoapClient('http://www.sanidadsistemas.com.ar/sanidadws2/ws.asmx?wsdl',
@@ -180,11 +334,11 @@ function checkCuil ( $cuil ) {
 			'idRama' => $result[0]->idRama,
 			'nonmbreConvenio' => $result[0]->nombreConvenio,
 		);
-		print_r($usuario);
+		return $usuario;
 	}
 	
 	else {
-		echo 'error-1'; //no existe cuil
+		return 'error-1'; //no existe cuil
 	}
 
 }

@@ -21,10 +21,36 @@ if( isAjax() ) {
 		case 'try-cuil':
 
 			$cuil = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
+			//mira a ver si el cuil está en base de datos local
 
-			checkCuil($_POST['cuil']);
 
-		break;
+			//chequea que el cuil esté en la base de datos externa
+			$usuario = checkCuil($_POST['cuil']);
+			//si el chequeo no da error continua
+			if ( $usuario == 'error-1' || $usuario == 'error-2' ) {
+				//devuelve error al script
+				echo $usuario;
+				return;
+			}
+			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
+			if ( ! empty($usuario) ) {
+				//recupera el id del nuevo usuario
+				$id = loadNewUser( $usuario, $_POST );
+
+				//carga el template con id del usuario nuevo
+				getTemplate( 'formulario2', $id );
+
+			}
+
+		break;//try-cuil - primer formulario
+
+		case 'save-member':
+
+			$update = updateUser( $_POST );
+
+			echo $update;
+
+		break;//save-member segundo formulario
 
 	}//switch
 

@@ -12,7 +12,7 @@ global $pageActual;
 	Hacé tu pre-afiliación on line
 </h1>
 
-<p>
+<p class="msj-inicio">
 	Los datos que te pedimos a continuación podés encontrarlos en tu recibo de sueldo. Completá el formulario y te llamamos para contarte cómo sumarte.
 </p>
 

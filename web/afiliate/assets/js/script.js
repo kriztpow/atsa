@@ -44,14 +44,18 @@ $(document).ready(function() {
         $(this).addClass('input-on');
     });
 
+
+
     /*
      * SUBMIT FORMULARIO 1
     */    
 
     $(document).on('submit', '#first-form', function( e ) {
-    //$('#first-form').submit(function( e ) {
-    	e.preventDefault();
+        e.preventDefault();
+
+        var contenedor = $('.contenedor-formulario');
         var loader = $('.loader');
+
     	formData = new FormData( this );
         formData.append('function','try-cuil');
     	$.ajax( {
@@ -67,9 +71,30 @@ $(document).ready(function() {
                 $(loader).fadeIn();
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
+                $(loader).fadeOut();
                 //error 1: no existe el cuil
                 //error 2: no ingresaron ningún cuil
+                //error 3: error servidor
+
+                if ( response == '' ) {
+                    console.log(response);
+                    $('.msj-inicio').text('OCURRIÓ UN ERROR EN EL SERVIDOR, INTENTE MÁS TARDE').css('color','red')
+                } else if ( response == 'error-2' ) {
+                    console.log('falta el cuil');
+                    //MUESTRA MENSAJE INGRESE CUIL
+                    $( $('input[name=cuil]').closest('.form-group') ).find( '.msj-error-input' ).text('INGRESE CUIL').fadeIn()
+                } else if( response == 'error-1' ) {
+                    console.log('No existe ese cuil');
+                    //el cuil no existe, te lleva a la página de error del usuario
+                    location.href = baseUrl + '/error';
+                } else {
+                    //carga el nuevo formulario
+                    $(contenedor).empty();
+                    $(contenedor).append(response);
+                }
+
+                
                 
             },
             error: function ( ) {
@@ -83,7 +108,7 @@ $(document).ready(function() {
      * SUBMIT FORMULARIO 2
     */    
 
-    $('#second-form').submit(function( e ) {
+    $(document).on('submit', '#second-form', function( e ) {
         e.preventDefault();
         var loader = $('.loader');
 
@@ -103,6 +128,12 @@ $(document).ready(function() {
             },
             success: function ( response ) {
                 console.log(response);
+                $(loader).fadeOut();
+                if (response == 'ok') {
+                    location.href = baseUrl + '/bienvenidos';
+                } else {
+                    location.href = baseUrl + '/error';
+                }
                 
             },
             error: function ( ) {
