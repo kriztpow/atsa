@@ -54,6 +54,10 @@ html, body {
     text-transform: uppercase;
 }
 
+.no-margin-top {
+    margin-top: 0!important;
+}
+
 
 .wrapper {
     position: relative;
@@ -112,13 +116,13 @@ html, body {
     flex-wrap: wrap;
     @media (min-width: $md) {
         width: 100%;
+        max-width: 992px;
         margin: 0 auto;
+        max-height: 600px;
     }
-    @media (min-width: $lg) {
-        max-width: 1190px;
-        max-height: 90%;
-    }
+    
     @media (min-width: $xlg) {
+        max-width: 1190px;
         max-height: 868px;
     }
 
@@ -132,7 +136,6 @@ html, body {
     -o-flex-grow: 1;
     flex-grow: 1;
     width: 100%;
-    border: 1px solid white;
     @media (min-width: $md) {
         width: 50%;
     }
@@ -146,7 +149,7 @@ html, body {
         padding: 25px;
     }
     @media (min-width: $md) {
-        padding: 30px;
+        padding: 20px;
     }
     
     @media (min-width: $xlg) {
@@ -165,6 +168,12 @@ html, body {
         margin: 10px auto 30px;
         padding-bottom: 10px;
         padding-top: 80px;
+        @media (min-width: $md) {
+            margin: 10px auto 20px;
+        }
+        @media (min-width: $xlg) {
+            margin: 10px auto 30px;
+        }
 
         &:before {
             content: '';
@@ -188,8 +197,8 @@ html, body {
             height: 2px;
             background: $color-blanco;
             @media (min-width: $md) {
-                left: 30%;
-                width: 40%;
+                left: 35%;
+                width: 30%;
             }
         }
 
@@ -204,6 +213,10 @@ html, body {
                 margin-bottom: 20px;
             }
             @media (min-width: $md) {
+                font-size: 250%;
+                line-height: 120%;
+            }
+            @media (min-width: $xlg) {
                 font-size: 400%;
                 line-height: 150%;
             }
@@ -219,6 +232,11 @@ html, body {
                 margin-bottom: 20px;
             }
             @media (min-width: $md) {
+                font-size: 210%;
+                line-height: 100%;
+                margin-top: -25px;
+            }
+            @media (min-width: $xlg) {
                 font-size: 320%;
                 line-height: 100%;
                 margin-top: -35px;
@@ -229,11 +247,13 @@ html, body {
             font-size: 150%;
             line-height: 100%;
             margin: 30px;
-            @media (min-width: $sm) {
-                
-            }
             @media (min-width: $md) {
-                margin: 20px;
+                margin: 10px 0;
+                font-size: 170%;
+                line-height: 100%;
+            }
+            @media (min-width: $xlg) {
+                margin: 20px 0;
                 font-size: 250%;
                 line-height: 100%;
             }
@@ -246,6 +266,12 @@ html, body {
             text-transform: uppercase;
 
             @media (min-width: $md) {
+                font-size: 120%;
+                line-height: 110%;
+                margin: 10px;
+            }
+            @media (min-width: $xlg) {
+                margin: 20px;
                 font-size: 170%;
                 line-height: 110%;
             }
@@ -281,6 +307,16 @@ html, body {
         font-size: 200%;
         line-height: 120%;
         margin-bottom: 20px;
+        @media (min-width: $md) {
+            font-size: 120%;
+            line-height: 120%;
+            margin-bottom: 10px;
+        }
+        @media (min-width: $xlg) {
+            font-size: 200%;
+            line-height: 120%;
+            margin-bottom: 20px;
+        }
     }
     
 }//.header-wrapper
@@ -293,7 +329,10 @@ html, body {
         margin-bottom: 100px;
     }
     @media (min-width: $md) {
-        margin-bottom: 0;
+        margin-bottom: 20px;
+    }
+    @media (min-width: $xlg) {
+        margin-bottom: 40px;
     }
     
 
@@ -332,10 +371,6 @@ html, body {
     background: url(../images/sprite.png) no-repeat;
     vertical-align: sub;
     background-position: -134px -4px;
-
-    @media (min-width: $sm) {
-        vertical-align: baseline;
-    }
 }
 
 .footer-wrapper {
@@ -345,9 +380,6 @@ html, body {
     }
     @media (min-width: $md) {
         margin-top: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
         width: 100%;
     }
 
@@ -363,7 +395,14 @@ html, body {
         @media (min-width: $md) {
             margin-bottom: 0px;
             text-align: left;
-            font-size: 370%;
+            font-size: 250%;
+            line-height:120%;
+            width: 50%;
+        }
+        @media (min-width: $xlg) {
+            margin-bottom: 0px;
+            text-align: left;
+            font-size: 350%;
             line-height:120%;
             width: 60%;
         }
@@ -396,6 +435,8 @@ html, body {
     -o-flex-wrap: wrap;
     flex-wrap: wrap;
 
+
+
     h5 {
         width: 60%;
         font-weight: 600;
@@ -419,6 +460,10 @@ html, body {
             font-size: 150%;
         }
         @media (min-width: $md) {
+            font-size: 170%;
+            line-height: 130%;
+        }
+        @media (min-width: $xlg) {
             font-size: 200%;
             line-height: 130%;
         }
@@ -429,6 +474,10 @@ html, body {
         width: 40%;
         text-align: center;
         @media (min-width: $md) {
+            font-size: 190%;
+            line-height: 120%;
+        }
+        @media (min-width: $xlg) {
             font-size: 220%;
             line-height: 120%;
         }
@@ -439,6 +488,10 @@ html, body {
         width: 40%;
         text-align: right;
         @media (min-width: $md) {
+            font-size: 170%;
+            line-height: 120%;
+        }
+        @media (min-width: $xlg) {
             font-size: 180%;
             line-height: 120%;
         }
@@ -460,7 +513,7 @@ html, body {
         margin-bottom: 20px;
         font-size: 250%;
         @media (min-width: $md) {
-            font-size: 300%;
+            font-size: 250%;
         }
         @media (min-width: $xlg) {
             font-size: 450%;
@@ -473,16 +526,20 @@ html, body {
         font-size: 250%;
         margin-top: 30px;
         @media (min-width: $md) {
+            font-size: 450%;
+            line-height: 120%;
+            margin-top: 0;
+        }
+        @media (min-width: $xlg) {
             font-size: 550%;
             line-height: 150%;
-            margin-top: 0;
         }
     }
 
     img {
         width: 100%;
         @media (min-width: $md) {
-            width: 90%;
+            width: 80%;
         }
         @media (min-width: $xlg) {
             width: 90%;
@@ -498,19 +555,51 @@ html, body {
 */
 
 
+
 .form-wrapper {
     position: relative;
     color: $color-gris-texto;
     background-color: $color-formulario-background;
     font-size: 150%;
     line-height: 120%;
+    text-align: center;
+
+    @media (min-width: $md) {
+        text-align: left;
+        font-size: 120%;
+        line-height: 110%;
+    }
 
     h1 {
         color: $color-negro;
-        font-size: 150%;
+        font-size: 170%;
         line-height: 120%;
         font-weight: 600;
         margin-bottom: 20px;
+        @media (min-width: $sm) {
+            font-size: 230%;
+        }
+        @media (min-width: $md) {
+            font-size: 160%;
+        }
+        @media (min-width: $xlg) {
+            font-size: 180%;
+        }
+    }
+
+    h3 {
+        font-size: 130%;
+        line-height: 110%;
+        margin: 30px 0 10px;
+        color: $color-negro;
+        font-weight: 600;
+        @media (min-width: $md) {
+            margin: 20px 0 10px;
+        }
+        @media (min-width: $xlg) {
+            font-size: 160%;
+            margin: 30px 0 10px;
+        }
     }
 
 }
@@ -518,30 +607,80 @@ html, body {
 
 .loader {
     display: none;
-    background: url(../images/loader.gif) no-repeat center;
+    background: rgba(0,0,0,0.2) url(../images/loader.gif) no-repeat center;
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
     background-size: 20%;
+    z-index: 111;
 }
 
-.inner-wrapper-form {
-    padding: 20px 0;
 
+.form-group-wrapper-cols {
+    @media (min-width: $sm) {
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -ms-justify-content: space-between;
+        -o-justify-content: space-between;
+        justify-content: space-between;
+    }
+}
+
+.form-col-60 {
+    @media (min-width: $sm) {
+        width:60%;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+}
+
+.form-col-50 {
+    @media (min-width: $sm) {
+        width:50%;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+}
+
+.form-col-40 {
+    @media (min-width: $sm) {
+        width:40%;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
 }
 
 .form-group {
     position: relative;
     height: 50px;
-    margin: 20px 0;
+    margin: 20px 0 15px;
     border-bottom: 2px solid #999;
     @media (min-width: $sm) {
         height: 70px;
     }
     @media (min-width: $md) {
+        height: 30px;
+        margin: 20px 0 10px;
+    }
+    @media (min-width: $xlg) {
         height: 40px;
+        margin: 20px 0 15px;
     }
 
     .icon-input {
@@ -552,6 +691,13 @@ html, body {
         top:0;
         background: url(../images/sprite.png) no-repeat;
         background-position: -82px -38px;
+        @media (min-width: $md) {
+            top: -10px;
+        }
+        @media (min-width: $xlg) {
+            top: 0;
+        }
+
     }
 
     .icon-input-sucess {
@@ -567,7 +713,14 @@ html, body {
         top: 0;
         left: 0;
         z-index:2;
+        cursor: pointer;
         @include transition(all 0.3s);
+        @media (min-width: $md) {
+            top: -2px;
+        }
+        @media (min-width: $xlg) {
+            top: 0;
+        }
     }
 
     label.long-label {
@@ -577,9 +730,15 @@ html, body {
         }
     }
 
+    label.label-col-right {
+        @media (min-width: $md) {
+            left: 5px;
+        }
+    }
+
     //cuando el input está en focus o tiene contentenido la etiqueta se achica
     label.on {
-        font-size: 65%;
+        font-size: 60%;
         top: -20px;
         z-index:0;
         @include transition(all 0.5s);
@@ -593,25 +752,39 @@ html, body {
         width: 90%;
         border: 0;
         background: transparent;
-        font-size: 120%;
+        font-size: 100%;
         color: $color-blanco;
-        padding: 0 5px;
+        //padding-bottom: 30px;
         @media (min-width: $sm) {
             height: 80px;
         }
         @media (min-width: $md) {
+            height: 20px;
+        }
+        @media (min-width: $xlg) {
             height: 40px;
         }
     }
+
 
     //input con contenido escrito
     .input-on {
         color: $color-blanco!important;
     }
 
+    input[type=number] {
+        -moz-appearance:textfield;
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+
+        }
+    }
+
     input[type=date] {
+        -moz-appearance:textfield;
         color: transparent;
-        &::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { 
           -webkit-appearance: none; 
           margin: 0; 
         }
@@ -633,7 +806,7 @@ html, body {
 
     .msj-error-input {
         position: absolute;
-        top: -10px;
+        top: -15px;
         right: 50px;
         font-size: 50%;
         color: red;
@@ -648,11 +821,22 @@ html, body {
         padding: 3px;
         background-color: rgba(255,255,255,0.5);
     }
+    .msj-error-input-col {
+        right: 45px;
+    }
 
 }//.form-group 
 
 .btn-submit-wrapper {
     text-align: right;
+    margin-top: 40px;
+    @media (min-width: $md) {
+        margin-top: 25px;
+    }
+    @media (min-width: $xlg) {
+        margin-top: 40px;
+    }
+
     .btn-submit {
         -webkit-appearance: none;
         border: none;
@@ -672,5 +856,24 @@ html, body {
             filter: alpha(opacity=60);
             opacity: 0.6;
         }
+    }
+}
+
+.inner-wrapper-form {
+    padding: 20px 0;
+
+    .form-group {
+        @media (min-width: $md) {
+            height: 30px;
+        }
+        @media (min-width: $xlg) {
+            height: 40px;
+        }
+    }
+}
+
+.inner-wrapper-form-no-padding {
+    @media (min-width: $xlg) {
+        padding-top: 20px;
     }
 }

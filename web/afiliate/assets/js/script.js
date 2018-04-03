@@ -5,18 +5,53 @@
  * @ver 1.0
  --------------------------------------------------------------
 >>> TABLE OF CONTENTS:
-1.0
+1.0 FORMULARIO
 --------------------------------------------------------------*/
 
 var baseUrl = 'http://' + window.location.host + '/afiliate';
 var ajaxFileUrl = baseUrl + '/inc/ajax.php';
 
+/*
+ * FORMULARIO
+*/
+
 $(document).ready(function() {
-    
+    /*
+     * FUNCIONES DE LOS LABEL
+    */
+    //función que hace zoom out a las etiquetas para escribir en los input:
+    function zoomOutLabel( input ) {
+        var contenedor = $(input).closest('.form-group')
+        var label = $(contenedor).find('label')
+        $(label).addClass('on');
+    }
+    //funcion al hacer click en label
+    function focusInput( label ) {
+        var contenedor = $(label).closest('.form-group')
+        var input = $(contenedor).find('input')
+        $(input).focus();
+    }
 
-    $('#first-form').submit(function( e ) {
+
+    //clic en label, focus en input
+    $(document).on('click', 'label', function(){
+        focusInput( this );
+    });
+
+    //on focus, etiqueta se achica
+    $(document).on('focus', 'input', function(){
+        zoomOutLabel( this );
+        $(this).addClass('input-on');
+    });
+
+    /*
+     * SUBMIT FORMULARIO 1
+    */    
+
+    $(document).on('submit', '#first-form', function( e ) {
+    //$('#first-form').submit(function( e ) {
     	e.preventDefault();
-
+        var loader = $('.loader');
     	formData = new FormData( this );
         formData.append('function','try-cuil');
     	$.ajax( {
@@ -28,7 +63,8 @@ $(document).ready(function() {
             cache: false,
             //funcion antes de enviar
             beforeSend: function() {
-                console.log('enviando')
+                console.log('enviando');
+                $(loader).fadeIn();
             },
             success: function ( response ) {
                 console.log(response);
@@ -41,8 +77,41 @@ $(document).ready(function() {
             },
     	});//cierre ajax
 
+    });//submit formulario 1
 
-    });
+    /*
+     * SUBMIT FORMULARIO 2
+    */    
+
+    $('#second-form').submit(function( e ) {
+        e.preventDefault();
+        var loader = $('.loader');
+
+        formData = new FormData( this );
+        formData.append('function','save-member');
+        $.ajax( {
+            type: 'POST',
+            url: ajaxFileUrl,
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando');
+                $(loader).fadeIn();
+            },
+            success: function ( response ) {
+                console.log(response);
+                
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax
+
+    });//submit formulario 2
+
 });//on ready
 
 /*
@@ -50,7 +119,6 @@ FUNCIONES CON LOAD
 */
 $( window ).on('load', function(){
     
-
     /*
      * busca el fondo y lo incerta luego de la carga a modo de fade
      */

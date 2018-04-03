@@ -8,6 +8,14 @@
 global $pageActual;
 ?>
 
+<h1>
+	Hacé tu pre-afiliación on line
+</h1>
+
+<p>
+	Los datos que te pedimos a continuación podés encontrarlos en tu recibo de sueldo. Completá el formulario y te llamamos para contarte cómo sumarte.
+</p>
+
 <form method="POST" name="first-form" id="first-form">
 
 	<div class="inner-wrapper-form">
@@ -31,7 +39,7 @@ global $pageActual;
 		</div>
 
 		<div class="form-group">
-			<input type="text" name="dni" required>
+			<input type="number" name="dni" required>
 			<label for="dni" class="">DNI*</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">
@@ -40,7 +48,7 @@ global $pageActual;
 		</div>
 
 		<div class="form-group">
-			<input type="text" name="cuil" required>
+			<input type="number" name="cuil" required>
 			<label for="cuil" class="">CUIL*</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">
@@ -50,7 +58,7 @@ global $pageActual;
 
 		<div class="form-group">
 			
-			<input type="text" name="cuit" required>
+			<input type="number" name="cuit" required>
 			<label for="cuit" class="">CUIT*</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">

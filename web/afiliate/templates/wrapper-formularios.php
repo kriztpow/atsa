@@ -17,15 +17,16 @@ global $pageActual;
 
 		<div class="contenedor-formulario">
 
-		<h1>
-			Hacé tu pre-afiliación on line
-		</h1>
+			<?php 
+				if ($pageActual == 'formulario1') {
+					getTemplate( 'formulario1' ); 	
+				}
+				if ($pageActual == 'formulario2') {
+					getTemplate( 'formulario2' ); 	
+				}
+				 
+			?>
 
-		<p>
-			Los datos que te pedimos a continuación podés encontrarlos en tu recibo de sueldo. Completá el formulario y te llamamos para contarte cómo sumarte.
-		</p>
-
-			<?php getTemplate( 'formulario1' ); ?>
 		</div>
 		
 	</div>
