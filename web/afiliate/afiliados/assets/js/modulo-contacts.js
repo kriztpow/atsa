@@ -134,8 +134,24 @@ $(document).ready(function(){
 
 	//cargar mas afiliados
 	$(document).on('click', '.load-more-btn', function() {
-		alert('armar funcion cargar mas');
+		alert('armar funcion');
 	});
+
+	//cambiar el orden
+	$(document).on('change', '.orden-suscriptores', function() {
+		alert('armar funcion');
+	});
+
+
+	//cambiar el numero a mostrar
+	$(document).on('change', '.select-mostrar', function() {
+		alert('armar funcion');
+	});
+		
+	//cambia el estado del afiliado
+	$(document).on('change', '.nocontactado', function() {
+		alert('armar funcion');
+	});	
 
 });
 

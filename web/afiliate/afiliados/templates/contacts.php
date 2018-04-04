@@ -37,11 +37,15 @@ $show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : '';
 				</button>
 				<div class="filtros-wrapper">
 				  <select class="orden-suscriptores">
-				  	<option value="">Menor a Mayor</option>
-				  	<option value="">Mayor a Menor</option>
+				  	<option value="desc" selected>Descendente</option>
+				  	<option value="asc">Ascendente</option>
 				  </select>
+				  <p class="notes-filtro-orden">
+				  	<small>Primero el último recibido</small>
+				  </p>
 				</div>
 			</div>
+
 			<table class="tabla-suscriptores">
 				<thead>
 					<tr>
@@ -116,9 +120,23 @@ $show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : '';
 					?>
 				</tbody>
 			</table>
-			<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>">
-				Cargar más
-			</button>
+			<div class="wrapper-loaders">
+				<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>" data-cant-post="">
+					Cargar más
+				</button>
+				<div class="select-cant-post">
+					<p>Mostrar: </p>
+					<select class="select-mostrar">
+						<option value="10" selected>10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+						<option value="250">250</option>
+						<option value="500">500</option>
+					</select> 
+					<p>afiliados por página.</p>
+				</div>
+			</div>
 		</div>
 
 		<form action="inc/export_excel.php" method="post" target="_blank" id="FormularioExportacion">
@@ -135,12 +153,14 @@ $show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : '';
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
     <a type="button" href="index.php?admin=edit-contacts" class="btn btn-danger">agregar uno nuevo</a>
     <?php if ( $show == '0' ) : ?>
-	    
 	    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
-	<?php endif; ?>
+	<?php endif; ?>	
 	<?php if ( $show == '2' ) : ?>
 	    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
-	    
+	<?php endif; ?>
+	<?php if ( $show == '' ) : ?>
+		<a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+		<a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
 	<?php endif; ?>
 </footer>
 
