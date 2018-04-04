@@ -6,8 +6,8 @@
       <section>
         <div class="modulo-wrapper">
           <h2>Nuevos afiliados</h2>
-          <p>Ultimos afiliados registrados.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=contacts" role="button">Ver lista</a></p>
+          <p>Usuarios no contactados.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=contacts&afiliado-status=0" role="button">Ver lista</a></p>
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->

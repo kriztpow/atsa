@@ -24,6 +24,7 @@ define ( 'DATEPUBLISHED', '2018');
 define ('LOGOSITE' , URLADMINISTRADOR . '/assets/images/logosite.png');
 define ( 'SITETITLE', 'ATSA - Panel de control' );
 define ( 'FAVICONICO', URLADMINISTRADOR . '/favicon.ico' );
+define ( 'CANTPOST', '10' );
 
 //variables tipo de usuario
 global $usertype;
@@ -32,8 +33,10 @@ $usertype = array(
 	array( 'status' => '0', 'nombre' => 'Administrador'),
 	array( 'status' => '1', 'nombre' => 'Editor'),
 );
-//variables de definicion de administrador
-global $categorias;//define las categorias para cargar noticias
-$categorias = array(
-	array( 'slug' => 'noticias', 'nombre' => 'Noticias'),
+//variables de tipos de estado de usuario
+global $afiliadoStatus;
+$afiliadoStatus = array(
+	array( 'status' => '0', 'definicion' => 'No contactado'),
+	array( 'status' => '1', 'definicion' => 'Contactado'),
+	array( 'status' => '2', 'definicion' => 'Anulado'),
 );

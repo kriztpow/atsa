@@ -3,7 +3,8 @@
 }
 
 .tabla-suscriptores {
-	
+	width: 100%;
+	clear: both;
 	td {
 		padding: 1%;
 		vertical-align: middle;
@@ -36,3 +37,77 @@
 	}
 }
 
+.filtros-wrapper {
+	float: right;
+
+	.orden-suscriptores{
+		display: inline-block;
+		color: #fff;
+		border: 1px solid #fff;
+		padding: 6px 15px;
+		text-align: center;
+		text-transform: uppercase;
+		margin: 20px auto 10px;
+		cursor: pointer;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-ms-border-radius: 5px;
+		border-radius: 5px;
+		background-color: $resaltado;
+	}
+}
+
+.buttons-wrapper {
+	select {
+	    display: inline-block;
+	    width: 100px;
+	    vertical-align: super;
+	    background-color: #ccc;
+	    color: #666;
+	    font-size: 80%;
+	    padding: 3px 2px;
+	    border: none;
+	}
+
+	select.anulado {
+		background-color: $danger;
+		color: #fff;	
+	}
+	select.nocontactado {
+		background-color: $resaltado;	
+		color: #fff;
+	}
+
+	.del-user {
+		img {
+			width: 20px;
+		}
+	}
+}
+
+.member_notas_wrapper {
+	position: relative;
+}
+
+.member_notas {
+	position: relative;
+	font-size: 70%;
+	font-style: italic;
+    height: 100px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.member_notas_full {
+	display: none;
+	position: absolute;
+	padding: 10px;
+	width: 250px;
+	height: 250px;
+	border: 1px solid #333;
+	top:30px;
+	left:50px;
+	background-color: #fff;
+	color: #333;
+	box-shadow: 1px 1px 2px #999;
+}

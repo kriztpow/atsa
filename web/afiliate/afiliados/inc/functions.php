@@ -54,34 +54,10 @@ function get_footer_scripts ($modulo) { ?>
 	<!------- scripts modulos ------>
 	<?php 
 	switch ( $modulo ) {
-		case 'noticias':
-		case 'editar-noticias': ?>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-noticias.js"></script>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
-			
-			<?php break;
-		
-		case 'biblioteca-medios': ?>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
-			<?php break;
-		
-		case 'sliders' :
-		case 'editar-slider' : ?>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-sliders.js"></script>
-			<?php break;
-
-		case 'promociones' : ?>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-promociones.js"></script>
-			<?php break;
-		
+				
 		default: ?>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-noticias.js"></script>
 			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
-			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-sliders.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-contacts.js"></script>
 			<?php break;
 	}
 	?>

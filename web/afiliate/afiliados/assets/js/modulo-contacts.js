@@ -6,6 +6,20 @@
 
 $(document).ready(function(){
 
+	/*
+	 * NUMERACION CELDAS
+	*/
+
+	
+	function numeracionCeldas( index, el ) {
+		var numeracion = index+1
+		$(el).text(numeracion);
+	}
+
+	$('.numeracion-rows').each(function( index, value ){
+		numeracionCeldas(index, this)
+	});
+
 	$( '#export_excel' ).click(function( event ) {
 		$("#datos_a_enviar").val( $("<div>").append( $('.tabla-suscriptores').eq(0).clone()).html());
 		$("#FormularioExportacion").submit();
@@ -89,32 +103,39 @@ $(document).ready(function(){
 	//borrar usuario
 	$(document).on('click','.del-user',function(){
 		var id = $(this).attr('data-id');
-		console.log(id);
+		
+		if ( confirm( '¿Está seguro de querer BORRAR este afiliado?' ) ) {
 
-		$.ajax( {
-	        type: 'POST',
-	        url: ajaxFunctionDir + '/delete-suscriptor.php',
-	        data: {
-	            id: id,
-	        },
-	        beforeSend: function() {
-	            console.log('borrando');
-	        },
-	        success: function ( response ) {
-                console.log(response);
-	            if (response == 'deleted') {
-					location.reload(true);
-	            }
-	            else {
-	            	$('.contacts-container').append(response)
-	            }
-	        },
-	        error: function ( ) {
-	            console.log('error');
-	        },
-	    });//cierre ajax
+			$.ajax( {
+		        type: 'POST',
+		        url: ajaxFunctionDir + '/delete-suscriptor.php',
+		        data: {
+		            id: id,
+		        },
+		        beforeSend: function() {
+		            console.log('borrando');
+		        },
+		        success: function ( response ) {
+	                console.log(response);
+		            if (response == 'deleted') {
+						location.reload(true);
+		            }
+		            else {
+		            	$('.contacts-container').append(response)
+		            }
+		        },
+		        error: function ( ) {
+		            console.log('error');
+		        },
+		    });//cierre ajax
+		}
 	});
 	
+
+	//cargar mas afiliados
+	$(document).on('click', '.load-more-btn', function() {
+		alert('armar funcion cargar mas');
+	});
 
 });
 

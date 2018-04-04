@@ -1,11 +1,14 @@
 <?php
 /*
- * Noticias recientes
- * Lista las noticias publicadas y con links para verlas, editarlas o publicarlas
- * Since 3.0
+ * Lista los afiliados
+ * Since 4.0
  * 
 */
 load_module( 'contactos' );
+
+//mira si tiene que buscar de alguna manera en especial
+$show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : '';
+
 ?>
 
 <!---------- noticias ---------------->
@@ -13,85 +16,109 @@ load_module( 'contactos' );
 	<div class="container">
 		
 		<?php 
-		$suscriptores = getContacts();
+		if ( $show != '' ) {
+			$afiliados = getAfiliados( $show );	
+		} else {
+			$afiliados = getAfiliados();	
+		}
+		
 		?>
 		<div class="contacts-container">
 			<div class="btn-group" role="group" aria-label="botones-emails">
 
-			  <button id="export_excel" type="button" class="btn btn-default">
-			  	Exportar a Excel
-			  </button>
-			  <button id="new-suscriptor" type="button" class="btn btn-primary">
-			  	Nuevo Suscriptor
-			  </button>
-			  
+			  	<button id="export_excel" type="button" class="btn btn-default">
+			  		Exportar a Excel
+			  	</button>
+				<button id="new-suscriptor" type="button" class="btn btn-primary">
+				  	Nuevo Afiliado
+				</button>
+				<button id="export_excel_full" type="button" class="btn btn-default">
+				  	Exportar a Excel Lista Completa
+				</button>
+				<div class="filtros-wrapper">
+				  <select class="orden-suscriptores">
+				  	<option value="">Menor a Mayor</option>
+				  	<option value="">Mayor a Menor</option>
+				  </select>
+				</div>
 			</div>
 			<table class="tabla-suscriptores">
 				<thead>
 					<tr>
 						<td width="5%">
-							Id:
-						</td>
-						<td width="30%">
-							email:
-						</td>
-						<td width="15%">
-							Nombre:
-						</td>
-						<td width="15%">
-							Apellido:
+							#
 						</td>
 						<td width="10%">
-							DNI:
+							cuil:
+						</td>
+						<td width="15%">
+							Apellido, Nombre:
 						</td>
 						<td width="10%">
-							Teléfono
+							Teléfono:
 						</td>
-						<td width="8%">
-							Fecha: <small>(registro)</small>
+						<td width="10%">
+							Celular:
 						</td>
-						<td width="5%">
+						<td width="15%">
+							Empresa:
+						</td>
+						<td width="10%">
+							Fecha: <small>(ingreso)</small>
+						</td>
+
+						<?php 
+						//template standard
+						if ( $show == '' ) : ?>
+
+							<td width="10%">
+								Profesión:
+							</td>
+							<td width="8%">
+								Fecha: <small>(afiliación)</small>
+							</td>
+							<td width="7%">
+								
+							</td>
+						<?php
+						//template para mostrar no contactados o anulados
+						else : ?>
 							
-						</td>
+							<td width="10%">
+								Notas:
+							</td>
+							<td width="15%">
+								
+							</td>
+							
+						<?php endif; ?>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="row-usuario">
 					<?php 
-					for ($i=0; $i < count($suscriptores); $i++) { 
-						?>
-					<tr>
-						<td>
-							<?php echo $suscriptores[$i]['susc_id']; ?>
-						</td>
-						<td>
-							<?php echo $suscriptores[$i]['susc_email']; ?>
-						</td>
-						<td>
-							<?php echo $suscriptores[$i]['susc_nombre']; ?>
-						</td>
-						<td>
-							<?php echo $suscriptores[$i]['susc_apellido']; ?>
-						</td>
-						<td>
-							<?php echo $suscriptores[$i]['susc_dni']; ?>
-						</td>
-						<td>
-							<?php echo $suscriptores[$i]['susc_telefono']; ?>
-						</td>
-						<td>
-							<?php echo date('d.m.y' ,strtotime($suscriptores[$i]['susc_fecha_email']) ); ?>
-						</td>
-						<td>
-							<button title="Borrar suscriptor" class="del-user" data-id="<?php echo $suscriptores[$i]['susc_id']; ?>">
-								<img src="<?php echo URLADMINISTRADOR; ?>/assets/images/delbtn.png" alt="Borrar usuario">
-							</button>
-						</td>
-					</tr>
-						<?php 
-					}
+					if ( $afiliados != null ) : 
+
+						for ($i=0; $i < count($afiliados); $i++) { ?>
+						<tr>
+
+							<?php 
+							if ( $show == '' ) {
+								getTemplate('fragmento-tabla-afiliado-std',$afiliados[$i]);
+							} else {
+								getTemplate('fragmento-tabla-afiliado-0',$afiliados[$i]);
+							}
+							?>
+
+						</tr>
+							<?php 
+						}//for
+					endif;
 					?>
 				</tbody>
 			</table>
+			<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>">
+				Cargar más
+			</button>
 		</div>
 
 		<form action="inc/export_excel.php" method="post" target="_blank" id="FormularioExportacion">
@@ -106,6 +133,15 @@ load_module( 'contactos' );
 </div>
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
+    <a type="button" href="index.php?admin=edit-contacts" class="btn btn-danger">agregar uno nuevo</a>
+    <?php if ( $show == '0' ) : ?>
+	    
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+	<?php endif; ?>
+	<?php if ( $show == '2' ) : ?>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+	    
+	<?php endif; ?>
 </footer>
 
 <!---------- fin noticias ---------------->

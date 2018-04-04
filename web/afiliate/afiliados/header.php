@@ -49,11 +49,18 @@ if(!defined("SECUREACCESS"))
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Afiliados<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li>
-                  <a href="index.php?admin=contacts" role="button">Agregar nuevo</a>
-                  </li>
+                
                 <li>
                   <a href="index.php?admin=contacts" role="button">Ver lista</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=edit-contacts" role="button">Agregar nuevo</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=contacts&afiliado-status=0" role="button">Ver no contactados</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=contacts&afiliado-status=2" role="button">Ver anulados</a>
                 </li>
               </ul>
             </li>
