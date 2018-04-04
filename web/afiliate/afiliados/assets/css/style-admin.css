@@ -990,32 +990,33 @@ ul.dropdown-menu {
   .filtros-wrapper p {
     text-align: center; }
 
-.wrapper-loaders .select-cant-post {
-  border-left: 1px solid #999;
-  display: inline-block;
-  padding-left: 10px;
-  margin-left: 10px;
-  color: #999;
-  vertical-align: middle; }
-  .wrapper-loaders .select-cant-post p {
-    display: block;
-    float: left; }
-  .wrapper-loaders .select-cant-post .select-mostrar {
-    float: left;
-    display: block;
-    color: #666;
-    border: none;
-    padding: 3px 10px;
-    text-align: center;
-    text-transform: uppercase;
-    margin: 0px 10px;
-    cursor: pointer;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    background-color: #eee;
-    width: auto; }
+.wrapper-loaders {
+  margin: 30px 0; }
+  .wrapper-loaders .select-cant-post {
+    display: inline-block;
+    padding-left: 10px;
+    margin-left: 10px;
+    color: #999;
+    vertical-align: middle; }
+    .wrapper-loaders .select-cant-post p {
+      display: block;
+      float: left; }
+    .wrapper-loaders .select-cant-post .select-mostrar {
+      float: left;
+      display: block;
+      color: #666;
+      border: none;
+      padding: 3px 10px;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0px 10px;
+      cursor: pointer;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #eee;
+      width: auto; }
 
 .buttons-wrapper select {
   display: inline-block;
@@ -1042,7 +1043,7 @@ ul.dropdown-menu {
   position: relative;
   font-size: 70%;
   font-style: italic;
-  height: 100px;
+  height: 50px;
   overflow: hidden;
   cursor: pointer; }
 
@@ -1058,5 +1059,14 @@ ul.dropdown-menu {
   background-color: #fff;
   color: #333;
   box-shadow: 1px 1px 2px #999; }
+  .member_notas_full:after {
+    content: 'Para editar las notas, debe editar el contacto';
+    position: absolute;
+    bottom: 0;
+    left: 6px;
+    width: 100%;
+    height: 20px;
+    font-size: 60%;
+    font-style: italic; }
 
 /*# sourceMappingURL=style-admin.css.map */

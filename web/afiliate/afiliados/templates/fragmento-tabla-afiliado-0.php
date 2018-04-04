@@ -42,13 +42,15 @@
 </td>
 <td class="member_notas_wrapper">
 	<div class="member_notas" data-member-id="<?php echo $data['member_id']; ?>"><?php echo $data['member_notas']; ?></div>
-	<div class="member_notas_full" data-member-id="<?php echo $data['member_id']; ?>"><?php echo $data['member_notas']; ?></div>
+	<?php if ( $data['member_notas'] != '' ) : ?>
+		<div class="member_notas_full" data-member-id="<?php echo $data['member_id']; ?>"><?php echo $data['member_notas']; ?></div>
+	<?php endif; ?>
 	
 </td>
 
 <td>
 	<div class="buttons-wrapper">
-		<select data-id="<?php echo $data['member_id']; ?>" class="<?php 
+		<select data-id="<?php echo $data['member_id']; ?>" class="change-status <?php 
 			if ( $data['member_status'] == '2' ) {
 				echo 'anulado';
 			} else {

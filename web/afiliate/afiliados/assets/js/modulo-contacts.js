@@ -34,71 +34,6 @@ $(document).ready(function(){
 		  ventimp.close();
 	});
 
-	//cargar nuevo suscriptor
-	$(document).on('click','#new-suscriptor',function(){
-		
-		$( "#formulario-suscriptor" ).dialog({
-			title: 'Nuevo Suscriptor',
-			autoOpen: false,
-			appendTo: '.contenido-modulo',
-			height: 600,
-			width:768,
-			modal: true,
-			buttons: [
-		    {
-		    	text: "Cerrar",
-		      	class: 'btn btn-default',
-		      	click: function() {
-		        $( this ).dialog( "close" );
-		      }
-		    },
-		    {
-		    	text: 'Guardar Suscriptor',
-		    	class: 'btn btn-primary',
-		    	click: function () {
-		    		var formulario = $('#formulario-registro-suscriptor');
-		    		var nombre = $(formulario).find('#fname').val();
-		      		var	apellido = $(formulario).find('#lname').val();
-		            var dni = $(formulario).find('#dni').val();
-		            var email = $(formulario).find('#email').val();
-		            var tel = $(formulario).find('#telephone').val();
-
-
-		    		$.ajax( {
-				        type: 'POST',
-				        url: ajaxFunctionDir + '/new-suscriptor-manual.php',
-				        data: {
-				            nombre: nombre,
-				            apellido: apellido,
-				            dni: dni,
-				            email: email,
-				            tel: tel,
-				        },
-				        beforeSend: function() {
-				            console.log('guardando');
-				        },
-				        success: function ( response ) {
-			                console.log(response);
-				            if (response == 'ok') {
-								location.reload(true);
-				            }
-				            else {
-				            	$('.form-response').append(response)
-				            }
-				        },
-				        error: function ( ) {
-				            console.log('error');
-				        },
-				    });//cierre ajax
-
-		    	}
-		    },
-		  ],
-		});
-		
-		$( "#formulario-suscriptor" ).dialog( 'open' ).load( templatesDir + '/formulario-suscriptor.php' );
-
-	});
 
 	//borrar usuario
 	$(document).on('click','.del-user',function(){
@@ -131,26 +66,135 @@ $(document).ready(function(){
 		}
 	});
 	
+	var currentPage = 1;
 
 	//cargar mas afiliados
 	$(document).on('click', '.load-more-btn', function() {
-		alert('armar funcion');
+		var status = $(this).attr('data-afiliado-status');
+		var cantPost = $(this).attr('data-cant-post');
+		var orden = $(this).attr('data-post-orden');
+		var contenedor = $('.row-usuario');
+
+		$.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/new-query.php',
+	        data: {
+	            status: status,
+	            cantPost: cantPost,
+	            orden: orden,
+	            page: currentPage+1,
+	        },
+	        success: function ( response ) {
+                //console.log(response);
+                if (response) {
+                	//insertamos la respuesta
+	                $(contenedor).append(response);
+	                //sumamos una página
+	                currentPage++;
+	                //armamos nueva numeracion
+	                $('.numeracion-rows').each(function( index, value ){
+						numeracionCeldas(index, this)
+					});	
+                } else {
+                	$('.contacts-container').append($('<div style="font-style:italic;font-size:80%;color:red;">No hay más afiliados que cargar</div>'));
+                }
+
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
 	});
 
-	//cambiar el orden
+	//cambiar el orden desde el front
 	$(document).on('change', '.orden-suscriptores', function() {
-		alert('armar funcion');
-	});
+		var orden = $(this).val();
+		var contenedor = $('.row-usuario');
+		var rows = $('.row-usuario tr');
 
+		if ( orden == 'asc' ) {
+
+			for (var i = rows.length - 1; i >= 0; i--) {
+				
+				$(contenedor).append( $(rows[i]) );
+
+			}
+		} else {
+			for (var i = 0; i <rows.length; i++) {
+				
+				$(contenedor).prepend( $(rows[i]) );
+
+			}
+		}
+	});
 
 	//cambiar el numero a mostrar
 	$(document).on('change', '.select-mostrar', function() {
-		alert('armar funcion');
+		var status = $(this).attr('data-afiliado-status');
+		var cantPost = $(this).val();
+		var orden = $(this).attr('data-post-orden');
+		var contenedor = $('.row-usuario');
+		
+		$.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/new-query.php',
+	        data: {
+	            status: status,
+	            cantPost: currentPage*cantPost,
+	            orden: orden,
+	        },
+	        success: function ( response ) {
+                //console.log(response);
+                $('.load-more-btn').attr('data-cant-post',cantPost)
+            	//borramos primero lo que hay 
+            	$(contenedor).empty();
+            	//insertamos la respuesta reordenada
+                $(contenedor).append(response);
+                //armamos nueva numeracion
+                $('.numeracion-rows').each(function( index, value ){
+					numeracionCeldas(index, this)
+				});	
+                
+
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
 	});
 		
-	//cambia el estado del afiliado
-	$(document).on('change', '.nocontactado', function() {
-		alert('armar funcion');
+	$(document).on('mouseenter', '.member_notas', function () {
+		
+		var contenedor = $(this).closest('.member_notas_wrapper');
+		var item = $(contenedor).find('.member_notas_full')
+		$(item).fadeIn()
+	});
+	$(document).on('mouseleave', '.member_notas', function() {
+		var contenedor = $(this).closest('.member_notas_wrapper');
+		var item = $(contenedor).find('.member_notas_full');
+		$(item).fadeOut()
+	});
+
+	//cambia el estado del afiliado en la base de datos
+	$(document).on('change', '.change-status', function() {
+		var id = $(this).attr('data-id');
+		var status = $(this).val();
+		
+		$.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/update-status-suscriptor.php',
+	        data: {
+	            id: id,
+	            status: status,
+	        },
+	        success: function ( response ) {
+                console.log(response);
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
+		
 	});	
 
 });
