@@ -71,14 +71,15 @@ $(document).ready(function() {
                 $(loader).fadeIn();
             },
             success: function ( response ) {
-                //console.log(response);
+                console.log(response);
                 $(loader).fadeOut();
                 //error 1: no existe el cuil
                 //error 2: no ingresaron ningún cuil
                 //error 3: error servidor
+                //error 4: ya existe el cuil
 
                 if ( response == '' ) {
-                    console.log(response);
+                    //console.log(response);
                     $('.msj-inicio').text('OCURRIÓ UN ERROR EN EL SERVIDOR, INTENTE MÁS TARDE').css('color','red')
                 } else if ( response == 'error-2' ) {
                     console.log('falta el cuil');
@@ -86,6 +87,10 @@ $(document).ready(function() {
                     $( $('input[name=cuil]').closest('.form-group') ).find( '.msj-error-input' ).text('INGRESE CUIL').fadeIn()
                 } else if( response == 'error-1' ) {
                     console.log('No existe ese cuil');
+                    //el cuil no existe, te lleva a la página de error del usuario
+                    location.href = baseUrl + '/error';
+                } else if ( response == 'error-4' ) {
+                    console.log('El cuil ingresado ya esta registrado');
                     //el cuil no existe, te lleva a la página de error del usuario
                     location.href = baseUrl + '/error';
                 } else {

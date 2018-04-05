@@ -22,7 +22,15 @@ if( isAjax() ) {
 
 			$cuil = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
 			//mira a ver si el cuil está en base de datos local
-
+			if ( $_POST['cuil'] == '' ) {
+				echo 'error-2';
+				return;
+			}
+			
+			if ( checkCuilHere($_POST['cuil']) ) {
+				echo 'error-4';
+				return;
+			};
 
 			//chequea que el cuil esté en la base de datos externa
 			$usuario = checkCuil($_POST['cuil']);

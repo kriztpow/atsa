@@ -286,7 +286,26 @@ function getDataAfiliado( $id ) {
 	return $afiliado;
 }
 
+//mira a ver si el cuil está en la base de datos local y devuelve true si está false sino.
+function checkCuilHere($cuil) {
+	if ( $cuil == '' ) {
+		return 'error-2';//falta ingresar cuil
+	}
 
+	$connection = connectDB();
+	$tabla = 'afiliados';
+
+	$query  = "SELECT * FROM " .$tabla. " WHERE member_cuil='".$cuil."'";
+
+	$result = mysqli_query($connection, $query);
+	
+	closeDataBase( $connection );
+	if ( $result->num_rows == 0 ) {
+		return false;
+	} else {
+		return true;
+	}
+}
 
 /*
  *
