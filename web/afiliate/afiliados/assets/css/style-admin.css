@@ -1069,4 +1069,12 @@ ul.dropdown-menu {
     font-size: 60%;
     font-style: italic; }
 
+/*
+ * FORMULARIO INDIVIDUAL
+*/
+.wrapper-impresion {
+  position: relative; }
+  .wrapper-impresion .data-imprimir {
+    display: none; }
+
 /*# sourceMappingURL=style-admin.css.map */

@@ -55,7 +55,7 @@ function getAfiliados ( $status = 'all', $orderBy = 'member_date_registro', $ord
 	return $contacts;
 }
 
-function getDataAfiliado( $cuil ) {
+function getDataAfiliadoAdmin( $cuil ) {
 	$connection = connectDB();
 	$tabla = 'afiliados';
 	

@@ -199,3 +199,16 @@ $(document).ready(function(){
 
 });
 
+
+/*
+ * FORMULARIO AFILIADO INDIVIDUAL
+*/
+
+$(document).ready(function(){
+	$(document).on('submit', '#afiliado_form', function( e ) {
+        e.preventDefault();
+        console.log('afiliado guardado');
+        
+   	});
+
+});
