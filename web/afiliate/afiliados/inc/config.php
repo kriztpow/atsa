@@ -39,4 +39,5 @@ $afiliadoStatus = array(
 	array( 'status' => '0', 'definicion' => 'No contactado'),
 	array( 'status' => '1', 'definicion' => 'Contactado'),
 	array( 'status' => '2', 'definicion' => 'Anulado'),
+	array( 'status' => '3', 'definicion' => 'Firmado'),
 );

@@ -1,6 +1,7 @@
 /*
     Estilo Jump!
 1. Reset
+1.b Fuentes
 2. Variables
 3. gral
 4. grilla
@@ -18,6 +19,8 @@ c) Sliders
 
 /* ---- 1 reset ---- */
 @import 'sass/reset';
+/* ---- 1.b Fuentes ---- */
+@import 'sass/fonts';
 /* ---- 2 variables ---- */
 @import 'sass/variables';
 

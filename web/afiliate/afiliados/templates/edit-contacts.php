@@ -44,6 +44,40 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 
 			<form method="POST" name="afiliado_form" id="afiliado_form" class="afiliado_form">
 
+				<input type="hidden" name="member_id" value="new">
+				<div class="wrapper-notes-status no-print">
+					
+					<div class="select-wrapper">
+						<h3>Estado Afiliado:</h3>
+						<select name="afiliado_status">
+							<?php 
+							global $afiliadoStatus;
+							//$status = $data['member_status'];
+							for ($i=0; $i < count($afiliadoStatus); $i++) { 
+								$option  = '<option value="';
+								$option .= $afiliadoStatus[$i]['status'];
+								$option .= '"';
+								/*if ( $afiliadoStatus[$i]['status'] == $data['member_status'] ) {
+									$option .= ' selected';	
+								}*/
+								$option .= '>';
+								$option .= $afiliadoStatus[$i]['definicion'];
+								$option .= '</option>';
+								
+								echo $option;
+							}
+							?>
+						</select>
+					</div>
+
+					<div class="note-wrapper">
+						<h3>Notas:</h3>
+						<textarea></textarea>
+					</div>
+
+				</div>
+				
+
 			<!-- DATA PRINCIPAL -->
 				<section class="form-section">
 					<h2 class="form-subtitle">
@@ -51,25 +85,26 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</h2>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_cuil">
 								CUIL
 							</label>
 							<input type="number" name="afiliado_cuil" class="input-afiliado-cuil" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_dni">
 								DNI
 							</label>
 							<input type="number" name="afiliado_dni" class="input-afiliado-dni" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_fecha_afiliacion">
 								F. Afiliación
 							</label>
 							<input type="date" name="afiliado_fecha_afiliacion" class="input-afiliado-fecha-afiliacion" value="">
 						</div>
-						<div class="form-group">
+						<span class="separator-vertical-right"></span>
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_fecha_ingreso_sindicato">
 								F. Ingreso Sind.
 							</label>
@@ -78,13 +113,13 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_apellido">
 								Apellido/s			
 							</label>
 							<input type="text" name="afiliado_apellido" class="input-afiliado-apellido" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_nombre">
 								Nombre/s
 							</label>
@@ -93,25 +128,25 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_nacionalidad">
 								Nacionalidad
 							</label>
 							<input type="text" name="afiliado_nacionalidad" class="input-afiliado-nacionalidad" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_estado_civil">
 								Estado Civil
 							</label>
 							<input type="text" name="afiliado_estado_civil" class="input-afiliado-estado-civil" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_sexo">
 								Sexo
 							</label>
 							<input type="text" name="afiliado_sexo" class="input-afiliado-sexo" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_fecha_nacimiento">
 								F. Nacimiento
 							</label>
@@ -120,19 +155,19 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_profesion">
 								Profesión
 							</label>
 							<input type="text" name="afiliado_profesion" class="input-afiliado-profesion" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_estudios">
 								Estudios
 							</label>
 							<input type="text" name="afiliado_estudios" class="input-afiliado-estudios" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_discapacidad">
 								Discapacidad
 							</label>
@@ -148,25 +183,25 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</h2>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_calle">
 								Calle
 							</label>
 							<input type="text" name="afiliado_calle" class="input-afiliado-calle" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_altura">
 								Altura
 							</label>
 							<input type="text" name="afiliado_altura" class="input-afiliado-altura" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_piso">
 								Piso
 							</label>
 							<input type="text" name="afiliado_piso" class="input-afiliado-piso" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_departamento">
 								Departamento
 							</label>
@@ -175,25 +210,25 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_localidad">
 								Localidad
 							</label>
 							<input type="text" name="afiliado_localidad" class="input-afiliado-localidad" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_codigo_postal">
 								CP
 							</label>
 							<input type="text" name="afiliado_codigo_postal" class="input-afiliado-codigo-postal" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_provincia">
 								Provincia
 							</label>
 							<input type="text" name="afiliado_provincia" class="input-afiliado-provincia" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_otros">
 								Otros
 							</label>
@@ -209,19 +244,19 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</h2>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_movil">
 								Tel. celular
 							</label>
 							<input type="number" name="afiliado_movil" class="input-afiliado-movil" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_telefono">
 								Tel. Fijo
 							</label>
 							<input type="number" name="afiliado_telefono" class="input-afiliado-telefono" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_email">
 								E-Mail
 							</label>
@@ -230,14 +265,18 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_redes_sociales_facebook">
 								Redes Sociales
 							</label>
+							<span class="sr-only">Facebook</span>
+							<span class="icon-redes-l icon-redes-l-facebook"></span>
 							<input type="checkbox" name="afiliado_redes_sociales_facebook" class="input-afiliado-redes-sociales-facebook">
+							<span class="sr-only">Twitter</span>
+							<span class="icon-redes-l icon-redes-l-twitter"></span>
 							<input type="checkbox" name="afiliado_redes_sociales_twitter" class="input-afiliado-redes-sociales-twitter">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_via_contacto">
 								Vía de contacto preferida
 							</label>
@@ -252,13 +291,13 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 						Empresa
 					</h2>
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_cuit">
 								Cuit
 							</label>
 							<input type="number" name="afiliado_cuit" class="input-afiliado-cuit" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_razon_social">
 								Razón Social
 							</label>
@@ -267,19 +306,19 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_establecimiento">
 								Establecimiento
 							</label>
 							<input type="text" name="afiliado_establecimiento" class="input-afiliado-establecimiento" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper">
 							<label for="afiliado_empresa_direccion">
 								Dirección
 							</label>
 							<input type="text" name="afiliado_empresa_direccion" class="input-afiliado-empresa-direccion" value="">
 						</div>
-						<div class="form-group">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_fecha_ingreso">
 								Fecha de Ingreso
 							</label>
@@ -293,7 +332,11 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 					<h2 class="form-subtitle">
 						Grupo familiar
 					</h2>
-
+					<div class="btns-wrappers no-print">
+						<button class="btn btn-danger btn-xs btn-add-family" type="button">
+							Agregar nuevo Familiar
+						</button>
+					</div>
 					<table class="table-grupo-familiar">
 						<thead>
 							<tr>
@@ -361,12 +404,13 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 							?>
 						</tbody>
 					</table>
+					
 				</section><!-- //GRUPO FAMILIAR -->
 			
 
-				<hr>
-				<div class="btns-wrappers">
-					<input class="btn btn-primary" type="button" value="Imprimir">
+				<hr class="no-print">
+				<div class="btns-wrappers no-print">
+					<input class="btn btn-primary btn-print" type="button" value="Imprimir">
 					<input class="btn btn-danger" type="submit" value="Guardar">
 				</div>
 			</form>

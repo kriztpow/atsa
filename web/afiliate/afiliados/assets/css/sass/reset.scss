@@ -91,6 +91,14 @@ input[type=submit] {
     -webkit-border-radius: 0;
 }
 
+input:focus {
+    outline: none;
+}
+
+label:focus {
+    outline: none;   
+}
+
 button {
     border: none;
     background-color: transparent;
