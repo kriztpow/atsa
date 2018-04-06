@@ -237,8 +237,15 @@ function updateUser( $data ) {
 	$job_city      = mysqli_real_escape_string($connection, $job_city);
 
 	//ahora se arman las variables para cargar la base de datos
-	//1. la dirección del afiliado va con calle y número
-	$member_domicilio = $member_street . ' ' . $member_number;
+	//1. la dirección del afiliado se serializa
+	$member_domicilio = array(
+		'calle' => $member_street,
+		'altura' => $member_number,
+		'piso' => '',
+		'departamento' => '',
+		'otros' => '',
+	);
+	$member_domicilio = serialize($member_domicilio);
 	
 	//2. los datos de la empresa, primero recupera los que ya están para sumarles los nuevos
 	$dataAfiliado  = getDataAfiliado($member_id);
