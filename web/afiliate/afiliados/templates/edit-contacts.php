@@ -24,9 +24,13 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 <div class="contenido-modulo">
 	<div class="container">
 		<div class="wrapper-impresion">
-			<header class="header-imprimir data-imprimir">
-				<hgroup>
-					<div>
+			<header class="header-imprimir no-screen">
+				
+					<h2 class="brand-name">
+	                    <img src="<?php echo URLADMINISTRADOR; ?>/assets/images/logo-print.png" alt="logo ATSA">
+	                </h2>
+
+	                <div class="titulo">
 	                	<h1>
 	                		Formulario de Pre - Afiliación
 	                	</h1>
@@ -34,12 +38,7 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 	                		Personería Gremial Nº 274 Adherida a F.A.T.S.A. - CGT
 	                	</h3>
 	                </div>
-					<div class="brand-name">
-	                    <img src="<?php echo MAINURL; ?>/assets/images/logo.png" alt="logo ATSA">
-	                    <h2>Asociación de trabajadores<span> de la Sanidad Argentina</span></h2>
-	                    <h4>Buenos Aires</h4>
-	                </div>
-	            </hgroup>
+	            
 			</header>
 
 			<form method="POST" name="afiliado_form" id="afiliado_form" class="afiliado_form">
@@ -136,7 +135,7 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 						</div>
 						<div class="input-label-wrapper">
 							<label for="afiliado_estado_civil">
-								Estado Civil
+								Estado&nbsp;Civil
 							</label>
 							<input type="text" name="afiliado_estado_civil" class="input-afiliado-estado-civil" value="">
 						</div>
@@ -148,7 +147,7 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 						</div>
 						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_fecha_nacimiento">
-								F. Nacimiento
+								F.&nbsp;Nacimiento
 							</label>
 							<input type="date" name="afiliado_fecha_nacimiento" class="input-afiliado-fecha-nacimiento" value="">
 						</div>
@@ -410,13 +409,13 @@ if ( $afiliado['member_grupo_familiar'] != null ) {
 
 				<hr class="no-print">
 				<div class="btns-wrappers no-print">
-					<input class="btn btn-primary btn-print" type="button" value="Imprimir">
+					<input class="btn btn-primary btn-print print_page" type="button" value="Imprimir">
 					<input class="btn btn-danger" type="submit" value="Guardar">
 				</div>
 			</form>
 
 
-			<footer class="footer-imprimir data-imprimir">
+			<footer class="footer-imprimir no-screen">
 				<p>
 					Por la presente ratifico mi expresa voluntad de afiliarme a la ASOCIACIÓN DE TRABAJADORES DE LA SANIDAD ARGENTINA (A.T.S.A Buenos Aires) y que arbitre los medios necesarios para que mi empleador retengo un 2% sobre mis haberes en concepto de cuota sindical.
 				</p>

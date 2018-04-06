@@ -170,19 +170,19 @@
 	font-family: $fuente-secundaria;
 	position: relative;
 
-	.data-imprimir {
+	.no-screen {
 		display: none;
 	}
 
-	.header-imprimir {
-
-	}
-
-	.footer-imprimir {
-
+	.no-print {
+		//display:none;
 	}
 
 	
+
+	.footer-imprimir {
+		//display: none;
+	}
 
 	.afiliado_form {
 		padding-top: 30px;
@@ -345,6 +345,7 @@
 			thead {
 				td {
 					height: 40px;
+					text-align: center;
 				}
 			}
 			tbody {
@@ -441,15 +442,50 @@
 	background-position: -35px 0px;
 }
 
+.icon-facebook-footer {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin: 0 5px 0 20px;
+	background: url(../images/sprite.png) no-repeat;
+	background-position: -5px -28px;
+}
+.icon-twitter-footer {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin: 0 5px 0 20px;
+	background: url(../images/sprite.png) no-repeat;
+	background-position: -38px -28px;
+}
 
+
+/*
+ * ESTILOS DE IMPRESION
+*/
 @media print {
+
+	.no-print {
+		display: none;
+	}
+	.no-screen {
+		display: block!important;
+	}
+
+	header, footer, nav, aside {
+		display: none;
+	}
+
+	.data-imprimir {
+		display: block!important;
+	}
 
 	@page {
 	  size: A4 portrait;
-	  margin-top: 1cm; 
-	  margin-bottom: 1cm; 
-	  margin-left: 2cm; 
-	  margin-right: 2cm; 
+	  margin-top: 0cm; 
+	  margin-bottom: 0cm; 
+	  margin-left: 1.5cm; 
+	  margin-right: 1.5cm; 
 	  orphans: 1;
 	  widows: 1;
 	  page-break-inside: avoid;
@@ -457,22 +493,118 @@
 	  page-break-after: avoid;
 	}
 
-	.no-print {
-		display: none;
-	}
+	
 
 	.wrapper-impresion {
 		-webkit-print-color-adjust: exact;
 	}
 
-  
-  	header, footer, nav, aside {
-		display: none;
+	.header-imprimir {
+		display: block;
+		margin: 0;
+
+		.titulo {
+			position: absolute;
+			right: 0;
+			top: 0;
+			text-align:right;
+			font-size: 10pt;
+			h1 {
+				font-size: 12pt;
+				font-weight: 700;
+			}
+
+			h3 {
+				font-size: 9pt;
+				font-weight: 700;
+			}
+		}
+
+		.brand-name {
+			position: absolute;
+			left: 0;
+			top: 0;
+			margin: 0;
+		    width: 35%;
+		    text-transform: uppercase;
+		    text-align: center;
+		    color: #F2F2F2;
+		    font-weight: 700;
+		    line-height: 12pt;
+		    font-size: 10pt;
+		    color: #00acec;
+
+		    img {
+	    	    width: 5cm;
+			    display: block;
+			    margin-right: 5px;
+		    }
+		}
+		
+	}//.header-imprimir
+
+	.form-section {
+		margin-top: 1cm!important;
 	}
 
-	.data-imprimir {
-		display: block!important;
+	.row-form {		
+		display: flex;
+		display: -o-flex;
+		display: -ms-flex;
+		display: -moz-flex;
+		display: -webkit-flex;
+		-webkit-justify-content: space-between;
+		-moz-justify-content: space-between;
+		-ms-justify-content: space-between;
+		-o-justify-content: space-between;
+		justify-content: space-between;			
+
+		
 	}
+
+	.table-grupo-familiar {
+		margin-bottom:0px!important;
+	}
+
+	.footer-imprimir {
+		display: block;
+		border-top: none;
+	    margin-top: 0;
+	    color: #333;
+	    padding: 0;
+	    font-weight: 700;
+	    font-size: 9pt;
+
+	    p {
+	    	
+	    	font-size: 10pt;
+	    }
+
+	    ul {
+	    	display: flex;
+			display: -o-flex;
+			display: -ms-flex;
+			display: -moz-flex;
+			display: -webkit-flex;
+			-webkit-justify-content: space-between;
+			-moz-justify-content: space-between;
+			-ms-justify-content: space-between;
+			-o-justify-content: space-between;
+			justify-content: space-between;
+			margin-top: 3.5cm;
+
+			li {
+				border-top: 1px solid #333;
+				width: 250px;
+				text-align: center;
+			}
+	    }
+
+	    .legales-footer-imprimir {
+	    	margin-top: 1cm;
+	    	text-align: center;
+	    }
+	}//.footer-imprimir
 
 
 }//media print

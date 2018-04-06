@@ -24,15 +24,7 @@ $(document).ready(function(){
 		$("#datos_a_enviar").val( $("<div>").append( $('.tabla-suscriptores').eq(0).clone()).html());
 		$("#FormularioExportacion").submit();
 	});//click boton
-	//imprime tabla
-	$( '#print_tabla' ).click(function( event ) {
-		var tablaAImprimir = $('.tabla-contactos');
-		var ventimp = window.open(' ', 'popimpr');
-		  ventimp.document.write( tablaAImprimir[0].innerHTML );
-		  ventimp.document.close();
-		  ventimp.print( );
-		  ventimp.close();
-	});
+
 
 
 	//borrar usuario
@@ -210,5 +202,30 @@ $(document).ready(function(){
         console.log('afiliado guardado');
         
    	});
+
+   	$( '.print_page' ).click(function( event ) {
+   		//primero hay que limpiar los input type date si están vacios
+   		$('input[type=date]').each(function(){
+   			if( $(this).val() == '' ) {
+   				this.type = 'text';
+   				$(this).css('border','1px solid #333');	
+   			}
+   			
+   		});
+
+   		//luego hay que completar lo de familiar si no existe para que se pueda escribir a mano
+
+        //finalmente estamos listos para imprimir:
+		window.print();
+
+		/*event.preventDefault();
+		console.log('imprime')
+		var tablaAImprimir = $('.wrapper-impresion');
+		var ventimp = window.open(' ', 'popimpr');
+		ventimp.document.write( tablaAImprimir[0].innerHTML );
+		ventimp.document.close();
+		ventimp.print( );
+		ventimp.close();*/
+	});
 
 });
