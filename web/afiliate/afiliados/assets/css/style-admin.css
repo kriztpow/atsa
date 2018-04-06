@@ -1270,6 +1270,9 @@ ul.dropdown-menu {
               height: 20px;
               background: #fff;
               border: 1px solid #9e9e9e; } }
+          @media (min-width: 1200px) {
+            .wrapper-impresion .afiliado_form .table-grupo-familiar tbody td input[type=checkbox]:after {
+              left: 13px; } }
           .wrapper-impresion .afiliado_form .table-grupo-familiar tbody td input[type=checkbox]:checked:after {
             background: #333; }
 
@@ -1439,6 +1442,9 @@ ul.dropdown-menu {
         text-align: center; }
     .footer-imprimir .legales-footer-imprimir {
       margin-top: 1cm;
-      text-align: center; } }
+      text-align: center;
+      position: fixed;
+      bottom: 1cm;
+      width: 100%; } }
 
 /*# sourceMappingURL=style-admin.css.map */
