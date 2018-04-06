@@ -1254,7 +1254,8 @@ ul.dropdown-menu {
           margin: 0 auto;
           width: 90%;
           border: none;
-          border-bottom: 1px solid #333; }
+          border-bottom: 1px solid #333;
+          font-family: "Akrobat", sans-serif; }
         .wrapper-impresion .afiliado_form .table-grupo-familiar tbody td input[type=checkbox] {
           position: relative;
           cursor: pointer; }

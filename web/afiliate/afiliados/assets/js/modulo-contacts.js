@@ -195,14 +195,32 @@ $(document).ready(function(){
 /*
  * FORMULARIO AFILIADO INDIVIDUAL
 */
+var contenedorFamiliares = $('.inputs-grupo-familiar tr');
+var familiares = contenedorFamiliares.length;
 
 $(document).ready(function(){
-	$(document).on('submit', '#afiliado_form', function( e ) {
-        e.preventDefault();
-        console.log('afiliado guardado');
-        
-   	});
-
+	//agregar nuevo familiar
+	$(document).on('click', '.btn-add-family', function(){
+		//carga el template por ajax, para que sea siempre el mismo
+		$.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/ajax-nuevo-familiar.php',
+	        data: {
+	            numero: familiares+1,
+	        },
+	        success: function ( response ) {
+                //console.log(response);
+                $('.inputs-grupo-familiar').append(response);
+                familiares++;
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
+	});
+	
+	
+	//imprimir formulario
    	$( '.print_page' ).click(function( event ) {
    		//primero hay que limpiar los input type date si están vacios
    		$('input[type=date]').each(function(){
@@ -226,6 +244,13 @@ $(document).ready(function(){
 		ventimp.document.close();
 		ventimp.print( );
 		ventimp.close();*/
-	});
+	});//imprimir formulario
 
-});
+   	//guardar afiliado
+   	$(document).on('submit', '#afiliado_form', function( e ) {
+        e.preventDefault();
+        console.log('afiliado guardado');
+        
+   	});//guardar afiliado
+
+});//on ready
