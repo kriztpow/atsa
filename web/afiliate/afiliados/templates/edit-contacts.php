@@ -413,6 +413,8 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 						<?php
 							if ( $grupoFamiliar != null ) {
 								getTemplate( 'template-nuevo-familiar', $grupoFamiliar );
+							} else {
+								getTemplate( 'template-nuevo-familiar', $data = array('array-vacia') );
 							}
 						?>
 						</tbody>

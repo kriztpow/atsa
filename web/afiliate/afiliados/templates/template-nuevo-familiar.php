@@ -13,7 +13,7 @@ if ( isset($_POST['numero'] ) ) {
 for ($i=0; $i < count($data); $i++) { ?>
 	<tr>
 		<td>
-			<?php echo $number; ?>
+			<span class="td-number"><?php echo $number; ?></span>
 		</td>
 		<td>
 			<input type="text" name="afiliado_pariente_parentesco" class="input-afiliado-pariente-parentesco" value="<?php if ( isset( $data[$i]['afiliado_pariente_parentesco'] ) ) { echo $data[$i]['afiliado_pariente_parentesco']; } ?>">

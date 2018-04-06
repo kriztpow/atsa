@@ -4,17 +4,16 @@
 * 
 */
 
+function numeracionCeldas( index, el ) {
+		var numeracion = index+1
+		$(el).text(numeracion);
+	}
+
 $(document).ready(function(){
 
 	/*
 	 * NUMERACION CELDAS
 	*/
-
-	
-	function numeracionCeldas( index, el ) {
-		var numeracion = index+1
-		$(el).text(numeracion);
-	}
 
 	$('.numeracion-rows').each(function( index, value ){
 		numeracionCeldas(index, this)
@@ -198,30 +197,35 @@ $(document).ready(function(){
 var contenedorFamiliares = $('.inputs-grupo-familiar tr');
 var familiares = contenedorFamiliares.length;
 
+function addFamiliar() {
+	$.ajax( {
+        type: 'POST',
+        url: ajaxFunctionDir + '/ajax-nuevo-familiar.php',
+        data: {
+            numero: familiares+1,
+        },
+        success: function ( response ) {
+            //console.log(response);
+            $('.inputs-grupo-familiar').append(response);
+            familiares++;
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+
+}
+
 $(document).ready(function(){
 	//agregar nuevo familiar
 	$(document).on('click', '.btn-add-family', function(){
-		//carga el template por ajax, para que sea siempre el mismo
-		$.ajax( {
-	        type: 'POST',
-	        url: ajaxFunctionDir + '/ajax-nuevo-familiar.php',
-	        data: {
-	            numero: familiares+1,
-	        },
-	        success: function ( response ) {
-                //console.log(response);
-                $('.inputs-grupo-familiar').append(response);
-                familiares++;
-	        },
-	        error: function ( ) {
-	            console.log('error');
-	        },
-	    });//cierre ajax
+		addFamiliar();
 	});
 	
 	
 	//imprimir formulario
    	$( '.print_page' ).click(function( event ) {
+   		
    		//primero hay que limpiar los input type date si están vacios
    		$('input[type=date]').each(function(){
    			if( $(this).val() == '' ) {
@@ -232,18 +236,12 @@ $(document).ready(function(){
    		});
 
    		//luego hay que completar lo de familiar si no existe para que se pueda escribir a mano
-
+   		
+   		
+   		
         //finalmente estamos listos para imprimir:
 		window.print();
 
-		/*event.preventDefault();
-		console.log('imprime')
-		var tablaAImprimir = $('.wrapper-impresion');
-		var ventimp = window.open(' ', 'popimpr');
-		ventimp.document.write( tablaAImprimir[0].innerHTML );
-		ventimp.document.close();
-		ventimp.print( );
-		ventimp.close();*/
 	});//imprimir formulario
 
    	//guardar afiliado
