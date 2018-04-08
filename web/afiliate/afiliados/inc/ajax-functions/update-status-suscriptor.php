@@ -1,8 +1,7 @@
 <?php
 /*
- * delete post
+ * update estatus afiliado
  * Since 3.0
- * borra el post seleccionado de acuerdo a su url
 */
 require_once('../functions.php');
 if ( isAjax() ) {

@@ -1192,7 +1192,8 @@ ul.dropdown-menu {
         border-bottom: 1px solid #333;
         background-color: transparent;
         padding: 2px 5px;
-        margin-right: 15px; }
+        margin-right: 15px;
+        font-weight: 600; }
       .wrapper-impresion .afiliado_form .input-label-wrapper input[type=number] {
         -moz-appearance: textfield; }
         .wrapper-impresion .afiliado_form .input-label-wrapper input[type=number]::-webkit-inner-spin-button, .wrapper-impresion .afiliado_form .input-label-wrapper input[type=number]::-webkit-outer-spin-button {
@@ -1337,6 +1338,17 @@ ul.dropdown-menu {
  * ESTILOS DE IMPRESION
 */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1.5cm;
+    margin-right: 1.5cm;
+    orphans: 10;
+    widows: 10;
+    page-break-inside: auto;
+    page-break-before: auto;
+    page-break-after: auto; }
   .no-print {
     display: none; }
 
@@ -1349,19 +1361,10 @@ ul.dropdown-menu {
   .data-imprimir {
     display: block !important; }
 
-  @page {
-    size: A4 portrait;
-    margin-top: 0cm;
-    margin-bottom: 0cm;
-    margin-left: 1.5cm;
-    margin-right: 1.5cm;
-    orphans: 1;
-    widows: 1;
-    page-break-inside: avoid;
-    page-break-before: avoid;
-    page-break-after: avoid; }
   .wrapper-impresion {
-    -webkit-print-color-adjust: exact; }
+    -webkit-print-color-adjust: exact;
+    position: relative;
+    height: 100%; }
 
   .header-imprimir {
     display: block;
@@ -1435,7 +1438,8 @@ ul.dropdown-menu {
       -ms-justify-content: space-between;
       -o-justify-content: space-between;
       justify-content: space-between;
-      margin-top: 3.5cm; }
+      margin-top: 3cm;
+      margin-bottom: 1cm; }
       .footer-imprimir ul li {
         border-top: 1px solid #333;
         width: 250px;
@@ -1443,8 +1447,8 @@ ul.dropdown-menu {
     .footer-imprimir .legales-footer-imprimir {
       margin-top: 1cm;
       text-align: center;
-      position: fixed;
-      bottom: 1cm;
+      /*position: fixed;
+      bottom: 0cm;*/
       width: 100%; } }
 
 /*# sourceMappingURL=style-admin.css.map */
