@@ -229,6 +229,12 @@ $(document).ready(function(){
 		addFamiliar();
 	});
 	
+
+	//borrar familiar
+	$(document).on('click', '.del-pariente', function(){
+		$(this).closest('tr').remove();
+	});
+	
 	
 	//imprimir formulario
    	$( '.print_page' ).click(function( event ) {
@@ -241,10 +247,6 @@ $(document).ready(function(){
    			}
    			
    		});
-
-   		//luego hay que completar lo de familiar si no existe para que se pueda escribir a mano
-   		
-   		
    		
         //finalmente estamos listos para imprimir:
 		window.print();

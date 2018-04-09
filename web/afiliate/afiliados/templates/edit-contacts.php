@@ -407,6 +407,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 								<td>
 									Discap.
 								</td>
+								<td></td>
 							</tr>
 						</thead>
 						<tbody class="inputs-grupo-familiar">

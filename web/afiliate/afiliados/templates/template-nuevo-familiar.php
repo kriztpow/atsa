@@ -36,6 +36,11 @@ for ($i=0; $i < count($data); $i++) { ?>
 		<td>
 			<input type="checkbox" name="afiliado_pariente_discapacidad" class="input-afiliado-pariente-discapacidad"<?php if ( isset( $data[$i]['afiliado_pariente_discapacidad'] ) && $data[$i]['afiliado_pariente_discapacidad'] == '1' ) { echo ' checked'; } ?>>
 		</td>
+		<td>
+			<button title="Borrar Pariente" class="del-pariente no-print">
+				<img src="<?php echo URLADMINISTRADOR; ?>/assets/images/delbtn.png" alt="Borrar Pariente">
+			</button>
+		</td>
 	</tr>	
 <?php 
 //suma el número

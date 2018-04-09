@@ -1276,6 +1276,12 @@ ul.dropdown-menu {
               left: 13px; } }
           .wrapper-impresion .afiliado_form .table-grupo-familiar tbody td input[type=checkbox]:checked:after {
             background: #333; }
+      .wrapper-impresion .afiliado_form .table-grupo-familiar .del-pariente {
+        width: 30px;
+        height: 30px;
+        cursor: pointer; }
+        .wrapper-impresion .afiliado_form .table-grupo-familiar .del-pariente img {
+          width: 100%; }
       .wrapper-impresion .afiliado_form .table-grupo-familiar .empty-row {
         text-align: center;
         font-style: italic;
