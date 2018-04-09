@@ -196,8 +196,15 @@ $(document).ready(function(){
 */
 var contenedorFamiliares = $('.inputs-grupo-familiar tr');
 var familiares = contenedorFamiliares.length;
+if (familiares === 0) {
+	$('.inputs-grupo-familiar').append( $('<tr class="empty-row no-print"><td colspan=8>Agregar grupo familiar haciendo clic en el boton rojo</td></tr>') );
+}
+
 
 function addFamiliar() {
+	if (familiares==0) {
+		$('.inputs-grupo-familiar').empty();
+	}
 	$.ajax( {
         type: 'POST',
         url: ajaxFunctionDir + '/ajax-nuevo-familiar.php',
@@ -247,7 +254,62 @@ $(document).ready(function(){
    	//guardar afiliado
    	$(document).on('submit', '#afiliado_form', function( e ) {
         e.preventDefault();
-        console.log('afiliado guardado');
+        //agrego los parientes si existen
+        var parientesObj = {'parientes': [] };
+        var parientes = $('.inputs-grupo-familiar tr');
+
+        //creo la data del formulario y le agrego los parientes
+        formData = new FormData( this );
+
+        if ( !$(parientes[0]).hasClass('empty-row') ) {
+	        for (var i = 0; i < parientes.length; i++) {
+	        	var pariente = {
+
+		        	'afiliado_pariente_parentesco' : $(parientes[i]).find('.input-afiliado-pariente-parentesco').val(),
+		        	'afiliado_pariente_nombre' : $(parientes[i]).find('.input-afiliado-pariente-nombre').val(),
+		        	'afiliado_pariente_nacionalidad' : $(parientes[i]).find('.input-afiliado-pariente-nacionalidad').val(),
+		        	'afiliado_pariente_nacimiento' : $(parientes[i]).find('.input-afiliado-pariente-nacimiento').val(),
+		        	'afiliado_pariente_dni' : $(parientes[i]).find('.input-afiliado-pariente-dni').val(),
+		        	'afiliado_pariente_sexo' : $(parientes[i]).find('.input-afiliado-pariente-sexo').val(),
+		        	'afiliado_pariente_discapacidad' : '0',
+		        }
+
+	        	if ( $(parientes[i]).find('.input-afiliado-pariente-discapacidad').is(':checked') ) {
+	        		pariente.afiliado_pariente_discapacidad = 'on';
+	        	}
+	        	//lo summamos al array a pasar a bd
+	        	parientesObj.parientes.push(pariente);
+	        }//for
+    
+       		formData.append('afiliado_parientes', JSON.stringify(parientesObj.parientes) );
+        }//if
+
+        $.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/update-afiliado.php',
+	        data: formData,
+	        processData: false,
+	        contentType: false,
+	        cache: false,
+	        success: function ( response ) {
+	            console.log(response);
+	            if (response == 'cuil' ) {
+	            	alert('El CUIL no puede estar vacío');
+	            } else if (response == 'cuil-duplicado' ) {
+	            	alert('Este CUIL ya existe en la Base de datos');
+	            }else {
+		            $('.msj-error').text(response);
+		            //finalmente, si el contacto es nuevo refresca la pagina
+		            if ( $('.input_member_id').val() == '' ) {
+		            	href = window.location.href;
+		            	window.location.href = href+'&slug='+$('.input-afiliado-cuil').val();
+		            }
+	            }
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
         
    	});//guardar afiliado
 

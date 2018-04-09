@@ -5,7 +5,7 @@
  * 
 */
 load_module( 'contactos' );
-$cuil = $_GET['slug'];
+$cuil = isset($_GET['slug']) ? $_GET['slug'] : '';
 $afiliado = getDataAfiliadoAdmin($cuil);
 
 $grupoFamiliar = null;
@@ -55,7 +55,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 
 			<form method="POST" name="afiliado_form" id="afiliado_form" class="afiliado_form">
 
-				<input type="hidden" name="member_id" value="new">
+				<input type="hidden" name="member_id" value="<?php echo $afiliado['member_id']; ?>" class="input_member_id">
 				<div class="wrapper-notes-status no-print">
 					
 					<div class="select-wrapper">
@@ -82,7 +82,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 
 					<div class="note-wrapper">
 						<h3>Notas:</h3>
-						<textarea><?php echo $afiliado['member_notas']; ?></textarea>
+						<textarea name="afiliado_notas" class="textarea-afiliado-notas"><?php echo $afiliado['member_notas']; ?></textarea>
 					</div>
 
 				</div>
@@ -99,7 +99,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 							<label for="afiliado_cuil">
 								CUIL
 							</label>
-							<input type="number" name="afiliado_cuil" class="input-afiliado-cuil" value="<?php echo $afiliado['member_cuil']; ?>">
+							<input type="number" name="afiliado_cuil" class="input-afiliado-cuil" value="<?php echo $afiliado['member_cuil']; ?>" <?php if ($afiliado['member_cuil'] != '') {echo 'readonly'; } ?>>
 						</div>
 						<div class="input-label-wrapper">
 							<label for="afiliado_dni">
@@ -232,25 +232,25 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 					</div>
 
 					<div class="row-form">
-						<div class="input-label-wrapper">
+						<div class="input-label-wrapper input-label-wrapper-nogrow" style="width: 30%;">
 							<label for="afiliado_localidad">
 								Localidad
 							</label>
 							<input type="text" name="afiliado_localidad" class="input-afiliado-localidad" value="<?php echo $afiliado['member_localidad']; ?>">
 						</div>
-						<div class="input-label-wrapper">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_codigo_postal">
 								CP
 							</label>
 							<input type="text" name="afiliado_codigo_postal" class="input-afiliado-codigo-postal" value="<?php echo $afiliado['member_codigo_postal']; ?>">
 						</div>
-						<div class="input-label-wrapper">
+						<div class="input-label-wrapper input-label-wrapper-nogrow">
 							<label for="afiliado_provincia">
 								Provincia
 							</label>
 							<input type="text" name="afiliado_provincia" class="input-afiliado-provincia" value="<?php echo $afiliado['member_provincia']; ?>">
 						</div>
-						<div class="input-label-wrapper input-label-wrapper-nogrow">
+						<div class="input-label-wrapper" style="width: 40%">
 							<label for="afiliado_otros">
 								Otros
 							</label>
@@ -303,7 +303,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 							<span class="sr-only">Twitter</span>
 							<span class="icon-redes-l icon-redes-l-twitter"></span>
 							<input type="checkbox" name="afiliado_redes_sociales_twitter" class="input-afiliado-redes-sociales-twitter"<?php 
-							if( $contactoOtros['facebook'] ) {
+							if( $contactoOtros['twitter'] ) {
 								echo ' checked';
 							}
 							?>>
@@ -411,11 +411,10 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 						</thead>
 						<tbody class="inputs-grupo-familiar">
 						<?php
+
 							if ( $grupoFamiliar != null ) {
 								getTemplate( 'template-nuevo-familiar', $grupoFamiliar );
-							} else {
-								getTemplate( 'template-nuevo-familiar', $data = array('array-vacia') );
-							}
+							} 
 						?>
 						</tbody>
 					</table>
@@ -424,6 +423,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 
 				<hr class="no-print">
 				<div class="btns-wrappers no-print">
+					<span class="msj-error"></span>
 					<input class="btn btn-primary btn-print print_page" type="button" value="Imprimir">
 					<input class="btn btn-danger" type="submit" value="Guardar">
 				</div>
