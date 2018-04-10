@@ -6,21 +6,11 @@
 */
 load_module( 'contactos' );
 
-//mira si tiene que buscar de alguna manera en especial
-$show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : '';
-
-if ( $show != '' ) {
-	$afiliados = getAfiliados( $show );	
-	$numeroAfiliados = getAfiliadosNumber( $show );
-} else {
-	$afiliados = getAfiliados();
-	$numeroAfiliados = getAfiliadosNumber();
-}
-
+$afiliados = searchAfiliados( $data );	
+$numeroAfiliados = searchAfiliadosNumber( $data );
 
 ?>
 
-<!---------- noticias ---------------->
 <div class="contenido-modulo">
 	<div class="container">
 
@@ -34,7 +24,7 @@ if ( $show != '' ) {
 				  	Nuevo Afiliado
 				</a>
 				<div class="filtros-wrapper">
-				  <select class="orden-suscriptores" data-afiliado-status="<?php echo $show; ?>" data-cant-post="<?php echo CANTPOST; ?>">
+				  <select class="orden-suscriptores" data-cant-post="<?php echo CANTPOST; ?>">
 				  	<option value="desc" selected>Descendente</option>
 				  	<option value="asc">Ascendente</option>
 				  </select>
@@ -68,32 +58,15 @@ if ( $show != '' ) {
 						<td width="10%">
 							Fecha: <small>(ingreso)</small>
 						</td>
-
-						<?php 
-						//template standard
-						if ( $show == '' ) : ?>
-
-							<td width="10%">
-								Profesión:
-							</td>
-							<td width="8%">
-								Fecha: <small>(afiliación)</small>
-							</td>
-							<td width="7%">
-								
-							</td>
-						<?php
-						//template para mostrar no contactados o anulados
-						else : ?>
+						<td width="10%">
+							Profesión:
+						</td>
+						<td width="8%">
+							Fecha: <small>(afiliación)</small>
+						</td>
+						<td width="7%">
 							
-							<td width="10%">
-								Notas:
-							</td>
-							<td width="15%">
-								
-							</td>
-							
-						<?php endif; ?>
+						</td>
 					</tr>
 				</thead>
 				<tbody class="row-usuario">
@@ -104,12 +77,7 @@ if ( $show != '' ) {
 						<tr>
 
 							<?php 
-							if ( $show == '' ) {
-								getTemplate('fragmento-tabla-afiliado-std',$afiliados[$i]);
-							} else {
-								getTemplate('fragmento-tabla-afiliado-0',$afiliados[$i]);
-							}
-							?>
+								getTemplate('fragmento-tabla-afiliado-std',$afiliados[$i]);	?>
 
 						</tr>
 							<?php 
@@ -131,7 +99,7 @@ if ( $show != '' ) {
 				<?php if ( $numeroAfiliados > 5 ) : ?>
 					<div class="select-cant-post">
 						<p>Mostrar: </p>
-						<select class="select-mostrar" data-post-orden="desc" data-afiliado-status="<?php echo $show; ?>">
+						<select class="select-mostrar" data-post-orden="desc">
 							<option value="5">5</option>
 						<?php if ( $numeroAfiliados > 10 ) : ?>
 							<option value="10" selected>10</option>
@@ -151,9 +119,6 @@ if ( $show != '' ) {
 						<?php if ( $numeroAfiliados > 500 ) : ?>
 							<option value="500">500</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 1000 ) : ?>
-							<option value="1000">1000</option>
-						<?php endif; ?>
 						</select> 
 						<p>afiliados por página.</p>
 					</div>
@@ -162,31 +127,10 @@ if ( $show != '' ) {
 			</div>
 		</div>
 
-		<form action="inc/export_excel.php" method="post" target="_blank" id="FormularioExportacion">
-			<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
-		</form>
-
-	</div><!-- // container gral modulo -->
-</div><!-- // container -->
-<!-- botones del modulo -->
-<div id="formulario-suscriptor">
-	
-</div>
+	</div><!-- // container -->
+</div><!-- // contenido-modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
-    <a type="button" href="index.php?admin=edit-contacts" class="btn btn-danger">agregar uno nuevo</a>
-    <?php if ( $show == '0' ) : ?>
-    	<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
-	    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
-	<?php endif; ?>	
-	<?php if ( $show == '2' ) : ?>
-		<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
-	    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
-	<?php endif; ?>
-	<?php if ( $show == '' ) : ?>
-		<a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
-		<a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
-	<?php endif; ?>
 </footer>
 
-<!---------- fin noticias ---------------->
+<!---------- fin afiliado ---------------->

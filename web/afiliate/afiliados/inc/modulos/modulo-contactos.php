@@ -55,6 +55,68 @@ function getAfiliados ( $status = 'all', $orderBy = 'member_date_registro', $ord
 	return $contacts;
 }
 
+
+//busca afiliados por medio del cuil, dni o nombre
+function searchAfiliados( $dataBusqueda ) {
+	$connection = connectDB();
+	$tabla = 'afiliados';
+
+	$dataBusqueda = trim($dataBusqueda);
+
+	//busca en cuil y dni
+	$queryNumeros  = "SELECT * FROM ".$tabla." WHERE member_cuil LIKE '%" .$dataBusqueda. "%' or member_dni LIKE '%" .$dataBusqueda."%'";
+	$resultNumeros = mysqli_query($connection, $queryNumeros);
+
+	//busca en nombres
+	$queryLetras = "SELECT * FROM ".$tabla." WHERE member_apellido LIKE '%" .$dataBusqueda. "%' or member_nombre LIKE '%" .$dataBusqueda."%'";
+	
+	$resultLetras = mysqli_query($connection, $queryLetras);
+
+	closeDataBase($connection);
+
+	if ( $resultNumeros->num_rows == 0 && $resultLetras->num_rows == 0 ) {
+		return null;
+
+	} else {
+		if ( $resultNumeros->num_rows != 0 ) {
+			while ($row = $resultNumeros->fetch_array()) {
+				$contacts[] = $row;
+			}	
+		}
+		if ( $resultLetras->num_rows != 0 ) {
+			while ($row = $resultLetras->fetch_array()) {
+				$contacts[] = $row;
+			}	
+		}
+		
+	}
+
+	return $contacts;
+}
+
+
+//numero de afiliados totales segun busqueda
+function searchAfiliadosNumber( $dataBusqueda ) {
+	$connection = connectDB();
+	$tabla      = 'afiliados';
+	$dataBusqueda = trim($dataBusqueda);
+
+	//busca en cuil y dni
+	$queryNumeros  = "SELECT * FROM ".$tabla." WHERE member_cuil LIKE '%" .$dataBusqueda. "%' or member_dni LIKE '%" .$dataBusqueda."%'";
+	$resultNumeros = mysqli_query($connection, $queryNumeros);
+
+	//busca en nombres
+	$queryLetras = "SELECT * FROM ".$tabla." WHERE member_apellido LIKE '%" .$dataBusqueda. "%' or member_nombre LIKE '%" .$dataBusqueda."%'";
+	
+	$resultLetras = mysqli_query($connection, $queryLetras);
+
+	closeDataBase($connection);
+
+	return $resultLetras->num_rows+$resultNumeros->num_rows;
+}
+
+
+//busca afiliado de acuerdo al cuil
 function getDataAfiliadoAdmin( $cuil ) {
 	$connection = connectDB();
 	$tabla = 'afiliados';

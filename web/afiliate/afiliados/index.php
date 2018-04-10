@@ -39,6 +39,8 @@ global $modulo;
 $modulo = isset($_GET['admin'])?$_GET['admin']:'';
 global $slug;
 $slug = isset($_GET['slug'])?$_GET['slug']:'';
+global $search;
+$search = isset($_GET['search'])?$_GET['search']:'';
 
 /*
  * HTML DEL SITIO
@@ -50,7 +52,14 @@ include 'header.php';
   SI MODULO ESTA DIFINDO CARGA MODULO
   */
 
-if ( $modulo != '') : ?>
+if ( $search != '') : ?>
+  <article class="wrapper-modulo">
+
+  <?php getTemplate( 'search', $search ); ?>
+
+  </article><!-- // wrapper interno modulo -->
+
+<?php elseif ( $modulo != '') : ?>
   
   <article class="wrapper-modulo">
 

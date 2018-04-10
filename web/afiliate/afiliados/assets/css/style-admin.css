@@ -1352,6 +1352,10 @@ ul.dropdown-menu {
   font-style: italic;
   color: #d9534f; }
 
+.search-afiliado-form input {
+  height: 25px;
+  padding: 5px; }
+
 /*
  * ESTILOS DE IMPRESION
 */

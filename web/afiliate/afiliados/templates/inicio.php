@@ -16,6 +16,19 @@
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
+          <h2>Buscar afiliados</h2>
+          <form method="GET" action="index.php?" class="search-afiliado-form">
+            <input type="text" name="search" placeholder="inserte cuil,dni o nombre" required>
+            <p><button class="btn btn-primary" type="submit" role="button">Buscar</button></p>
+          </form>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
           <h2>Lista Afiliados</h2>
           <p>Ves lista completa de afiliados.</p>
           <p><a class="btn btn-primary" href="index.php?admin=contacts" role="button">Ver lista</a></p>
