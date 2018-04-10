@@ -6,12 +6,10 @@
  * FUNCTIONS
  * 
 */
-
+use PHPMailer\PHPMailer\PHPMailer;
 require_once 'config.php';
 require_once 'functions.php';
 require_once 'lib/mobile-detect/Mobile_Detect.php';
-require("class.phpmailer.php");
-require("class.smtp.php");
 
 //chequea si es peticion de ajax y ejecuta la funcion
 if( isAjax() ) {
@@ -48,6 +46,8 @@ if( isAjax() ) {
 				//carga el template con id del usuario nuevo
 				getTemplate( 'formulario2', $id );
 
+				//aca no se envia email a nadie porque continua en el segundo formulario
+
 			}
 
 		break;//try-cuil - primer formulario
@@ -57,6 +57,13 @@ if( isAjax() ) {
 			$update = updateUser( $_POST );
 
 			echo $update;
+			$userUpdate = getDataAfiliado( $_POST['id-member'] );
+			$cuilAfiliado = $userUpdate['member_cuil'];
+			$emailAfiliado = $userUpdate['member_email'];
+			$nombreAfiliado = $userUpdate['member_nombre'].' '.$userUpdate['member_apellido'];
+			$telefonoAfiliado = 'Tel: '.$userUpdate['member_telefono'].' Cel: '.$userUpdate['member_movil'];
+			//enviar email al usuario nuevo y al administrador
+			//sendEmail( $cuilAfiliado, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado );
 
 		break;//save-member segundo formulario
 

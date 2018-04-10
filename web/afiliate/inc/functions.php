@@ -368,3 +368,86 @@ function checkCuil ( $cuil ) {
 	}
 
 }
+
+//envia un email al administrador y al usuario registrado
+function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $emailAdministrador =  EMAILAFILIADOS ) {
+	require_once("class.phpmailer.php");
+	require_once("class.smtp.php");
+
+	$emailTo = $emailAfiliado;
+	$nombre = $nombreAfiliado;
+	$contacto = $telefonoAfiliado;
+	$asuntoAfiliado = 'Bienvenido a ATSA Buenos Aires';
+	$asuntoAdministrador = 'Nuevo afiliado registrado';
+	$link = MAINSURL . '/afiliados/index.php?admin=edit-contacts&slug='.$cuil;
+
+	$afiliadoContenidoEmail  = 'Bienvenido a ATSA Buenos Aires. Un asesor se comunicará con usted para terminar el trámite de afiliación. Muchas gracias.';
+	
+	$adminContenidoEmail  = '<div>Un nuevo afiliado ha sido registrado:<br>';
+	$adminContenidoEmail .= 'Nombre: '.$nombre.' <br>';
+	$adminContenidoEmail .= 'Email: '.$emailAfiliado.' <br>';
+	$adminContenidoEmail .= 'Contacto: '.$contacto.' <br>';
+	$adminContenidoEmail .= 'Para verlo online, haga click <a href="'.$link.'" target="_blank">aquí</a>, o copie y pegue el link debajo:<br></div>';
+	$adminContenidoEmail .= '<div>'.$link.'</div>';
+	
+	//va primero el email al afiliado
+
+	$mail = new PHPMailer;
+	//Tell PHPMailer to use SMTP
+	//$mail->isSMTP();
+	//$mail->Host = 'localhost';
+	//Enable SMTP debugging
+	// 0 = off (for production use)
+	// 1 = client messages
+	// 2 = client and server messages
+	$mail->SMTPDebug = 0;
+	$mail->CharSet = 'UTF-8';
+	//Set who the message is to be sent from
+	$mail->setFrom(EMAILSISTEMA, 'ATSA');
+	//Set an alternative reply-to address
+	//$mail->addReplyTo($email, $nombre);
+	//Set who the message is to be sent to
+	$mail->addAddress($emailTo, $nombre);
+	//Set the subject line
+	$mail->Subject = $asuntoAfiliado;
+	$mail->IsHTML(true);
+	//Read an HTML message body from an external file, convert referenced images to embedded,
+	$mail->MsgHTML($afiliadoContenidoEmail);
+	$mail->AltBody = $afiliadoContenidoEmail;
+	//send the message, check for errors
+	if (!$mail->send()) {
+	    echo 'Mailer Error: ' . $mail->ErrorInfo;
+	} else {
+	    echo 'email afiliado enviado';
+	}
+
+	//envio a administrador
+	$mailAdmin = new PHPMailer;
+	//Tell PHPMailer to use SMTP
+	//$mail->isSMTP();
+	//$mail->Host = 'localhost';
+	//Enable SMTP debugging
+	// 0 = off (for production use)
+	// 1 = client messages
+	// 2 = client and server messages
+	$mailAdmin->SMTPDebug = 0;
+	$mailAdmin->CharSet = 'UTF-8';
+	//Set who the message is to be sent from
+	$mailAdmin->setFrom(EMAILSISTEMA, 'ATSA');
+	//Set an alternative reply-to address
+	$mailAdmin->addReplyTo($email, $nombre);
+	//Set who the message is to be sent to
+	$mailAdmin->addAddress(EMAILAFILIADOS, 'ATSA');
+	//Set the subject line
+	$mailAdmin->Subject = $asuntoAdministrador;
+	$mailAdmin->IsHTML(true);
+	//Read an HTML message body from an external file, convert referenced images to embedded,
+	$mailAdmin->MsgHTML($adminContenidoEmail);
+	$mailAdmin->AltBody = $adminContenidoEmail;
+	//send the message, check for errors
+	if (!$mailAdmin->send()) {
+	    return 'Mailer Error: ' . $mailAdmin->ErrorInfo;
+	} else {
+	    return 'email administrador enviado';
+	}
+}
