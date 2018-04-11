@@ -17,7 +17,7 @@ Complejo Cultural Sanidad </title>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Google Font Raleway -->
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,700,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,100,700,300' rel='stylesheet' type='text/css'>
 <!-- Font Awsome Icons CSS -->
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <!-- Custom CSS -->
@@ -121,11 +121,11 @@ Complejo Cultural Sanidad </title>
  
 
   $(document).ready(function() {
-
+    hoy = new Date();
     $('#calendar').fullCalendar({
       locale: 'es',
       firstDay: 0,
-      defaultDate: '2018-01-19',
+      defaultDate: hoy,
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -146,7 +146,7 @@ Complejo Cultural Sanidad </title>
         if (fecha[1] != undefined ) {
           html += '<h4><strong>Hora</strong>: '+fecha[1].substr(0,fecha[1].length-3)+' hs</h4>';
         }
-          html += '<p><small>Hace clic en el evento del calendario para reservar y ver más info.</small></p></article>';
+          html += '</article>';
         
         $('.calendar-wrapper').append( $(html) );
 
