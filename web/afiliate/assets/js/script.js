@@ -55,6 +55,7 @@ function toLowerCase(cadena) {
 //remplasa dashes "-" del string por espacios
 function replaceDashes( cadena ) {
    cadena = cadena.replace(/-/gi," ");
+   cadena = cadena.replace(/_/gi," ");
    return cadena;
 }
 
@@ -62,6 +63,7 @@ function replaceDashes( cadena ) {
 //borra espacios del string
 function removeDashesSpaces( cadena ) {
    cadena = cadena.replace(/-/gi,"");
+   cadena = cadena.replace(/_/gi,"");
    cadena = cadena.replace(/ /gi,"");
    return cadena;
 }
@@ -133,7 +135,6 @@ $(document).ready(function() {
         var valor = $(this).val();
         var contenedor = $(this).closest('.form-group');
         var icon = $(contenedor).find('.icon-input');
-        //var msj = $(contenedor).find('.msj-error-input');
 
         //si hay números devuelve error
         if ( areThereAny(valor, numeros+specialcharacters) || valor=='' ) {
@@ -169,11 +170,8 @@ $(document).ready(function() {
         //si es la fecha de hoy, o la fecha de ingreso es mayor a 60 años o está vacía es nula
         if ( today-date < 0 || today-date > 2209034488072 || valor == '' || valor == '0000-00-00' ) {
             $(icon).addClass('icon-input-error');
-            $(msj).fadeIn();
         } else {
             $(icon).removeClass('icon-input-error');    
-            $(icon).addClass('icon-input-sucess');    
-            $(msj).fadeOut();  
         }
     });
 
@@ -183,7 +181,7 @@ $(document).ready(function() {
         var valor = $(this).val();
         var contenedor = $(this).closest('.form-group');
         var icon = $(contenedor).find('.icon-input');
-        //var msj = $(contenedor).find('.msj-error-input');
+        var msj = $(contenedor).find('.msj-error-input');
 
         valor = cleanedSpecialCharacters(valor,specialcharacters);
         
@@ -195,8 +193,11 @@ $(document).ready(function() {
         //si hay números devuelve error
         if ( areThereAny(valor, numeros+specialcharacters) || valor == '' || valor.length < 3) {
             $(icon).addClass('icon-input-error');
+            $(msj).fadeIn();
         } else {
             $(icon).removeClass('icon-input-error');    
+            $(icon).addClass('icon-input-sucess');    
+            $(msj).fadeOut();
         }
     });
 
@@ -213,20 +214,30 @@ $(document).ready(function() {
         
         $(this).val(valor);
 
-        //ver si pasa las pruebas de longitud, por defecto no las pasa
+        //ver si pasa las pruebas de longitud, por defecto no las pasa se prueba en los distintos campos de número
         var longitud = true;
-
+        //campo dni
         if ( this.name == 'dni' && valor.length == 8 ) {
             longitud = false;
         }
-
+        //campo cuil o cuit
         if ( ( this.name == 'cuil' || this.name == 'cuit') && valor.length == 11 ) {
             longitud = false;
         }
+        //campo tel
+        if ( this.name == 'member_tel' && valor.length >= 8 ) {
+            longitud = false;
+        }
+        //campo cel
+        if ( this.name == 'member_cellphone' && valor.length >= 10 && valor.indexOf('15') != -1 ) {
+            longitud = false;
+        }
+        //campo alturas
+        if ( ( this.name == 'job_number' || this.name == 'member_number') && valor != '' ) {
+            longitud = false;
+        }
         
-
-
-        //si hay números devuelve error
+        //si hay letras o no pasa alguna de las validaciones devuelve error
         if ( longitud || areThereAny(valor, letras+specialcharacters) ) {
             $(icon).addClass('icon-input-error');
             $(msj).fadeIn();
@@ -257,6 +268,29 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on('focusout', 'input[type=email]', function() {
+        var valor = $(this).val();
+        var contenedor = $(this).closest('.form-group');
+        var icon = $(contenedor).find('.icon-input');
+        var msj = $(contenedor).find('.msj-error-input');
+
+        valor = cleanedSpecialCharacters(valor,'#$^&%*()[]\'\"\/{}:;<>,');
+        //remueve algún espacio si hay
+        valor = valor.replace(/ /gi,"");
+        
+        $(this).val(valor);
+
+        //si hay números devuelve error
+        if ( valor == '' || valor.length < 8 || valor.indexOf('@') == -1 || valor.indexOf('@')  == 0 ) {
+            $(icon).addClass('icon-input-error');
+            $(msj).fadeIn();
+        } else {
+            $(icon).removeClass('icon-input-error');    
+            $(icon).addClass('icon-input-sucess');    
+            $(msj).fadeOut();
+        }
+    });
+
 
     /*
      * SUBMIT FORMULARIO 1
@@ -279,17 +313,17 @@ $(document).ready(function() {
             cache: false,
             //funcion antes de enviar
             beforeSend: function() {
-                console.log('enviando');
                 $(loader).fadeIn();
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
                 $(loader).fadeOut();
                 //error 1: no existe el cuil
                 //error 2: no ingresaron ningún cuil
                 //error 3: error servidor
                 //error 4: ya existe el cuil
 
+                //si responde con errores:
                 if ( response == '' ) {
                     //console.log(response);
                     $('.msj-inicio').text('OCURRIÓ UN ERROR EN EL SERVIDOR, INTENTE MÁS TARDE').css('color','red')
@@ -300,19 +334,21 @@ $(document).ready(function() {
                 } else if( response == 'error-1' ) {
                     console.log('No existe ese cuil');
                     //el cuil no existe, te lleva a la página de error del usuario
-                    location.href = baseUrl + '/error';
+                    setTimeout(function(){
+                        location.href = baseUrl + '/error';
+                    }, 1000);
+                    
                 } else if ( response == 'error-4' ) {
                     console.log('El cuil ingresado ya esta registrado');
                     //el cuil no existe, te lleva a la página de error del usuario
-                    location.href = baseUrl + '/error';
+                    setTimeout(function(){
+                        location.href = baseUrl + '/error';
+                    }, 1000);
                 } else {
-                    //carga el nuevo formulario
+                    //si no hay errores, carga el nuevo formulario
                     $(contenedor).empty();
                     $(contenedor).append(response);
-                }
-
-                
-                
+                }  
             },
             error: function ( ) {
                 console.log('error');
@@ -340,18 +376,16 @@ $(document).ready(function() {
             cache: false,
             //funcion antes de enviar
             beforeSend: function() {
-                console.log('enviando');
                 $(loader).fadeIn();
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
                 $(loader).fadeOut();
                 if (response == 'ok') {
                     location.href = baseUrl + '/bienvenidos';
                 } else {
                     location.href = baseUrl + '/error';
                 }
-                
             },
             error: function ( ) {
                 console.log('error');

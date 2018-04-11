@@ -4,7 +4,6 @@
  * @LaCueva.tv
  * Since 1.0
 */
-global $pageActual;
 
 if ( $data == null || $data == '' ) :
 	
@@ -27,7 +26,7 @@ else : ?>
 					<label for="member_tel">Teléfono*</label>
 					<span class="icon-input"></span>
 					<span class="msj-error-input">
-						Formato inválido
+						Formato inválido (011 xxxx)
 					</span>
 				</div>
 
@@ -36,7 +35,7 @@ else : ?>
 					<label for="member_cellphone" class="label-col-right">Celular*</label>
 					<span class="icon-input"></span>
 					<span class="msj-error-input">
-						Formato inválido
+						Formato inválido (011 15 xx)
 					</span>
 				</div>
 			</div>
