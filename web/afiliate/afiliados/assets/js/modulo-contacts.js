@@ -256,7 +256,66 @@ $(document).ready(function(){
    	//guardar afiliado
    	$(document).on('submit', '#afiliado_form', function( e ) {
         e.preventDefault();
-        //agrego los parientes si existen
+
+        //1. VALIDACIONES FECHAS
+        //fecha de nacimiento:
+        var fechaNacimiento = $('input[name=afiliado_fecha_nacimiento]');
+        //fecha de afiliacion:
+        var fechaAfiliacion = $('input[afiliado_fecha_afiliacion]');
+        //fecha de ingreso Sindicato:
+        var fechaIngresoSindicato = $('input[name=afiliado_fecha_ingreso_sindicato]');
+        //fecha de ingreso empresa:
+        var fechaIngresoEmpresa = $('input[name=afiliado_fecha_ingreso]');
+        //fecha de hoy
+        var today = new Date();
+
+        //validaciones:
+        var dateNacimiento = new Date( $(fechaNacimiento).val() );
+        if ( dateNacimiento >= today || today.getFullYear() - dateNacimiento.getFullYear() > 65 || today.getFullYear() - dateNacimiento.getFullYear() < 17 ) {
+        	
+        	$(fechaNacimiento).css({
+        		'border-color':'red',
+        		'color':'red',
+        	});
+        	$('.msj-error').text('Error en los campos');
+        	return;
+        }
+        
+        var dateAfiliacion = new Date( $(fechaAfiliacion).val() );
+        if ( today.getFullYear() - dateAfiliacion.getFullYear() > 65 ) {
+        	
+        	$(fechaAfiliacion).css({
+        		'border-color':'red',
+        		'color':'red',
+        	});
+        	$('.msj-error').text('Error en los campos');
+        	return;
+        }
+
+        var dateIngresoSindicato = new Date( $(fechaIngresoSindicato).val() );
+        if ( today.getFullYear() - dateIngresoSindicato.getFullYear() > 65 ) {
+        	
+        	$(fechaIngresoSindicato).css({
+        		'border-color':'red',
+        		'color':'red',
+        	});
+        	$('.msj-error').text('Error en los campos');
+        	return;
+        }
+
+        var dateIngresoEmpresa = new Date( $(fechaIngresoEmpresa).val() );
+        if ( dateIngresoEmpresa > today || today.getFullYear() - dateIngresoEmpresa.getFullYear() > 60 ) {
+        	
+        	$(fechaIngresoEmpresa).css({
+        		'border-color':'red',
+        		'color':'red',
+        	});
+        	$('.msj-error').text('Error en los campos');
+        	return;
+        }
+
+
+        //2. agrego los parientes si existen
         var parientesObj = {'parientes': [] };
         var parientes = $('.inputs-grupo-familiar tr');
 
@@ -264,6 +323,7 @@ $(document).ready(function(){
         formData = new FormData( this );
 
         if ( !$(parientes[0]).hasClass('empty-row') ) {
+
 	        for (var i = 0; i < parientes.length; i++) {
 	        	var pariente = {
 
