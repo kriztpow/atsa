@@ -279,6 +279,11 @@ $(document).ready(function(){
         	});
         	$('.msj-error').text('Error en los campos');
         	return;
+        } else {
+        	$(fechaNacimiento).css({
+        		'border-color':'inherit',
+        		'color':'inherit',
+        	});
         }
         
         var dateAfiliacion = new Date( $(fechaAfiliacion).val() );

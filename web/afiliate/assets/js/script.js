@@ -194,10 +194,12 @@ $(document).ready(function() {
         if ( areThereAny(valor, numeros+specialcharacters) || valor == '' || valor.length < 3) {
             $(icon).addClass('icon-input-error');
             $(msj).fadeIn();
+            
         } else {
             $(icon).removeClass('icon-input-error');    
             $(icon).addClass('icon-input-sucess');    
             $(msj).fadeOut();
+           
         }
     });
 
@@ -241,10 +243,13 @@ $(document).ready(function() {
         if ( longitud || areThereAny(valor, letras+specialcharacters) ) {
             $(icon).addClass('icon-input-error');
             $(msj).fadeIn();
+            
         } else {
             $(icon).removeClass('icon-input-error');    
             $(icon).addClass('icon-input-sucess');    
             $(msj).fadeOut();
+
+            
         }
     });
 
@@ -261,10 +266,12 @@ $(document).ready(function() {
         if ( today-date < 0 || today-date > 2209034488072 || valor == '' || valor == '0000-00-00' ) {
             $(icon).addClass('icon-input-error');
             $(msj).fadeIn();
+            
         } else {
             $(icon).removeClass('icon-input-error');    
             $(icon).addClass('icon-input-sucess');    
             $(msj).fadeOut();  
+            
         }
     });
 
@@ -298,7 +305,14 @@ $(document).ready(function() {
 
     $(document).on('submit', '#first-form', function( e ) {
         e.preventDefault();
+        
+        //si hay un error el formulario no se envia
+        var error = $('.icon-input-error');
+        if (error.length != 0) {
+            return false;
+        }
 
+       
         var contenedor = $('.contenedor-formulario');
         var loader = $('.loader');
 
@@ -363,6 +377,12 @@ $(document).ready(function() {
 
     $(document).on('submit', '#second-form', function( e ) {
         e.preventDefault();
+        //si hay un error el formulario no se envia
+        var error2 = $('.icon-input-error');
+        if (error2.length != 0) {
+            return false;
+        }
+
         var loader = $('.loader');
 
         formData = new FormData( this );
