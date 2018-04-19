@@ -1,0 +1,1166 @@
+/*
+    Estilo Jump!
+1. Reset
+2. Variables
+3. gral
+4. footer
+5. pagina inicio
+6. sección emails
+7. Modulos:
+a) imagenes
+b) noticias
+c) sliders
+d) deportes
+e) convenios
+f) leyes
+g) staff
+h) viajes y hoteles
+i) cursos 
+j) beneficios
+k) preguntas
+l)
+*/
+
+/* ---- 1 reset ---- */
+//@import 'reset';
+/* ---- 2 variables ---- */
+$fuente-principal: sans-serif;
+/*tamaños fuentes*/
+$fs-normal: 14px;
+$lh-normal: 18px;
+/*colores*/
+$negro: #333;
+$blanco: #ffffff;
+$color-footer: #666;
+$gris: #eee;
+$resaltado: #337ab7;
+$danger: #d9534f;
+/*mediaqueries*/
+$mq-tablet: 960px;
+$mq-movil: 768px;
+
+/*3. gral*/
+html, body {
+    position: relative;
+    font-family: $fuente-principal;
+    font-size: $fs-normal;
+    line-height: $lh-normal;
+    color: $negro;
+}
+
+.logo {
+  img {
+    margin: 0 auto;
+  }
+  p {
+    margin-top: 20px;
+
+  }
+}
+
+.no-show-hidden {
+  visibility: hidden;
+}
+.no-show-display {
+  display: none;
+}
+
+.titulo-gral-admin {
+  font-size: 250%;
+  line-height: 150%;
+  margin-bottom: 20px;
+  background-color: $resaltado;
+  color: $blanco;
+}
+
+//login
+.error-tag {
+  color: red;
+  font-size: 90%;
+  font-style: italic;
+  display: block;
+  margin: 15px 0;
+}
+/*4. footer*/
+footer {
+  background-color: $negro;
+  color: $color-footer;
+  font-size: 80%;
+  padding: 20px 0;
+  //position: relative;
+}
+
+/*5. pagina inicio*/
+.main {
+  padding: 80px 20px;
+}
+
+.jumbotron h2 {
+  font-size: 250%;
+  line-height: 150%;
+  margin-bottom: 20px;
+}
+
+.email {
+  text-align: center;
+  background-color: $negro;
+  color: $blanco;
+}
+
+.well {
+  margin: 20px 0 60px;
+}
+
+.jumbotron p {
+  font-size: 100%;
+  margin-bottom: 20px;
+}
+
+.modulos {
+  padding: 20px 25px!important;
+}
+
+.modulos h2 {
+  font-size: 24px;
+  line-height: 26px;
+}
+
+
+/* ---- 6 seccion emails ---- */
+
+.intro-email {
+  p {
+    margin: 20px 0;
+  }
+}
+
+.emails-recibidos-wrapper {
+  background-color: $gris;
+  padding: 40px 0;
+}
+
+
+/* ---- modulos  ---- */
+.loader {
+  position: absolute;
+  background-color: $blanco;
+  height: 95%;
+  width: 95%;
+  p {
+    margin-top: 20px;
+    font-style: italic;
+  }
+  img {
+    display: block;
+    width: 10%;
+    margin: 0 auto;
+  }
+}
+
+aside {
+  position: relative;
+}
+
+.load-ajax {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: url(../images/loader-ajax.gif) no-repeat center;
+  //background-size: contain;
+  background-size: 20%;
+  right: 0;
+  top: 0;
+}
+
+.modal-body {
+  min-height: 350px;
+}
+
+.text-aclaracion {
+  font-size: 80%;
+  font-style: italic;
+}
+
+.instrucciones {
+  font-size: 90%;
+  h2 {
+    font-size: 180%;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+}
+
+#wrapper-form-upload-galery {
+  border: 1px dashed $resaltado;
+}
+
+.recicle-bin-wrapper {
+  border: 1px dashed $danger; 
+  min-height: 150px;
+  padding: 20px 20px;
+}
+
+#recicle-bin {
+  min-height: 100px;
+  background-color: #efefef;
+  columns: 2;
+  padding: 5px;
+
+  li {
+    width: 100px;
+  }
+}
+
+#upload_imgs {
+  input[type="file"] {
+    font-size: 90%;
+  }
+}
+
+.lista-imagenes {
+  list-style: none;
+  columns: 3;
+}
+
+.imagen {
+  list-style: none;
+
+  article {
+    position: relative;
+  }
+  
+}
+
+.data-imagen {
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    color: $blanco;
+    text-transform: uppercase;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -o-justify-content: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -o-align-items: center;
+
+  h1 {
+    font-size: 100%;
+    margin: 25px auto 10px;
+    display: none;
+  }
+
+  p {
+    font-size: 100%;
+
+  }
+}
+
+.p-relative {
+  position: relative;
+}
+
+.upload_files_form {
+  font-size: 80%;
+}
+
+.lista-files {
+  padding: 0;
+  list-style: none;
+  li {
+    list-style: none;
+  }
+}
+
+.inner-input-link-wrapper {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  height: 100px;
+  top: -6px;
+}
+
+.otras-opciones {
+  padding: 0;
+  list-style: none;
+
+  label {
+    width: 100%;
+  }
+  input {
+    width: 100%;
+  }
+}
+
+/* ---- 7 seccion noticias ---- */
+.loop-noticias-backend {
+    list-style: none;
+    margin: 30px 0;
+    text-align: left;
+    padding: 0;
+}
+
+.loop-noticias-backend-item {
+  list-style: none;
+  border-bottom: 1px solid #333;
+  margin: 20px 30px;
+  padding: 10px 5px;
+}
+
+.links-edicion-noticias {
+  margin-top: 10px;
+}
+
+.titulo-noticia-small-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titulo-noticia-small {
+  font-size: 120%!important;
+  line-height: 120%;
+  font-weight: bold;
+  margin: 0px;
+  
+  span {
+    font-weight: lighter;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 80%;
+  }
+  small {
+    font-size: 80%;
+    color: #999;
+    font-style: italic;
+  }
+}
+
+.nav-noticias-interno {
+  text-align: right;
+
+  select {
+    background: #337ab7;
+    color: #fff;
+    height: 29px;
+    border: none;
+    padding: 5px;
+  }
+}
+
+.ver-mas-noticias {
+  text-align: center;
+  padding: 20px 0;
+
+  button {
+    margin: 20px;
+  }
+}
+.info-resumen {
+    font-size: 90%;
+    color: #999;
+  }
+
+//editar noticia
+
+
+.error-msj-wrapper {}
+
+.error-msj-list {
+  width: 80%;
+  margin: -10px 0 25px;
+  font-style: italic;
+  color: $resaltado;
+  list-style: none;
+  height: 20px;
+  li {
+    display: inline-block;
+    margin-right: 10px;
+    @media (max-width: $mq-movil) {
+      display: block;
+      margin-right: 0;
+    }
+  }
+}
+
+.error-msj-list-item-danger {
+  color: $danger;
+}
+
+#editar-noticia-formulario {
+  label {
+    display: block;
+    font-weight: normal;
+    font-size: 90%;
+    text-transform: uppercase;
+
+    small {
+      text-transform: initial;
+      font-style: italic;
+    }
+  }
+  input, textarea, select {
+    width: 100%;
+    display: block;
+    padding: 5px;
+  }
+
+  textarea {
+    height: 130px;
+  }
+  input[type=checkbox] {
+    width: initial;
+    display: initial;
+    margin: 0;
+    margin-right: 20px;
+    height: 30px;
+    margin-bottom: 1px;
+    vertical-align: middle;
+  }
+
+  .larger-label {
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .larger-input {
+    height: 30px;
+    font-size: 120%;
+    font-weight: bold;
+  }
+
+  select {
+    background: #337ab7;
+    color: #fff;
+    height: 29px;
+    border: none;
+    padding: 5px;
+  }
+}//#nueva-noticia-formulario
+
+
+
+.plublished {
+  font-size: 130%;
+  text-transform: uppercase;
+  color: $resaltado;
+  margin-top: 15px;
+}
+
+#upload_post_image_form_wrapper {
+  position: absolute;
+  width: 480px;
+  height: 200px;
+  padding: 30px 10px;
+  border: solid 1px #333;
+  bottom: 200px;
+  right: 40px;
+  background: #fff;
+}
+
+#upload_post_image_form {
+  input {
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 90%;
+    font-style: italic;
+  }
+}
+
+.close-button-up {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.close1 {
+    display: block;
+    transform: rotate(45deg);
+    height: 1px;
+    width: 30px;
+    background: #333;
+    position: absolute;
+    top: 23px;
+}
+.close2 {
+  display: block;
+  transform: rotate(135deg);
+  height: 1px;
+    width: 30px;
+    background: #333;
+    position: absolute;
+    top: 23px;
+}
+
+#del-post_imagen {
+  margin: 10px 0;
+}
+
+#upload_imagenes_galeria_wrapper {
+  position: absolute;
+  width: 480px;
+  height: 200px;
+  padding: 30px 10px;
+  border: solid 1px #333;
+  bottom: 200px;
+  right: 40px;
+  background: #fff;
+}
+
+.galeria-imagenes-wrapper {
+  overflow: auto;
+  border: 1px solid #333;
+  width: 100%;
+  columns: 3;
+  list-style: none;
+  padding: 15px;
+
+  li {
+    margin: 5px;
+    position: relative;
+    figure {
+      position: relative;
+    }
+    button {
+       position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 70%;
+    }
+  }
+}
+
+.imgGaleriaItemOrden {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 160%;
+  background-color: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- 7 seccion sliders ---- */
+.list-sliders {
+  columns: 3;
+  list-style: none;
+  padding: 30px 5px;
+}
+
+.list-sliders-slider {
+  margin-bottom: 20px;
+}
+
+.sliders-wrapper {
+  padding: 10px 0;
+  list-style: none;
+}
+
+.input-sliders {
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  textarea {
+    width: 100%;
+    margin: 5px 0;
+    height: 80px;
+  }
+}
+
+.item-slider {
+  border-bottom: 1px solid $gris;
+}
+
+#upload_slider_image_form_wrapper {
+  padding: 30px 5px;
+  width: 50%;
+  position: relative;
+
+  input {
+    margin: 10px 0;
+  }
+}
+
+.borrar-guardar-btns {
+  button {
+    margin: 5px;
+  }
+}
+
+.msj-guardar {
+    font-size: 90%;
+    color: $danger;
+    font-weight: bold;
+    font-style: italic;
+    text-align: right;
+    display: block;
+    padding: 5px 30px;
+}
+
+
+.msj-guardar-imagen {
+    font-size: 80%;
+    color: $danger;
+    font-weight: bold;
+    font-style: italic;
+    text-align: right;
+    display: inline-block;
+    padding: 5px 30px;
+}
+
+.image-selected {
+  border: 3px solid $danger!important;
+}
+
+.file-selected {
+ color: $danger!important;
+ font-weight: bold!important;
+}
+
+/* ---- 7 seccion deportes ---- */
+#accordionDeportes {
+  div {
+    position: relative;
+  }
+}
+.deportes-section-title {
+  small {
+      font-style: italic;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+}
+.links-deportes {
+  list-style: none;
+
+  li {
+    border-bottom: 1px solid $gris;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    &:last-child {
+      border: none;
+    }
+  }
+
+  h4 {
+    margin: 0;
+    display: inline-block;
+  }
+}
+
+.link-deportes-texto {
+  width: 100%;
+}
+
+.link-deportes-orden {
+  width: 50%;
+}
+.link-deportes-file {
+  a {
+    font-style: italic;
+  }
+  span {
+    text-decoration: underline;
+    color: $danger;
+    cursor: pointer;
+  }
+}
+
+ #new-section-deportes-btn {
+  margin: 40px 0;
+ }
+
+ .error-msj-deportes {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+ }
+
+.orden-secciones-deportes {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  font-size: 90%;
+}
+
+/* ---- 8 seccion convenios ---- */
+#accordionConvenios {
+  div {
+    position: relative;
+  }
+}
+.convenios-section-title {
+  small {
+      font-style: italic;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+}
+.links-convenios {
+  list-style: none;
+
+  li {
+    border-bottom: 1px solid $gris;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    &:last-child {
+      border: none;
+    }
+  }
+
+  h4 {
+    margin: 0;
+    display: inline-block;
+  }
+}
+
+.link-convenios-texto {
+  width: 100%;
+}
+
+.link-convenios-orden {
+  width: 50%;
+}
+.link-convenios-file {
+  a {
+    font-style: italic;
+  }
+  span {
+    text-decoration: underline;
+    color: $danger;
+    cursor: pointer;
+  }
+}
+
+ #new-section-convenios-btn {
+  margin: 40px 0;
+ }
+
+ .error-msj-convenios {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+ }
+
+.orden-secciones-convenios {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  font-size: 90%;
+}
+
+
+
+/* ---- 9 seccion  leyes ---- */
+#listaleyes {
+  div {
+    position: relative;
+  }
+}
+.leyes-section-title {
+  small {
+      font-style: italic;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+}
+.links-leyes {
+  list-style: none;
+
+  li {
+    border-bottom: 1px solid $gris;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    &:last-child {
+      border: none;
+    }
+  }
+
+  h4 {
+    margin: 0;
+    display: inline-block;
+  }
+}
+
+.link-leyes-texto {
+  width: 100%;
+}
+
+.link-leyes-orden {
+  width: 50%;
+}
+.link-leyes-file {
+  a {
+    font-style: italic;
+  }
+  span {
+    text-decoration: underline;
+    color: $danger;
+    cursor: pointer;
+  }
+}
+
+ #new-section-leyes-btn {
+  margin: 40px 0;
+ }
+
+ .error-msj-leyes {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+ }
+
+.orden-secciones-leyes {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  font-size: 90%;
+}
+
+
+/* ---- 10 seccion staff ---- */
+
+.lista-staff {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-staff-item {
+  border-bottom: 1px solid $resaltado;
+  margin: 30px 0;
+
+  input {
+    width: 100%;
+    height: 40px;
+    font-weight: normal;
+    padding: 2px 5px;
+  }
+}
+
+.btns-item-footer {
+  padding: 10px 20px;
+  border-top: 1px solid $gris;
+  text-align: right;
+}
+
+.error-msj-staff-item {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+}
+
+/* ---- 11 seccion viajes y hoteles ---- */
+
+.wrapper-viajes-editor {
+  position: relative;
+  h5  {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  input {
+    width: 100%;
+    height: 35px;
+    padding: 2px;
+  }
+}
+
+
+.btn-viajes-wrapper {
+  margin: 30px 0;
+  text-align: right;
+}
+
+.msj-viajes-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+.lista-hoteles-admin {
+  padding:0;
+  list-style: none;
+  border-top: 1px solid $gris;
+  margin-top: 10px;
+
+  label {
+    width: 100%;
+  }
+  input,textarea {
+    width: 100%;
+    height: 30px;
+  }
+}
+
+.lista-hoteles-admin>li {
+  margin: 20px 0;
+    padding: 10px 5px;
+    border-bottom: 1px solid #999;
+    &:last-child {
+      border-bottom: none;
+    }
+}
+
+.hoteles-imagenes {
+  padding:0;
+  list-style: none;
+  margin: 20px;
+}
+
+.hoteles-imagenes>li {
+  margin-bottom: 10px;
+}
+.hoteles-imagenes>li>img {
+  border: 1px solid $gris;
+  padding: 5px;
+}
+
+/* ---- 12 seccion cursos ---- */
+
+.lista-cursos {
+  list-style: none;
+  li {
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 40px;
+    &:last-child {
+      border-bottom: none;
+    }
+  
+    label {
+      width: 100%;
+      margin: 5px 0;
+    }
+
+    input, textarea {
+      width: 100%;
+      height: 30px;
+      margin: 5px 0;
+      padding: 2px;
+      font-weight: normal;
+    }
+    textarea {
+      height: 60px;
+    }
+
+  }
+}
+
+.btn-cursos-wrapper {
+  margin: 30px 0;
+  text-align: right;
+}
+
+.msj-cursos-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+
+/* ---- 13 seccion beneficios ---- */
+.btn-main-wapper {
+  margin: 20px 0;
+}
+
+.beneficio-item {
+  label {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  input {
+    width: 100%;
+    font-weight: normal;
+  }
+
+  textarea {
+    width: 100%;
+    font-weight: normal;
+  }
+}
+
+.msj-beneficio-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+/* ---- 14 seccion  ---- */
+
+.page-admin-wrapper {
+  label {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  input {
+    width: 100%;
+    margin: 5px 0;
+    font-weight: normal;
+  }
+
+  textarea {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+}
+
+.msj-page-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+
+/* ---- 15 seccion preguntas frecuentes ---- */
+
+.msj-preguntas-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+.pregunta-item {
+  label {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  input {
+    width: 100%;
+    font-weight: normal;
+  }
+
+  textarea {
+    width: 100%;
+    font-weight: normal;
+  }
+}
+
+/* ---- 16 seccion: prevencion ---- */
+.msj-prevencion-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+.prevencion-item {
+  label {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  input {
+    width: 100%;
+    font-weight: normal;
+  }
+
+  textarea {
+    width: 100%;
+    font-weight: normal;
+  }
+}
+
+
+/* ---- 17 seccion laboratorio---- */
+
+.msj-laboratorio-saved {
+  font-size: 90%;
+  color:$danger;
+  font-style: italic;
+  margin-right: 10px;
+}
+
+.laboratorio-item {
+  label {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  input {
+    width: 100%;
+    font-weight: normal;
+  }
+
+  textarea {
+    width: 100%;
+    font-weight: normal;
+  }
+}
+
+/* ---- 18 homepage ---- */
+
+#homepage_form {
+  hr {
+    margin: 50px 0;
+  }
+
+  h2 {
+    margin-bottom: 50px;
+  }
+}
+
+.larger-input {
+  height: 30px;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.textarea-medium {
+  height: 60px;
+  font-size: 120%;
+}
+
+.textarea-bigger {
+  height: 150px;
+  font-size: 120%;
+}
+.mensaje-guardado {
+  color: $danger;
+  font-style: italic;
+  font-size: 80%;
+}
