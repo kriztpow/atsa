@@ -8,7 +8,7 @@
 1.0 FORMULARIO
 --------------------------------------------------------------*/
 
-var baseUrl = 'http://' + window.location.host + '/afiliate';
+var baseUrl = 'https://' + window.location.host + '/afiliate';
 var ajaxFileUrl = baseUrl + '/inc/ajax.php';
 var specialcharacters = '@#$^&%*()+=[]\'\"\/{}|:;¡!¿?<>,.';
 var numeros = '0123456789';

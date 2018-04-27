@@ -7,8 +7,8 @@
 */
 //BD
 define('DB_SERVER', 'localhost');
-define('DB_USER', 'dbuser');
-define('DB_PASS', '123');
+define("DB_USER", "derechoc_coco");
+define("DB_PASS", "d6m=fD1=ZqKt");
 define('DB_NAME', 'atsa');
 //DEFINICIONES HEAD Y SCRIPTS
 define ( 'VERSION', '1.0' );
@@ -17,7 +17,7 @@ define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 //urls
 define ('CARPETASERVIDOR', '/afiliate' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
+define ('MAINSURL', 'https://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('UPLOADSURL', MAINSURL . '/contenido');
 define ('UPLOADSFILE', MAINSURL . '/contenido');
 //META TAGS
