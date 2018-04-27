@@ -1,8 +1,10 @@
 <?php
 
 $imagen = 'imagen-movil.jpg';
+$video = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/atO21uCfJgw?rel=0&amp;controls=0&amp;showinfo=0&amp;" frameborder="0" allow="autoplay; encrypted-media"  allowfullscreen></iframe>';
 if ( dispositivo () == 'pc' ) {
 	$imagen = 'img-pc.jpg';
+	$video = '<iframe width="100%" height="255" src="https://www.youtube.com/embed/atO21uCfJgw?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allow="autoplay; encrypted-media"  allowfullscreen></iframe>';
 }
 
 ?>
@@ -13,8 +15,9 @@ if ( dispositivo () == 'pc' ) {
 				Viví el sindicato más grande de Capital Federal
 			</h2>
 
-			<img src="<?php echo MAINSURL . '/assets/images/' . $imagen; ?>" alt="#vivíSanidad">
+			<!--<img src="<?php echo MAINSURL . '/assets/images/' . $imagen; ?>" alt="#vivíSanidad">-->
 
+			<?php echo $video; ?>
 
 			<h5>#vivíSanidad</h5>
 		</div>

@@ -118,12 +118,18 @@ html, body {
         width: 100%;
         max-width: 992px;
         margin: 0 auto;
-        max-height: 600px;
+        height:auto;
+        //max-height: 600px;
+        -webkit-align-self: flex-start;
+        -moz-align-self: flex-start;
+        -ms-align-self: flex-start;
+        -o-align-self: flex-start;
+        align-self: flex-start;
     }
     
     @media (min-width: $xlg) {
         max-width: 1190px;
-        max-height: 868px;
+        //max-height: 868px;
     }
 
 }
