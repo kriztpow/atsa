@@ -12,12 +12,12 @@ require_once 'functions.php';
 require_once 'lib/mobile-detect/Mobile_Detect.php';
 
 //chequea si es peticion de ajax y ejecuta la funcion
-if( isAjax() ) {
+if(  isAjax() ) {
 	$function = isset($_POST['function']) ? $_POST['function'] : '';
 
 	switch ( $function ) {
 		case 'try-cuil':
-
+			
 			$cuil = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
 			//mira a ver si el cuil está en base de datos local
 			if ( $_POST['cuil'] == '' ) {
@@ -41,13 +41,18 @@ if( isAjax() ) {
 			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
 			if ( ! empty($usuario) ) {
 				//recupera el id del nuevo usuario
+				 
 				$id = loadNewUser( $usuario, $_POST );
-
-				//carga el template con id del usuario nuevo
-				getTemplate( 'formulario2', $id );
-
-				//aca no se envia email a nadie porque continua en el segundo formulario
-
+				echo 'ok';
+			 
+				$userUpdate = getDataAfiliado( $id );
+				$cuilAfiliado = $userUpdate['member_cuil'];
+				$emailAfiliado = $userUpdate['member_email'];
+				$nombreAfiliado = $userUpdate['member_nombre'].' '.$userUpdate['member_apellido'];
+				$telefonoAfiliado = 'Tel: '.$userUpdate['member_telefono'].' Cel: '.$userUpdate['member_movil'];
+				//enviar email al usuario nuevo y al administrador
+				sendEmail( $cuilAfiliado, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado );
+				
 			}
 
 		break;//try-cuil - primer formulario

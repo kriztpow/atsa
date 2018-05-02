@@ -9,7 +9,7 @@
 define('DB_SERVER', 'localhost');
 define("DB_USER", "derechoc_coco");
 define("DB_PASS", "d6m=fD1=ZqKt");
-define('DB_NAME', 'atsa');
+define('DB_NAME', 'derechoc_afiliados');
 //DEFINICIONES HEAD Y SCRIPTS
 define ( 'VERSION', '1.0' );
 //CARPETAS
@@ -24,5 +24,5 @@ define ('UPLOADSFILE', MAINSURL . '/contenido');
 define('SITETITLE', 'ATSA | Afiliate');
 define('METADESCRIPTION', 'Asociación de trabajadores de la Sanidad Argentina, Buenos Aires. Somos Trabajadores que prestamos servicios en todo establecimiento dedicado a la generación y distribución de medicamentos y a la preservación o recuperación de la Salud. Nos unimos bajo el mismo gremio para defender nuestros derechos llevando las banderas de la UNIDAD y SOLIDARIDAD, con convicción y consciencia sindical.');
 define('METAKEYS', '');
-define( 'EMAILSISTEMA', 'info@lacueva.tv' );
-define( 'EMAILAFILIADOS', 'coco@lacueva.tv' );
+define( 'EMAILSISTEMA', 'prensa@atsa.org.ar' );
+define( 'EMAILAFILIADOS', 'prensa@atsa.org.ar' );

@@ -158,6 +158,41 @@ function loadNewUser( $usuario, $dataFormulario ) {
 	$cuil         = mysqli_real_escape_string($connection, $cuil);
 	$dni          = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
 	$dni          = mysqli_real_escape_string($connection, $dni);
+	
+
+	
+	$member_email  = isset($_POST['member_email']) ? strtolower($_POST['member_email']) : '';
+	$member_tel    = isset($_POST['member_tel']) ? $_POST['member_tel'] : '';
+	$member_movil  = isset($_POST['member_cellphone']) ? $_POST['member_cellphone'] : '';
+	$member_street = isset($_POST['member_street']) ? strtolower($_POST['member_street']) : '';
+	$member_number = isset($_POST['member_number']) ? $_POST['member_number'] : '';
+	$member_city   = isset($_POST['member_city']) ? strtolower($_POST['member_city']) : '';
+
+	//SANITIZE:
+	$member_email  = filter_var($member_email,FILTER_SANITIZE_EMAIL);
+	$member_email  = mysqli_real_escape_string($connection, $member_email);
+	$member_tel    = filter_var($member_tel,FILTER_SANITIZE_NUMBER_INT);
+	$member_tel    = mysqli_real_escape_string($connection, $member_tel);
+	$member_movil  = filter_var($member_movil,FILTER_SANITIZE_NUMBER_INT);
+	$member_movil  = mysqli_real_escape_string($connection, $member_movil);
+	$member_street = filter_var(ucwords($member_street),FILTER_SANITIZE_STRING);
+	$member_street = mysqli_real_escape_string($connection, $member_street);
+	$member_number = filter_var($member_number,FILTER_SANITIZE_NUMBER_INT);
+	$member_number = mysqli_real_escape_string($connection, $member_number);
+	$member_city   = filter_var(ucwords($member_city),FILTER_SANITIZE_STRING);
+	$member_city   = mysqli_real_escape_string($connection, $member_city);
+
+	//ahora se arman las variables para cargar la base de datos
+	//1. la dirección del afiliado se serializa
+	$member_domicilio = array(
+		'calle' => $member_street,
+		'altura' => $member_number,
+		'piso' => '',
+		'departamento' => '',
+		'otros' => '',
+	);
+	$member_domicilio = serialize($member_domicilio);
+	
 
 	//los datos de la empresa vienen de la otra base de datos externa
 	$empresa = array(
@@ -172,9 +207,7 @@ function loadNewUser( $usuario, $dataFormulario ) {
 
 	$empresa = serialize($empresa);
 
-
-	//registrar afiliado nuevo	
-	$query = "INSERT INTO $tabla (member_cuil,member_cuit,member_dni, member_apellido, member_nombre, member_fecha_ingreso, member_empresa ) VALUES ('$cuil', '$cuit', '$dni', '$apellido', '$nombre', ";//continua el query debajo
+	$query = "INSERT INTO $tabla (member_cuil,member_cuit,member_dni, member_apellido, member_nombre, member_fecha_ingreso, member_empresa, member_email, member_telefono, member_movil, member_domicilio) VALUES ('$cuil', '$cuit', '$dni', '$apellido', '$nombre', ";//continua el query debajo
 
 	if ( $fechaIngreso > $fecha_actual || $fechaIngreso == '' || $fechaIngreso == '0000-00-00' ) {
 		$query .= "NULL ";
@@ -182,15 +215,14 @@ function loadNewUser( $usuario, $dataFormulario ) {
 		$query .= "'".$fechaIngreso."'";
 	}
 
-	$query .= ", '$empresa')";
-
+	$query .= ", '$empresa', '$member_email', '$member_tel', '$member_movil', '$member_domicilio') ";
+	
 	$nuevoMembert = mysqli_query($connection, $query); 
 	$memberID = mysqli_insert_id($connection);
 
 	closeDataBase( $connection );
 
-	//retorna el id del usuario para el nuevo formulario
-	return $memberID;		
+	return $memberID;			
 }
 
 /*
@@ -205,7 +237,7 @@ function updateUser( $data ) {
 		return 'error';
 	}
 	
-	$member_id     = $_POST['id-member'];
+	$member_id     =  $data; //$_POST['id-member'];
 	$member_email  = isset($_POST['member_email']) ? strtolower($_POST['member_email']) : '';
 	$member_tel    = isset($_POST['member_tel']) ? $_POST['member_tel'] : '';
 	$member_movil  = isset($_POST['member_cellphone']) ? $_POST['member_cellphone'] : '';
@@ -381,7 +413,8 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 	$asuntoAdministrador = 'Nuevo afiliado registrado';
 	$link = MAINSURL . '/afiliados/index.php?admin=edit-contacts&slug='.$cuil;
 
-	$afiliadoContenidoEmail  = 'Bienvenido a ATSA Buenos Aires. Un asesor se comunicará con usted para terminar el trámite de afiliación. Muchas gracias.';
+	$afiliadoContenidoEmail  = '<a href="https://atsa.org.ar"> <img src="https://atsa.org.ar/afiliate/mailConfirmacionAfiliate.png"  /></a>';
+	$afiliadoContenidoAlt  = 'Bienvenido a ATSA Buenos Aires. Un asesor se comunicará con usted para terminar el trámite de afiliación. Muchas gracias.';
 	
 	$adminContenidoEmail  = '<div>Un nuevo afiliado ha sido registrado:<br>';
 	$adminContenidoEmail .= 'Nombre: '.$nombre.' <br>';
@@ -413,13 +446,11 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 	$mail->IsHTML(true);
 	//Read an HTML message body from an external file, convert referenced images to embedded,
 	$mail->MsgHTML($afiliadoContenidoEmail);
-	$mail->AltBody = $afiliadoContenidoEmail;
+	$mail->AltBody = $afiliadoContenidoAlt;
 	//send the message, check for errors
-	if (!$mail->send()) {
-	    echo 'Mailer Error: ' . $mail->ErrorInfo;
-	} else {
-	    echo 'email afiliado enviado';
-	}
+	
+	if (!$mail->send()) { //TODO: coco si aca dejaba el echo por exito, entra en conflicto con el valor de devolucion de ajax y el script da error
+	     	}  
 
 	//envio a administrador
 	$mailAdmin = new PHPMailer;
@@ -446,8 +477,7 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 	$mailAdmin->AltBody = $adminContenidoEmail;
 	//send the message, check for errors
 	if (!$mailAdmin->send()) {
-	    return 'Mailer Error: ' . $mailAdmin->ErrorInfo;
-	} else {
-	    return 'email administrador enviado';
-	}
+		//TODO: coco si aca dejaba el echo por exito, entra en conflicto con el valor de devolucion de ajax y el script da error
+	     
+	} 
 }

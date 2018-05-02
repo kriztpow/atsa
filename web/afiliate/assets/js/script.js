@@ -308,7 +308,7 @@ $(document).ready(function() {
         
         //si hay un error el formulario no se envia
         var error = $('.icon-input-error');
-        if (error.length != 0) {
+        if (error.length != 0 ) {
             return false;
         }
 
@@ -359,9 +359,12 @@ $(document).ready(function() {
                         location.href = baseUrl + '/error';
                     }, 1000);
                 } else {
-                    //si no hay errores, carga el nuevo formulario
-                    $(contenedor).empty();
-                    $(contenedor).append(response);
+                                        
+	                if (response == 'ok') {
+	                    location.href = baseUrl + '/bienvenidos';
+	                } else {
+	                    location.href = baseUrl + '/error';
+	                }
                 }  
             },
             error: function ( ) {
