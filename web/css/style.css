@@ -12,6 +12,7 @@
 9. btns-icons
 10. Home page
 11. Main (other pages)
+12. barrita afiliate
 */
 /* ---- 2 Extra reset ---- */
 html, body, div, span, applet, object, iframe,
@@ -3902,5 +3903,124 @@ h2.info-enfermeria {
   text-transform: uppercase;
   margin-bottom: 30px;
   border-bottom: 2px solid #00acec; }
+
+/* ---- 12 barrita afiliate ---- */
+.barrita-afiliate {
+  cursor: pointer;
+  z-index: 111;
+  padding: 5px;
+  position: absolute;
+  bottom: 50px;
+  right: 12px;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  width: 220px;
+  height: 110px;
+  background: #0909c6;
+  color: white;
+  text-transform: uppercase;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  visibility: hidden;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s; }
+  .barrita-afiliate a {
+    display: block;
+    width: 100%;
+    height: 75%; }
+    .barrita-afiliate a:hover, .barrita-afiliate a:visited, .barrita-afiliate a:active {
+      color: inherit; }
+  .barrita-afiliate .barrita-contents {
+    position: relative;
+    width: 100%;
+    height: 100%; }
+  .barrita-afiliate .barrita-content {
+    font-size: 250%;
+    line-height: 100%;
+    position: absolute;
+    text-align: right; }
+    .barrita-afiliate .barrita-content .barrita-content-deco {
+      text-align: center; }
+      .barrita-afiliate .barrita-content .barrita-content-deco:before {
+        content: '+';
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        display: block;
+        font-size: 150%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%); }
+
+.barrita-afiliate-opening {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+  visibility: visible; }
+
+.button-close-wrapper {
+  height: 30px;
+  width: 100%;
+  text-align: right;
+  position: relative; }
+
+#close-barrita {
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: transparent;
+  border: none;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg); }
+  #close-barrita:after {
+    content: '+';
+    font-size: 150%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    -o-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0); }
 
 /*# sourceMappingURL=style.css.map */

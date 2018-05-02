@@ -9,6 +9,34 @@
  * 3. Slider home
 */
 $(document).ready(function(){
+    $('.barrita-afiliate').addClass('barrita-afiliate-opening');
+
+    $('#close-barrita').click(function(){
+        $('.barrita-afiliate').fadeOut();
+    });
+
+    var barritas = $('.barrita-content');
+    $(barritas[1]).hide();
+
+    barraActual = 0;
+
+
+    setInterval(function (){
+        if ( barraActual == 0 ) {
+            $(barritas[0]).fadeOut()
+            $(barritas[1]).fadeIn();     
+            barraActual++;
+        } else {
+            $(barritas[1]).fadeOut()
+            $(barritas[0]).fadeIn(); 
+            barraActual = 0;
+        }
+        
+    }, 6000);
+
+
+
+
     //menu-movil
     var mainMenuHeight = '';
     $('.toggle').click(function(){
