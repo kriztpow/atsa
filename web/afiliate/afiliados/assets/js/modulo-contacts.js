@@ -26,6 +26,7 @@ $(document).ready(function(){
 
 
 
+
 	//borrar usuario
 	$(document).on('click','.del-user',function(){
 		var id = $(this).attr('data-id');
@@ -252,6 +253,17 @@ $(document).ready(function(){
 		window.print();
 
 	});//imprimir formulario
+
+   	/*
+	* imprimir a pdf
+   	*/
+
+   	$( '#print_pdf' ).click(function( event ) {
+		$("#datos_a_enviar").val( $("<div>").append( $('.wrapper-impresion').eq(0).clone()).html());
+		$("#FormularioExportacion").submit();
+	});//click boton
+
+
 
    	//guardar afiliado
    	$(document).on('submit', '#afiliado_form', function( e ) {

@@ -488,7 +488,7 @@ function sendEmailToAdmin( $cuil = '', $emailAfiliado = '', $nombre = '', $tel  
 	require_once("class.smtp.php");
 
 	$emailTo = $emailAfiliado;
-	$asuntoAdministrador = 'Nuevo error de registro';
+	$asuntoAdministrador = 'SOLICITUD RECHAZADA';
 	//$link = MAINSURL . '/afiliados/index.php?admin=edit-contacts&slug='.$cuil;
 	
 	$adminContenidoEmail  = '<div>Un nuevo afiliado ha intentado registrarse sin éxito:<br>';

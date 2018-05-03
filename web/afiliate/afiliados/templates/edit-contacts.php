@@ -425,6 +425,7 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 				<hr class="no-print">
 				<div class="btns-wrappers no-print">
 					<span class="msj-error"></span>
+					<input id="print_pdf" class="btn btn-danger" type="button" value="Imprimir pdf">
 					<input class="btn btn-primary btn-print print_page" type="button" value="Imprimir">
 					<input class="btn btn-danger" type="submit" value="Guardar">
 				</div>
@@ -453,9 +454,10 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 		</div><!-- // wrapper-impresion -->
 		
 	</div><!-- // container -->
-	<form action="<?php echo URLADMINISTRADOR; ?>/inc/pdf.php">
-                  <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="Crear PDF">
-              </form>
+
+  	<form action="<?php echo URLADMINISTRADOR; ?>/inc/pdf.php" method="post" target="_blank" id="FormularioExportacion">
+		<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
+	</form>
 </div><!-- // contenido-modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>

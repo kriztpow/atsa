@@ -1,11 +1,13 @@
 <?php
   ob_start();
+  $datos_recebido = iconv('utf-8','iso-8859-1', $_POST['datos_a_enviar']);
+
 ?>
-<page backtop="10mm" backbottom="10mm" backleft="20mm" backright="20mm">
- <h1>Estamos creando un PDF</h1>       <br>
-  <b>Ingresa a Codigo Facilito, aprenderás muchas cosas</b><br>
-  <a href='http://codigofacilito.com'>Click</a>.<br>
+<page backtop="5mm" backbottom="5mm" backleft="10mm" backright="10mm">
+ <?php echo $datos_recebido; ?>
 </page>
+
+
 
 <?php
 
