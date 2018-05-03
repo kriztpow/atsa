@@ -466,7 +466,7 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 	//Set who the message is to be sent from
 	$mailAdmin->setFrom(EMAILSISTEMA, 'ATSA');
 	//Set an alternative reply-to address
-	$mailAdmin->addReplyTo($email, $nombre);
+	$mailAdmin->addReplyTo($emailAfiliado, $nombre);
 	//Set who the message is to be sent to
 	$mailAdmin->addAddress(EMAILAFILIADOS, 'ATSA');
 	//Set the subject line
@@ -478,6 +478,54 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 	//send the message, check for errors
 	if (!$mailAdmin->send()) {
 		//TODO: coco si aca dejaba el echo por exito, entra en conflicto con el valor de devolucion de ajax y el script da error
+	     
+	} 
+}
+
+//envia un email al administrador para avisar q alguien intentó registrarse
+function sendEmailToAdmin( $cuil = '', $emailAfiliado = '', $nombre = '', $tel  = '', $cel = '', $emailAdministrador =  EMAILAFILIADOS ) {
+	require_once("class.phpmailer.php");
+	require_once("class.smtp.php");
+
+	$emailTo = $emailAfiliado;
+	$asuntoAdministrador = 'Nuevo error de registro';
+	//$link = MAINSURL . '/afiliados/index.php?admin=edit-contacts&slug='.$cuil;
+	
+	$adminContenidoEmail  = '<div>Un nuevo afiliado ha intentado registrarse sin éxito:<br>';
+	$adminContenidoEmail .= 'Nombre: '.$nombre.' <br>';
+	$adminContenidoEmail .= 'Cuil: '.$cuil.' <br>';
+	$adminContenidoEmail .= 'Email: '.$emailAfiliado.' <br>';
+	$adminContenidoEmail .= 'Tel: '.$tel.' <br>';
+	$adminContenidoEmail .= 'Cel: '.$cel.' <br>';
+	$adminContenidoEmail .= '</div>';
+
+	//envio a administrador
+	$mailAdmin = new PHPMailer;
+	//Tell PHPMailer to use SMTP
+	//$mail->isSMTP();
+	//$mail->Host = 'localhost';
+	//Enable SMTP debugging
+	// 0 = off (for production use)
+	// 1 = client messages
+	// 2 = client and server messages
+	$mailAdmin->SMTPDebug = 0;
+	$mailAdmin->CharSet = 'UTF-8';
+	//Set who the message is to be sent from
+	$mailAdmin->setFrom(EMAILSISTEMA, 'ATSA');
+	//Set an alternative reply-to address
+	$mailAdmin->addReplyTo($emailAfiliado, $nombre);
+	//Set who the message is to be sent to
+	$mailAdmin->addAddress($emailAdministrador, 'ATSA');
+	//Set the subject line
+	$mailAdmin->Subject = $asuntoAdministrador;
+	$mailAdmin->IsHTML(true);
+	//Read an HTML message body from an external file, convert referenced images to embedded,
+	$mailAdmin->MsgHTML($adminContenidoEmail);
+	$mailAdmin->AltBody = $adminContenidoEmail;
+	//send the message, check for errors
+	if (!$mailAdmin->send()) {
+		//TODO: coco si aca dejaba el echo por exito, entra en conflicto con el valor de devolucion de ajax y el script da error
+		
 	     
 	} 
 }

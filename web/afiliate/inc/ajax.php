@@ -19,14 +19,18 @@ if(  isAjax() ) {
 		case 'try-cuil':
 			
 			$cuil = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
+			$nombreAfiliado = $_POST['lastname'] . ' ' . $_POST['name'];
+
 			//mira a ver si el cuil está en base de datos local
 			if ( $_POST['cuil'] == '' ) {
 				echo 'error-2';
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
 				return;
 			}
 			
 			if ( checkCuilHere($_POST['cuil']) ) {
 				echo 'error-4';
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
 				return;
 			};
 
@@ -36,6 +40,7 @@ if(  isAjax() ) {
 			if ( $usuario == 'error-1' || $usuario == 'error-2' ) {
 				//devuelve error al script
 				echo $usuario;
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
 				return;
 			}
 			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
@@ -53,24 +58,12 @@ if(  isAjax() ) {
 				//enviar email al usuario nuevo y al administrador
 				sendEmail( $cuilAfiliado, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado );
 				
+			} else {
+				
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
 			}
 
 		break;//try-cuil - primer formulario
-
-		case 'save-member':
-
-			$update = updateUser( $_POST );
-
-			echo $update;
-			$userUpdate = getDataAfiliado( $_POST['id-member'] );
-			$cuilAfiliado = $userUpdate['member_cuil'];
-			$emailAfiliado = $userUpdate['member_email'];
-			$nombreAfiliado = $userUpdate['member_nombre'].' '.$userUpdate['member_apellido'];
-			$telefonoAfiliado = 'Tel: '.$userUpdate['member_telefono'].' Cel: '.$userUpdate['member_movil'];
-			//enviar email al usuario nuevo y al administrador
-			//sendEmail( $cuilAfiliado, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado );
-
-		break;//save-member segundo formulario
 
 	}//switch
 
