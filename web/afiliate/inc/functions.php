@@ -468,7 +468,7 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 	//Set an alternative reply-to address
 	$mailAdmin->addReplyTo($emailAfiliado, $nombre);
 	//Set who the message is to be sent to
-	$mailAdmin->addAddress(EMAILAFILIADOS, 'ATSA');
+	$mailAdmin->addAddress($emailAdministrador, 'ATSA');
 	//Set the subject line
 	$mailAdmin->Subject = $asuntoAdministrador;
 	$mailAdmin->IsHTML(true);

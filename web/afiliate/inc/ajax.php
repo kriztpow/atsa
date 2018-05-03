@@ -1,6 +1,6 @@
 <?php 
 /*
- * Sitio web: TROOPS
+ * Sitio web: atsa - afiliate
  * @LaCueva.tv
  * Since 1.0
  * FUNCTIONS
@@ -24,13 +24,13 @@ if(  isAjax() ) {
 			//mira a ver si el cuil está en base de datos local
 			if ( $_POST['cuil'] == '' ) {
 				echo 'error-2';
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
 				return;
 			}
 			
 			if ( checkCuilHere($_POST['cuil']) ) {
 				echo 'error-4';
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
 				return;
 			};
 
@@ -40,7 +40,7 @@ if(  isAjax() ) {
 			if ( $usuario == 'error-1' || $usuario == 'error-2' ) {
 				//devuelve error al script
 				echo $usuario;
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
 				return;
 			}
 			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
@@ -60,7 +60,7 @@ if(  isAjax() ) {
 				
 			} else {
 				
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'prensaydifusiocaba@gmail.com' );
+				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
 			}
 
 		break;//try-cuil - primer formulario
