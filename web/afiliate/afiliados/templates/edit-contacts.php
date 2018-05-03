@@ -453,6 +453,9 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 		</div><!-- // wrapper-impresion -->
 		
 	</div><!-- // container -->
+	<form action="<?php echo URLADMINISTRADOR; ?>/inc/pdf.php">
+                  <input type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="Crear PDF">
+              </form>
 </div><!-- // contenido-modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
