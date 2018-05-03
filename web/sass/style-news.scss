@@ -12,6 +12,7 @@
 a) sidebar
 b) noticias index
 11. news page (individual)
+12. barrita afiliate
 */
 
 /* ---- 2 Extra reset ---- */
@@ -567,3 +568,5 @@ aside {
     font-weight: $weight-bold;
     @include border-radius(5px);
 }
+
+@import 'barrita-afiliate';

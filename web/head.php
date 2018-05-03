@@ -89,3 +89,24 @@ if ( count($dataNoticia) > 0 ) {
 <script src="<?php echo urlBase(); ?>/js/modernizr.custom.26633.js"></script>
 </head>
 <body>
+    <!-- afiliate -->
+    <div class="barrita-afiliate">
+        <div class="button-close-wrapper">
+            <button id="close-barrita"></button>
+        </div>
+        <a href="https://atsa.org.ar/afiliate" target="_blank">
+            <div class="barrita-contents">
+                <div class="barrita-content">
+                    <span class="barrita-content-deco">
+                        Afiliate online
+                    </span>
+                </div>
+
+                <div class="barrita-content">
+                    <span>
+                        #Vivi Sanidad
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
