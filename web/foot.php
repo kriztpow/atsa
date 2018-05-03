@@ -11,7 +11,7 @@
 <span style="visibility:hidden;" class="sr-only">Desarrollo: <a href="http://lacueva.tv">LaCueva.tv</a></span>
 
     <script src="<?php echo urlBase() . '/' . MAINSCRIPTJS; ?>"></script>
-	<script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=75668146"></script>
+	<!--<script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=75668146"></script>
     <script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -22,6 +22,6 @@
 		ga('require', 'displayfeatures');
 		ga('send', 'pageview');
 
-	</script>
+	</script>-->
 </body>
 </html>

@@ -17,7 +17,7 @@ define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 //urls
 define ('CARPETASERVIDOR', '/afiliate' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINSURL', 'https://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
+define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('UPLOADSURL', MAINSURL . '/contenido');
 define ('UPLOADSFILE', MAINSURL . '/contenido');
 //META TAGS
