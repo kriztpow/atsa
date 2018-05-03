@@ -8,7 +8,7 @@
 ?>
 <!------- scripts ------>
     <script src="<?php echo MAINSURL; ?>/assets/js/jquery-3.2.1.min.js"></script>
-    <script src="<?php echo MAINSURL; ?>/assets/js/script.js"></script>
+    <script src="<?php echo MAINSURL; ?>/assets/js/script.js?1.0"></script>
 
 </body>
 </html>

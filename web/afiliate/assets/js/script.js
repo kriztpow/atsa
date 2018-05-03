@@ -205,6 +205,7 @@ $(document).ready(function() {
 
     //input type numbers
     $(document).on('focusout', 'input[type=number]', function() {
+        
         var valor = $(this).val();
         var contenedor = $(this).closest('.form-group');
         var icon = $(contenedor).find('.icon-input');
@@ -213,7 +214,7 @@ $(document).ready(function() {
         valor = cleanedOthers(valor,letras);
        
         valor = cleanedSpecialCharacters(valor,specialcharacters)
-        
+                
         $(this).val(valor);
 
         //ver si pasa las pruebas de longitud, por defecto no las pasa se prueba en los distintos campos de número
@@ -226,19 +227,87 @@ $(document).ready(function() {
         if ( ( this.name == 'cuil' || this.name == 'cuit') && valor.length == 11 ) {
             longitud = false;
         }
-        //campo tel
-        if ( this.name == 'member_tel' && valor.length >= 8 ) {
-            longitud = false;
-        }
-        //campo cel
-        if ( this.name == 'member_cellphone' && valor.length >= 10 && valor.indexOf('15') != -1 ) {
-            longitud = false;
-        }
+        
         //campo alturas
         if ( ( this.name == 'job_number' || this.name == 'member_number') && valor != '' ) {
             longitud = false;
         }
+        //si hay letras o no pasa alguna de las validaciones devuelve error
+        if ( longitud || areThereAny(valor, letras+specialcharacters) ) {
+            $(icon).addClass('icon-input-error');
+            $(msj).fadeIn();
+            
+        } else {
+            $(icon).removeClass('icon-input-error');    
+            $(icon).addClass('icon-input-sucess');    
+            $(msj).fadeOut(); 
+        }
+    });
+
+    //input name tel
+    $(document).on('focusout', 'input[name=member_tel]', function() {
+        var valor = $(this).val();
+        var contenedor = $(this).closest('.form-group');
+        var icon = $(contenedor).find('.icon-input');
+        var msj = $(contenedor).find('.msj-error-input');
+        var longitud = true;
+
+        valor = cleanedOthers(valor,letras);
+        valor = cleanedSpecialCharacters(valor,specialcharacters)
+                
+        $(this).val(valor);
+
+        if ( valor.length >= 8 ) {
+            longitud = false;
+        } 
+
+        //si no hay ningún numero pero en el celular si, entonces se perdona
+        /*if ( $('input[name=member_cellphone]').val() != '' ) {
+            longitud = false;
+        }*/
+        if ( $('input[name=member_cellphone]').attr('data-validate') == 'true' ) {
+            longitud = false;
+        }
+
+        //si hay letras o no pasa alguna de las validaciones devuelve error
+        if ( longitud || areThereAny(valor, letras+specialcharacters) ) {
+            $(icon).addClass('icon-input-error');
+            $(msj).fadeIn();
+            
+        } else {
+            $(icon).removeClass('icon-input-error');    
+            $(icon).addClass('icon-input-sucess');    
+            $(msj).fadeOut(); 
+            //pone el validate on
+            $(this).attr('data-validate', 'true');
+        }
+    });
+
+    //input name cellphone
+    $(document).on('focusout', 'input[name=member_cellphone]', function() {
+        var valor = $(this).val();
+        var contenedor = $(this).closest('.form-group');
+        var icon = $(contenedor).find('.icon-input');
+        var msj = $(contenedor).find('.msj-error-input');
+        var longitud = true;
+
+        valor = cleanedOthers(valor,letras);
+        valor = cleanedSpecialCharacters(valor,specialcharacters)
+                
+        $(this).val(valor);
         
+        if ( valor.length >= 10 && valor.indexOf('15') != -1 ) {
+            longitud = false;
+        } 
+        
+        //si no hay ningún numero pero en el celular si, entonces se perdona
+        /*if ( $('input[name=member_tel]').val() != '' ) {
+            longitud = false;
+        }*/
+        if ( $('input[name=member_tel]').attr('data-validate') == 'true' ) {
+            longitud = false;
+        }
+
         //si hay letras o no pasa alguna de las validaciones devuelve error
         if ( longitud || areThereAny(valor, letras+specialcharacters) ) {
             $(icon).addClass('icon-input-error');
@@ -248,10 +317,11 @@ $(document).ready(function() {
             $(icon).removeClass('icon-input-error');    
             $(icon).addClass('icon-input-sucess');    
             $(msj).fadeOut();
-
-            
+            //pone el validate on
+            $(this).attr('data-validate', 'true');
         }
     });
+
 
     //fecha focus out
     $(document).on('focusout', 'input[type=date]', function() {
@@ -309,9 +379,18 @@ $(document).ready(function() {
         //si hay un error el formulario no se envia
         var error = $('.icon-input-error');
         if (error.length != 0 ) {
-            return false;
-        }
+            if (error.length > 1) {
+                alert('Por favor, corrija los errores marcados');
+                return false;
+            }
+            if ( $('input[name=member_cellphone]').attr('data-validate') != 'true' ) {
 
+                if ( $('input[name=member_tel]').attr('data-validate') != 'true' ) {
+                    alert('Por favor, corrija los errores marcados');
+                    return false;
+                }
+            }
+        }
        
         var contenedor = $('.contenedor-formulario');
         var loader = $('.loader');

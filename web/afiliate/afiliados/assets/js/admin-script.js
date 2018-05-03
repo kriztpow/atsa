@@ -16,7 +16,7 @@
 */
 
 //urls:
-var baseUrl = 'https://' + window.location.host + '/afiliate';
+var baseUrl = 'http://' + window.location.host + '/afiliate';
 var administradorUrl = baseUrl + '/afiliados';
 var uploadsDir = baseUrl + '/contenido';
 var functionsDir = administradorUrl + '/inc';

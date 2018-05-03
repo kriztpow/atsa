@@ -43,7 +43,7 @@
 <meta name="theme-color" content="#ffffff">
     
     <!-- Custom CSS -->
-    <link href="<?php echo MAINSURL; ?>/assets/css/style.css" rel="stylesheet">
+    <link href="<?php echo MAINSURL; ?>/assets/css/style.css?1.0" rel="stylesheet">
 
 <!--[if lt IE 9]>
     <script src="<?php echo MAINSURL; ?>/assets/js/html5shiv/dist/html5shiv.js"></script>

@@ -1,9 +1,9 @@
 <?php
 // BASE DE DATOS
 define('DB_SERVER', 'localhost');
-define("DB_USER", "derechoc_coco");
-define("DB_PASS", "d6m=fD1=ZqKt");
-define('DB_NAME', 'derechoc_afiliados');
+define("DB_USER", "dbuser");
+define("DB_PASS", "123");
+define('DB_NAME', 'afiliados');
 //CARPETAS
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 define ( 'MODULOSDIR', dirname( __FILE__ ) . '/modulos' );
@@ -12,9 +12,9 @@ define ( 'UPLOADSIMAGES', dirname( __FILE__ ) . '/../../../uploads/images' );
 define ( 'UPLOADSFILES', dirname( __FILE__ ) . '/../../../uploads/pdfs' );
 //URL
 define ('CARPETASERVIDOR', '/afiliate' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINURL', 'https://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
+define ('MAINURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('URLADMINISTRADOR', MAINURL . '/afiliados' );//esta variable define la carpeta del administrador - también debe cambianser en el .js
-define ('UPLOADSURL', 'https://' . $_SERVER['HTTP_HOST'] . '/uploads' );//carpeta donde esta el contenido subido por el usuario
+define ('UPLOADSURL', 'http://' . $_SERVER['HTTP_HOST'] . '/uploads' );//carpeta donde esta el contenido subido por el usuario
 define ('UPLOADSURLIMAGES', UPLOADSURL . '/images');//carpeta  de imagenes (por si tiene distintas carpetas de contenido)
 define ('UPLOADSURLFILES', UPLOADSURL . '/pdfs');//carpeta de archivos (por si tiene distintas carpetas de contenido)
 

@@ -76,20 +76,20 @@ global $pageActual;
 		</div>
 
 		<div class="form-group">
-			<input type="number" name="member_tel" required>
+			<input type="number" name="member_tel">
 			<label for="member_tel">Teléfono Particular*</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">
-				Formato inválido (011 xxxx)
+				Formato inválido (Escriba sin guiones)
 			</span>
 		</div>
 
 		<div class="form-group">
-			<input type="number" name="member_cellphone" required>
+			<input type="number" name="member_cellphone">
 			<label for="member_cellphone" class="label-col-right">Celular*</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">
-				Formato inválido (011 15 xx)
+				Formato inválido (011 15, Escriba sin guiones)
 			</span>
 		</div>
 
