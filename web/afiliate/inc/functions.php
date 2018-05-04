@@ -483,7 +483,7 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 }
 
 //envia un email al administrador para avisar q alguien intentó registrarse
-function sendEmailToAdmin( $cuil = '', $emailAfiliado = '', $nombre = '', $tel  = '', $cel = '', $emailAdministrador =  EMAILAFILIADOS ) {
+function sendEmailToAdmin( $cuil = '', $cuit = '', $emailAfiliado = '', $nombre = '', $tel  = '', $cel = '', $emailAdministrador =  EMAILAFILIADOS ) {
 	require_once("class.phpmailer.php");
 	require_once("class.smtp.php");
 
@@ -497,6 +497,7 @@ function sendEmailToAdmin( $cuil = '', $emailAfiliado = '', $nombre = '', $tel  
 	$adminContenidoEmail .= 'Email: '.$emailAfiliado.' <br>';
 	$adminContenidoEmail .= 'Tel: '.$tel.' <br>';
 	$adminContenidoEmail .= 'Cel: '.$cel.' <br>';
+	$adminContenidoEmail .= 'Cuit: '.$cuit.' <br>';
 	$adminContenidoEmail .= '</div>';
 
 	//envio a administrador

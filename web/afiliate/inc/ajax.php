@@ -18,19 +18,25 @@ if(  isAjax() ) {
 	switch ( $function ) {
 		case 'try-cuil':
 			
-			$cuil = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
-			$nombreAfiliado = $_POST['lastname'] . ' ' . $_POST['name'];
+			$cuil  = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
+			$cuit  = isset( $_POST['cuit'] ) ? $_POST['cuit'] : '';
+			$email = isset( $_POST['member_email'] ) ? $_POST['member_email'] : '';
+			$tel   = isset( $_POST['member_tel'] ) ? $_POST['member_tel'] : '';
+			$movil = isset( $_POST['member_cellphone'] ) ? $_POST['member_cellphone'] : '';
+			$apellido = isset( $_POST['lastname'] ) ? $_POST['lastname'] : '';
+			$nombre = isset( $_POST['name'] ) ? $_POST['name'] : '';
+			$nombreAfiliado = $nombre . ' ' . $apellido;
 
 			//mira a ver si el cuil está en base de datos local
 			if ( $_POST['cuil'] == '' ) {
 				echo 'error-2';
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
 				return;
 			}
 			
 			if ( checkCuilHere($_POST['cuil']) ) {
 				echo 'error-4';
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
 				return;
 			};
 
@@ -40,7 +46,7 @@ if(  isAjax() ) {
 			if ( $usuario == 'error-1' || $usuario == 'error-2' ) {
 				//devuelve error al script
 				echo $usuario;
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
 				return;
 			}
 			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
@@ -60,7 +66,7 @@ if(  isAjax() ) {
 				
 			} else {
 				
-				sendEmailToAdmin( $_POST['cuil'], $_POST['member_email'], $nombreAfiliado, $_POST['member_tel'], $_POST['member_cellphone'], 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
 			}
 
 		break;//try-cuil - primer formulario
