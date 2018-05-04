@@ -16,7 +16,7 @@ if(!defined("SECUREACCESS"))
 <link rel="shortcut icon" href="<?php echo FAVICONICO; ?>">
 
 <!-- Custom CSS -->
-  <link href="assets/css/style-admin.css" rel="stylesheet">
+  <link href="assets/css/style-admin-all.css" rel="stylesheet">
 
 <!------- jquery 3.1.1 ------>
 <script src="assets/js/jquery-3.1.1.min.js"></script>

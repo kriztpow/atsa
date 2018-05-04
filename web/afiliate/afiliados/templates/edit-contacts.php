@@ -425,7 +425,6 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 				<hr class="no-print">
 				<div class="btns-wrappers no-print">
 					<span class="msj-error"></span>
-					<input id="print_pdf" class="btn btn-danger" type="button" value="Imprimir pdf">
 					<input class="btn btn-primary btn-print print_page" type="button" value="Imprimir">
 					<input class="btn btn-danger" type="submit" value="Guardar">
 				</div>

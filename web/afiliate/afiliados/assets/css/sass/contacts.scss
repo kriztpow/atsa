@@ -503,7 +503,7 @@
 	@page {
 	  size: A4 portrait;
 	  margin-top: 1cm; 
-	  margin-bottom: 1cm; 
+	  margin-bottom: 2cm; 
 	  margin-left: 1.5cm; 
 	  margin-right: 1.5cm; 
 	  orphans: 10;
@@ -619,7 +619,6 @@
 	    font-size: 9pt;
 
 	    p {
-	    	
 	    	font-size: 10pt;
 	    }
 
@@ -634,7 +633,7 @@
 			-ms-justify-content: space-between;
 			-o-justify-content: space-between;
 			justify-content: space-between;
-			margin-top: 3cm;
+			margin-top: 2cm;
 			margin-bottom: 1cm;
 
 			li {
@@ -647,8 +646,8 @@
 	    .legales-footer-imprimir {
 	    	margin-top: 1cm;
 	    	text-align: center;
-	    	/*position: fixed;
-	    	bottom: 0cm;*/
+	    	position: fixed;
+	    	bottom: 0cm;
 	    	width: 100%;
 
 	    }
