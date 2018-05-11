@@ -3,7 +3,6 @@
  * fragmento de la tabla de afiliados, luego de la numeración que no está en bd
  * 
 */
-global $userStatus;
 ?>
 <td>
 	<span class="numeracion-rows"></span>
@@ -52,9 +51,9 @@ global $userStatus;
 	?>
 </td>
 <td>
-	<?php if ( $userStatus != '1') : ?>
+	
 	<button title="Borrar Afiliado" class="del-user" data-id="<?php echo $data['member_id']; ?>">
 		<img src="<?php echo URLADMINISTRADOR; ?>/assets/images/delbtn.png" alt="Borrar Afiliado">
 	</button>
-	<?php endif; ?>
+	
 </td>
