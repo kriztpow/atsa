@@ -483,7 +483,7 @@ function sendEmail( $cuil, $emailAfiliado, $nombreAfiliado, $telefonoAfiliado, $
 }
 
 //envia un email al administrador para avisar q alguien intentó registrarse
-function sendEmailToAdmin( $cuil = '', $cuit = '', $emailAfiliado = '', $nombre = '', $tel  = '', $cel = '', $emailAdministrador =  EMAILAFILIADOS ) {
+function sendEmailToAdmin( $datos = array(), $emailAdministrador =  EMAILAFILIADOS ) {
 	require_once("class.phpmailer.php");
 	require_once("class.smtp.php");
 
@@ -491,13 +491,34 @@ function sendEmailToAdmin( $cuil = '', $cuit = '', $emailAfiliado = '', $nombre 
 	$asuntoAdministrador = 'SOLICITUD RECHAZADA';
 	//$link = MAINSURL . '/afiliados/index.php?admin=edit-contacts&slug='.$cuil;
 	
+	$apellido = isset( $_POST['lastname'] ) ? $_POST['lastname'] : '';
+	$nombre = isset( $_POST['name'] ) ? $_POST['name'] : '';
+	$dni  = isset( $_POST['dni'] ) ? $_POST['dni'] : '';
+	$cuil  = isset( $_POST['cuil'] ) ? $_POST['cuil'] : '';
+	$cuit  = isset( $_POST['cuit'] ) ? $_POST['cuit'] : '';
+	$fechaIngresoEmpresa = isset( $_POST['date-start'] ) ? $_POST['date-start'] : '';
+	$tel   = isset( $_POST['member_tel'] ) ? $_POST['member_tel'] : '';
+	$movil = isset( $_POST['member_cellphone'] ) ? $_POST['member_cellphone'] : '';
+	$email = isset( $_POST['member_email'] ) ? $_POST['member_email'] : '';
+	$calle = isset( $_POST['job_street'] ) ? $_POST['job_street'] : '';
+	$altura = isset( $_POST['job_number'] ) ? $_POST['job_number'] : '';
+	$localidad = isset( $_POST['job_city'] ) ? $_POST['job_city'] : '';
+	
+	
+	
+	$nombreAfiliado = $nombre . ' ' . $apellido;
+	$direccion = $calle . ' ' . $altura . ', Localidad:' . $localidad;
+
 	$adminContenidoEmail  = '<div>Un nuevo afiliado ha intentado registrarse sin éxito:<br>';
-	$adminContenidoEmail .= 'Nombre: '.$nombre.' <br>';
+	$adminContenidoEmail .= 'Nombre: '.$nombreAfiliado.' <br>';
 	$adminContenidoEmail .= 'Cuil: '.$cuil.' <br>';
-	$adminContenidoEmail .= 'Email: '.$emailAfiliado.' <br>';
+	$adminContenidoEmail .= 'DNI: '.$dni.' <br>';
+	$adminContenidoEmail .= 'Email: '.$email.' <br>';
 	$adminContenidoEmail .= 'Tel: '.$tel.' <br>';
-	$adminContenidoEmail .= 'Cel: '.$cel.' <br>';
-	$adminContenidoEmail .= 'Cuit: '.$cuit.' <br>';
+	$adminContenidoEmail .= 'Cel: '.$movil.' <br>';
+	$adminContenidoEmail .= 'Fecha de Ingreso Empresa: '.$fechaIngresoEmpresa.' <br>';
+	$adminContenidoEmail .= 'CUIT: '.$cuit.' <br>';
+	$adminContenidoEmail .= 'Dirección: '.$direccion.' <br>';
 	$adminContenidoEmail .= '</div>';
 
 	//envio a administrador

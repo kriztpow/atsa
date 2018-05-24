@@ -30,13 +30,13 @@ if(  isAjax() ) {
 			//mira a ver si el cuil está en base de datos local
 			if ( $_POST['cuil'] == '' ) {
 				echo 'error-2';
-				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
 				return;
 			}
 			
 			if ( checkCuilHere($_POST['cuil']) ) {
 				echo 'error-4';
-				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
 				return;
 			};
 
@@ -46,7 +46,7 @@ if(  isAjax() ) {
 			if ( $usuario == 'error-1' || $usuario == 'error-2' ) {
 				//devuelve error al script
 				echo $usuario;
-				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
 				return;
 			}
 			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
@@ -66,7 +66,7 @@ if(  isAjax() ) {
 				
 			} else {
 				
-				sendEmailToAdmin( $cuil, $cuit, $email, $nombreAfiliado, $tel, $movil, 'equipodeprensa@atsa.org.ar' );
+				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
 			}
 
 		break;//try-cuil - primer formulario
