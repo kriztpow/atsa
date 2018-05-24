@@ -24,14 +24,15 @@ define ( 'DATEPUBLISHED', '2018');
 define ('LOGOSITE' , URLADMINISTRADOR . '/assets/images/logosite.png');
 define ( 'SITETITLE', 'ATSA - Panel de control' );
 define ( 'FAVICONICO', URLADMINISTRADOR . '/favicon.ico' );
-define ( 'CANTPOST', '10' );
+define ( 'CANTPOST', '250' );
 
 //variables tipo de usuario
 global $usertype;
 $usertype = array(
-	array( 'status' => 'a', 'nombre' => 'default'),
 	array( 'status' => '0', 'nombre' => 'Administrador'),
 	array( 'status' => '1', 'nombre' => 'Editor'),
+	array( 'status' => 'a', 'nombre' => 'default'),
+	array( 'status' => 'd', 'nombre' => 'delegado'),
 );
 //variables de tipos de estado de usuario
 global $afiliadoStatus;

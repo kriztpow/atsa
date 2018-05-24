@@ -44,13 +44,16 @@ if ($userStatus != '0' ) {
 									$statusUser = $users[$i]['user_status'];
 									switch ( $statusUser ) {
 										case '0':
-											echo $usertype[1]['nombre'];
+											echo $usertype[0]['nombre'];
 											break;
 										case '1':
-											echo $usertype[2]['nombre'];
+											echo $usertype[1]['nombre'];
+											break;
+										case 'd':
+											echo $usertype[3]['nombre'];
 											break;
 										default:
-											echo $usertype[0]['nombre'];
+											echo $usertype[2]['nombre'];
 											break;
 									}
 								?>
