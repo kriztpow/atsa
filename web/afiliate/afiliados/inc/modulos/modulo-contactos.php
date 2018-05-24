@@ -25,12 +25,26 @@ function getAfiliadosNumber($status = 'all') {
 	}*/	
 }
 //toma los contactos de la base de datos y devuelve el array con todos los contactos
-function getAfiliados ( $status = 'all', $orderBy = 'member_date_registro', $orden = 'desc', $cantPost = CANTPOST, $offset = -1 ) {
+function getAfiliados ( $status = 'all', $registeredBy = 'all', $orderBy = 'member_date_registro', $orden = 'desc', $cantPost = CANTPOST, $offset = -1 ) {
 	$connection = connectDB();
 	$tabla      = 'afiliados';
 	$query      = "SELECT * FROM " .$tabla;
+	if ( $status != 'all' || $registeredBy != 'all' ) {
+		$query .= " WHERE";
+	}
 	if ( $status != 'all' ) {
-		$query .= " WHERE member_status='".$status."'";
+		$query .= " member_status='".$status."'";
+	}
+	if ( $status != 'all' && $registeredBy != 'all' ) {
+		$query .= " and";
+	}
+	if ( $registeredBy != 'all' ) {
+		if ( $registeredBy == 'delegados') {
+			$query .= " member_registration_id!=''";
+		} else {
+			$query .= " member_registration_id='".$registeredBy."'";	
+		}
+		
 	}
 	$query     .= " ORDER by ".$orderBy." ".$orden;
 	if ( $offset != -1 ) {

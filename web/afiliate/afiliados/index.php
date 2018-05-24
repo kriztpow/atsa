@@ -15,10 +15,12 @@ define('SECUREACCESS', 1);
 //chequea si la sesion está iniciada y si no se exedio el tiempo
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   $online = true;
-  //define la categoria de usuario
-  if ( isset($_SESSION['user_status']) && ( $_SESSION['user_status'] == 0 || $_SESSION['user_status'] == 1 ) ) {
-    $userStatus = $_SESSION['user_status'];
-  }
+    //define la categoria de usuario
+    if ( isset($_SESSION['user_status']) && ( $_SESSION['user_status'] == 0 || $_SESSION['user_status'] == 1 ) ) {
+      $userStatus = $_SESSION['user_status'];
+    } else {
+      $userStatus = $_SESSION['user_status'];
+    }
 
   } else {
   
@@ -72,7 +74,7 @@ if ( $search != '') : ?>
    * SI EL MODULO NO ESTA DEFINIDO ENTONCES CARGA EL INDEX PERO DE ACUERDO AL USUARIO:
   */
   
-  if ( $userStatus == '0' || $userStatus == '1' ) : 
+  if ( $userStatus == '0' || $userStatus == '1' || $userStatus == 'a' ) : 
   /*
    * si es usuario editor o administrador, corresponde mostrar todos los modulos
   */  

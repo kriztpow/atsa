@@ -6,17 +6,39 @@
 */
 load_module( 'contactos' );
 
-//mira si tiene que buscar de alguna manera en especial
-$show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : '';
+$plantillaReduce = false;
+$delegados = false;
+//si el usuario es "a" se pide plantilla de row sin poder borrar afiliado
+global $userStatus;
+if ($userStatus == 'a' ) {
+	$plantillaReduce = true;
+}
+//si el usuario es "d" no tiene acceso
+if ($userStatus == 'd' ) {
+	echo 'No tiene permisos para ver esta sección';
+  	exit;
+}
 
-if ( $show != '' ) {
+
+//show es el status del afiliado, 0 no contactado, 1 es contactado, 2 es anulado, 3 es firmado
+$show = isset($_GET['afiliado-status']) ? $_GET['afiliado-status'] : 'all';
+$registeredBy = isset($_GET['by']) ? $_GET['by'] : '';
+
+if ( $show != '' && $registeredBy != '' ) {
+	$afiliados = getAfiliados( $show, $registeredBy );	
+	$numeroAfiliados = getAfiliadosNumber( $show, $registeredBy );
+} else if ( $show != '' && $registeredBy == '' ) {
 	$afiliados = getAfiliados( $show );	
-	$numeroAfiliados = getAfiliadosNumber( $show );
+	$numeroAfiliados = getAfiliadosNumber( $show ); 
 } else {
+	//lista completa sin filtros
 	$afiliados = getAfiliados();
 	$numeroAfiliados = getAfiliadosNumber();
 }
 
+if ($registeredBy == 'delegados') {
+	$delegados = true;
+}
 
 ?>
 
@@ -25,13 +47,67 @@ if ( $show != '' ) {
 	<div class="container">
 
 		<div class="contacts-container">
+			<div>
+				<a type="button" href="index.php" class="btn">Volver al inicio</a>
+				<?php if ( $show == '0' ) : ?>
+					<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+					<a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+					<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+				<?php endif; ?>	
+				<?php if ( $show == '1' ) : ?>
+					<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+					<a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+					<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+				<?php endif; ?>	
+				<?php if ( $show == '2' ) : ?>
+					<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+					<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+				<?php endif; ?>
+				<?php if ( $show == '3' ) : ?>
+					<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+				    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+					<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+				<?php endif; ?>
+				<?php if ( $show == 'all' || $show == '') : ?>
+					<a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+					<a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+					<a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+					<a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+					<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+				<?php endif; ?>
+			</div>
+
+			<?php if ( $delegados ) : ?>
+				<div>
+					<?php 
+					//si se hizo clic en delegados muestra todos los delicados para filtrar por cada uno
+					$users = getUsers( 'd' );
+					if ( $users != null) {
+						for ($i=0; $i < count($users); $i++) { ?>
+							<a type="button" href="index.php?admin=contacts&by=<?php echo $users[$i]['user_usuario']; ?>" class="btn btn-primary"><?php echo $users[$i]['user_nombre']; ?></a>
+						<?php }
+					}
+					?>
+					
+				</div>
+			<?php endif; ?>
+
 			<div class="btn-group" role="group" aria-label="botones-emails">
 
 			  	<button id="export_excel" type="button" class="btn btn-default">
 			  		Exportar a Excel
 			  	</button>
-				<a href="index.php?admin=edit-contacts" id="new-suscriptor" type="button" class="btn btn-primary">
-				  	Nuevo Afiliado
+				<a href="index.php?admin=edit-contacts" id="new-suscriptor" type="button" class="btn btn-danger">
+				  	Agregar Nuevo Afiliado
 				</a>
 				<div class="filtros-wrapper">
 				  <select class="orden-suscriptores" data-afiliado-status="<?php echo $show; ?>" data-cant-post="<?php echo CANTPOST; ?>">
@@ -71,13 +147,13 @@ if ( $show != '' ) {
 
 						<?php 
 						//template standard
-						if ( $show == '' ) : ?>
+						if ( $show == '' || $show == 'all') : ?>
 
 							<td width="10%">
 								Profesión:
 							</td>
 							<td width="8%">
-								Fecha: <small>(afiliación)</small>
+								Afiliado</small>
 							</td>
 							<td width="7%">
 								
@@ -131,7 +207,7 @@ if ( $show != '' ) {
 				<?php if ( $numeroAfiliados > 5 ) : ?>
 					<div class="select-cant-post">
 						<p>Mostrar: </p>
-						<select class="select-mostrar" data-post-orden="desc" data-afiliado-status="<?php echo $show; ?>">
+						<select class="select-mostrar" data-post-orden="desc" data-afiliado-status="<?php echo $show; ?>" data-registeredby="<?php echo $registeredBy; ?>" >
 							<option value="5">5</option>
 						<?php if ( $numeroAfiliados > 10 ) : ?>
 							<option value="10" selected>10</option>
@@ -175,17 +251,41 @@ if ( $show != '' ) {
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
     <a type="button" href="index.php?admin=edit-contacts" class="btn btn-danger">agregar uno nuevo</a>
-    <?php if ( $show == '0' ) : ?>
-    	<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+   
+	<?php if ( $show == '0' ) : ?>
+		<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+		<a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
 	    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+		<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+	<?php endif; ?>	
+	<?php if ( $show == '1' ) : ?>
+		<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+		<a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+		<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
 	<?php endif; ?>	
 	<?php if ( $show == '2' ) : ?>
 		<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
 	    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+		<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
 	<?php endif; ?>
-	<?php if ( $show == '' ) : ?>
+	<?php if ( $show == '3' ) : ?>
+		<a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+	    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+		<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
+	<?php endif; ?>
+	<?php if ( $show == 'all' || $show == '') : ?>
 		<a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+		<a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
 		<a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+		<a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+		<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
 	<?php endif; ?>
 </footer>
 

@@ -60,6 +60,7 @@ if ( isAjax() ) {
 	$member_establecimiento           = isset($_POST['afiliado_establecimiento']) ? strtolower($_POST['afiliado_establecimiento']) : '';
 	$member_direccion                 = isset($_POST['afiliado_empresa_direccion]']) ? strtolower($_POST['afiliado_empresa_direccion]']) : '';
 	$member_fecha_ingreso             = isset($_POST['afiliado_fecha_ingreso']) ? strtolower($_POST['afiliado_fecha_ingreso']) : '';
+	$member_registration_id           = isset($_POST['member_registration_id']) ? $_POST['member_registration_id'] : '';
 
 	$parientes                        = isset($_POST['afiliado_parientes']) ? $_POST['afiliado_parientes'] : '';
 
@@ -246,8 +247,8 @@ if ( isAjax() ) {
 
 		if ($afiliadoViejo == null) {
 
-			//registrar afiliado nuevo	
-			$query = "INSERT INTO ".$tabla." (member_cuil, member_cuit, member_dni, member_apellido, member_nombre, member_nacionalidad, member_estado_civil, member_sexo, member_fecha_nacimiento, member_profesion, member_estudios, member_discapacidad, member_domicilio, member_localidad, member_codigo_postal, member_provincia, member_email, member_telefono, member_movil, member_contacto_otros, member_empresa, member_fecha_ingreso, member_fecha_afiliacion, member_fecha_ingreso_sindicato, member_grupo_familiar, member_notas, member_status) VALUES ('$member_cuil', '$member_cuit', '$member_dni', '$member_apellido', '$member_nombre', '$member_nacionalidad', '$member_estado_civil', '$member_sexo', ";//continua el query debajo
+			//registrar afiliado nuev, si el afiliado es nuevo se graba el usuario de quien lo esta registrando, si es un update no, porque o ya lo tiene o viene del formulario de la página
+			$query = "INSERT INTO ".$tabla." (member_cuil, member_cuit, member_dni, member_apellido, member_nombre, member_nacionalidad, member_estado_civil, member_sexo, member_fecha_nacimiento, member_profesion, member_estudios, member_discapacidad, member_domicilio, member_localidad, member_codigo_postal, member_provincia, member_email, member_telefono, member_movil, member_contacto_otros, member_empresa, member_fecha_ingreso, member_fecha_afiliacion, member_fecha_ingreso_sindicato, member_grupo_familiar, member_notas, member_status, member_registration_id) VALUES ('$member_cuil', '$member_cuit', '$member_dni', '$member_apellido', '$member_nombre', '$member_nacionalidad', '$member_estado_civil', '$member_sexo', ";//continua el query debajo
 
 			if ( $member_fecha_nacimiento == '' || $member_fecha_nacimiento == '0000-00-00' ) {
 				$query .= "NULL ";
@@ -286,7 +287,7 @@ if ( isAjax() ) {
 				$query .= "NULL ";
 			}
 			
-			$query .= ", '$member_notas', '$member_status')";
+			$query .= ", '$member_notas', '$member_status', '$member_registration_id')";
 
 			echo $query;
 			$nuevoAfiliado = mysqli_query($connectionNow, $query); 

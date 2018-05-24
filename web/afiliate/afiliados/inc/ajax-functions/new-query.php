@@ -17,6 +17,7 @@ if( isAjax() ) {
 	$cantPost = $_POST['cantPost'];
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$orden = $_POST['orden'];
+	$registeredBy = isset($_POST['registeredby']) ? $_POST['registeredby'] : '';
 	
 	if ( $status == '' ) {
 		$status = 'all';
@@ -26,7 +27,7 @@ if( isAjax() ) {
 		$cantPost = CANTPOST;
 	}
 
-	$afiliados = getAfiliados ( $status, 'member_date_registro', $orden, $cantPost, $page );
+	$afiliados = getAfiliados ( $status, $registeredBy, 'member_date_registro', $orden, $cantPost, $page );
 
 	if ( $afiliados != null ) : 
 

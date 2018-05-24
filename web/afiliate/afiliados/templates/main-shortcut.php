@@ -6,32 +6,22 @@
 
 load_module( 'noticias' );
 
-if ( $data == 'a' ) : ?>
+if ( $data == 'd' ) : ?>
 
-  <div class="container">
-    <div class="subtitulo-gral-admin">
-      <h2 class="text-center">Noticias Recientes</h2>
-      <p>Estas son las últimas 5 noticias publicadas:</p>
-    </div>
-<!---------- noticias ---------------->
-    <ul class="loop-noticias-backend-excerpt">
-
-      <?php listaNoticias( 5, 'publicado', true, $categoria = 'agenda', true ); ?>
-      
-    </ul>
-    <div class="row">
-      <div class="col-30">
-        <p>
-          <a class="btn btn-primary" href="index.php?admin=noticias" role="button">Ver todas</a>
-        </p>
-      </div>
-      <div class="col-30">
-        <p>
-          <a class="btn btn-danger" href="index.php?admin=editar-noticias" role="button">Agregar nueva</a>
-        </p>
-      </div>
-    </div>
-<!---------- fin noticias ---------------->
-  </div>
+  <!---------- ACCESOS DIRECTOS A LOS MODULOS ---------------->
+<div class="container wrapper-modulos">
+  <div class="row">
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Nuevos afiliados</h2>
+          <p>Agrega usuario nuevo.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=edit-contacts" role="button">Agregar nuevo</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+  </div><!-- //row -->
+</div><!-- //containre -->
 
 <?php endif;

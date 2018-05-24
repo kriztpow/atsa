@@ -8,6 +8,9 @@ load_module( 'contactos' );
 $cuil = isset($_GET['slug']) ? $_GET['slug'] : '';
 $afiliado = getDataAfiliadoAdmin($cuil);
 
+//guarda el username para saber quien esta cargando el formulario
+$username = $_SESSION['username'];
+
 $grupoFamiliar = null;
 $empresa = null;
 $domicilio = null;
@@ -56,6 +59,8 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 			<form method="POST" name="afiliado_form" id="afiliado_form" class="afiliado_form">
 
 				<input type="hidden" name="member_id" value="<?php echo $afiliado['member_id']; ?>" class="input_member_id">
+				<input type="hidden" name="member_registration_id" value="<?php if ( $afiliado['member_registration_id'] != '' ) { echo $afiliado['member_registration_id']; } else { echo $username; }; ?>" class="input_username">
+				
 				<div class="wrapper-notes-status no-print">
 					
 					<div class="select-wrapper">

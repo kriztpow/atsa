@@ -123,6 +123,7 @@ $(document).ready(function(){
 	//cambiar el numero a mostrar
 	$(document).on('change', '.select-mostrar', function() {
 		var status = $(this).attr('data-afiliado-status');
+		var registeredby = $(this).attr('data-registeredby');
 		var cantPost = $(this).val();
 		var orden = $(this).attr('data-post-orden');
 		var contenedor = $('.row-usuario');
@@ -134,6 +135,7 @@ $(document).ready(function(){
 	            status: status,
 	            cantPost: currentPage*cantPost,
 	            orden: orden,
+	            registeredby : registeredby,
 	        },
 	        success: function ( response ) {
                 //console.log(response);
@@ -146,7 +148,12 @@ $(document).ready(function(){
                 $('.numeracion-rows').each(function( index, value ){
 					numeracionCeldas(index, this)
 				});	
-                
+
+                //si el botón de cargar mas no esta hay que agregarlo
+				if ( $('.load-more-btn').length == 0 ) {
+					var html = '<button class="btn btn-primary load-more-btn" data-afiliado-status="'+status+'" data-cant-post="'+cantPost+'" data-post-orden="'+orden+'">Cargar más</button>';
+					$('.wrapper-loaders').prepend($(html));
+				}                
 
 	        },
 	        error: function ( ) {

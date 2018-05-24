@@ -97,16 +97,26 @@ function closeDataBase($connection){
  * TRAE LA LISTA DE USUARIOS
  * DEVUELVE ARRAY CON USUARIOS
 */
-function getUsers() {
+function getUsers( $status = 'normal' ) {
 	$connection = connectDB();
 	$tabla = 'usuarios';
-	$query  = "SELECT * FROM " .$tabla;
+
+	if ( $status === 'normal' ) {
+		$query  = "SELECT * FROM " .$tabla;		
+	} else {
+		$query  = "SELECT * FROM " .$tabla . " WHERE user_status='".$status."'";
+	}
 
 	$result = mysqli_query($connection, $query);
 
-	while ( $user = $result->fetch_array() ) {
-			$users[] = $user;
-		}
+	if ( $result->num_rows == 0 ) {
+		$users = null;
 
+	} else {
+		while ( $user = $result->fetch_array() ) {
+			$users[] = $user;
+		}	
+	}
+	
 	return $users;
 }

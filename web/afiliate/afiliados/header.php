@@ -46,8 +46,9 @@ if(!defined("SECUREACCESS"))
         <div id="menu-top" class="menus-top-wrapper">
   <!--menu modulo asinado-->
           <ul class="menu-top menu-left">
+        <?php if ( $userStatus != 'd' ) : ?>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Afiliados<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 
                 <li>
@@ -66,17 +67,8 @@ if(!defined("SECUREACCESS"))
             </li>
 
   <!--MENU EDITOR: administrar pagina-->
-          <?php if ( $userStatus == '0' || $userStatus == '1' ) : ?>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Página<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="index.php?admin=biblioteca-medios" role="button">Medios</a>
-                </li>
-              </ul>
-            </li>
-          <?php endif; ?>
-
+          
+        <?php endif; ?>
           <li><a href="../" target="_blank">Ver página</a></li>
           </ul>
   <!--RIGHT MENU: usuario-->

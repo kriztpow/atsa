@@ -3,8 +3,6 @@
  * fragmento de la tabla de afiliados, luego de la numeración que no está en bd
  * 
 */
-global $userStatus;
-
 ?>
 <td>
 	<span class="numeracion-rows"></span>
