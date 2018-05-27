@@ -574,11 +574,9 @@ footer {
       width: 100%; } }
   @media (min-width: 992px) {
     .menu-top.menu-right {
-      width: 30%;
-      flex-grow: 1;
+      width: 20%;
       border-left: 1px solid #ffffff;
-      color: #b3b3b3;
-      justify-self: flex-start; } }
+      color: #b3b3b3; } }
 
 ul.dropdown-menu {
   display: none;
@@ -1092,9 +1090,6 @@ ul.dropdown-menu {
 .buttons-wrapper select.nocontactado {
   background-color: #337ab7;
   color: #fff; }
-.buttons-wrapper select.firmado {
-  background-color: #00acec;
-  color: #fff; }
 .buttons-wrapper .del-user img {
   width: 20px; }
 
@@ -1112,7 +1107,7 @@ ul.dropdown-menu {
 .member_notas_full {
   display: none;
   position: absolute;
-  z-index: 11;
+  z-indez: 11;
   padding: 10px;
   width: 150px;
   height: 150px;
@@ -1480,4 +1475,4 @@ ul.dropdown-menu {
       bottom: 0cm;
       width: 100%; } }
 
-/*# sourceMappingURL=style-admin-all.css.map */
+/*# sourceMappingURL=style-admin--all.css.map */

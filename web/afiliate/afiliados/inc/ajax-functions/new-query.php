@@ -18,7 +18,7 @@ if( isAjax() ) {
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$orden = $_POST['orden'];
 	$registeredBy = isset($_POST['registeredby']) ? $_POST['registeredby'] : '';
-	
+	$user = isset($_POST['user']) ? $_POST['user'] : 0;
 	if ( $status == '' ) {
 		$status = 'all';
 	}
@@ -35,10 +35,10 @@ if( isAjax() ) {
 		<tr>
 
 			<?php 
-			if ( $status == 'all' ) {
+			if ( $user == '0' ) {
 				getTemplate('fragmento-tabla-afiliado-std',$afiliados[$i]);
 			} else {
-				getTemplate('fragmento-tabla-afiliado-0',$afiliados[$i]);
+				getTemplate('fragmento-tabla-afiliado-std-reduce',$afiliados[$i]);
 			}
 			?>
 

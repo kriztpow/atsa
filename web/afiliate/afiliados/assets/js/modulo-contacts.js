@@ -66,11 +66,13 @@ $(document).ready(function(){
 		var cantPost = $(this).attr('data-cant-post');
 		var orden = $(this).attr('data-post-orden');
 		var contenedor = $('.row-usuario');
+		var user = $(this).attr('data-user');
 
 		$.ajax( {
 	        type: 'POST',
 	        url: ajaxFunctionDir + '/new-query.php',
 	        data: {
+	        	user: user,
 	            status: status,
 	            cantPost: cantPost,
 	            orden: orden,
@@ -127,11 +129,13 @@ $(document).ready(function(){
 		var cantPost = $(this).val();
 		var orden = $(this).attr('data-post-orden');
 		var contenedor = $('.row-usuario');
-		
+		var user = $(this).attr('data-user');
+
 		$.ajax( {
 	        type: 'POST',
 	        url: ajaxFunctionDir + '/new-query.php',
 	        data: {
+	        	user: user,
 	            status: status,
 	            cantPost: currentPage*cantPost,
 	            orden: orden,
@@ -151,10 +155,9 @@ $(document).ready(function(){
 
                 //si el botón de cargar mas no esta hay que agregarlo
 				if ( $('.load-more-btn').length == 0 ) {
-					var html = '<button class="btn btn-primary load-more-btn" data-afiliado-status="'+status+'" data-cant-post="'+cantPost+'" data-post-orden="'+orden+'">Cargar más</button>';
+					var html = '<button class="btn btn-primary load-more-btn" data-user="'+user+'" data-afiliado-status="'+status+'" data-cant-post="'+cantPost+'" data-post-orden="'+orden+'">Cargar más</button>';
 					$('.wrapper-loaders').prepend($(html));
-				}                
-
+				}
 	        },
 	        error: function ( ) {
 	            console.log('error');

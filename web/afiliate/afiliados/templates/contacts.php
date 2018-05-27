@@ -10,14 +10,16 @@ $plantillaReduce = false;
 $delegados = false;
 //si el usuario es "a" se pide plantilla de row sin poder borrar afiliado
 global $userStatus;
-if ($userStatus == 'a' ) {
-	$plantillaReduce = true;
-}
 //si el usuario es "d" no tiene acceso
 if ($userStatus == 'd' ) {
 	echo 'No tiene permisos para ver esta sección';
   	exit;
 }
+
+if ($userStatus == 'a' ) {
+	$plantillaReduce = true;
+}
+
 
 
 //show es el status del afiliado, 0 no contactado, 1 es contactado, 2 es anulado, 3 es firmado
@@ -132,44 +134,25 @@ if ($registeredBy == 'delegados') {
 						<td width="15%">
 							Apellido, Nombre:
 						</td>
-						<td width="10%">
-							Teléfono:
-						</td>
-						<td width="10%">
-							Celular:
-						</td>
+						<td width="10">
+							Tel/cel:
+						</td>		
 						<td width="15%">
 							Empresa:
 						</td>
 						<td width="10%">
 							Fecha: <small>(ingreso)</small>
 						</td>
-
-						<?php 
-						//template standard
-						if ( $show == '' || $show == 'all') : ?>
-
-							<td width="10%">
-								Profesión:
-							</td>
-							<td width="8%">
-								Afiliado</small>
-							</td>
-							<td width="7%">
-								
-							</td>
-						<?php
-						//template para mostrar no contactados o anulados
-						else : ?>
+						<td width="10%">
+							Afiliado
+						</td>
+						<td width="10%">
+							Notas:
+						</td>
+						<td width="15%">
 							
-							<td width="10%">
-								Notas:
-							</td>
-							<td width="15%">
-								
-							</td>
-							
-						<?php endif; ?>
+						</td>
+						
 					</tr>
 				</thead>
 				<tbody class="row-usuario">
@@ -178,12 +161,14 @@ if ($registeredBy == 'delegados') {
 
 						for ($i=0; $i < count($afiliados); $i++) { ?>
 						<tr>
-
-							<?php 
-							if ( $show == '' ) {
-								getTemplate('fragmento-tabla-afiliado-std',$afiliados[$i]);
+							<?php
+							//si el usuario es a:
+							if ($plantillaReduce) {
+								//carga plantilla especial para que el afiliado no se pueda borrar	
+								getTemplate( 'fragmento-tabla-afiliado-std-reduce',$afiliados[$i] ); 
 							} else {
-								getTemplate('fragmento-tabla-afiliado-0',$afiliados[$i]);
+								//si es cualquier otro usuario se carga plantilla con boton de borrado incluido:
+								getTemplate('fragmento-tabla-afiliado-std',$afiliados[$i]); 	
 							}
 							?>
 
@@ -200,14 +185,14 @@ if ($registeredBy == 'delegados') {
 					//si el numero es mayor a la cantidad de post por página entonces muestra el botón cargar más
 					if ( $numeroAfiliados > CANTPOST ) : ?>
 				
-						<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>" data-cant-post="<?php echo CANTPOST ?>" data-post-orden="desc">
+						<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>" data-user="<?php echo $plantillaReduce ?>" data-cant-post="<?php echo CANTPOST ?>" data-post-orden="desc">
 							Cargar más
 						</button>
 				<?php endif; ?>
 				<?php if ( $numeroAfiliados > 5 ) : ?>
 					<div class="select-cant-post">
 						<p>Mostrar: </p>
-						<select class="select-mostrar" data-post-orden="desc" data-afiliado-status="<?php echo $show; ?>" data-registeredby="<?php echo $registeredBy; ?>" >
+						<select class="select-mostrar" data-user="<?php echo $plantillaReduce ?>" data-post-orden="desc" data-afiliado-status="<?php echo $show; ?>" data-registeredby="<?php echo $registeredBy; ?>" >
 							<option value="5">5</option>
 						<?php if ( $numeroAfiliados > 10 ) : ?>
 							<option value="10" selected>10</option>

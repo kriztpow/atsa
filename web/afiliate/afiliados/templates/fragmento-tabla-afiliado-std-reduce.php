@@ -1,7 +1,6 @@
 <?php
 /*
  * fragmento de la tabla de afiliados, luego de la numeración que no está en bd
- * EL TEMPLATE NO SE USA MAS YA Q AHORA TODAS LAS TABLAS TIENEN EL MISMO TEMPLATE
  * 
 */
 ?>
@@ -21,10 +20,12 @@
 	</a>
 </td>
 <td>
-	<?php echo $data['member_telefono']; ?>
-</td>
-<td>
-	<?php echo $data['member_movil']; ?>
+	<?php
+	if ( $data['member_telefono'] != '' ) {
+		echo $data['member_telefono']. '<br>';
+	}
+	
+	echo $data['member_movil']; ?>
 </td>
 <td>
 	<em>
@@ -35,26 +36,40 @@
 	</em>
 </td>
 <td>
+	<em>
 	<?php
 		if ( $data['member_fecha_ingreso'] != '' ) {
 			echo date('d.m.Y' ,strtotime($data['member_fecha_ingreso']) );	
 		}
 	?>
+	</em>
+</td>
+<td>
+	<strong><em>
+	<?php
+		if ( $data['member_fecha_afiliacion'] != '' ) {
+			echo date('d.m.Y' ,strtotime($data['member_fecha_afiliacion']) );	
+		}
+	?>
+	</em></strong>
 </td>
 <td class="member_notas_wrapper">
 	<div class="member_notas" data-member-id="<?php echo $data['member_id']; ?>"><?php echo $data['member_notas']; ?></div>
 	<?php if ( $data['member_notas'] != '' ) : ?>
 		<div class="member_notas_full" data-member-id="<?php echo $data['member_id']; ?>"><?php echo $data['member_notas']; ?></div>
 	<?php endif; ?>
-	
 </td>
-
 <td>
 	<div class="buttons-wrapper">
 		<select data-id="<?php echo $data['member_id']; ?>" class="change-status <?php 
 			if ( $data['member_status'] == '2' ) {
 				echo 'anulado';
-			} else {
+			} else if( $data['member_status'] == '3' ) {
+				echo 'firmado';
+			} else if( $data['member_status'] == '1' ) {
+				echo 'contactado';
+			}
+			else {
 				echo 'nocontactado';
 			}
 		?>">
@@ -77,9 +92,6 @@
 			?>
 		</select>
 		
-		<button title="Borrar Afiliado" class="del-user" data-id="<?php echo $data['member_id']; ?>">
-			<img src="<?php echo URLADMINISTRADOR; ?>/assets/images/delbtn.png" alt="Borrar Afiliado">
-		</button>
 		
 	</div>
 </td>

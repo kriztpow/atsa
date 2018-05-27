@@ -1006,8 +1006,10 @@ ul.dropdown-menu {
   width: 100%;
   clear: both; }
   .tabla-suscriptores td {
-    padding: 1%;
+    padding: 0 1%;
     vertical-align: middle; }
+    .tabla-suscriptores td em {
+      color: #666; }
   .tabla-suscriptores thead {
     font-size: 110%;
     font-weight: bold; }
@@ -1105,9 +1107,10 @@ ul.dropdown-menu {
 .member_notas_full {
   display: none;
   position: absolute;
+  z-indez: 11;
   padding: 10px;
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   border: 1px solid #333;
   top: 30px;
   left: 50px;

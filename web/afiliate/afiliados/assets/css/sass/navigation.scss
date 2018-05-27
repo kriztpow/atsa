@@ -196,9 +196,11 @@
 	}
 	&.menu-right {
 		@media (min-width: $md) {
-			width: 20%;
+			width: 30%;
+			flex-grow:1;
 			border-left: 1px solid $blanco;
 			color: darken($blanco, 30%);
+			justify-self: flex-start;
 		}
 	}
 }
