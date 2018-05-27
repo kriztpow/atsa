@@ -1238,7 +1238,7 @@ ul.dropdown-menu {
       -moz-flex-grow: 0;
       -ms-flex-grow: 0;
       -o-flex-grow: 0;
-      flex-grow: 0; }
+      flex-grow: 0 !important; }
     .wrapper-impresion .afiliado_form hr {
       margin: 20px 40px; }
     .wrapper-impresion .afiliado_form .btns-wrappers {
@@ -1370,14 +1370,17 @@ ul.dropdown-menu {
   @page {
     size: A4 portrait;
     margin-top: 1cm;
-    margin-bottom: 2cm;
-    margin-left: 1.5cm;
-    margin-right: 1.5cm;
+    margin-bottom: 1cm;
+    margin-left: 0;
+    margin-right: 0;
     orphans: 10;
     widows: 10;
     page-break-inside: auto;
     page-break-before: auto;
     page-break-after: auto; }
+  @page :first {
+    margin-top: 0cm;
+    margin-bottom: 1cm; }
   .no-print {
     display: none; }
 
@@ -1387,17 +1390,34 @@ ul.dropdown-menu {
   header, footer, nav, aside {
     display: none; }
 
+  .main {
+    padding: 0 !important;
+    padding-bottom: 1cm; }
+
+  .container {
+    padding: 0 !important; }
+
   .data-imprimir {
     display: block !important; }
 
   .wrapper-impresion {
     -webkit-print-color-adjust: exact;
     position: relative;
-    height: 100%; }
+    padding: 0 1cm 1cm; }
+    .wrapper-impresion .afiliado_form {
+      padding-top: 0cm !important; }
 
   .header-imprimir {
     display: block;
-    margin: 0; }
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2cm;
+    width: 100%; }
+    .header-imprimir .image-header {
+      width: 100%;
+      box-shadow: 0px 1px 10px #666; }
     .header-imprimir .titulo {
       position: absolute;
       right: 0;
@@ -1429,7 +1449,11 @@ ul.dropdown-menu {
         margin-right: 5px; }
 
   .form-section {
-    margin-top: 1cm !important; }
+    margin-top: 0cm !important;
+    margin-bottom: 0.2cm !important; }
+
+  #afiliado_form {
+    padding-top: 2.5cm !important; }
 
   .row-form {
     display: flex;
@@ -1443,13 +1467,17 @@ ul.dropdown-menu {
     -o-justify-content: space-between;
     justify-content: space-between; }
 
+  .rows-print {
+    padding: .2cm .5cm;
+    border: 1px solid #00acec; }
+
   .table-grupo-familiar {
-    margin-bottom: 0px !important; }
+    margin-bottom: 0 !important; }
 
   .footer-imprimir {
     display: block;
     border-top: none;
-    margin-top: 0;
+    margin-top: 0 !important;
     color: #333;
     padding: 0;
     font-weight: 700;
@@ -1467,17 +1495,15 @@ ul.dropdown-menu {
       -ms-justify-content: space-between;
       -o-justify-content: space-between;
       justify-content: space-between;
-      margin-top: 2cm;
-      margin-bottom: 1cm; }
+      margin-top: 1.5cm;
+      margin-bottom: .5cm; }
       .footer-imprimir ul li {
         border-top: 1px solid #333;
         width: 250px;
         text-align: center; }
     .footer-imprimir .legales-footer-imprimir {
-      margin-top: 1cm;
-      text-align: center;
-      position: fixed;
       bottom: 0cm;
+      text-align: center;
       width: 100%; } }
 
 /*# sourceMappingURL=style-admin-all.css.map */

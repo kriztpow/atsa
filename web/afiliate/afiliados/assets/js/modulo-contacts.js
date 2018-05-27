@@ -254,11 +254,26 @@ $(document).ready(function(){
    		$('input[type=date]').each(function(){
    			if( $(this).val() == '' ) {
    				this.type = 'text';
-   				$(this).css('border','1px solid #333');	
+   				$(this).css('border','1px solid #9e9e9e');	
    			}
-   			
    		});
-   		
+   		//hay que ocultar borde de fecha de nacimiento porque se va de margen, no se porque
+   		$('.input-afiliado-fecha-nacimiento').css('border', 'none');
+
+   		//si hay 10 parientes
+   		if ( $('.inputs-grupo-familiar tr').length == 10 ) {
+   			$('.footer-imprimir ul').css('margin-top', '1cm');
+   		} 
+   		//si hay más de 10 parientes
+   		if ( $('.inputs-grupo-familiar tr').length > 10 && $('.inputs-grupo-familiar tr').length < 12  ) {
+   			$('.footer-imprimir ul').css('padding-top', '3cm');	
+   		} 
+
+   		if ( $('.inputs-grupo-familiar tr').length > 12 ) {
+   			$('.footer-imprimir').css('padding-top', '2cm');	
+   		} 
+
+
         //finalmente estamos listos para imprimir:
 		window.print();
 

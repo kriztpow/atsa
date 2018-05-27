@@ -333,7 +333,7 @@
 			-moz-flex-grow: 0;
 			-ms-flex-grow: 0;
 			-o-flex-grow: 0;
-			flex-grow: 0;
+			flex-grow: 0!important;
 		}
 
 
@@ -512,15 +512,20 @@
 	@page {
 	  size: A4 portrait;
 	  margin-top: 1cm; 
-	  margin-bottom: 2cm; 
-	  margin-left: 1.5cm; 
-	  margin-right: 1.5cm; 
+	  margin-bottom: 1cm; 
+	  margin-left: 0; 
+	  margin-right: 0; 
 	  orphans: 10;
 	  widows: 10;
 	  page-break-inside: auto;
 	  page-break-before: auto;
 	  page-break-after: auto;
 	}
+
+	@page:first {
+	  	margin-top: 0cm; 
+	  	margin-bottom: 1cm; 
+	  }
 
 	.no-print {
 		display: none;
@@ -533,25 +538,43 @@
 		display: none;
 	}
 
+	.main {
+		padding: 0!important;
+		padding-bottom: 1cm;
+	}
+
+	.container {
+		padding: 0!important;
+	}
+
 	.data-imprimir {
 		display: block!important;
 	}
 
-	
-
-	
-
 	.wrapper-impresion {
 		-webkit-print-color-adjust: exact;
 		position:relative;
-		height: 100%;
+		//height: 100%;
+		padding: 0 1cm 1cm;
+
+		.afiliado_form {
+			padding-top: 0cm!important;
+		}
 	}
 
 	.header-imprimir {
 		display: block;
 		margin: 0;
+    	position: absolute;
+    	top: 0;
+    	left: 0; 
+    	height: 2cm;
+    	width: 100%;
 		
-
+    	.image-header {
+    		width: 100%;	
+    		box-shadow: 0px 1px 10px #666;
+    	}
 		.titulo {
 			position: absolute;
 			right: 0;
@@ -593,7 +616,12 @@
 	}//.header-imprimir
 
 	.form-section {
-		margin-top: 1cm!important;
+		margin-top: 0cm!important;
+		margin-bottom: .2cm!important;
+	}
+
+	#afiliado_form {
+		padding-top: 2.5cm!important;	
 	}
 
 	.row-form {		
@@ -607,25 +635,26 @@
 		-ms-justify-content: space-between;
 		-o-justify-content: space-between;
 		justify-content: space-between;			
+	}
 
-		
-		
+	.rows-print {
+		padding: .2cm .5cm;
+		border: 1px solid #00acec;
 	}
 
 	.table-grupo-familiar {
-		margin-bottom:0px!important;
-
-		
+		margin-bottom:0!important;
 	}
 
 	.footer-imprimir {
 		display: block;
 		border-top: none;
-	    margin-top: 0;
+	    margin-top: 0!important;
 	    color: #333;
 	    padding: 0;
 	    font-weight: 700;
 	    font-size: 9pt;
+	    //padding-bottom: 2cm!important;
 
 	    p {
 	    	font-size: 10pt;
@@ -642,8 +671,8 @@
 			-ms-justify-content: space-between;
 			-o-justify-content: space-between;
 			justify-content: space-between;
-			margin-top: 2cm;
-			margin-bottom: 1cm;
+			margin-top: 1.5cm;
+			margin-bottom: .5cm;
 
 			li {
 				border-top: 1px solid #333;
@@ -653,10 +682,9 @@
 	    }
 
 	    .legales-footer-imprimir {
-	    	margin-top: 1cm;
-	    	text-align: center;
-	    	position: fixed;
+	    	//position: fixed;
 	    	bottom: 0cm;
+	    	text-align: center;
 	    	width: 100%;
 
 	    }
