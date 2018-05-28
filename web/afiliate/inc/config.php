@@ -6,10 +6,14 @@
  * CONFIG
 */
 //BD
-define('DB_SERVER', 'localhost');
+/*define('DB_SERVER', 'localhost');
 define("DB_USER", "derechoc_coco");
 define("DB_PASS", "d6m=fD1=ZqKt");
-define('DB_NAME', 'derechoc_afiliados');
+define('DB_NAME', 'derechoc_afiliados');*/
+define('DB_SERVER', 'localhost');
+define("DB_USER", "dbuser");
+define("DB_PASS", "123");
+define('DB_NAME', 'afiliados');
 //DEFINICIONES HEAD Y SCRIPTS
 define ( 'VERSION', '1.0' );
 //CARPETAS

@@ -27,6 +27,14 @@ include 'header.php'; ?>
 					getTemplate('bienvenidos');
 					break;
 
+				case 'completar':
+					getTemplate('completar' , '');
+					break;
+
+				case 'completar-datos':
+					getTemplate('completar-datos' , '');
+					break;
+
 				default:
 					# inicio: formularios
 					

@@ -19,6 +19,7 @@ $contactoOtros = null;
 if ( $afiliado['member_empresa'] != null ) {
 	$empresa = unserialize($afiliado['member_empresa']);
 }
+
 //unserialize grupo familiar
 if ( $afiliado['member_grupo_familiar'] != null ) {
 	$grupoFamiliar = unserialize($afiliado['member_grupo_familiar']);
@@ -358,8 +359,8 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 								<label for="afiliado_establecimiento">
 									Establecimiento
 								</label>
-								<input type="text" name="afiliado_establecimiento" class="input-afiliado-establecimiento" value="<?php if ( $empresa != null && isset( $empresa['establecimiento'] )) {
-										echo $empresa['establecimiento'];
+								<input type="text" name="afiliado_establecimiento" class="input-afiliado-establecimiento" value="<?php if ( $empresa != null && isset( $empresa['empresa-establecimiento'] )) {
+										echo $empresa['empresa-establecimiento'];
 									} ?>">
 							</div>
 							<div class="input-label-wrapper">
@@ -465,16 +466,16 @@ if ( $afiliado['member_contacto_otros'] != null ) {
 		
 	</div><!-- // container -->
 
-  	<form action="<?php echo URLADMINISTRADOR; ?>/inc/pdf.php" method="post" target="_blank" id="FormularioExportacion">
-		<input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
-	</form>
 </div><!-- // contenido-modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
     <a type="button" href="index.php?admin=edit-contacts" class="btn btn-danger">agregar uno nuevo</a>
     <a type="button" href="index.php?admin=contacts" class="btn btn-primary">Lista completa</a>
-	    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
-		<a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+    <a type="button" href="index.php?admin=contacts&afiliado-status=0" class="btn btn-primary">Ver no contactados</a>
+	<a type="button" href="index.php?admin=contacts&afiliado-status=1" class="btn btn-primary">Ver contactados</a>
+    <a type="button" href="index.php?admin=contacts&afiliado-status=2" class="btn btn-primary">Ver anulados</a>
+    <a type="button" href="index.php?admin=contacts&afiliado-status=3" class="btn btn-primary">Ver firmados</a>
+	<a type="button" href="index.php?admin=contacts&by=delegados" class="btn btn-primary">Ver delegados</a>
 </footer>
 
 <!---------- fin afiliado ---------------->

@@ -279,16 +279,7 @@ $(document).ready(function(){
 
 	});//imprimir formulario
 
-   	/*
-	* imprimir a pdf
-   	*/
-
-   	$( '#print_pdf' ).click(function( event ) {
-		$("#datos_a_enviar").val( $("<div>").append( $('.wrapper-impresion').eq(0).clone()).html());
-		$("#FormularioExportacion").submit();
-	});//click boton
-
-
+   	
 
    	//guardar afiliado
    	$(document).on('submit', '#afiliado_form', function( e ) {
@@ -379,7 +370,7 @@ $(document).ready(function(){
 		        }
 
 	        	if ( $(parientes[i]).find('.input-afiliado-pariente-discapacidad').is(':checked') ) {
-	        		pariente.afiliado_pariente_discapacidad = 'on';
+	        		pariente.afiliado_pariente_discapacidad = '1';
 	        	}
 	        	//lo summamos al array a pasar a bd
 	        	parientesObj.parientes.push(pariente);

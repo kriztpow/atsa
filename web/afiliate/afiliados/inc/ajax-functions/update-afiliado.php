@@ -58,7 +58,7 @@ if ( isAjax() ) {
 	$member_cuit                      = isset($_POST['afiliado_cuit']) ? $_POST['afiliado_cuit'] : '';
 	$member_razon_social              = isset($_POST['afiliado_razon_social']) ? strtolower($_POST['afiliado_razon_social']) : '';
 	$member_establecimiento           = isset($_POST['afiliado_establecimiento']) ? strtolower($_POST['afiliado_establecimiento']) : '';
-	$member_direccion                 = isset($_POST['afiliado_empresa_direccion]']) ? strtolower($_POST['afiliado_empresa_direccion]']) : '';
+	$member_direccion                 = isset($_POST['afiliado_empresa_direccion']) ? strtolower($_POST['afiliado_empresa_direccion']) : '';
 	$member_fecha_ingreso             = isset($_POST['afiliado_fecha_ingreso']) ? strtolower($_POST['afiliado_fecha_ingreso']) : '';
 	$member_registration_id           = isset($_POST['member_registration_id']) ? $_POST['member_registration_id'] : '';
 

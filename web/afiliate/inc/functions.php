@@ -164,9 +164,9 @@ function loadNewUser( $usuario, $dataFormulario ) {
 	$member_email  = isset($_POST['member_email']) ? strtolower($_POST['member_email']) : '';
 	$member_tel    = isset($_POST['member_tel']) ? $_POST['member_tel'] : '';
 	$member_movil  = isset($_POST['member_cellphone']) ? $_POST['member_cellphone'] : '';
-	$member_street = isset($_POST['member_street']) ? strtolower($_POST['member_street']) : '';
-	$member_number = isset($_POST['member_number']) ? $_POST['member_number'] : '';
-	$member_city   = isset($_POST['member_city']) ? strtolower($_POST['member_city']) : '';
+	$job_street    = isset($_POST['job_street']) ? strtolower($_POST['job_street']) : '';
+	$job_number    = isset($_POST['job_number']) ? $_POST['job_number'] : '';
+	$job_city      = isset($_POST['job_city']) ? strtolower($_POST['job_city']) : '';
 
 	//SANITIZE:
 	$member_email  = filter_var($member_email,FILTER_SANITIZE_EMAIL);
@@ -175,39 +175,31 @@ function loadNewUser( $usuario, $dataFormulario ) {
 	$member_tel    = mysqli_real_escape_string($connection, $member_tel);
 	$member_movil  = filter_var($member_movil,FILTER_SANITIZE_NUMBER_INT);
 	$member_movil  = mysqli_real_escape_string($connection, $member_movil);
-	$member_street = filter_var(ucwords($member_street),FILTER_SANITIZE_STRING);
-	$member_street = mysqli_real_escape_string($connection, $member_street);
-	$member_number = filter_var($member_number,FILTER_SANITIZE_NUMBER_INT);
-	$member_number = mysqli_real_escape_string($connection, $member_number);
-	$member_city   = filter_var(ucwords($member_city),FILTER_SANITIZE_STRING);
-	$member_city   = mysqli_real_escape_string($connection, $member_city);
+	
+	$job_street    = filter_var(ucwords($job_street),FILTER_SANITIZE_STRING);
+	$job_street    = mysqli_real_escape_string($connection, $job_street);
+	$job_number    = filter_var($job_number,FILTER_SANITIZE_NUMBER_INT);
+	$job_number    = mysqli_real_escape_string($connection, $job_number);
+	$job_city      = filter_var(ucwords($job_city),FILTER_SANITIZE_STRING);
+	$job_city      = mysqli_real_escape_string($connection, $job_city);
 
 	//ahora se arman las variables para cargar la base de datos
-	//1. la dirección del afiliado se serializa
-	$member_domicilio = array(
-		'calle' => $member_street,
-		'altura' => $member_number,
-		'piso' => '',
-		'departamento' => '',
-		'otros' => '',
-	);
-	$member_domicilio = serialize($member_domicilio);
-	
 
-	//los datos de la empresa vienen de la otra base de datos externa
+	//los datos de la empresa vienen de la otra base de datos externa, solo hay que sumarle el domicilio y serializarlo
 	$empresa = array(
-		'razon-social'    => $usuario['razonSocial'],
-		'cuit-empresa'    => $usuario['cuit'],
-    	'sucursal'        => $usuario['sucursal'],
-    	'fecha-ingreso'   => $usuario['mesDDJJ']. '/' .$usuario['anioDDJJ'],
-    	'id-convenio'     => $usuario['idConvenio'],
-    	'id-rama'         => $usuario['idRama'],
-    	'nombre-convenio' => $usuario['nonmbreConvenio'],
+		'razon-social'      => $usuario['razonSocial'],
+		'cuit-empresa'      => $usuario['cuit'],
+    	'sucursal'          => $usuario['sucursal'],
+    	'fecha-ingreso'     => $usuario['mesDDJJ']. '/' .$usuario['anioDDJJ'],
+    	'id-convenio'       => $usuario['idConvenio'],
+    	'id-rama'           => $usuario['idRama'],
+    	'nombre-convenio'   => $usuario['nonmbreConvenio'],
+    	'empresa_domicilio' => $job_street . ' ' . $job_number . ', ' . $job_city,
 	);
 
 	$empresa = serialize($empresa);
 
-	$query = "INSERT INTO $tabla (member_cuil,member_cuit,member_dni, member_apellido, member_nombre, member_fecha_ingreso, member_empresa, member_email, member_telefono, member_movil, member_domicilio) VALUES ('$cuil', '$cuit', '$dni', '$apellido', '$nombre', ";//continua el query debajo
+	$query = "INSERT INTO $tabla (member_cuil,member_cuit,member_dni, member_apellido, member_nombre, member_fecha_ingreso, member_empresa, member_email, member_telefono, member_movil) VALUES ('$cuil', '$cuit', '$dni', '$apellido', '$nombre', ";//continua el query debajo
 
 	if ( $fechaIngreso > $fecha_actual || $fechaIngreso == '' || $fechaIngreso == '0000-00-00' ) {
 		$query .= "NULL ";
@@ -215,7 +207,7 @@ function loadNewUser( $usuario, $dataFormulario ) {
 		$query .= "'".$fechaIngreso."'";
 	}
 
-	$query .= ", '$empresa', '$member_email', '$member_tel', '$member_movil', '$member_domicilio') ";
+	$query .= ", '$empresa', '$member_email', '$member_tel', '$member_movil') ";
 	
 	$nuevoMembert = mysqli_query($connection, $query); 
 	$memberID = mysqli_insert_id($connection);
@@ -304,6 +296,25 @@ function updateUser( $data ) {
 }
 
 
+function createUserLink( $id, $key ) {
+	$connection = connectDB();
+	$tabla = 'afiliados';
+
+	$query = "UPDATE ".$tabla." SET member_link='".$key."' WHERE member_id='".$id."' LIMIT 1" ;
+
+	$update = mysqli_query($connection, $query); 
+	
+	closeDataBase( $connection );
+
+	if ($update) {
+		return 'ok';
+	} else {
+		return 'error';
+	}
+}
+
+
+
 /*
  *	recupera datos del afiliado de acuerdo a su id
  *
@@ -313,6 +324,22 @@ function getDataAfiliado( $id ) {
 	$tabla = 'afiliados';
 	
 	$query  = "SELECT * FROM " .$tabla. " WHERE member_id='".$id."'";
+
+	$result = mysqli_query($connection, $query);
+	
+	closeDataBase( $connection );
+	if ( $result->num_rows == 0 ) {
+		return null;
+	} else {
+		$afiliado = mysqli_fetch_array($result);
+	}
+	return $afiliado;
+}
+function getDataCuil( $cuil ) {
+	$connection = connectDB();
+	$tabla = 'afiliados';
+	
+	$query  = "SELECT * FROM " .$tabla. " WHERE member_cuil='".$cuil."'";
 
 	$result = mysqli_query($connection, $query);
 	
