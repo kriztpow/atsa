@@ -88,8 +88,9 @@ if(!defined("SECUREACCESS"))
               <?php if ( $userStatus == '0') : ?>
                 <li><a href="index.php?admin=users" role="button">Manejo de usuarios</a></li>  
               <?php endif; ?>
-
+              <?php if ( $userStatus == '0' || $userStatus == '1' || $userStatus == 'a' ) : ?>
                 <li><a href="index.php?admin=change-password" role="button">Cambiar contraseña</a></li>
+                <?php endif; ?>
                 <li><a id="logout" href="#">Salir</a></li>
               </ul>
             </li>

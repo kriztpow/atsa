@@ -1,5 +1,12 @@
 <?php 
 require_once("inc/functions.php");
+//chequea permisos de usuario
+global $userStatus;
+if ($userStatus != '0' || $userStatus != '1' || $userStatus != 'a' ) {
+	echo 'No tiene permisos para ver esta sección';
+  	
+  	exit;
+}
 ?>
 <div class="wrapper-modulo">
 	<!-- wrapper interno modulo -->
