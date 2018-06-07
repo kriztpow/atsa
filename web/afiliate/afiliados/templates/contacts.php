@@ -93,12 +93,17 @@ if ($registeredBy == 'delegados') {
 					<?php 
 					//si se hizo clic en delegados muestra todos los delicados para filtrar por cada uno
 					$users = getUsers( 'd' );
-					if ( $users != null) {
+					if ( $users != null) { ?>
+						<select style="width: 70%;max-width: 150px;background: #d9534f;color: white;border: none;padding: 5px;border-radius:5px;">
+						<?php
 						for ($i=0; $i < count($users); $i++) { ?>
-							<a type="button" href="index.php?admin=contacts&by=<?php echo $users[$i]['user_usuario']; ?>" class="btn btn-primary"><?php echo $users[$i]['user_nombre']; ?></a>
-						<?php }
-					}
-					?>
+							<option value="<?php echo $users[$i]['user_usuario']; ?>">
+								<?php echo $users[$i]['user_nombre']; ?>
+							</option>
+							
+						<?php } ?>
+						</select>
+					<?php } ?>
 					
 				</div>
 			<?php endif; ?>
