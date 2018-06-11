@@ -406,6 +406,16 @@ $(document).ready(function(){
 	        },
 	    });//cierre ajax
         
-   	});//guardar afiliado
+	   });//guardar afiliado
+	   
+
+	   /*
+	    * seleccionar delegado para mostrar
+	   */
+		$(document).on('click', '.btn-select-delegado', function() {
+			delegado = $('#delegado').val();
+			window.location.href = administradorUrl + '/index.php?admin=contacts&by='+delegado;
+			
+		});
 
 });//on ready

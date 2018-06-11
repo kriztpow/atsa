@@ -127,12 +127,38 @@ global $pageActual;
 		</div>
 
 		<div class="form-group">
-			<input type="text" name="job_city" required>
+		<!--<input type="text" name="job_city" required>
 			<label for="job_city">Localidad*</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">
 				Formato inválido
-			</span>
+			</span>-->
+			<select name="job_city">
+				<option value="caba">Ciudad de Buenos Aires</option>
+				<option value="buenos-aires">Buenos Aires</option>
+				<option value="catamarca">Catamarca</option>
+				<option value="chaco">Chaco</option>
+				<option value="chubut">Chubut</option>
+				<option value="cordoba">Córdoba</option>
+				<option value="corriente">Corrientes</option>
+				<option value="entre-rios">Entre Ríos</option>
+				<option value="formosa">Formosa</option>
+				<option value="jujuy">Jujuy</option>
+				<option value="la-pampa">La Pampa</option>
+				<option value="la-rioja">La Rioja</option>
+				<option value="mendoza">Mendoza</option>
+				<option value="misiones">Misiones</option>
+				<option value="neuquen">Neuquén</option>
+				<option value="rio-negro">Río Negro</option>
+				<option value="salta">Salta</option>
+				<option value="san-juan">San Juan</option>
+				<option value="san-luis">San Luis</option>
+				<option value="santa-cruz">Santa Cruz</option>
+				<option value="santa-fe">Santa Fé</option>
+				<option value="santiago-del-estero">Santiago del Estero</option>
+				<option value="tierra-del-fuego">Tierra del Fuego</option>
+				<option value="tucuman">Tucumán</option>
+			</select>
 		</div>
 	</div>
 	<div class="btn-submit-wrapper">

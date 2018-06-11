@@ -38,7 +38,7 @@ if ( $show != '' && $registeredBy != '' ) {
 	$numeroAfiliados = getAfiliadosNumber();
 }
 
-if ($registeredBy == 'delegados') {
+if ( isset($_GET['by']) ) {
 	$delegados = true;
 }
 
@@ -94,7 +94,10 @@ if ($registeredBy == 'delegados') {
 					//si se hizo clic en delegados muestra todos los delicados para filtrar por cada uno
 					$users = getUsers( 'd' );
 					if ( $users != null) { ?>
-						<select style="width: 70%;max-width: 150px;background: #d9534f;color: white;border: none;padding: 5px;border-radius:5px;">
+						<select id="delegado">
+						<option value="delegados">
+								Seleccionar uno...
+							</option>
 						<?php
 						for ($i=0; $i < count($users); $i++) { ?>
 							<option value="<?php echo $users[$i]['user_usuario']; ?>">
@@ -102,7 +105,7 @@ if ($registeredBy == 'delegados') {
 							</option>
 							
 						<?php } ?>
-						</select>
+						</select><button class="btn btn-default btn-select-delegado">Ver</button>
 					<?php } ?>
 					
 				</div>

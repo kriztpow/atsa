@@ -171,6 +171,26 @@
 	}
 }
 
+#delegado {
+	width: 70%;
+    max-width: 150px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.btn-select-delegado {
+	margin-left: 10px;
+    width: 25%;
+    max-width: 50px;
+    text-align: center;
+    padding: 7px;
+}
+
+
 /*
  * FORMULARIO INDIVIDUAL
 */
@@ -692,3 +712,4 @@
 
 
 }//media print
+
