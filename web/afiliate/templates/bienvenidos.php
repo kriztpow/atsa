@@ -31,7 +31,6 @@
 							atsa.org.ar
 						</a>
 					</div>
-
 				</div>
 			</div>
 		</footer>

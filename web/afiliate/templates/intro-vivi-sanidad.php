@@ -33,7 +33,9 @@ if ( dispositivo () == 'pc' ) {
 					atsa.org.ar
 				</a>
 			</div>
-
+			<div class="btn-atsa-wrapper-intro" style="width: 100%;text-align: center;margin: 50px 0 0;">
+						<a href="<?php echo MAINSURL; ?>/afiliados/" target="_blank" class="btn-contorno">Aceso exclusivo para Delegados</a>
+					</div>
 		</div>
 	</div>
 </div>
