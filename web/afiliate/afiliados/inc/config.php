@@ -3,7 +3,7 @@
 define('DB_SERVER', 'localhost');
 define("DB_USER", "dbuser");
 define("DB_PASS", "123");
-define('DB_NAME', 'afiliados');
+define('DB_NAME', 'atsa');
 //CARPETAS
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 define ( 'MODULOSDIR', dirname( __FILE__ ) . '/modulos' );

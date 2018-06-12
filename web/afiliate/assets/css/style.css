@@ -806,6 +806,28 @@ html, body {
     @media (min-width: 1500px) {
       .form-group input {
         height: 40px; } }
+  .form-group select {
+    z-index: 1;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    border: 0;
+    background: transparent;
+    font-size: 100%;
+    color: #666;
+    font-family: "Akrobat", sans-serif;
+    font-weight: 400; }
+    @media (min-width: 767px) {
+      .form-group select {
+        height: 80px; } }
+    @media (min-width: 992px) {
+      .form-group select {
+        height: 20px; } }
+    @media (min-width: 1500px) {
+      .form-group select {
+        height: 40px; } }
   .form-group .input-on {
     color: #fff !important; }
   .form-group input[type=number] {

@@ -8,7 +8,7 @@
 1.0 FORMULARIO
 --------------------------------------------------------------*/
 
-var baseUrl = 'http://' + window.location.host + '/afiliate';
+var baseUrl = 'https://' + window.location.host + '/afiliate';
 var ajaxFileUrl = baseUrl + '/inc/ajax.php';
 var specialcharacters = '@#$^&%*()+=[]\'\"\/{}|:;¡!¿?<>,.';
 var numeros = '0123456789';
@@ -372,6 +372,39 @@ $(document).ready(function() {
         }
     });
 
+    $(document).on('change', 'select', function() {
+        var valor = $(this).val();
+        var contenedor = $(this).closest('.form-group');
+        var icon = $(contenedor).find('.icon-input');
+        var msj = $(contenedor).find('.msj-error-input');
+
+        //si hay números devuelve error
+        if ( valor == '' || valor == null ) {
+            $(icon).addClass('icon-input-error');
+            $(msj).fadeIn();
+        } else {
+            $(icon).removeClass('icon-input-error');    
+            $(icon).addClass('icon-input-sucess');    
+            $(msj).fadeOut();
+        }
+    });
+
+    $(document).on('focusout', 'select', function() {
+        var valor = $(this).val();
+        var contenedor = $(this).closest('.form-group');
+        var icon = $(contenedor).find('.icon-input');
+        var msj = $(contenedor).find('.msj-error-input');
+
+        //si hay números devuelve error
+        if ( valor == '' || valor == null ) {
+            $(icon).addClass('icon-input-error');
+            $(msj).fadeIn();
+        } else {
+            $(icon).removeClass('icon-input-error');    
+            $(icon).addClass('icon-input-sucess');    
+            $(msj).fadeOut();
+        }
+    });
 
     /*
      * SUBMIT FORMULARIO 1

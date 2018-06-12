@@ -128,19 +128,17 @@ global $pageActual;
 
 		<div class="form-group">
 		<!--<input type="text" name="job_city" required>
-			<label for="job_city">Localidad*</label>
-			<span class="icon-input"></span>
-			<span class="msj-error-input">
-				Formato inválido
-			</span>-->
+			<label for="job_city">Localidad*</label>-->
+			
 			<select name="job_city">
+				<option value="" disabled selected hidden>Elegir una...</option>
 				<option value="caba">Ciudad de Buenos Aires</option>
 				<option value="buenos-aires">Buenos Aires</option>
 				<option value="catamarca">Catamarca</option>
 				<option value="chaco">Chaco</option>
 				<option value="chubut">Chubut</option>
 				<option value="cordoba">Córdoba</option>
-				<option value="corriente">Corrientes</option>
+				<option value="corrientes">Corrientes</option>
 				<option value="entre-rios">Entre Ríos</option>
 				<option value="formosa">Formosa</option>
 				<option value="jujuy">Jujuy</option>
@@ -159,6 +157,10 @@ global $pageActual;
 				<option value="tierra-del-fuego">Tierra del Fuego</option>
 				<option value="tucuman">Tucumán</option>
 			</select>
+			<span class="icon-input"></span>
+			<span class="msj-error-input">
+				Debe seleccionar uno
+			</span>
 		</div>
 	</div>
 	<div class="btn-submit-wrapper">

@@ -180,8 +180,82 @@ function loadNewUser( $usuario, $dataFormulario ) {
 	$job_street    = mysqli_real_escape_string($connection, $job_street);
 	$job_number    = filter_var($job_number,FILTER_SANITIZE_NUMBER_INT);
 	$job_number    = mysqli_real_escape_string($connection, $job_number);
-	$job_city      = filter_var(ucwords($job_city),FILTER_SANITIZE_STRING);
-	$job_city      = mysqli_real_escape_string($connection, $job_city);
+
+	//ajusta locacion:
+	switch ($job_city) {
+		case 'caba':
+		$job_city = 'Ciudad de Buenos Aires';
+		break;
+		case 'buenos-aires':
+		$job_city = 'Buenos Aires';
+		break;
+		case 'catamarca':
+		$job_city = 'Catamarca';
+		break;
+		case 'chaco':
+		$job_city = 'Chaco';
+		break;
+		case 'chubut':
+		$job_city = 'Chubut';
+		break;
+		case 'cordoba':
+		$job_city = 'Córdoba';
+		break;
+		case 'corrientes':
+		$job_city = 'Corrientes';
+		break;
+		case 'entre-rios':
+		$job_city = 'Entre Ríos';
+		break;
+		case 'formosa':
+		$job_city = 'Formosa';
+		break;
+		case 'jujuy':
+		$job_city = 'Jujuy';
+		break;
+		case 'la-pampa':
+		$job_city = 'La Pampa';
+		break;
+		case 'la-rioja':
+		$job_city = 'La Rioja';
+		break;
+		case 'mendoza':
+		$job_city = 'Mendoza';
+		break;
+		case 'misiones':
+		$job_city = 'Misiones';
+		break;
+		case 'neuquen':
+		$job_city = 'Neuquén';
+		break;
+		case 'rio-negro':
+		$job_city = 'Río Negro';
+		break;
+		case 'salta':
+		$job_city = 'Salta';
+		break;
+		case 'san-juan':
+		$job_city = 'San Juan';
+		break;
+		case 'san-luis':
+		$job_city = 'San Luis';
+		break;
+		case 'santa-cruz':
+		$job_city = 'Santa Cruz';
+		break;
+		case 'santa-fe':
+		$job_city = 'Santa Fé';
+		break;
+		case 'santiago-del-estero':
+		$job_city = 'Santiago del Estero';
+		break;
+		case 'tierra-del-fuego':
+		$job_city = 'Tierra del Fuego';
+		break;
+		case 'tucuman':
+		$job_city = 'Tucumán';
+		break;
+	}
 
 	//ahora se arman las variables para cargar la base de datos
 

@@ -13,7 +13,7 @@ define('DB_NAME', 'derechoc_afiliados');*/
 define('DB_SERVER', 'localhost');
 define("DB_USER", "dbuser");
 define("DB_PASS", "123");
-define('DB_NAME', 'afiliados');
+define('DB_NAME', 'atsa');
 //DEFINICIONES HEAD Y SCRIPTS
 define ( 'VERSION', '1.0' );
 //CARPETAS

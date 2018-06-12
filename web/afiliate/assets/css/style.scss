@@ -773,6 +773,30 @@ html, body {
         }
     }
 
+    select {
+        z-index:1;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 90%;
+        border: 0;
+        background: transparent;
+        font-size: 100%;
+        color: #666;
+        font-family: $fuente-principal;
+        font-weight: 400;
+        //padding-bottom: 30px;
+        @media (min-width: $sm) {
+            height: 80px;
+        }
+        @media (min-width: $md) {
+            height: 20px;
+        }
+        @media (min-width: $xlg) {
+            height: 40px;
+        }
+    }
 
     //input con contenido escrito
     .input-on {
