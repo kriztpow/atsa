@@ -120,7 +120,7 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
             <div class="container-fluid">
                 <ul class="noticias-destacadas">
                     <li>
-                        <a href="#ri-grid" class="click-scroll">
+                        <a href="afiliate/afiliados/">
                         <article class="noticia-destacada">
                             <figure>
                                 <img src="uploads/images/<?php echo $homeContent['banners'][0]; ?>" class="img-responsive">
