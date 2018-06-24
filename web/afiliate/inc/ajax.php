@@ -31,12 +31,15 @@ if(  isAjax() ) {
 			if ( $_POST['cuil'] == '' ) {
 				echo 'error-2';
 				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
+				cargaUsuarioRechazado( $_POST, 'error-2' );
 				return;
 			}
 			
 			if ( checkCuilHere($_POST['cuil']) ) {
 				echo 'error-4';
 				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
+				cargaUsuarioRechazado( $_POST, 'error-4' );
+				//cargaUsuarioRechazado( $_POST );
 				return;
 			};
 
@@ -47,6 +50,7 @@ if(  isAjax() ) {
 				//devuelve error al script
 				echo $usuario;
 				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
+				cargaUsuarioRechazado( $_POST, $usuario );
 				return;
 			}
 			//si la consulta a la base de datos externa trae datos carga el nuevo usuario en la base de datos local
@@ -81,6 +85,7 @@ if(  isAjax() ) {
 			} else {
 				
 				sendEmailToAdmin( $_POST, 'equipodeprensa@atsa.org.ar' );
+				cargaUsuarioRechazado( $_POST, 'error-4' );
 
 			}
 

@@ -291,6 +291,160 @@ function loadNewUser( $usuario, $dataFormulario ) {
 	return $memberID;			
 }
 
+function cargaUsuarioRechazado( $data, $error ) {
+	$connection = connectDB();
+	$tabla = 'rechazados';
+	$fecha_actual = date("Y-m-d");
+
+	//apellido y nombre lo pasa a minúsculas
+	$apellido     = isset($data['lastname']) ? strtolower($data['lastname']) : '';
+	$nombre       = isset($data['name']) ? strtolower($data['name']) : '';
+	$cuit         = isset($data['cuit']) ? $data['cuit'] : '';
+	$cuil         = isset($data['cuil']) ? $data['cuil'] : '';
+	$dni          = isset($data['dni']) ? $data['dni'] : '';
+	$fechaIngreso = isset($data['date-start']) ? $data['date-start'] : '';
+
+	//SANITIZE:
+	$apellido     = filter_var(ucwords($apellido),FILTER_SANITIZE_STRING);
+	$apellido     = mysqli_real_escape_string($connection, $apellido);
+	$nombre       = filter_var(ucwords($nombre),FILTER_SANITIZE_STRING);
+	$nombre       = mysqli_real_escape_string($connection, $nombre);
+	$cuit         = filter_var($cuit,FILTER_SANITIZE_NUMBER_INT);
+	$cuit         = mysqli_real_escape_string($connection, $cuit);
+	$cuil         = filter_var($cuil,FILTER_SANITIZE_NUMBER_INT);
+	$cuil         = mysqli_real_escape_string($connection, $cuil);
+	$dni          = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
+	$dni          = mysqli_real_escape_string($connection, $dni);
+	
+	
+	$member_email  = isset($data['member_email']) ? strtolower($data['member_email']) : '';
+	$member_tel    = isset($data['member_tel']) ? $data['member_tel'] : '';
+	$member_movil  = isset($data['member_cellphone']) ? $data['member_cellphone'] : '';
+	$job_street    = isset($data['job_street']) ? strtolower($data['job_street']) : '';
+	$job_number    = isset($data['job_number']) ? $data['job_number'] : '';
+	$job_city      = isset($data['job_city']) ? strtolower($data['job_city']) : '';
+
+	//SANITIZE:
+	$member_email  = filter_var($member_email,FILTER_SANITIZE_EMAIL);
+	$member_email  = mysqli_real_escape_string($connection, $member_email);
+	$member_tel    = filter_var($member_tel,FILTER_SANITIZE_NUMBER_INT);
+	$member_tel    = mysqli_real_escape_string($connection, $member_tel);
+	$member_movil  = filter_var($member_movil,FILTER_SANITIZE_NUMBER_INT);
+	$member_movil  = mysqli_real_escape_string($connection, $member_movil);
+	
+	$job_street    = filter_var(ucwords($job_street),FILTER_SANITIZE_STRING);
+	$job_street    = mysqli_real_escape_string($connection, $job_street);
+	$job_number    = filter_var($job_number,FILTER_SANITIZE_NUMBER_INT);
+	$job_number    = mysqli_real_escape_string($connection, $job_number);
+
+	//ajusta locacion:
+	switch ($job_city) {
+		case 'caba':
+		$job_city = 'Ciudad de Buenos Aires';
+		break;
+		case 'buenos-aires':
+		$job_city = 'Buenos Aires';
+		break;
+		case 'catamarca':
+		$job_city = 'Catamarca';
+		break;
+		case 'chaco':
+		$job_city = 'Chaco';
+		break;
+		case 'chubut':
+		$job_city = 'Chubut';
+		break;
+		case 'cordoba':
+		$job_city = 'Córdoba';
+		break;
+		case 'corrientes':
+		$job_city = 'Corrientes';
+		break;
+		case 'entre-rios':
+		$job_city = 'Entre Ríos';
+		break;
+		case 'formosa':
+		$job_city = 'Formosa';
+		break;
+		case 'jujuy':
+		$job_city = 'Jujuy';
+		break;
+		case 'la-pampa':
+		$job_city = 'La Pampa';
+		break;
+		case 'la-rioja':
+		$job_city = 'La Rioja';
+		break;
+		case 'mendoza':
+		$job_city = 'Mendoza';
+		break;
+		case 'misiones':
+		$job_city = 'Misiones';
+		break;
+		case 'neuquen':
+		$job_city = 'Neuquén';
+		break;
+		case 'rio-negro':
+		$job_city = 'Río Negro';
+		break;
+		case 'salta':
+		$job_city = 'Salta';
+		break;
+		case 'san-juan':
+		$job_city = 'San Juan';
+		break;
+		case 'san-luis':
+		$job_city = 'San Luis';
+		break;
+		case 'santa-cruz':
+		$job_city = 'Santa Cruz';
+		break;
+		case 'santa-fe':
+		$job_city = 'Santa Fé';
+		break;
+		case 'santiago-del-estero':
+		$job_city = 'Santiago del Estero';
+		break;
+		case 'tierra-del-fuego':
+		$job_city = 'Tierra del Fuego';
+		break;
+		case 'tucuman':
+		$job_city = 'Tucumán';
+		break;
+		case '':
+		$job_city = '';
+		break;
+	}
+
+	//ahora se arman las variables para cargar la base de datos
+
+	//los datos de la empresa vienen de la otra base de datos externa, solo hay que sumarle el domicilio y serializarlo
+	$empresa = array(
+		'cuit-empresa'      => $cuit,
+    	'fecha-ingreso'     => $fechaIngreso,
+    	'empresa_domicilio' => $job_street . ' ' . $job_number . ', ' . $job_city,
+	);
+
+	$empresa = serialize($empresa);
+
+	$query = "INSERT INTO $tabla (member_cuil,member_cuit,member_dni, member_apellido, member_nombre, member_fecha_ingreso, member_empresa, member_email, member_telefono, member_movil, member_error) VALUES ('$cuil', '$cuit', '$dni', '$apellido', '$nombre', ";//continua el query debajo
+
+	if ( $fechaIngreso > $fecha_actual || $fechaIngreso == '' || $fechaIngreso == '0000-00-00' ) {
+		$query .= "NULL ";
+	} else {
+		$query .= "'".$fechaIngreso."'";
+	}
+
+	$query .= ", '$empresa', '$member_email', '$member_tel', '$member_movil', '$error') ";
+	
+	$nuevoMembert = mysqli_query($connection, $query); 
+	$memberID = mysqli_insert_id($connection);
+
+	closeDataBase( $connection );
+
+	return $memberID;			
+}
+
 /*
  *	actualiza el usuario en base de datos local de acuerdo a su id
  *
@@ -588,7 +742,7 @@ function sendEmailToAdmin( $datos = array(), $emailAdministrador =  EMAILAFILIAD
 	require_once("class.phpmailer.php");
 	require_once("class.smtp.php");
 
-	$emailTo = $emailAfiliado;
+	//$emailTo = $emailAfiliado;
 	$asuntoAdministrador = 'SOLICITUD RECHAZADA';
 	//$link = MAINSURL . '/afiliados/index.php?admin=edit-contacts&slug='.$cuil;
 	
