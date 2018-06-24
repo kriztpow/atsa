@@ -63,6 +63,9 @@ if(!defined("SECUREACCESS"))
                 <li>
                   <a href="index.php?admin=contacts&afiliado-status=2" role="button">Ver anulados</a>
                 </li>
+                <?php if ( $userStatus == '0' || $userStatus == '1' ) : ?>
+                <li><a href="index.php?admin=rechazados" role="button">Ver RECHAZADOS</a></li>
+                <?php endif; ?>
               </ul>
             </li>
 
