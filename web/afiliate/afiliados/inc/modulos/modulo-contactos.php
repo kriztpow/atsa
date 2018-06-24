@@ -147,3 +147,42 @@ function getDataAfiliadoAdmin( $cuil ) {
 	}
 	return $afiliado;
 }
+
+function getRechazados( $limit = -1 ) {
+	$connection = connectDB();
+	$tabla      = 'rechazados';
+	$query      = "SELECT * FROM " .$tabla;
+	if ( $limit != -1 ) {
+		$query .= " LIMIT ". $limit;
+	}
+	
+
+	$result     = mysqli_query($connection, $query);
+
+	closeDataBase($connection);
+
+	if ( $result->num_rows == 0 ) {
+		return null;
+
+	} else {
+		while ($row = $result->fetch_array()) {
+			$rechazados[] = $row;
+		}
+	}
+
+	return $rechazados;
+}
+
+//numero de afiliados totales conectados segun status
+function getRechazadosNumber() {
+	$connection = connectDB();
+	$tabla      = 'rechazados';
+	$query      = "SELECT * FROM " .$tabla;	
+
+	$result     = mysqli_query($connection, $query);
+
+	closeDataBase($connection);
+
+	return $result->num_rows;
+
+}
