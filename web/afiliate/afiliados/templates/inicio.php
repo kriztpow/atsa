@@ -69,7 +69,20 @@
       </section><!-- //modulo -->
     </div><!-- //columna -->
 
-    
+    <?php
+    global $userStatus; 
+    if ( $userStatus == '0' || $userStatus == '1' ) : ?>
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Rechazados</h2>
+          <p>Ver afiliados rechazados.</p>
+          <p><a class="btn btn-danger" href="index.php?admin=rechazados" role="button">Rehazados</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+    <?php endif; ?>
 
   </div><!-- //row -->
 </div><!-- //containre -->
