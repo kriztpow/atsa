@@ -8,7 +8,7 @@
 <!-- jQquery UI css -->
   <link href="<?php echo URLADMINISTRADOR; ?>/assets/css/jquery-ui.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-  <link href="<?php echo URLADMINISTRADOR; ?>/assets/css/style-admin.css" rel="stylesheet">
+  <link href="<?php echo URLADMINISTRADOR; ?>/assets/css/style-admin-all.css" rel="stylesheet">
 
 </head>
 <body>

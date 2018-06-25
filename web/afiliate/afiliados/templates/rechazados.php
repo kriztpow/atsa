@@ -38,7 +38,7 @@ $numerorechazados = getRechazadosNumber();
 			  	</button>
 				
 				<div class="filtros-wrapper">
-				  <select class="orden-suscriptores" data-afiliado-status="<?php echo $show; ?>" data-cant-post="<?php echo CANTPOST; ?>">
+				  <select class="orden-suscriptores" data-cant-post="<?php echo CANTPOST; ?>">
 				  	<option value="desc" selected>Descendente</option>
 				  	<option value="asc">Ascendente</option>
 				  </select>
