@@ -17,6 +17,9 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 8.2 - RECHAZADOS
+* Modificaciones en el backend para que cuando un usuario es rechazado, se agregue a una base de datos y se pueda ver.
+
 ### Versión 8.1 - AFILIATE  
 * modificaciones del front, para que el afiliado pueda autocompletar sus datos, pero deben hacerlo en 5 días, luego no se puede más.
 * correcciones en el back para que tengan más filtros para ver no contactados, anulados, firmados y contactados

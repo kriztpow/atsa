@@ -66,7 +66,7 @@ $numerorechazados = getRechazadosNumber();
 						<td width="12%">
 							Cuit
 						</td>
-						<td width="6%">
+						<td width="8%">
 							Fecha: <small>(ingreso)</small>
 						</td>
 						<td width="10%">
@@ -78,7 +78,7 @@ $numerorechazados = getRechazadosNumber();
 						<td width="15%">
 							Domicilio Laboral
 						</td>
-						<td>
+						<td width="3%">
 							
 						</td>
 					</tr>

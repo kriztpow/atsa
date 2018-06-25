@@ -4,17 +4,17 @@
  * 
 */
 ?>
-<td width="3%">
+<td>
 	<span class="numeracion-rows"></span>
 </td>
 
-<td width="10%">
+<td>
 	
 	<?php echo $data['member_cuil']; ?>
 	
 </td>
 
-<td width="15%">
+<td>
 	
 	<strong>
 	<?php echo $data['member_apellido'] . ', ' . $data['member_nombre'] ?>
@@ -22,15 +22,15 @@
 	
 </td>
 
-<td width="12">
+<td>
 	<?php echo $data['member_dni']; ?>
 </td>
 
-<td width="12%">
+<td>
 	<?php echo $data['member_cuit']; ?>
 </td>
 
-<td width="6%">
+<td>
 	<em>
 	<?php
 		if ( $data['member_fecha_ingreso'] != '' ) {
@@ -40,7 +40,7 @@
 	</em>
 </td>
 
-<td width="10%">
+<td>
 	<?php
 	if ( $data['member_telefono'] != '' ) {
 		echo $data['member_telefono']. '<br>';
@@ -49,11 +49,11 @@
 	echo $data['member_movil']; ?>
 </td>
 
-<td width="12%">
+<td style="word-break: break-all;">
 	<?php echo $data['member_email']; ?>
 </td>
 
-<td width="15%">
+<td>
 	<?php 
 		$empresa = unserialize($data['member_empresa']);
 		echo $empresa['empresa_domicilio'];

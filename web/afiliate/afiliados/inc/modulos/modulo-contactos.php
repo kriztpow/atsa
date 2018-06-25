@@ -148,10 +148,10 @@ function getDataAfiliadoAdmin( $cuil ) {
 	return $afiliado;
 }
 
-function getRechazados( $limit = -1 ) {
+function getRechazados( $limit = -1, $orden = 'desc') {
 	$connection = connectDB();
 	$tabla      = 'rechazados';
-	$query      = "SELECT * FROM " .$tabla;
+	$query      = "SELECT * FROM " .$tabla . " ORDER by member_date_registro " .$orden;
 	if ( $limit != -1 ) {
 		$query .= " LIMIT ". $limit;
 	}

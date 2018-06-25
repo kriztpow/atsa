@@ -15,13 +15,13 @@ if( isAjax() ) {
 
 	$cantPost = isset($_POST['cantPost']) ? $_POST['cantPost'] : '';
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-	$orden = $_POST['orden'];
+	$orden = isset($_POST['orden']) ? $_POST['orden'] : 'desc';
 	
 	if ( $cantPost == '' ) {
 		$cantPost = CANTPOST;
 	}
 	$limit = ( ($page-1)*$cantPost).", ".$cantPost;
-	$rechazados = getRechazados ( $limit );
+	$rechazados = getRechazados ( $limit, $orden );
 
 	if ( $rechazados != null ) : 
 
