@@ -14,8 +14,8 @@ if ($userStatus == 'd' || $userStatus == 'a') {
   	exit;
 }
 
-$rechazados = getRechazados();
-
+$rechazados = getRechazados( CANTPOST );
+$numerorechazados = getRechazadosNumber();
 
 ?>
 
@@ -51,7 +51,7 @@ $rechazados = getRechazados();
 			<table class="tabla-suscriptores">
 				<thead>
 					<tr>
-						<td width="5%">
+						<td width="3%">
 							#
 						</td>
 						<td width="10%">
@@ -60,19 +60,19 @@ $rechazados = getRechazados();
 						<td width="15%">
 							Apellido, Nombre:
 						</td>
-						<td width="10">
+						<td width="12">
 							Dni:
 						</td>		
-						<td width="10%">
+						<td width="12%">
 							Cuit
 						</td>
-						<td width="10%">
+						<td width="6%">
 							Fecha: <small>(ingreso)</small>
 						</td>
 						<td width="10%">
 							Tel/cel:
 						</td>
-						<td width="10%">
+						<td width="12%">
 							Email
 						</td>
 						<td width="15%">
@@ -104,36 +104,36 @@ $rechazados = getRechazados();
 				<?php 
 					
 					//si el numero es mayor a la cantidad de post por página entonces muestra el botón cargar más
-					if ( $numeroAfiliados > CANTPOST ) : ?>
+					if ( $numerorechazados > CANTPOST ) : ?>
 				
-						<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>" data-user="<?php echo $plantillaReduce ?>" data-cant-post="<?php echo CANTPOST ?>" data-post-orden="desc">
+						<button class="btn btn-primary load-more-btn-rechazados" data-cant-post="<?php echo CANTPOST ?>" data-post-orden="desc">
 							Cargar más
 						</button>
 				<?php endif; ?>
-				<?php if ( $numeroAfiliados > 5 ) : ?>
+				<?php if ( $numerorechazados > 5 ) : ?>
 					<div class="select-cant-post">
 						<p>Mostrar: </p>
-						<select class="select-mostrar" data-user="<?php echo $plantillaReduce ?>" data-post-orden="desc" data-afiliado-status="<?php echo $show; ?>" data-registeredby="<?php echo $registeredBy; ?>" >
+						<select class="select-mostrar-rechazados" data-post-orden="desc">
 							<option value="5">5</option>
-						<?php if ( $numeroAfiliados > 10 ) : ?>
+						<?php if ( $numerorechazados > 10 ) : ?>
 							<option value="10" selected>10</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 25 ) : ?>
+						<?php if ( $numerorechazados > 25 ) : ?>
 							<option value="25">25</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 50 ) : ?>
+						<?php if ( $numerorechazados > 50 ) : ?>
 							<option value="50">50</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 100 ) : ?>
+						<?php if ( $numerorechazados > 100 ) : ?>
 							<option value="100">100</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 250 ) : ?>
+						<?php if ( $numerorechazados > 250 ) : ?>
 							<option value="250">250</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 500 ) : ?>
+						<?php if ( $numerorechazados > 500 ) : ?>
 							<option value="500">500</option>
 						<?php endif; ?>
-						<?php if ( $numeroAfiliados > 1000 ) : ?>
+						<?php if ( $numerorechazados > 1000 ) : ?>
 							<option value="1000">1000</option>
 						<?php endif; ?>
 						</select> 

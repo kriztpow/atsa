@@ -57,6 +57,37 @@ $(document).ready(function(){
 		    });//cierre ajax
 		}
 	});
+
+	//borrar usuario RECHAZADO
+	$(document).on('click','.del-rechazado',function(){
+		var id = $(this).attr('data-id');
+		
+		if ( confirm( '¿Está seguro de querer BORRAR este afiliado?' ) ) {
+
+			$.ajax( {
+		        type: 'POST',
+		        url: ajaxFunctionDir + '/delete-rechazados.php',
+		        data: {
+		            id: id,
+		        },
+		        beforeSend: function() {
+		            console.log('borrando');
+		        },
+		        success: function ( response ) {
+	                console.log(response);
+		            if (response == 'deleted') {
+						location.reload(true);
+		            }
+		            else {
+		            	$('.contacts-container').append(response)
+		            }
+		        },
+		        error: function ( ) {
+		            console.log('error');
+		        },
+		    });//cierre ajax
+		}
+	});
 	
 	var currentPage = 1;
 
@@ -124,8 +155,6 @@ $(document).ready(function(){
 
 	//cambiar el numero a mostrar
 	$(document).on('change', '.select-mostrar', function() {
-		var status = $(this).attr('data-afiliado-status');
-		var registeredby = $(this).attr('data-registeredby');
 		var cantPost = $(this).val();
 		var orden = $(this).attr('data-post-orden');
 		var contenedor = $('.row-usuario');
@@ -198,6 +227,84 @@ $(document).ready(function(){
 	    });//cierre ajax
 		
 	});	
+
+	
+	//cargar mas RECHAZADOS
+	$(document).on('click', '.load-more-btn-rechazados', function() {;
+		var cantPost = $(this).attr('data-cant-post');
+		var orden = $(this).attr('data-post-orden');
+		var contenedor = $('.row-usuario');
+
+		$.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/new-query-rechazados.php',
+	        data: {
+	            cantPost: cantPost,
+	            orden: orden,
+	            page: currentPage+1,
+	        },
+	        success: function ( response ) {
+                //console.log(response);
+                if (response) {
+                	//insertamos la respuesta
+	                $(contenedor).append(response);
+	                //sumamos una página
+	                currentPage++;
+	                //armamos nueva numeracion
+	                $('.numeracion-rows').each(function( index, value ){
+						numeracionCeldas(index, this)
+					});	
+                } else {
+                	$('.contacts-container').append($('<div style="font-style:italic;font-size:80%;color:red;">No hay más afiliados que cargar</div>'));
+                }
+
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
+	});
+
+	//cambiar el numero a mostrar de RECHAZADOS
+	$(document).on('change', '.select-mostrar-rechazados', function() {
+		var cantPost = $(this).val();
+		var orden = $(this).attr('data-post-orden');
+		var contenedor = $('.row-usuario');
+		var user = $(this).attr('data-user');
+
+		$.ajax( {
+	        type: 'POST',
+	        url: ajaxFunctionDir + '/new-query-rechazados.php',
+	        data: {
+	        	user: user,
+	            status: status,
+	            cantPost: currentPage*cantPost,
+	            orden: orden,
+	            registeredby : registeredby,
+	        },
+	        success: function ( response ) {
+                //console.log(response);
+                $('.load-more-btn').attr('data-cant-post',cantPost)
+            	//borramos primero lo que hay 
+            	$(contenedor).empty();
+            	//insertamos la respuesta reordenada
+                $(contenedor).append(response);
+                //armamos nueva numeracion
+                $('.numeracion-rows').each(function( index, value ){
+					numeracionCeldas(index, this)
+				});	
+
+                //si el botón de cargar mas no esta hay que agregarlo
+				if ( $('.load-more-btn').length == 0 ) {
+					var html = '<button class="btn btn-primary load-more-btn" data-user="'+user+'" data-afiliado-status="'+status+'" data-cant-post="'+cantPost+'" data-post-orden="'+orden+'">Cargar más</button>';
+					$('.wrapper-loaders').prepend($(html));
+				}
+	        },
+	        error: function ( ) {
+	            console.log('error');
+	        },
+	    });//cierre ajax
+	});
 
 });
 
