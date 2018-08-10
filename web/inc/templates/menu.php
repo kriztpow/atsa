@@ -71,7 +71,7 @@ global $pageActual;
         <ul class="main-menu-sub1">
             <li><a href="convenios-colectivos">Convenios Colectivos y Acuerdos Salariales</a></li>
             <li><a href="leyes-laborales">Leyes Laborales</a></li>
-            <li><a href="delegados-gremiales">Delegados gremiales</a></li>
+            <!--<li><a href="delegados-gremiales">Delegados gremiales</a></li>-->
         </ul>
     </li>
     <li<?php if ( $menuActive == 4 ) { echo $classActive; } ?>>
