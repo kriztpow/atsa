@@ -6,7 +6,7 @@
 		<iframe width="100%" height="550px" src="https://www.youtube.com/embed/K6_1WlzzAXs?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 	</div>
 
-	<div style="width: 80%;margin: 0 auto;">
+	<div style="width: 80%;margin: 0 auto;text-align: center;font-size: 150%;line-height: 120%;">
         Enviá tus preguntas a preguntaenvivo@gmail.com o escribinos al chat online ahora y se contestarán en el momento.
     </div>
 
