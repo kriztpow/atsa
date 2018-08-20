@@ -7,9 +7,16 @@
 */
 
 require_once("inc/functions.php");
-$video = '';
-//$video = getLinkVideoVivo();
+$video = getVideoVivo();
+$texto = getTextVivo();
 
+if ($video == null ) {
+	$video = '';
+}
+
+if ($texto == null ) {
+	$texto = '';
+}
 ?>
 <div class="wrapper-modulo">
 	<!-- wrapper interno modulo -->
@@ -18,17 +25,25 @@ $video = '';
 			<div class="row">
 				<!-- col -->
 				<div class="col-md-12 col-sm-12">
-					<form method="POST">
+					<form method="POST" id="video_vivo_formulario">
 						<p>
-							Copiar el link de youtube aquí y guardar los cambios.
+							Copiar el link de youtube aquí y guardar los cambios. 
 						</p>
 
 						<div class="form-group">
-							<label for="video_link">Link del video</label>
-							<input name="video_link" type="text" value="<?php echo $video; ?>">
+							<label for="video_link" style="display: block;">Link del video</label>
+							<input style="max-width: 550px;width: 100%;" name="video_link" type="text" value="<?php echo $video; ?>">
+						</div>
+
+						<div class="form-group">
+							<label for="video_link" style="display: block;">Texto del video</label>
+							<textarea style="max-width: 550px;width: 100%; height: 100px;" name="video_text"><?php echo $texto; ?></textarea>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Guardar" class="btn btn-danger">
+						</div>
+						<div class="form-group">
+							<span class="mensaje-guardado"></span>
 						</div>
 					</form>
 				</div><!-- //col -->

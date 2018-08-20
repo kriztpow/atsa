@@ -23,6 +23,7 @@
  * 16. preguntas
  * 17. programas de prevencion
  * 18. home page
+ * 19. vivo page
 */
 
 function scrollHaciaArriba() {
@@ -3398,3 +3399,39 @@ $(document).ready(function(){
 	});
 
 });//ready homepage
+
+
+/*
+VIVO PAGE
+*/
+$(document).ready(function(){
+	//guardar cambios
+	$('#video_vivo_formulario').submit(function( e ){
+		e.preventDefault();
+		var mensaje = $('.mensaje-guardado');
+		var formulario = $( this );
+		var formData = new FormData( formulario[0] );
+		
+		$.ajax({
+			type: 'POST',
+			url: 'inc/save-video-vivo.php',
+			data: formData,
+			cache: false,
+		    contentType: false,
+		    processData: false,
+            //funcion antes de enviar
+            beforeSend: function() {
+            	console.log('enviando formulario');
+            },
+			success: function ( response ) {
+				console.log(response)
+				
+				mensaje.html(response);
+			},
+			error: function ( error ) {
+				console.log(error);
+			},
+		});//cierre ajax
+
+	});
+});

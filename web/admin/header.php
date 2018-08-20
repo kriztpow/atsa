@@ -104,6 +104,9 @@ if(!defined("SECUREACCESS"))
                 <li>
                   <a href="index.php?admin=deportes" role="button">Torneos y Eventos</a>
                 </li>
+                <li>
+                  <a href="index.php?admin=vivo" role="button">Vivo</a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">

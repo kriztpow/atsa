@@ -1262,3 +1262,39 @@ function getHome() {
 	//devuelve el array de contenido
 	return $homeContent;
 }
+
+function frontgetVideoVivo() {
+	$connection = connectDB();
+	$tabla = 'options';
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE option_name='video_vivo_link'";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		return null;
+	} else { 
+
+		$data = $result->fetch_array();
+		
+	}
+	return $data;
+}
+
+function frontgetTextVivo() {
+	$connection = connectDB();
+	$tabla = 'options';
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE option_name='video_vivo_text'";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		return null;
+	} else { 
+
+		$data = $result->fetch_array();
+		
+	}
+	return $data;
+}
