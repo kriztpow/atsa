@@ -12,10 +12,14 @@ $texto = getTextVivo();
 
 if ($video == null ) {
 	$video = '';
+} else {
+	$video = $video['option_value'];
 }
 
 if ($texto == null ) {
 	$texto = '';
+} else {
+	$texto = $texto['option_value'];
 }
 ?>
 <div class="wrapper-modulo">

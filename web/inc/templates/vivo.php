@@ -2,17 +2,16 @@
 $linkVideoVivo = frontgetVideoVivo();
 $textVideoVivo = frontgetTextVivo();
 
-if ( $textVideoVivo == '' || $textVideoVivo == null ){
-	$textVideoVivo = 'Enviá tus preguntas a preguntaenvivo@gmail.com o escribinos al chat online ahora y se contestarán en el momento.';	
-}
+$textVideoVivo = $textVideoVivo['option_value'];
 
 if ($linkVideoVivo == '' || $linkVideoVivo == null){
 	
-
 	$linkVideoVivo = '';	
 } else {
+	$linkVideoVivo = $linkVideoVivo['option_value'];	
 	$linkVideoVivo = explode('=', $linkVideoVivo);	
 }
+
 
 
 
@@ -28,7 +27,7 @@ if ($linkVideoVivo == '' || $linkVideoVivo == null){
 	</div>
 
 	<div style="width: 80%;margin: 0 auto;text-align: center;font-size: 150%;line-height: 120%;">
-        Enviá tus preguntas a preguntaenvivo@gmail.com o escribinos al chat online ahora y se contestarán en el momento.
+        <?php echo $textVideoVivo; ?>
     </div>
 
 	<script>
