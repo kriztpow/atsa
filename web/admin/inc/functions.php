@@ -1381,7 +1381,7 @@ function listCursosAdmin ( $post_type ) {
 						<div class="row">
 							<div class="col-sm-12">
 								<label>Resumen:<br>
-									<textarea name="cursos_resumen"> <?php echo $cursoResumen; ?></textarea>
+									<textarea class="tinyeditorcursos" name="cursos_resumen"> <?php echo $cursoResumen; ?></textarea>
 								</label>
 							</div><!-- // .col -->
 						</div>

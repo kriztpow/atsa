@@ -14,6 +14,12 @@ if ( isAjax() ) {
 	$link = filter_var($link,FILTER_SANITIZE_URL);
 	$text = filter_var($text,FILTER_SANITIZE_STRING);
 
+	$urlbasica = 'https://www.youtube.com/watch?v=';
+
+	if ( $link != '' && strpos($link, '=') === false ) {
+		$link = $urlbasica . explode('/',$link)[3];
+	}
+
 	$query  = "UPDATE ".$tabla." SET option_value='".$link."' WHERE option_name='video_vivo_link' LIMIT 1";
 
 	$result = mysqli_query($connection, $query);

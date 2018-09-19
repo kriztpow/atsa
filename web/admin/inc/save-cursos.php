@@ -67,7 +67,7 @@ if ( isAjax() ) {
 		} else if ( $post_type == 'no_formal' ) {
 			
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
-			$resumen = filter_var($resumen,FILTER_SANITIZE_STRING);
+			//$resumen = filter_var($resumen,FILTER_SANITIZE_STRING);
 			$horarios = filter_var($horarios,FILTER_SANITIZE_STRING);
 			$lugar = filter_var($lugar,FILTER_SANITIZE_STRING);
 
@@ -130,7 +130,7 @@ if ( isAjax() ) {
 		} else if ( $post_type == 'no_formal' ) {
 
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
-			$resumen = filter_var($resumen,FILTER_SANITIZE_STRING);
+			//$resumen = filter_var($resumen,FILTER_SANITIZE_STRING);
 			$horarios = filter_var($horarios,FILTER_SANITIZE_STRING);
 			$lugar = filter_var($lugar,FILTER_SANITIZE_STRING);
 

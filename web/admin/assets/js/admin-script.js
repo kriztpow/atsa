@@ -2114,7 +2114,7 @@ $(document).ready(function(){
 			if ( orden == '' ) {
 				orden = 0;
 			}
-
+			
 			if ( titulo == '' ) {
 				$(msj).html('El título no puede estar vacío');
 				return;
