@@ -46,7 +46,28 @@ if ( count($dataNoticia) > 0 ) {
 <meta name="twitter:title" content="<?php echo $dataNoticia['titulo']; ?>" />
 <meta name="twitter:image" content="<?php echo urlBase() . '/uploads/images/'. $dataNoticia['imgDestacada']; ?>" />
 
+<?php } elseif ( $pageActual == 'peticion' ) {
+    
+    $titulo = 'No a la pulsera Enfermería';
+    $imagen = '/uploads/images/peticion-image.jpg';
+    $descripcion = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas y controlar nuestros movimientos, como si fuésemos criminales.';
+    
+    ?>
+    <link rel="canonical" href="<?php echo urlBase() . '/'. $pageActual; ?>" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<?php echo $titulo; ?>" />
+    <meta property="og:description" content="<?php echo $descripcion; ?>" />
+    <meta property="og:url" content="<?php echo urlBase() . '/'. $pageActual; ?>" />
+    <meta property="og:site_name" content="<?php echo urlBase(); ?>" />
+    <meta property="og:image" content="<?php echo urlBase() . $imagen; ?>" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:description" content="<?php echo $descripcion; ?>" />
+    <meta name="twitter:title" content="<?php echo $titulo; ?>" />
+    <meta name="twitter:image" content="<?php echo urlBase() . $imagen; ?>" />
+
 <?php } else { ?>
+
     <link rel="canonical" href="<?php echo urlBase() . '/'. $pageActual; ?>" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />

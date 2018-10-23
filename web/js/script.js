@@ -482,3 +482,46 @@ $(window).on( 'load', function(){
     
     
 });//slider superior-home
+
+/*
+ * FORMULARIO PETICION
+*/
+
+$(document).ready(function(){
+    $( '#peticion-form' ).on('submit', function( event ){
+        
+        event.preventDefault();
+
+        var formulario =  this;
+        var form_type = 'peticion';
+        //var imgAjax = $( '.load-ajax-suscribe' );
+
+        var formData = new FormData( formulario );
+        formData.append('form_type', form_type);
+      
+        $.ajax( {
+            type: 'POST',
+            url: 'inc/scripts/form-process.php',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                //imgAjax.fadeIn();
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                console.log(response);
+                if ( response == 1 ) {
+                    window.location.href = 'https://' + window.location.host + '/peticion-gracias';
+                } else {
+                    $('#peticion-form').append($('<span style="display:block;margin-top: 20px;">Hubo un error, intente otra vez.</span>'));
+                }
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax
+    
+    });//cierra submit formulario afiliate
+});

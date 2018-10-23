@@ -12,6 +12,7 @@ $paraSubscriptor = 'voces@atsa.org.ar';
 $paraContacto    = 'web@atsa.org.ar';
 $paraPieForm     = 'web@atsa.org.ar';
 $paraAfiliate    = 'asesoramiento@atsa.org.ar';
+$paraPeticion    = 'info@lacueva.tv';
 
 //emails segun sección
 $Gremiales = 'gremiales@atsa.org.ar';		
@@ -375,7 +376,30 @@ switch ( $form_type ) {
 		$exito = 1;
 		echo $exito;
 		break;
-}
+
+//formulario de peticion
+	case 'peticion':
+		global $paraPieForm;
+		global $cabeceras;
+		global $exito;
+		$email        = recogeDato('email');
+		$nombre       = recogeDato('name');
+		$dni          = recogeDato('dni');
+		$genero       = recogeDato('genero');
+		$asunto       = 'Peticion Firmada por '.$nombre;
+		$cabeceras .= 'Reply-To: ' . $email . "\r\n";
+
+		$mensaje  = 'Nombre: ' . $nombre . '<br>';
+		$mensaje .= 'Email: ' . $email . '<br>';
+		$mensaje .= 'DNI: ' . $dni . '<br>';
+		$mensaje .= 'Gnero: ' . $genero . '<br>';
+
+		mail($paraPeticion, $asunto, $mensaje, $cabeceras);
+		$exito = 1;
+		echo $exito;
+		break;
+
+}//switch
 
 function connectDBVoces() {
 	global $connectionVoces;
