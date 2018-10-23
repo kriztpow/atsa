@@ -29,9 +29,9 @@ if( $detect->isAndroidOS() ){
  
 // Alternative method is() for checking specific properties.
 // WARNING: this method is in BETA, some keyword properties will change in the future.
-$detect->is('Chrome')
-$detect->is('iOS')
-$detect->is('UC Browser')
+$detect->is('Chrome');
+$detect->is('iOS');
+$detect->is('UC Browser');
 // [...]
  
 // Batch mode using setUserAgent():
@@ -52,7 +52,7 @@ foreach($userAgents as $userAgent){
 // Get the version() of components.
 // WARNING: this method is in BETA, some keyword properties will change in the future.
 $detect->version('iPad'); // 4.3 (float)
-$detect->version('iPhone') // 3.1 (float)
+$detect->version('iPhone'); // 3.1 (float)
 $detect->version('Android'); // 2.1 (float)
 $detect->version('Opera Mini'); // 5.0 (float)
 // [...]
