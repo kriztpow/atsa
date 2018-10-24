@@ -5,7 +5,7 @@ $imagenCompartir = 'peticion-image.jpg';
 $titulo = 'No a la pulsera Enfermería';
 $tituloInferior = 'Política de Privacidad ASTSA Bs As';
 $textoInferior = '';
-$video = '';
+$video = 'https://www.youtube.com/watch?v=b4l9wwvAfyw';
 $tituloFormulario = '100 Compañerxs ya firmaron. Firmá vos también.';
 $textoInferior = '<p>Dicen que quieren "mejorar la productividad", que hay que "automatizar" para "ser más eficientes". Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas y controlar nuestros movimientos, como si fuésemos criminales.</p><p>Invertir en controlar nuestros cuerpos en lugar de invertir en mejorar nuestras condiciones de trabajo y la atención de los pacientes es la política del sector empresario, que piensa la salud como un negocio.</p><p>Nosotros no pensamos en números, pensamos en las personas. Por eso proponemos aumentar las dotaciones e invertir en capacitaciones para perfercionarnos.</p><p>Nuestra profesión no es un negocio. Ser enfermerx es cuidar, acompañar, contener, tratar y curar. Esas son las herramientas que usamos todos los días para mejorar nuestro trabajo.</p><p>Por todo esto y mucho más, hoy decidimos #NoAlasPulserasEnEnfermería. No a la tecnología al servicio de la precarización laboral y del control de nuestros cuerpos. No somos presos, somos trabajadores.</p><p>Firmá hoy y acompañanos en esta lucha. Queremos una inclusión de la tecnología en la actividad sanitaria de manera constructiva, que resguarde nuestros derechos, facilite procesos y mejore la atención</p>';
 $resumen = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas y controlar nuestros movimientos, como si fuésemos criminales.';
@@ -201,12 +201,17 @@ if ($video == '' || $video == null){
     <div class="container">
         <div class="wrapper-contenido">
             <div class="wrapper-video">
-                <iframe width="100%" height="320px" src="https://www.youtube.com/embed/<?php echo $video[1]; ?>?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="100%" height="260px" src="https://www.youtube.com/embed/<?php echo $video[1]; ?>?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <script>
 
                         if ( innerWidth < 600 ) {
                             iframe = document.getElementsByTagName('iframe')[0];
                             iframe.height = '240px';
+                        }
+
+                        if ( innerWidth < 480 ) {
+                            iframe = document.getElementsByTagName('iframe')[0];
+                            iframe.height = '200px';
                         }
                     </script>
             </div>
@@ -219,7 +224,7 @@ if ($video == '' || $video == null){
                     <input name="name" type="text" placeholder="NOMBRE Y APELLIDO" required>
                     <input type="email" name="email" placeholder="EMAIL" required>
                     <input type="text" name="dni" placeholder="DNI" required>
-                    <input type="radio" name="genero" value="varon">Varón
+                    <input type="radio" name="genero" value="varon" checked>Varón
                     <input type="radio" name="genero" value="mujer">Mujer
                     <button type="submit">Firmar esta Petición</button>
                 </form>

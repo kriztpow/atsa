@@ -12,7 +12,7 @@ $paraSubscriptor = 'voces@atsa.org.ar';
 $paraContacto    = 'web@atsa.org.ar';
 $paraPieForm     = 'web@atsa.org.ar';
 $paraAfiliate    = 'asesoramiento@atsa.org.ar';
-$paraPeticion    = 'info@lacueva.tv';
+$paraPeticion    = 'asesoramiento@atsa.org.ar';
 
 //emails segun sección
 $Gremiales = 'gremiales@atsa.org.ar';		
@@ -379,24 +379,36 @@ switch ( $form_type ) {
 
 //formulario de peticion
 	case 'peticion':
-		global $paraPieForm;
 		global $cabeceras;
 		global $exito;
-		$email        = recogeDato('email');
-		$nombre       = recogeDato('name');
-		$dni          = recogeDato('dni');
-		$genero       = recogeDato('genero');
-		$asunto       = 'Peticion Firmada por '.$nombre;
+		$email         = recogeDato('email');
+		$nombre        = recogeDato('name');
+		$dni           = recogeDato('dni');
+		$genero        = recogeDato('genero');
+		$asunto        = 'Peticion Firmada por '.$nombre;
+		$asuntoUsuario = 'Muchas gracias por tu firma';
 		$cabeceras .= 'Reply-To: ' . $email . "\r\n";
 
-		$mensaje  = 'Nombre: ' . $nombre . '<br>';
+		//mensaje usuario
+		$imagen = 'https://atsa.org.ar/uploads/images/' . 'email-varon.jpg';
+		
+		if ($genero == 'mujer') {
+			$imagen = 'https://atsa.org.ar/uploads/images/' . 'email-mujer.jpg';
+		}
+
+		$mensajeUsuario = getHtmlTemplatePeticion ( $imagen );
+		mail($email, $asuntoUsuario, $mensajeUsuario, $cabeceras);
+		$exito = 1;
+		echo $exito;
+
+		//mensaje administrador
+		/*$mensaje  = 'Nombre: ' . $nombre . '<br>';
 		$mensaje .= 'Email: ' . $email . '<br>';
 		$mensaje .= 'DNI: ' . $dni . '<br>';
 		$mensaje .= 'Gnero: ' . $genero . '<br>';
 
-		mail($paraPeticion, $asunto, $mensaje, $cabeceras);
-		$exito = 1;
-		echo $exito;
+		mail($paraPeticion, $asunto, $mensaje, $cabeceras);*/
+
 		break;
 
 }//switch
@@ -547,6 +559,33 @@ function getHtmlTemplateEmail ( $urlLogoVoces, $urlVoces, $url) {
 	  		*<strong style="font-weight: bold;">ATSA Buenos Aires</strong>: La Asociación de Trabajadores de la Sanidad Argentina fue fundada el 21 de septiembre de 1935 con el objeto de ejercer la defensa gremial, política, mutual y cultural de todos los trabajadores que presten servicios en Sanatorios, Clínicas, Hospitales de Colectividades, Institutos geriátricos, consultorios médicos y odontológicos, laboratorios de especialidades medicinales y/o veterinarias, droguerías, servicios de emergencias médicas, laboratorios de análisis clínicos, atención institutos con y sin internación y cuidados domiciliarios. La zona de actuación de ATSA Filial Buenos Aires es Capital Federal, con domicilio legal en la calle Saavedra 166, Barrio de Balvanera.
 	  	</p>
 	  </div>
+	</div>
+	</body>
+	</html>
+	';
+	return $emailTemplate;
+}
+
+function getHtmlTemplatePeticion ( $imagen ) {
+	$imagenFooter = 'https://atsa.org.ar/uploads/images/' . 'zocalo-email.jpg';
+	$emailTemplate = '
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES" "http://www.w3.org/TR/html4/loose.dtd">
+	<html>
+	<head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  <title>Muchas gracias por tu firma</title>
+	</head>
+	<body>
+	<div style="max-width: 600px; width: 100%;padding:0px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;margin:0 auto;">
+	  
+	  <div style="text-align: center;width: 100%;margin: 0 auto;">
+	    <img src="'.$imagen.'" alt="Muchas gracias por tu firma" style="width: 100%;display:block;margin:0 auto;">
+	  </div>
+
+	  <div style="text-align: center;width: 100%;margin: 0 auto;">
+	    <img src="'.$imagenFooter.'" alt="Muchas gracias por tu firma" style="width: 100%;display:block;margin:0 auto;">
+	  </div>
+
 	</div>
 	</body>
 	</html>
