@@ -400,6 +400,8 @@ switch ( $form_type ) {
 		mail($email, $asuntoUsuario, $mensajeUsuario, $cabeceras);
 		$exito = 1;
 		echo $exito;
+		
+		$registro = registroPeticion($email, $nombre, $dni, $genero);
 
 		//mensaje administrador
 		/*$mensaje  = 'Nombre: ' . $nombre . '<br>';
@@ -591,6 +593,51 @@ function getHtmlTemplatePeticion ( $imagen ) {
 	</html>
 	';
 	return $emailTemplate;
+}
+
+function registroPeticion($email, $nombre, $dni, $genero) {
+	$respuesta = '';
+	$connection = connectDBAfiliate ('localhost', 'derechoc_coco', 'd6m=fD1=ZqKt', 'derechoc_afiliados');
+	$tabla = 'peticiones';
+
+	$nombre       = filter_var(ucwords($nombre),FILTER_SANITIZE_STRING);
+	$nombre       = mysqli_real_escape_string($connection, $nombre);
+	$member_email  = filter_var($member_email,FILTER_SANITIZE_EMAIL);
+	$member_email  = mysqli_real_escape_string($connection, $member_email);
+	$dni          = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
+	$dni          = mysqli_real_escape_string($connection, $dni);
+
+	$query = "INSERT INTO $tabla (nombre,dni,email,genero) VALUES ('$nombre', '$dni', '$email', '$genero')";
+
+	$result = mysqli_query($connection, $query); 
+	$memberID = mysqli_insert_id($connection);
+
+	if ($memberID != '' || $memberID == null ) {
+		$respuesta = 'Ok';
+	}
+	
+	mysqli_close( $connection );
+
+	return $respuesta;
+}
+
+function connectDBAfiliate ($server, $user, $pass, $dbname) {
+	global $connection;
+  $connection = mysqli_connect($server, $user, $pass, $dbname);
+  // Test if connection succeeded
+  if( mysqli_connect_errno() ) {
+    die("Database connection failed: " . mysqli_connect_error() . 
+         " (" . mysqli_connect_errno() . ")"
+    );
+  }
+
+  if (!mysqli_set_charset($connection, "utf8")) {
+    printf("Error cargando el conjunto de caracteres utf8: %s\n", mysqli_error($connection));
+    exit();
+	} else {
+		mysqli_character_set_name($connection);
+	}
+  return $connection;
 }
 
 ?>
