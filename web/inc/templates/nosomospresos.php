@@ -1,14 +1,15 @@
 <?php 
 
+$LinkPrivacidad = '#';
 $image = 'pulcera-header.jpg';
 $imagenCompartir = 'peticion-image.jpg';
 $titulo = 'No a la pulsera Enfermería';
-$tituloInferior = 'Política de Privacidad ASTSA Bs As';
-$textoInferior = '';
 $video = 'https://www.youtube.com/watch?v=b4l9wwvAfyw';
-$tituloFormulario = '100 Compañerxs ya firmaron. Firmá vos también.';
-$textoInferior = '<p>Dicen que quieren "mejorar la productividad", que hay que "automatizar" para "ser más eficientes". Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas y controlar nuestros movimientos, como si fuésemos criminales.</p><p>Invertir en controlar nuestros cuerpos en lugar de invertir en mejorar nuestras condiciones de trabajo y la atención de los pacientes es la política del sector empresario, que piensa la salud como un negocio.</p><p>Nosotros no pensamos en números, pensamos en las personas. Por eso proponemos aumentar las dotaciones e invertir en capacitaciones para perfercionarnos.</p><p>Nuestra profesión no es un negocio. Ser enfermerx es cuidar, acompañar, contener, tratar y curar. Esas son las herramientas que usamos todos los días para mejorar nuestro trabajo.</p><p>Por todo esto y mucho más, hoy decidimos #NoAlasPulserasEnEnfermería. No a la tecnología al servicio de la precarización laboral y del control de nuestros cuerpos. No somos presos, somos trabajadores.</p><p>Firmá hoy y acompañanos en esta lucha. Queremos una inclusión de la tecnología en la actividad sanitaria de manera constructiva, que resguarde nuestros derechos, facilite procesos y mejore la atención</p>';
-$resumen = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas y controlar nuestros movimientos, como si fuésemos criminales.';
+$tituloFormulario = '1000 Compañerxs ya firmaron. Firmá vos también.';
+$tituloInferior = '¿Por qué es importante tu Firma?';
+$hashtag = '#NoAlasPulserasEnEfermería';
+$textoInferior = '<p>Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, <strong>quieren poner pulseras en nuestras muñecas para perseguirnos</strong>, como si fuésemos criminales.</p><p>Invertir en controlar nuestros cuerpos en lugar de invertir en mejorar nuestras condiciones de trabajo y la atención de los pacientes es la política del sector empresario, que piensa la salud como un negocio.</p><p>Nosotros no pensamos en números, pensamos en las personas. Por eso proponemos aumentar las dotaciones e invertir en capacitaciones para perfeccionarnos.</p><p><strong>Nuestra profesión no es un negocio.</strong> Ser enfermerx es cuidar, acompañar, contener, tratar y curar. Esas son las herramientas que usamos todos los días para mejorar nuestro trabajo.</p><p>Por todo esto y mucho más, hoy decidimos <strong>'.$hashtag.'.</strong> No a la tecnología al servicio de la precarización laboral y del control de nuestros cuerpos. <strong>No somos presos, somos trabajadores.</strong></p><p><strong>Firmá hoy y acompañanos en esta lucha.</strong> Queremos una inclusión de la tecnología en la actividad sanitaria de manera constructiva, que resguarde nuestros derechos, facilite procesos y mejore la atención.</p>';
+$resumen = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas para perseguirnos, como si fuésemos criminales.';
 $imagenGracias = 'uploads/images/imagen-gracias-peticion.jpg';
 $textoGracias = '<h1>Muchas Gracias por tu firma</h1><p>¡Compartilo en tus redes sociales, para que se sumen más compañeros!</p><h5>Defendamos juntos nuestros derechos</h5>';
 
@@ -53,18 +54,19 @@ if ($video == '' || $video == null){
     width: 100%;
     height: auto;
     margin: 0;
-    padding: 20px 0 60px;
+    padding: 30px 0 60px;
     border-top: 1px solid #0094c5;
 }
 
 .texto-inferior-wrapper h3 {
     position: absolute;
-    top: -11px;
+    top: -20px;
     left: 0;
     background-color: #F2F2F2;
     color: #0094c5;
     padding-right: 20px;
-    font-size: 14px;
+    font-size: 26px;
+    line-height: 35px;
 }
 
 .texto-inferior-wrapper .contenido p {
@@ -117,12 +119,14 @@ if ($video == '' || $video == null){
 .wrapper-contenido .wrapper-formulario h2 {
     text-transform: uppercase;
     color: #0094c5;
-    font-size: 150%;
+    font-size: 127%;
     line-height: 120%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    padding: 0 5px;
 }
 
 #peticion-form {
+    color: #666;
     position: relative;
     width: 100%;
     height: auto;
@@ -146,6 +150,21 @@ if ($video == '' || $video == null){
     width: 15px;
     height: 15px;
     margin-right: 10px;
+}
+
+#peticion-form input[type="checkbox"] {
+    display: inline;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.privacity-link {
+    font-size: 90%;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    color: #0094c5;
 }
 
 #peticion-form button {
@@ -224,8 +243,11 @@ if ($video == '' || $video == null){
                     <input name="name" type="text" placeholder="NOMBRE Y APELLIDO" required>
                     <input type="email" name="email" placeholder="EMAIL" required>
                     <input type="text" name="dni" placeholder="DNI" required>
+                    <a href="<?php echo $LinkPrivacidad; ?>" target="_blank" class="privacity-link">Política de Privacidad ATSA Bs As.</a>
                     <input type="radio" name="genero" value="varon" checked>Varón
                     <input type="radio" name="genero" value="mujer">Mujer
+                    <br>
+                    <input type="checkbox" name="info" checked>Recibir más información
                     <button type="submit">Firmar esta Petición</button>
                 </form>
             </div>

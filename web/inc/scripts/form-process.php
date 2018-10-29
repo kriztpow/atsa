@@ -12,7 +12,8 @@ $paraSubscriptor = 'voces@atsa.org.ar';
 $paraContacto    = 'web@atsa.org.ar';
 $paraPieForm     = 'web@atsa.org.ar';
 $paraAfiliate    = 'asesoramiento@atsa.org.ar';
-$paraPeticion    = 'asesoramiento@atsa.org.ar';
+//$paraPeticion    = 'asesoramiento@atsa.org.ar';
+$paraPeticion    = 'josefina@conjuro.biz';
 
 //emails segun sección
 $Gremiales = 'gremiales@atsa.org.ar';		
@@ -31,7 +32,7 @@ $Complejo = 'complejocultural@atsa.org.ar';
 $form_type      = recogeDato('form_type'); 
 $cabeceras      = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras     .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-$cabeceras     .= 'From: ATSA <web@atsa.org.ar>' . "\r\n";
+$cabeceras     .= 'From: ATSA Bs As <web@atsa.org.ar>' . "\r\n";
 //exito del formulario
 $exito = 0;
 
@@ -385,7 +386,8 @@ switch ( $form_type ) {
 		$nombre        = recogeDato('name');
 		$dni           = recogeDato('dni');
 		$genero        = recogeDato('genero');
-		$asunto        = 'Peticion Firmada por '.$nombre;
+		$info          = recogeDato('info');
+		$asunto        = $nombre . ' desea recibir información';
 		$asuntoUsuario = 'Muchas gracias por tu firma';
 		$cabeceras .= 'Reply-To: ' . $email . "\r\n";
 
@@ -396,20 +398,31 @@ switch ( $form_type ) {
 			$imagen = 'https://atsa.org.ar/uploads/images/' . 'email-mujer.jpg';
 		}
 
-		$mensajeUsuario = getHtmlTemplatePeticion ( $imagen );
+		//email para el usuario de respuesta
+		$mensajeUsuario = getHtmlTemplatePeticion ( $imagen, $genero );
 		mail($email, $asuntoUsuario, $mensajeUsuario, $cabeceras);
 		$exito = 1;
 		echo $exito;
 		
-		$registro = registroPeticion($email, $nombre, $dni, $genero);
+		$registro = registroPeticion($email, $nombre, $dni, $genero, $info, '#NoAlasPulserasEnEfermería');
+		
+		//email para administrador
+		if ( $info == 'on' ) {
 
-		//mensaje administrador
-		/*$mensaje  = 'Nombre: ' . $nombre . '<br>';
-		$mensaje .= 'Email: ' . $email . '<br>';
-		$mensaje .= 'DNI: ' . $dni . '<br>';
-		$mensaje .= 'Gnero: ' . $genero . '<br>';
+			//sino esta en la lista le envia un email
+			if ( $registro != 'existe' ) {
+				
+				//mensaje administrador
+				$mensaje  = 'Nombre: ' . $nombre . '<br>';
+				$mensaje .= 'Email: ' . $email . '<br>';
+				$mensaje .= 'DNI: ' . $dni . '<br>';
+				$mensaje .= 'Género: ' . $genero . '<br>';
+				$mensaje .= 'Deseo recibir información';
 
-		mail($paraPeticion, $asunto, $mensaje, $cabeceras);*/
+				mail($paraPeticion, $asunto, $mensaje, $cabeceras);
+			}
+		}
+		
 
 		break;
 
@@ -568,7 +581,12 @@ function getHtmlTemplateEmail ( $urlLogoVoces, $urlVoces, $url) {
 	return $emailTemplate;
 }
 
-function getHtmlTemplatePeticion ( $imagen ) {
+function getHtmlTemplatePeticion ( $imagen, $genero ) {
+	if ($genero == 'mujer' ) {
+		$texto = 'compañera';
+	} else {
+		$texto = 'compañero';
+	}
 	$imagenFooter = 'https://atsa.org.ar/uploads/images/' . 'zocalo-email.jpg';
 	$emailTemplate = '
 	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//ES" "http://www.w3.org/TR/html4/loose.dtd">
@@ -583,7 +601,23 @@ function getHtmlTemplatePeticion ( $imagen ) {
 	  <div style="text-align: center;width: 100%;margin: 0 auto;">
 	    <img src="'.$imagen.'" alt="Muchas gracias por tu firma" style="width: 100%;display:block;margin:0 auto;">
 	  </div>
+	  <div style="text-align: center;width: 100%;margin: 0 auto;">
+	  	<p style="text-align:center;">¡Muchas gracias por firmar, '.$texto.'!</p>
 
+	  	<p style="text-align:center;">Tu firma nos da fuerzas para evitar que se implementen las pulseras en enfermería.</p>
+	  
+	  	<p style="text-align:center;">¡No te olvides de compartirlo en tus redes sociales para que más compañeros enfermeros se sumen a esta iniciativa!</p>
+	  
+	  	<p style="text-align:center;">Defendamos juntos nuestra profesión.</p>
+	  </div>
+	  <div style="width: 100%;margin: 0 auto;display: flex;align-items: center;justify-content: space-between;">
+		  <a style="padding: 10px 20px;text-transform:uppercase; text-align: left;" href="https://www.facebook.com/sharer/sharer.php?u=https://atsa.org.ar/peticion" target="_blank">
+		  	Compartir en Facebook
+		  </a>
+		  <a style="padding: 10px 20px;text-transform:uppercase; text-align: right;" href="https://twitter.com/intent/tweet?url=https://atsa.org.ar/peticion&text=%23NoAlasPulserasEnEnfermeria" target="_blank">
+		  	Compartir en Twitter
+		  </a>
+	  </div>
 	  <div style="text-align: center;width: 100%;margin: 0 auto;">
 	    <img src="'.$imagenFooter.'" alt="Muchas gracias por tu firma" style="width: 100%;display:block;margin:0 auto;">
 	  </div>
@@ -595,29 +629,39 @@ function getHtmlTemplatePeticion ( $imagen ) {
 	return $emailTemplate;
 }
 
-function registroPeticion($email, $nombre, $dni, $genero) {
+function registroPeticion($email, $nombre, $dni, $genero, $info, $peticion) {
 	$respuesta = '';
 	$connection = connectDBAfiliate ('localhost', 'derechoc_coco', 'd6m=fD1=ZqKt', 'derechoc_afiliados');
 	$tabla = 'peticiones';
 
-	$nombre       = filter_var(ucwords($nombre),FILTER_SANITIZE_STRING);
-	$nombre       = mysqli_real_escape_string($connection, $nombre);
-	$member_email  = filter_var($member_email,FILTER_SANITIZE_EMAIL);
-	$member_email  = mysqli_real_escape_string($connection, $member_email);
-	$dni          = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
-	$dni          = mysqli_real_escape_string($connection, $dni);
+	if ( ! checkifthereisit($dni) ) {
 
-	$query = "INSERT INTO $tabla (nombre,dni,email,genero) VALUES ('$nombre', '$dni', '$email', '$genero')";
+		$nombre       = filter_var(ucwords($nombre),FILTER_SANITIZE_STRING);
+		$nombre       = mysqli_real_escape_string($connection, $nombre);
+		$email  = filter_var($email,FILTER_SANITIZE_EMAIL);
+		$email  = mysqli_real_escape_string($connection, $email);
+		$dni          = filter_var($dni,FILTER_SANITIZE_NUMBER_INT);
+		$dni          = mysqli_real_escape_string($connection, $dni);
 
-	$result = mysqli_query($connection, $query); 
-	$memberID = mysqli_insert_id($connection);
+		if ($info == 'on' || $info == true ) {
+			$info = 'si';
+		} else {
+			$info = 'no';
+		}
 
-	if ($memberID != '' || $memberID == null ) {
-		$respuesta = 'Ok';
+		$query = "INSERT INTO $tabla (nombre,dni,email,genero,info,peticion) VALUES ('$nombre', '$dni', '$email', '$genero', '$info', '$peticion')";
+
+		$result = mysqli_query($connection, $query); 
+		$memberID = mysqli_insert_id($connection);
+
+		if ($memberID != '' || $memberID == null ) {
+			$respuesta = 'Ok';
+		}
+		
+		mysqli_close( $connection );
+	} else {
+		$respuesta = 'existe';
 	}
-	
-	mysqli_close( $connection );
-
 	return $respuesta;
 }
 
@@ -638,6 +682,27 @@ function connectDBAfiliate ($server, $user, $pass, $dbname) {
 		mysqli_character_set_name($connection);
 	}
   return $connection;
+}
+
+function checkifthereisit($dni) {
+	$respuesta = '';
+	$connection = connectDBAfiliate ('localhost', 'derechoc_coco', 'd6m=fD1=ZqKt', 'derechoc_afiliados');
+	$tabla = 'peticiones';
+
+	if ( $dni == '' ) {
+		return 'vacio';//falta ingresar dni
+	}
+
+	$query  = "SELECT * FROM " .$tabla. " WHERE dni='".$dni."'";
+
+	$result = mysqli_query($connection, $query);
+	
+	closeDataBase( $connection );
+	if ( $result->num_rows == 0 ) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 ?>

@@ -91,7 +91,7 @@ global $pageActual;
     <?php 
         if ($pageActual != 'home' ) {
             
-            if ($pageActual == 'hoteles-y-espacios-recreativos' || $pageActual == 'programas-prevencion' || $pageActual == 'trabajadores' || $pageActual == 'celeste-y-blanca' || $pageActual == 'torneos-y-eventos' || $pageActual == 'viajes' || $pageActual == 'peticion' || $pageActual == 'peticion-gracias' ) {
+            if ($pageActual == 'hoteles-y-espacios-recreativos' || $pageActual == 'programas-prevencion' || $pageActual == 'trabajadores' || $pageActual == 'celeste-y-blanca' || $pageActual == 'torneos-y-eventos' || $pageActual == 'viajes' || $pageActual == 'nosomospresos' || $pageActual == 'peticion-gracias' ) {
             ?>
             <!-- índice de navegacion -->
                 <div class="nav-index-transparent">
