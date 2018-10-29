@@ -37,16 +37,7 @@
 	<div class="buttons-wrapper">
         <p class="estado-afiliado">
             <?php 
-            if ( $data['estado'] == '2' ) {
-                echo 'anulado';
-            } else if( $data['estado'] == '3' ) {
-                echo 'firmado';
-            } else if( $data['estado'] == '1' ) {
-                echo 'contactado';
-            }
-            else {
-                echo 'nocontactado';
-            }
+            echo getEstadoAfiliado($data['dni']);
             ?>
         </p>
 	</div>
