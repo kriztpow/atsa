@@ -84,5 +84,16 @@
     </div><!-- //columna -->
     <?php endif; ?>
 
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Peticiones</h2>
+          <p>No somos presos.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=peticiones" role="button">Ver</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
   </div><!-- //row -->
 </div><!-- //containre -->
