@@ -66,6 +66,9 @@ if(!defined("SECUREACCESS"))
                 <?php if ( $userStatus == '0' || $userStatus == '1' ) : ?>
                 <li><a href="index.php?admin=rechazados" role="button">Ver RECHAZADOS</a></li>
                 <?php endif; ?>
+                <li>
+                  <a href="index.php?admin=peticiones" role="button">Peticiones</a>
+                </li>
               </ul>
             </li>
 

@@ -186,3 +186,91 @@ function getRechazadosNumber() {
 	return $result->num_rows;
 
 }
+
+function getPeticiones ( $peticion = 'all', $orderBy = 'fecha', $orden = 'desc', $cantPost = CANTPOST, $offset = -1 ) {
+	$connection = connectDB();
+	$tabla      = 'peticiones';
+	$query      = "SELECT * FROM " .$tabla;
+	if ( $peticion != 'all' ) {
+		$query .= " WHERE";
+	}
+	if ( $peticion != 'all' ) {
+		$query .= " peticion='".$peticion."'";
+	}
+	
+	$query     .= " ORDER by ".$orderBy." ".$orden;
+	if ( $offset != -1 ) {
+		$query .= " LIMIT " .($offset-1)*$cantPost.", ".$cantPost;
+	} else {
+		$query     .= " LIMIT " .$cantPost;
+	}
+
+	$result     = mysqli_query($connection, $query);
+	
+	closeDataBase($connection);
+
+	if ( $result->num_rows == 0 ) {
+		return null;
+
+	} else {
+		while ($row = $result->fetch_array()) {
+			$contacts[] = $row;
+		}
+	}
+
+	return $contacts;
+}
+
+function getPeticionesNumber($peticion = 'all') {
+	$connection = connectDB();
+	$tabla      = 'peticiones';
+	$query      = "SELECT * FROM " .$tabla;
+	if ( $peticion != 'all' ) {
+		$query .= " WHERE peticion='".$peticion."'";
+	}
+
+	$result     = mysqli_query($connection, $query);
+
+	closeDataBase($connection);
+
+	return $result->num_rows;
+	
+}
+
+function getEstadoAfiliado($dni) {
+	$estado = '';
+	$connection = connectDB();
+	$tabla = 'afiliados';
+	
+	$query  = "SELECT * FROM " .$tabla. " WHERE member_dni='".$dni."'";
+
+	$result = mysqli_query($connection, $query);
+	
+	closeDataBase( $connection );
+	if ( $result->num_rows == 0 ) {
+		$estado = 'No Registrado';
+	} else {
+		$afiliado = mysqli_fetch_array($result);
+
+		switch ( $afiliado['member_status'] ) {
+			case '2' :
+				$estado = 'anulado';
+			break;
+
+			case '3' :
+				$estado = 'firmado';
+			break;
+
+			case '1' :
+				$estado = 'contactado';
+			break;
+
+			default :
+				$estado = 'nocontactado';
+			break;
+		}
+
+	}
+
+	return $estado;
+}	

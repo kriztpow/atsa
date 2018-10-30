@@ -79,7 +79,7 @@
 			display: block;
 			float: left;
 		}
-		.select-mostrar {
+		.select-mostrar, .select-mostrar-peticiones {
 			float: left;
 			display: block;
 			color: #666;
@@ -102,7 +102,7 @@
 
 
 .buttons-wrapper {
-	select {
+	select, .estado-afiliado {
 	    display: inline-block;
 	    width: 100px;
 	    vertical-align: super;
@@ -126,11 +126,14 @@
 		color: #fff;
 	}
 
-	.del-user, .del-rechazado {
+	.del-user, .del-rechazado, .del-user-peticiones {
 		img {
 			width: 20px;
 		}
 	}
+
+	
+
 }
 
 .member_notas_wrapper {

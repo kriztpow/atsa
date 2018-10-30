@@ -12,8 +12,7 @@ $paraSubscriptor = 'voces@atsa.org.ar';
 $paraContacto    = 'web@atsa.org.ar';
 $paraPieForm     = 'web@atsa.org.ar';
 $paraAfiliate    = 'asesoramiento@atsa.org.ar';
-//$paraPeticion    = 'asesoramiento@atsa.org.ar';
-$paraPeticion    = 'josefina@conjuro.biz';
+$paraPeticion    = 'equipodeprensa@atsa.org.ar';
 
 //emails segun sección
 $Gremiales = 'gremiales@atsa.org.ar';		

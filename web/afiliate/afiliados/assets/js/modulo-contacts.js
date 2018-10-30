@@ -262,8 +262,88 @@ $(document).ready(function(){
 	        error: function ( ) {
 	            console.log('error');
 	        },
-	    });//cierre ajax
+		});//cierre ajax
 	});
+		
+
+	//cargar mas peticiones
+	$(document).on('click', '.load-more-peticiones-btn', function() {
+		var cantPost = $(this).attr('data-cant-post');
+		var orden = $(this).attr('data-post-orden');
+		var contenedor = $('.row-usuario');
+		var user = $(this).attr('data-user');
+		
+		$.ajax( {
+			type: 'POST',
+			url: ajaxFunctionDir + '/new-query-peticion.php',
+			data: {
+				user: user,
+				cantPost: cantPost,
+				orden: orden,
+				page: currentPage+1,
+			},
+			success: function ( response ) {
+				console.log(response);
+				if (response) {
+					//insertamos la respuesta
+					$(contenedor).append(response);
+					//sumamos una página
+					currentPage++;
+					//armamos nueva numeracion
+					$('.numeracion-rows').each(function( index, value ){
+						numeracionCeldas(index, this)
+					});	
+				} else {
+					$('.contacts-container').append($('<div style="font-style:italic;font-size:80%;color:red;">No hay más para cargar</div>'));
+				}
+
+			},
+			error: function ( ) {
+				console.log('error');
+			},
+		});//cierre ajax
+	});
+
+	//cambiar numero a mostrar en peticiones
+	$(document).on('change', '.select-mostrar-peticiones', function() {
+		var cantPost = $(this).val();
+		var orden = $(this).attr('data-post-orden');
+		var contenedor = $('.row-usuario');
+		var user = $(this).attr('data-user');
+		
+
+		$.ajax( {
+			type: 'POST',
+			url: ajaxFunctionDir + '/new-query-peticion.php',
+			data: {
+				user: user,
+				cantPost: currentPage*cantPost,
+				orden: orden,
+			},
+			success: function ( response ) {
+				//console.log(response);
+				$('.load-more-peticiones-btn').attr('data-cant-post',cantPost)
+				//borramos primero lo que hay 
+				$(contenedor).empty();
+				//insertamos la respuesta reordenada
+				$(contenedor).append(response);
+				//armamos nueva numeracion
+				$('.numeracion-rows').each(function( index, value ){
+					numeracionCeldas(index, this)
+				});	
+
+				//si el botón de cargar mas no esta hay que agregarlo
+				if ( $('.load-more-peticiones-btn').length == 0 ) {
+					var html = '<button class="btn btn-primaryload-more-peticiones-btn" data-user="'+user+'" data-afiliado-status="'+status+'" data-cant-post="'+cantPost+'" data-post-orden="'+orden+'">Cargar más</button>';
+					$('.wrapper-loaders').prepend($(html));
+				}
+			},
+			error: function ( ) {
+				console.log('error');
+			},
+		});//cierre ajax
+	});
+
 
 	//cambiar el numero a mostrar de RECHAZADOS
 	$(document).on('change', '.select-mostrar-rechazados', function() {
@@ -304,6 +384,37 @@ $(document).ready(function(){
 	            console.log('error');
 	        },
 	    });//cierre ajax
+	});
+
+	//borrar usuario de peticiones
+	$(document).on('click','.del-user-peticiones',function(){
+		var id = $(this).attr('data-id');
+		
+		if ( confirm( '¿Está seguro de querer BORRAR?' ) ) {
+
+			$.ajax( {
+		        type: 'POST',
+		        url: ajaxFunctionDir + '/delete-suscriptor-peticiones.php',
+		        data: {
+		            id: id,
+		        },
+		        beforeSend: function() {
+		            console.log('borrando');
+		        },
+		        success: function ( response ) {
+	                console.log(response);
+		            if (response == 'deleted') {
+						location.reload(true);
+		            }
+		            else {
+		            	$('.contacts-container').append(response)
+		            }
+		        },
+		        error: function ( ) {
+		            console.log('error');
+		        },
+		    });//cierre ajax
+		}
 	});
 
 });
@@ -525,4 +636,6 @@ $(document).ready(function(){
 			
 		});
 
+
 });//on ready
+

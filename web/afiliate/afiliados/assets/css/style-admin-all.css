@@ -1294,7 +1294,7 @@ ul.dropdown-menu li {
   display: block;
   float: left;
 }
-.wrapper-loaders .select-cant-post .select-mostrar {
+.wrapper-loaders .select-cant-post .select-mostrar, .wrapper-loaders .select-cant-post .select-mostrar-peticiones {
   float: left;
   display: block;
   color: #666;
@@ -1312,7 +1312,7 @@ ul.dropdown-menu li {
   width: auto;
 }
 
-.buttons-wrapper select {
+.buttons-wrapper select, .buttons-wrapper .estado-afiliado {
   display: inline-block;
   width: 100px;
   vertical-align: super;
@@ -1334,7 +1334,7 @@ ul.dropdown-menu li {
   background-color: #00acec;
   color: #fff;
 }
-.buttons-wrapper .del-user img, .buttons-wrapper .del-rechazado img {
+.buttons-wrapper .del-user img, .buttons-wrapper .del-rechazado img, .buttons-wrapper .del-user-peticiones img {
   width: 20px;
 }
 
