@@ -46,11 +46,11 @@ if ( count($dataNoticia) > 0 ) {
 <meta name="twitter:title" content="<?php echo $dataNoticia['titulo']; ?>" />
 <meta name="twitter:image" content="<?php echo urlBase() . '/uploads/images/'. $dataNoticia['imgDestacada']; ?>" />
 
-<?php } elseif ( $pageActual == 'peticion' ) {
+<?php } elseif ( $pageActual == 'nosomospresos' ) {
     
     $titulo = 'No a la pulsera Enfermería';
-    $imagen = '/uploads/images/peticion-image.jpg';
-    $descripcion = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas y controlar nuestros movimientos, como si fuésemos criminales.';
+    $imagen = '/uploads/images/pulsera-header.jpg';
+    $descripcion = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas para perseguirnos, como si fuésemos criminales.';
     
     ?>
     <link rel="canonical" href="<?php echo urlBase() . '/'. $pageActual; ?>" />
