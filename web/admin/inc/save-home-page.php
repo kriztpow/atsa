@@ -55,7 +55,7 @@ if ( isAjax() ) {
 	} else {
 		echo 'Hubo un error';
 	}
-	print_r($connection);
+	//print_r($connection);
 	//cierre base de datos
 	mysqli_close($connection);
 

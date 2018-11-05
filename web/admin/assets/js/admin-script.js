@@ -3435,3 +3435,162 @@ $(document).ready(function(){
 
 	});
 });
+
+
+/*
+PETICION
+*/
+
+$(document).ready(function(){
+
+	/*
+	 Editor de texto by tinyMCE
+	*/
+	tinyMCE.init({
+		selector: '#texto',
+		toolbar1: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, undo, redo, link, image, media',
+		toolbar2: 'formatselect, cut, copy, paste, blockquote, forecolor backcolor, removeformat, code',
+		menubar: false,
+		height: 200,
+		plugins: [
+		  'code advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+		  'save table contextmenu directionality emoticons template paste textcolor colorpicker media',
+		],
+		branding: false,
+		media_live_embeds: true,
+		language: 'es',
+		language_url: 'assets/lib/tinymce/langs/es.js',
+		//mantiene sincronizado los cambios del editor con el textarea hidden
+		setup: function (editor) {
+	        editor.on('change', function () {
+	            editor.save();
+	        });
+	    },
+	    file_browser_callback : 
+		function(field_name, url, type, win){
+		var imagebrowser = "inc/templates/media-browser-tinymce.php";
+		tinymce.activeEditor.windowManager.open({
+		title : "Insertar imagen",
+		width : 780,
+		height : 600,
+		url : imagebrowser
+		}, {
+		window : win,
+		input : field_name
+		});
+		return false;
+		}
+	});
+
+	tinyMCE.init({
+		selector: '#texto_gracias',
+		toolbar1: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, undo, redo, link, image, media',
+		toolbar2: 'formatselect, cut, copy, paste, blockquote, forecolor backcolor, removeformat, code',
+		menubar: false,
+		height: 200,
+		plugins: [
+		  'code advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+		  'save table contextmenu directionality emoticons template paste textcolor colorpicker media',
+		],
+		branding: false,
+		media_live_embeds: true,
+		language: 'es',
+		language_url: 'assets/lib/tinymce/langs/es.js',
+		//mantiene sincronizado los cambios del editor con el textarea hidden
+		setup: function (editor) {
+	        editor.on('change', function () {
+	            editor.save();
+	        });
+	    },
+	    file_browser_callback : 
+		function(field_name, url, type, win){
+		var imagebrowser = "inc/templates/media-browser-tinymce.php";
+		tinymce.activeEditor.windowManager.open({
+		title : "Insertar imagen",
+		width : 780,
+		height : 600,
+		url : imagebrowser
+		}, {
+		window : win,
+		input : field_name
+		});
+		return false;
+		}
+	});
+
+
+	//cambiar imagenes
+	$(document).on('click', '.change-image', function(){
+
+		contenedor = this.closest('div');
+		img = $(contenedor).find('img');
+		input = $(contenedor).find('input');
+
+		$( "#dialog" ).dialog({
+			title: 'Biblioteca de imágenes',
+			autoOpen: false,
+			appendTo: '.contenido-modulo',
+			height: 600,
+			width:768,
+			modal: true,
+			buttons: [
+		    {
+		    	text: "Cerrar",
+		      	class: 'btn btn-default',
+		      	click: function() {
+		        $( this ).dialog( "close" );
+		      }
+		    },
+		    {
+		    	text: 'Insertar imagen',
+		    	class: 'btn btn-success',
+		    	click: function () {
+		    		newImage = $('.previewAtachment').val();
+		    		//funcion que inserta la imagen en el lugar
+		    		input.val(newImage);
+		    		img.attr('src', '/uploads/images/' + newImage);
+		    		//cierra dialogo de carga
+		    		$( this ).dialog( "close" );
+		    	}
+		    },
+		  ],
+		});
+
+		$( "#dialog" ).dialog( 'open' )
+		.load( 'inc/templates/media-browser.php' );
+	});//clic cambiar imagen
+
+
+	//guardar cambios
+	$('#peticion_form').submit(function( e ){
+		e.preventDefault();
+		var mensaje = $('.mensaje-guardado');
+		var formulario = $( this );
+		var formData = new FormData( formulario[0] );
+		
+		$.ajax({
+			type: 'POST',
+			url: 'inc/save-peticion-page.php',
+			data: formData,
+			cache: false,
+		    contentType: false,
+		    processData: false,
+            //funcion antes de enviar
+            beforeSend: function() {
+            	console.log('enviando formulario');
+            },
+			success: function ( response ) {
+				console.log(response)
+				
+				mensaje.html(response)
+			},
+			error: function ( error ) {
+				console.log(error);
+			},
+		});//cierre ajax
+
+	});
+
+});//ready peticion
