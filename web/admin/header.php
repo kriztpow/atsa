@@ -107,6 +107,9 @@ if(!defined("SECUREACCESS"))
                 <li>
                   <a href="index.php?admin=vivo" role="button">Vivo</a>
                 </li>
+                <li>
+                  <a href="index.php?admin=peticion" role="button">Petición</a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">

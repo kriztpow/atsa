@@ -283,6 +283,21 @@ if ( $modulo == '') {
       <section>
         <div class="jumbotron modulos">
           <div class="container">
+            <h2 class="modulo-titulo">Petición</h2>
+            <p>Modificar petición, títulos, links, textos, imagenes, urls.</p>
+            <p>
+              <a class="btn btn-danger btn-sm" href="index.php?admin=peticion" role="button">Modificar petición</a>
+            </p>
+          </div>
+        </div>
+      </section><!-- //section galeria imágenes -->
+    </div><!-- //columna -->
+    
+    <div class="col-sm-12 col-md-6 col-lg-4">
+       <!-- section galeria imágenes -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
             <h2 class="modulo-titulo">Vivo</h2>
             <p>Modificar url del video y texto</p>
             <p>
@@ -292,7 +307,6 @@ if ( $modulo == '') {
         </div>
       </section><!-- //section galeria imágenes -->
     </div><!-- //columna -->
-    
 
 
   </div><!-- //row -->
