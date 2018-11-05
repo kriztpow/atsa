@@ -1298,3 +1298,23 @@ function frontgetTextVivo() {
 	}
 	return $data;
 }
+
+function showpeticionData () {
+	$connection = connectDB();
+	$tabla = 'peticiones';
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " ";	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		$data = null;
+	} else { 
+
+		$data = $result->fetch_array();
+		
+	}
+
+	//devuelve el array de contenido
+	return $data;
+}

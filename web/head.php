@@ -48,9 +48,10 @@ if ( count($dataNoticia) > 0 ) {
 
 <?php } elseif ( $pageActual == 'nosomospresos' ) {
     
-    $titulo = 'No a la pulsera Enfermería';
-    $imagen = '/uploads/images/pulsera-header.jpg';
-    $descripcion = 'Dicen que quieren mejorar la productividad, que hay que automatizar para ser más eficientes. Con la excusa del avance tecnológico, el discurso del progreso y de la modernización quieren retroceder en el tiempo y volver a épocas pasadas donde los derechos humanos no existían y la única ley que prevalecía era la de la explotación del hombre sobre el hombre. En pleno Siglo XXI, quieren poner pulseras en nuestras muñecas para perseguirnos, como si fuésemos criminales.';
+    $data = showpeticionData();
+    $titulo = $data['titulo_general'];
+    $imagen = '/uploads/images/' . $data['header_imagen'];
+    $descripcion = $data['resumen'];
     
     ?>
     <link rel="canonical" href="<?php echo urlBase() . '/'. $pageActual; ?>" />

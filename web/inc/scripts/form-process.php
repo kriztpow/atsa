@@ -610,10 +610,10 @@ function getHtmlTemplatePeticion ( $imagen, $genero ) {
 	  	<p style="text-align:center;">Defendamos juntos nuestra profesión.</p>
 	  </div>
 	  <div style="width: 100%;margin: 0 auto;display: flex;align-items: center;justify-content: space-between;">
-		  <a style="padding: 10px 20px;text-transform:uppercase; text-align: left;" href="https://www.facebook.com/sharer/sharer.php?u=https://atsa.org.ar/peticion" target="_blank">
+		  <a style="padding: 10px 20px;text-transform:uppercase; text-align: left;" href="https://www.facebook.com/sharer/sharer.php?u=https://atsa.org.ar/nosomospresos" target="_blank">
 		  	Compartir en Facebook
 		  </a>
-		  <a style="padding: 10px 20px;text-transform:uppercase; text-align: right;" href="https://twitter.com/intent/tweet?url=https://atsa.org.ar/peticion&text=%23NoAlasPulserasEnEnfermeria" target="_blank">
+		  <a style="padding: 10px 20px;text-transform:uppercase; text-align: right;" href="https://twitter.com/intent/tweet?url=https://atsa.org.ar/nosomospresos&text=%23NoAlasPulserasEnEnfermeria" target="_blank">
 		  	Compartir en Twitter
 		  </a>
 	  </div>

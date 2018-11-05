@@ -1,11 +1,12 @@
 <?php 
-$imagenGracias = 'uploads/images/imagen-gracias-peticion.jpg';
-$textoGracias = '<h1>Muchas Gracias por tu firma</h1><p>¡Compartilo en tus redes sociales, para que se sumen más compañeros!</p><h5>Defendamos juntos nuestros derechos</h5>';
+$data = showpeticionData();
+$imagenGracias = $data['gracias_imagen'];
+$textoGracias = $data['texto_gracias'];
 ?>
 <style>
 .wraper-image-header {
     background-color: #333;
-    background-image: url(<?php echo $imagenGracias; ?>);
+    background-image: url(uploads/images/<?php echo $imagenGracias; ?>);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -187,11 +188,11 @@ $textoGracias = '<h1>Muchas Gracias por tu firma</h1><p>¡Compartilo en tus rede
 <script>
 function shareFacebook () {
     
-    window.open('https://www.facebook.com/sharer/sharer.php?u=https://atsa.org.ar/peticion');
+    window.open('https://www.facebook.com/sharer/sharer.php?u=https://atsa.org.ar/nosomospresos');
 }
 function shareTwitter () {
     
-    window.open('https://twitter.com/intent/tweet?url=https://atsa.org.ar/peticion&text=%23NoAlasPulserasEnEnfermeria');
+    window.open('https://twitter.com/intent/tweet?url=https://atsa.org.ar/nosomospresos&text=%23NoAlasPulserasEnEnfermeria');
 }
 
 
