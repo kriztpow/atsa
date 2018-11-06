@@ -1185,7 +1185,7 @@ function searchViajesData () {
 	return $dataViajes;
 } //searchViajesData()
 
-function showPageHtml($id) {
+function showPageHtml($id, $title=false) {
 	$connection = connectDB();
 	$tabla = 'pages';
 	
@@ -1204,15 +1204,25 @@ function showPageHtml($id) {
 		$pageContenido = $row['page_text'];
 		$pageImagen = $row['page_imagen'];
 
-		?>
+		
+		if (! $title) : ?>
 		<h1 class="sr-only">
 			<?php echo $pageTitulo; ?>
 		</h1>
-		<?php echo $pageContenido; ?>
+		<?php else : ?>
+			<h1 class="titulo-importante">
+				<span><?php echo $pageTitulo; ?></span>
+			</h1>
+		<?php endif; ?>
+
+		<div class="contenido">
+			<?php echo $pageContenido; ?>
+		</div>
 	<?php
 	}//else
 	mysqli_close($connection);
 }; //showPageHtml($id)
+
 
 
 //busca en la bd todos los parametros del home y los devuelve en una array

@@ -224,6 +224,19 @@ if ( $modulo == '') {
       </section><!-- //section otras opciones -->
     </div><!-- //columna -->
 
+  <div class="col-sm-12 col-md-6 col-lg-4">
+      <!-- section programas -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2>Política de privacidad</h2>
+            <p>Modificar y editar el texto del contenido.</p>
+            <p><a class="btn btn-success btn-sm" href="index.php?admin=page-edit&id=2" role="button">Modificar página</a></p>
+          </div>
+        </div>
+      </section><!-- //section programas -->
+    </div><!-- //columna -->
+
     <div class="col-sm-12 col-md-6 col-lg-4">
       <!-- section programas -->
       <section>

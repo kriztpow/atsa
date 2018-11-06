@@ -96,6 +96,9 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=page-edit&id=1" role="button">Sanidad en números</a>
                 </li>
                 <li>
+                  <a href="index.php?admin=page-edit&id=2" role="button">Política de privacidad</a>
+                </li>
+                <li>
                   <a href="index.php?admin=staff" role="button">Staff</a>
                 </li>
                 <li>
