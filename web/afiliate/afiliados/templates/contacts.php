@@ -6,7 +6,7 @@
 */
 load_module( 'contactos' );
 
-$plantillaReduce = false;
+$plantillaReduce = 0;
 $delegados = false;
 //si el usuario es "a" se pide plantilla de row sin poder borrar afiliado
 global $userStatus;
@@ -193,7 +193,7 @@ if ( isset($_GET['by']) ) {
 					//si el numero es mayor a la cantidad de post por página entonces muestra el botón cargar más
 					if ( $numeroAfiliados > CANTPOST ) : ?>
 				
-						<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>" data-user="<?php echo $plantillaReduce ?>" data-cant-post="<?php echo CANTPOST ?>" data-post-orden="desc">
+						<button class="btn btn-primary load-more-btn" data-afiliado-status="<?php echo $show; ?>" data-registeredby="<?php echo $registeredBy ?>" data-user="<?php echo $plantillaReduce; ?>" data-cant-post="<?php echo CANTPOST ?>" data-post-orden="desc">
 							Cargar más
 						</button>
 				<?php endif; ?>

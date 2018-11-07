@@ -98,11 +98,13 @@ $(document).ready(function(){
 		var orden = $(this).attr('data-post-orden');
 		var contenedor = $('.row-usuario');
 		var user = $(this).attr('data-user');
-
+		var registeredby = $(this).attr('data-registeredby');
+		
 		$.ajax( {
 	        type: 'POST',
 	        url: ajaxFunctionDir + '/new-query.php',
 	        data: {
+				registeredby: registeredby,
 	        	user: user,
 	            status: status,
 	            cantPost: cantPost,
