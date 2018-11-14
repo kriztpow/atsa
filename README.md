@@ -17,6 +17,10 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 8.3 - PAGINA EXCLUSIVA DELEGADOS (nov.2018)
+* Crear templates con accesos restringidos para usuarios legados
+* Este template se maneja desde el backend de admin
+
 ### Versión 8.2 - RECHAZADOS
 * Modificaciones en el backend para que cuando un usuario es rechazado, se agregue a una base de datos y se pueda ver.
 

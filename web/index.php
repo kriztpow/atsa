@@ -6,6 +6,9 @@
  * INDEX
  * la pagina de inicio tiene dos macro templates. single page, o noticias que tiene sidebar. Por lo tanto primero define si esNoticia, que por defecto no lo es, entonces después del header arma una sola columna. Si encuentra que corresponde a una noticia, categoria o loop de noticias generales, armar las dos columnas
 */
+//le agrego sesion start por si va a delegados
+session_start();
+$online = false;
 
 require_once 'inc/config.php';
 require_once 'inc/functions.php';

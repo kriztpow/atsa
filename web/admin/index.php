@@ -22,6 +22,13 @@ if($now > $_SESSION['expire']) {
   include 'inc/templates/login.php';
   exit;
 }
+
+if ( isset($_SESSION['user_status']) && $_SESSION['user_status'] == 'd' ) {
+  session_destroy();
+  echo 'Su sesion a terminado';
+  include 'inc/templates/login.php';
+  exit;
+}
 //para que no accedan a los otros archivos directamente se define la constante
 define('SECUREACCESS', 1);
 

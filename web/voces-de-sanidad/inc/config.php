@@ -19,7 +19,7 @@ define ('UPLOADSURL', MAINSURL . '/contenido');
 define("DB_SERVER", "localhost");
 define("DB_USER", "dbuser");
 define("DB_PASS", "123");
-define("DB_NAME", "voces-sanidad");
+define("DB_NAME", "atsa");
 //META TAGS
 define('SITETITLE', 'Voces de Sanidad');
 define('METADESCRIPTION', 'Todas las voces de nuestro gremio se unen en este espacio. Dirigentes, delegad@s, compañer@s, artistas y especialistas narran historias, comparten reflexiones y proponen caminos para enfrentar nuevas realidades con innovación, solidaridad y, sobre todo, unidad.');

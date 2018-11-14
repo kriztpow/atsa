@@ -35,6 +35,13 @@ if($now > $_SESSION['expire']) {
   exit;
 }
 
+if ( isset($_SESSION['user_status']) && $_SESSION['user_status'] == 'd' ) {
+  session_destroy();
+  echo 'Su sesion a terminado';
+  include TEMPLATEDIR . '/login.php';
+  exit;
+}
+
 global $modulo;
 $modulo = isset($_GET['admin'])?$_GET['admin']:'';
 global $slug;

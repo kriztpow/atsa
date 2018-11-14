@@ -12,15 +12,15 @@ define ('LOGOSITE' , 'assets/images/logo.png');
 define ( 'SITETITLE', 'ATSA - Panel de control' );
 define ( 'FAVICONICO', '../favicon.ico' );
 // BASE DE DATOS
-/*define("DB_SERVER", "localhost");
+define("DB_SERVER", "localhost");
 define("DB_USER", "dbuser");
 define("DB_PASS", "123");
-define("DB_NAME", "atsa");*/
+define("DB_NAME", "atsa");
 //BASE DE DATOS ONLINE
-define("DB_SERVER", "localhost");
+/*define("DB_SERVER", "localhost");
 define("DB_USER", "derechoc_coco");
 define("DB_PASS", "d6m=fD1=ZqKt");
-define("DB_NAME", "derechoc_lala");
+define("DB_NAME", "derechoc_lala");*/
 //CARPETAS
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/templates' );
 define ( 'UPLOADS', dirname( __FILE__ ) . '/../../uploads' );

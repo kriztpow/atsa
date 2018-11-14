@@ -24,7 +24,9 @@ if ( $result->num_rows == 0 ) {
 	    $_SESSION['username'] = $username;
 	    $_SESSION['nombre'] = $row['user_nombre'];
 	    $_SESSION['user_id'] = $row['user_id'];
-	    $_SESSION['user_status'] = $row['user_status'];
+		$_SESSION['user_status'] = $row['user_status'];
+		$_SESSION['user_dni'] = $row['user_dni'];
+		$_SESSION['user_image'] = $row['user_image'];
 	    $_SESSION['start'] = time();
 	    $_SESSION['expire'] = $_SESSION['start'] + (60 * 60 * 24); //60 minutos 
 
