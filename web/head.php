@@ -112,23 +112,25 @@ if ( count($dataNoticia) > 0 ) {
 </head>
 <body>
     <!-- afiliate -->
-    <div class="barrita-afiliate">
-        <div class="button-close-wrapper">
-            <button id="close-barrita"></button>
-        </div>
-        <a href="https://atsa.org.ar/afiliate" target="_blank">
-            <div class="barrita-contents">
-                <div class="barrita-content">
-                    <span class="barrita-content-deco">
-                        Afiliate online
-                    </span>
-                </div>
-
-                <div class="barrita-content">
-                    <span>
-                        #Vivi Sanidad
-                    </span>
-                </div>
+    <?php if ( $pageActual != 'acceso-delegados') : ?>
+        <div class="barrita-afiliate">
+            <div class="button-close-wrapper">
+                <button id="close-barrita"></button>
             </div>
-        </a>
-    </div>
+            <a href="https://atsa.org.ar/afiliate" target="_blank">
+                <div class="barrita-contents">
+                    <div class="barrita-content">
+                        <span class="barrita-content-deco">
+                            Afiliate online
+                        </span>
+                    </div>
+
+                    <div class="barrita-content">
+                        <span>
+                            #Vivi Sanidad
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <?php endif; ?>
