@@ -738,6 +738,7 @@ ul.dropdown-menu li {
   width: 20px;
   height: 20px;
   background: url(../images/person.png) no-repeat center;
+  background-size: 20px 20px;
   position: absolute;
   left: -30px;
   top: -2px;
@@ -1100,6 +1101,28 @@ ul.dropdown-menu li {
 .users-list-admin .change-user-form-wrapper {
   display: none;
   background: #ffffff;
+}
+
+.imagen-usuario .wrapper-image {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+.imagen-usuario .wrapper-image figure {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.imagen-usuario .wrapper-image figure img {
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+}
+.imagen-usuario button {
+  margin: 0;
 }
 
 .text-aclaracion {

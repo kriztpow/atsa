@@ -52,20 +52,22 @@ if( isAjax() ) {
  		if ($newFile && move_uploaded_file($archivos['tmp_name'][$i], $directorio . '/' . $newFile)) {
  			//si se movio al directorio ahora lo subimos a la base de datos
  			
- 			$query = "INSERT INTO " .$tabla. " (medio_nombre,medio_tipo,medio_post_type) VALUES ('".$newFile."','".$file_type."','".$post_type."')";
+ 			/*$query = "INSERT INTO " .$tabla. " (medio_nombre,medio_tipo,medio_post_type) VALUES ('".$newFile."','".$file_type."','".$post_type."')";
 		       
 			//guardar archivo en base de datos
 			mysqli_query($connection, $query); 
 			print_r($connection);
  			//finalmente se agrega al array de medios
  			$id = mysqli_insert_id($connection);
- 			array_push($medios_subidos, $newFile, $id);
+			 array_push($medios_subidos, $newFile, $id);*/
+			 array_push($medios_subidos, $newFile);
  		}
 
  	}//for
 
 	//devuelvo un json con todas las imágenes subidas
 	echo json_encode($medios_subidos);
+
 
 //sino es peticion ajax se cancela
 } else{

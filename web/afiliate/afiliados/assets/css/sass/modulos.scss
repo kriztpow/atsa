@@ -128,3 +128,30 @@
 
 }
 
+//imagen usuario
+.imagen-usuario {
+  .wrapper-image {
+      width: 50%;
+      height: 100%;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+
+      figure {
+          width: 80px;
+          height: 80px;
+          margin: 0 auto;
+          overflow: hidden;
+          img {
+              margin: 0 auto;
+              display: block;
+              width: 100%;
+          }
+      }
+  }
+
+  button {
+    margin: 0;
+  }
+  
+}//.imagen-usuario

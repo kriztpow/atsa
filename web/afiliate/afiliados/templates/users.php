@@ -74,41 +74,74 @@ if ($userStatus != '0' ) {
 				
 				<!-- FORMULARIO PARA CAMBIAR USUARIO -->			
 						<tr class="change-user-form-wrapper" data-userid="<?php echo $users[$i]['user_id']; ?>">
-							<form class="change-user-form" method="POST">
-								<input type="hidden" name="userid" value="<?php echo $users[$i]['user_id']; ?>">
-								<td>
-									<div class="form-group">
-										<input type="password" name="password" placeholder="Ingrese contraseña si quiere cambiarla o dejelá en blanco">
-									</div>
-								</td>
-								<td>
-									<div class="form-group">
-										<input type="nombre_usuario" name="user_nombre" value="<?php echo $users[$i]['user_nombre']; ?>">
-									</div>
-								</td>
-								<td>
-									<div class="form-group">
-										<select name="user_status">
-											<?php 
-												global $usertype;
+							<td colspan="5">
+								<table width="100%">
+									<form class="change-user-form" method="POST">
+										<tr>		
+											<input type="hidden" name="userid" value="<?php echo $users[$i]['user_id']; ?>">
+											
+											<td>
+												<div class="form-group">
+													<input type="password" name="password" placeholder="Ingrese contraseña si quiere cambiarla o dejelá en blanco">
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<input type="nombre_usuario" name="user_nombre" value="<?php echo $users[$i]['user_nombre']; ?>">
+												</div>
+											</td>
+											<td>
+												<div class="form-group">
+													<select name="user_status">
+														<?php 
+															global $usertype;
 
-												for ($y=0; $y < count($usertype); $y++) {
-													echo '<option value="'.$usertype[$y]['status'].'"';
-													if ( $usertype[$y]['status'] == $statusUser ) {
-														echo ' selected="selected"';
+															for ($y=0; $y < count($usertype); $y++) {
+																echo '<option value="'.$usertype[$y]['status'].'"';
+																if ( $usertype[$y]['status'] == $statusUser ) {
+																	echo ' selected="selected"';
+																}
+																echo '>'.$usertype[$y]['nombre'].'</option>';
+															}
+														?>
+													</select>
+												</div>
+											</td>
+											<td colspan="2">
+												<div class="form-group">
+													<input type="submit" value="Guardar" class="btn btn-primary">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-group">
+													<input type="text" name="user_dni" value="<?php echo isset($users[$i]['user_dni']) ? $users[$i]['user_dni'] : ''; ?>" placeholder="agregar dni">
+												</div>
+											</td>
+											<td colspan="4" class="imagen-usuario">
+												<input type="hidden" name="user_image" value="<?php echo isset($users[$i]['user_image']) ? $users[$i]['user_image']: ''; ?>">
+												<div class="wrapper-image">
+													<figure>
+													<?php
+													if ( ! isset($users[$i]['user_image']) || $users[$i]['user_image'] == '' ) {
+														echo '<img src="'. URLADMINISTRADOR . '/assets/images/person.png" alt="imagen-usuario">';
+													} else {
+														echo '<img src="'. UPLOADSURLIMAGES . '/' . $users[$i]['user_image'] . '" alt="imagen-usuario">';
 													}
-													echo '>'.$usertype[$y]['nombre'].'</option>';
-												}
-											?>
-										</select>
-									</div>
-								</td>
-								<td colspan="2">
-									<div class="form-group">
-										<input type="submit" value="Guardar" class="btn btn-primary">
-									</div>
-								</td>
-							</form>
+													?>
+													</figure>
+												</div>
+												
+												<button type="button" class="btn btn-danger btn-change-img-user">
+													Cambiar imagen
+												</button>
+												
+											</td>
+										</tr>
+									</form>
+								</table>
+							</td>
 						</tr>
 						
 					<?php };
@@ -171,8 +204,11 @@ if ($userStatus != '0' ) {
 						</div>
 					</div>
 			</form>
+		</div>
 	</div>
-	</div>
+	<div id="dialog">
+			
+		</div>
 </div>
 <!-- botones del modulo -->
 <footer class="footer-modulo container">

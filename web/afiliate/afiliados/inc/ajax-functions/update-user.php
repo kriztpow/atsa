@@ -13,6 +13,10 @@ if ( isAjax() ) {
 	$nombre  = filter_var($nombre,FILTER_SANITIZE_STRING);
 	$status = isset($_POST['user_status']) ? $_POST['user_status'] : 'a';
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
+	$dni = isset($_POST['user_dni']) ? $_POST['user_dni'] : '';
+	$dni  = filter_var($dni,FILTER_SANITIZE_STRING);
+	$image = isset($_POST['user_image']) ? $_POST['user_image'] : '';
+
 	//convierte el password
 	if ($password != '') {
 		$newPassword = password_hash($password, PASSWORD_BCRYPT);	
@@ -24,7 +28,7 @@ if ( isAjax() ) {
 		$query .= " user_password='".$newPassword."',";
 	}
 
-	$query .=  " user_status='".$status."' WHERE user_id = '".$userId."'";
+	$query .=  " user_status='".$status."', user_dni='".$dni."', user_image='".$image."' WHERE user_id = '".$userId."'";
 
 	$updateUser = mysqli_query($connection, $query);
 	if ( $updateUser ) {

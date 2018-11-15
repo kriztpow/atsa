@@ -15,9 +15,7 @@ load_module( 'medios' );
 
 		<div id="tabs">
   			<ul>
-			   	<li><a href="#upload">Subir archivo</a></li>
-			    <li><a href="#imagenes">Biblioteca imágenes</a></li>
-			    <li><a href="#archivos">Biblioteca archivo</a></li>
+			   	<li><a href="#upload">Subir archivo</a></li> 
 		  	</ul>
 			<div id="upload">
 			  	<div class="container">
@@ -48,23 +46,7 @@ load_module( 'medios' );
 			    	<ul class="new-image-loaded"></ul>
 			    </div>
 			</div>
-	  		<div id="imagenes" class="wrapper-galeria">
-				<div class="container">
-					<h2>Galería de imágenes</h2>
-						
-					<?php printImagesGalery( 'imagen' ); ?>
-
-				</div>
-			</div>
-			
-			<div id="archivos" class="wrapper-galeria">
-				<div class="container">
-					<h2>Galería de archivos</h2>
-						
-					<?php printImagesGalery( 'archivo' ); ?>
-
-				</div>
-			</div>
+	  		
 		</div><!-- //.tabs-jquery-ui -->
 	</div><!-- //.container-fluid -->
 </article>

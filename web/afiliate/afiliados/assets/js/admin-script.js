@@ -16,9 +16,9 @@
 */
 
 //urls:
-var baseUrl = 'http://' + window.location.host + '/afiliate';
+var baseUrl = 'https://' + window.location.host + '/afiliate';
 var administradorUrl = baseUrl + '/afiliados';
-var uploadsDir = baseUrl + '/contenido';
+var uploadsDir = 'https://' + window.location.host + '/uploads/images';
 var functionsDir = administradorUrl + '/inc';
 var templatesDir = administradorUrl + '/templates';
 var ajaxFunctionDir = functionsDir + '/ajax-functions';
@@ -281,6 +281,53 @@ $(document).ready(function() {
 				},
 			});//cierre ajax
 		}
+	});
+
+
+	//cambia la imagen del usuario
+	$(document).on('click', '.btn-change-img-user', function(){
+		var input = $($(this).closest('td')).find('input[name="user_image"]');
+		var img = $($(this).closest('td')).find('img');
+		$( "#dialog" ).dialog({
+			title: 'Biblioteca de imágenes',
+			autoOpen: false,
+			appendTo: '.contenido-modulo',
+			height: 600,
+			width:768,
+			modal: true,
+			buttons: [
+		    {
+		    	text: "Cerrar",
+		      	class: 'btn btn-default',
+		      	click: function() {
+		        $( this ).dialog( "close" );
+		      }
+		    },
+		    {
+		    	text: 'Insertar imagen',
+		    	class: 'btn btn-success',
+		    	click: function () {
+		    		//se toma el nombre de la imagen, siempre la primera porque es UNA imagen destacada
+		    		newImage = $('.previewAtachment')[0];
+		    		newImage =  $(newImage).val();
+		    		if ( newImage == '' ) {
+		    			$( this ).dialog( "close" );
+		    			return;
+		    		}
+		    		//se incluye la imagen en el input a guardar en base de datos, solo nombre
+					$(input).val(newImage);
+					//se genera url completo de la imagen para mostrar ahora
+					urlimg = 'http://' + window.location.host + '/uploads/images/' + newImage;
+					//se imprime el html con el url de la imagen
+					$(img).attr('src', urlimg);
+		    		//se cierra el dialogo
+		    		$( this ).dialog( "close" );
+		    	}
+		    },
+		  ],
+		});
+		$( "#dialog" ).dialog( 'open' ).load( 'templates/media-browser.php' );
+
 	});
 
 })//ready
