@@ -7,6 +7,8 @@
  * e) Ajax: cargar más noticias
  * 2. Ajustes css jquery
  * 3. Slider home
+ * 4. Formulario peticion
+ * 5. acceso delegados
 */
 $(document).ready(function(){
     $('.barrita-afiliate').addClass('barrita-afiliate-opening');
@@ -508,13 +510,57 @@ $(document).ready(function(){
             processData: false,
             beforeSend: function() {
                 //imgAjax.fadeIn();
-                console.log('enviando formulario');
+                //console.log('enviando formulario');
             },
             success: function ( response ) {
                 console.log(response);
                 if ( response == 1 ) {
                     window.location.href = 'https://' + window.location.host + '/peticion-gracias';
                 } else {
+                    $('#peticion-form').append($('<span style="display:block;margin-top: 20px;">Hubo un error, intente otra vez.</span>'));
+                }
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax
+    
+    });//cierra submit formulario afiliate
+});
+
+/*
+ * FORMULARIO PETICION
+*/
+
+$(document).ready(function(){
+    $( '#login-acceso-delegados' ).on('submit', function( event ){
+        
+        event.preventDefault();
+
+        var formulario =  this;
+        var form_type = 'acceso-delegados';
+        //var imgAjax = $( '.load-ajax-suscribe' );
+
+        var formData = new FormData( formulario );
+        formData.append('form_type', form_type);
+      
+        $.ajax( {
+            type: 'POST',
+            url: 'inc/scripts/form-process.php',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                //imgAjax.fadeIn();
+                console.log('buscando usuario');
+            },
+            success: function ( response ) {
+                //console.log(response);
+                if ( response == 1 ) {
+                    window.location.reload();
+                } else {
+                    console.log(response);
                     $('#peticion-form').append($('<span style="display:block;margin-top: 20px;">Hubo un error, intente otra vez.</span>'));
                 }
             },

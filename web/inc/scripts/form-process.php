@@ -425,7 +425,83 @@ switch ( $form_type ) {
 
 		break;
 
+		case 'acceso-delegados':
+		
+			$user = recogeDato('userid');
+			$pass = recogeDato('password');
+			if ( (isset($user) && $user != '') || (isset($pass) && $pass != '') ) {
+				echo autorizarAcceso($user, $pass);
+			} else {
+				echo 'Faltan datos';
+			}
+			
+		break;
+
 }//switch
+
+function autorizarAcceso($user, $pass) {
+
+	$user  = filter_var($user,FILTER_SANITIZE_EMAIL);
+
+	$connection = conectToAfiliate(DB_SERVER, DB_USER, DB_PASS, 'afiliate');
+	$tabla = 'usuarios';
+	$query  = "SELECT * FROM " .$tabla. " WHERE user_usuario='".$user."' ";
+
+	$result = mysqli_query($connection, $query);
+
+	if ( $result->num_rows == 0 ) {
+		$respuesta = '<div class="alert alert-success" role="alert">Datos incorrectos</div>';
+	} else {
+		$row = $result->fetch_array(MYSQLI_ASSOC);
+		
+		if ( password_verify($pass, $row['user_password']) ) {
+			if ( session_status() != PHP_SESSION_ACTIVE ) {
+				session_start();	
+			} else {
+				session_destroy();
+				session_start();
+			}
+
+			
+			$_SESSION['loggedin'] = true;
+			$_SESSION['username'] = $user;
+			$_SESSION['nombre'] = $row['user_nombre'];
+			$_SESSION['user_id'] = $row['user_id'];
+			$_SESSION['user_status'] = $row['user_status'];
+			$_SESSION['user_dni'] = $row['user_dni'];
+			$_SESSION['user_image'] = $row['user_image'];
+			$_SESSION['start'] = time();
+			$_SESSION['expire'] = $_SESSION['start'] + (60 * 60 * 24); //60 minutos 
+
+			$respuesta = 1;
+		} else { 
+			$respuesta = 0;
+		}
+		
+	}//else result
+
+	isset($connection) ? mysqli_close($connection) : exit;
+
+	return $respuesta;
+}
+
+function conectToAfiliate($server, $user, $pass, $dbName){
+	global $connection;
+	$connection = mysqli_connect($server, $user, $pass, $dbName);
+	// Test if connection succeeded
+	if( mysqli_connect_errno() ) {
+		die("Database connection failed: " . mysqli_connect_error() . 
+			" (" . mysqli_connect_errno() . ")"
+		);
+	}
+	if (!mysqli_set_charset($connection, "utf8")) {
+		printf("Error cargando el conjunto de caracteres utf8: %s\n", mysqli_error($connection));
+		exit();
+		} else {
+			mysqli_character_set_name($connection);
+		}
+	return $connection;
+}
 
 function connectDBVoces() {
 	global $connectionVoces;

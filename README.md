@@ -20,6 +20,7 @@ Inicio: 11-06-17
 ### Versión 8.3 - PAGINA EXCLUSIVA DELEGADOS (nov.2018)
 * Crear templates con accesos restringidos para usuarios legados
 * Este template se maneja desde el backend de admin
+* En afiliados las imágenes (que son unicamente de los iconos de los usuarios) se suben a atsa.org.ar/uploads/images pero se guardan en la base de datos en la parte de usuarios, no se guardan en base de datos como medios y por lo tanto no se pueden listar luego
 
 ### Versión 8.2 - RECHAZADOS
 * Modificaciones en el backend para que cuando un usuario es rechazado, se agregue a una base de datos y se pueda ver.

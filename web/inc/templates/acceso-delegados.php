@@ -9,8 +9,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
 }
 ?>
 
-<article id="page" class="wrapper-page">
-    <?php if ($mostrar) : ?>
+ <article id="page" class="wrapper-page">
+    
+    <?php if ($mostrar) : ?>    
+
         <div class="inner-wrapper">
             <div class="container">
                 <h1 class="main-tittle-page">Acceso a delegados</h1>
@@ -23,12 +25,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
             </div>
         </div>
 
-    <?php else : ?>
+    <?php else : 
     
-        <div class="container">
-            <p>No tiene acceso para ver este contenido</p>
-        </div>
+        getTemplate( 'login' );
 
-    <?php endif; ?>
+    endif; ?>
 
 </article>
