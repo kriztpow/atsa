@@ -23,7 +23,7 @@ if ( $result->num_rows == 0 ) {
 		$_SESSION['loggedin'] = true;
 	    $_SESSION['username'] = $username;
 		$_SESSION['user_id'] = $row['user_id'];
-		$_SESSION['user_status'] = 0;
+		$_SESSION['user_status'] = $row['user_status'];
 		$_SESSION['user_dni'] = null;
 		$_SESSION['user_image'] = null;
 	    $_SESSION['start'] = time();
