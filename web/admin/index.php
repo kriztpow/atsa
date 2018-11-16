@@ -328,6 +328,36 @@ if ( $modulo == '') {
       </section><!-- //section galeria imágenes -->
     </div><!-- //columna -->
 
+    <div class="col-sm-12 col-md-6 col-lg-4">
+       <!-- section galeria imágenes -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2 class="modulo-titulo">Home Delegados</h2>
+            <p>Modificar home de acceso a delegados</p>
+            <p>
+              <a class="btn btn-success btn-sm" href="index.php?admin=delegados-home" role="button">Modificar</a>
+            </p>
+          </div>
+        </div>
+      </section><!-- //section galeria imágenes -->
+    </div><!-- //columna -->
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+       <!-- section galeria imágenes -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2 class="modulo-titulo">Videos Delegados</h2>
+            <p>Modificar o agregar los videos para delegados</p>
+            <p>
+              <a class="btn btn-warning btn-sm" href="index.php?admin=delegados-videos" role="button">Modificar</a>
+            </p>
+          </div>
+        </div>
+      </section><!-- //section galeria imágenes -->
+    </div><!-- //columna -->
+
 
   </div><!-- //row -->
 </div><!-- //containre -->

@@ -1975,3 +1975,31 @@ function showpeticionAdmin ( ) {
 	//devuelve el array de contenido
 	return $data;
 }
+
+
+
+function showItemsDelegados($type) {
+	$connection = connectDB();
+	$tabla = 'contenidodelegados';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " WHERE type='".$type."' ORDER by orden";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
+		$respuesta = null;
+	
+	} else {
+		while ($row = $result->fetch_array()) {
+			$rows[] = $row;
+		
+		}//while
+
+		$respuesta = $rows;
+	}//else
+	mysqli_close($connection);
+
+	return $respuesta;
+
+}//()

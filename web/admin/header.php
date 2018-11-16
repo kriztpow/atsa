@@ -113,6 +113,12 @@ if(!defined("SECUREACCESS"))
                 <li>
                   <a href="index.php?admin=peticion" role="button">Petición</a>
                 </li>
+                <li>
+                  <a href="index.php?admin=delegados-home" role="button">Acceso a delegados</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=delegados-videos" role="button">Videos para delegados</a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">

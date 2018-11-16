@@ -3594,3 +3594,178 @@ $(document).ready(function(){
 	});
 
 });//ready peticion
+
+
+/*
+ CONTENIDO DELEGADOS
+*/
+
+$(document).ready(function(){
+	$( "#laboratorioDelegados" ).accordion({
+		heightStyle: "content",
+		active: false,
+		collapsible: true,
+	});	
+
+
+	//cambiar imagen
+	$(document).on('click', '.btn-change-image-delegado', function(){
+		var div = this.closest('div');
+		var img = $(div).find('img');
+
+		$( "#dialog" ).dialog({
+			title: 'Biblioteca de imágenes',
+			autoOpen: false,
+			appendTo: '.contenido-modulo',
+			height: 600,
+			width:768,
+			modal: true,
+			buttons: [
+		    {
+		    	text: "Cerrar",
+		      	class: 'btn btn-default',
+		      	click: function() {
+		        $( this ).dialog( "close" );
+		      }
+		    },
+		    {
+		    	text: 'Insertar imagen',
+		    	class: 'btn btn-success',
+		    	click: function () {
+		    		//se toma el nombre de la imagen, siempre la primera porque es UNA imagen destacada
+		    		newImage = $('.previewAtachment')[0];
+		    		newImage =  $(newImage).val();
+		    		if ( newImage == '' ) {
+		    			$( this ).dialog( "close" );
+		    			return;
+		    		}
+		    		//se incluye el nombre de la imagen como data para guardar en base de datos, solo nombre
+					$(img).attr('data-href', newImage);
+					//se genera url completo de la imagen para mostrar ahora
+					urlimg = 'https://' + window.location.host + '/uploads/images/' + newImage;
+					//se imprime el html con el url de la imagen
+					$(img).attr('src', urlimg);
+					
+		    		//se cierra el dialogo
+		    		$( this ).dialog( "close" );
+		    	}
+		    },
+		  ],
+		});
+		$( "#dialog" ).dialog( 'open' ).load( 'inc/templates/media-browser.php' );
+	});//cambiar image 
+
+
+	//agregar un ITEM
+	$('.new-item-btn').click(function(){
+		var type = $(this).attr('data-type');
+		var contenedor = $('#laboratorioDelegados');
+		var titulo = prompt('Escriba el título');
+		var orden = 0;
+		if ( titulo == '' ) {
+			titulo = 'Escriba el título'
+		}
+
+
+		if ( type == 'video') {
+			var html = '<h3 class="delegados-item-titulo">'+titulo+'</h3><div class="delegados-item"  data-type="'+type+'"><div class="row"><div class="col-sm-4"></div><div class="col-sm-8"><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="titulo" value="'+titulo+'"></label></div><div class="col-sm-2"><label>Orden:<br><input type="text" name="orden" value="'+orden+'"></label></div><div class="col-sm-12"><label>url:<br><input type="text" name="url" value=""></label></div></div></div></div><div class="row"><div class="col-sm-12"><p class="btns-item-footer"><span class="msj-delegados-saved"></span><button class="btn btn-sm btn-success btn-save-delegado-item" data-id="new">Guardar cambios</button>&nbsp;<button class="btn btn-sm btn-danger btn-del-delegado-item" data-id="new">Borrar elemento</button></p></div></div></div>';
+		contenedor.prepend(html);
+		} else {
+			var html = '<h3 class="delegados-item-titulo">'+titulo+'</h3><div class="delegados-item"  data-type="'+type+'"><div class="row"><div class="col-sm-4"><img src="" data-href="" class="img-responsive"><button class="btn btn-xs btn-primary btn-change-image-delegado">Cambiar imagen</button></div><div class="col-sm-8"><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="titulo" value="'+titulo+'"></label></div><div class="col-sm-2"><label>Orden:<br><input type="text" name="orden" value="'+orden+'"></label></div><div class="col-sm-12"><label>url:<br><input type="text" name="url" value=""></label></div></div></div></div><div class="row"><div class="col-sm-12"><p class="btns-item-footer"><span class="msj-delegados-saved"></span><button class="btn btn-sm btn-success btn-save-delegado-item" data-id="new">Guardar cambios</button>&nbsp;<button class="btn btn-sm btn-danger btn-del-delegado-item" data-id="new">Borrar elemento</button></p></div></div></div>';
+		contenedor.prepend(html);
+		}
+
+		
+		
+	});//click new-item-dlegados
+
+
+	//borrar item
+	$(document).on('click', '.btn-del-delegado-item', function(){
+		var idItem = $(this).attr('data-id');
+		var contenedor = this.closest('.delegados-item');
+		var tituloContenedor = $(contenedor).prev();
+		var msj = $(contenedor).find('.msj-delegados-saved');
+		
+		var confirmar = confirm('¿Está seguro?');
+		if (confirmar) {
+			//si el elemento es nuevo no está guardado en la bd
+			if ( idItem == 'new' ) {
+				$(contenedor).remove();
+				tituloContenedor.remove();
+				return;
+			} else {
+				$.ajax( {
+		            type: 'POST',
+		            url: 'inc/delete-item-delegados.php',
+		            data: {
+		                idItem: idItem,
+		            },
+		            beforeSend: function() {
+		            	$(msj).html('borrando, espere');
+		        	},
+		            success: function ( response ) {
+		            	$(contenedor).remove();
+		            	tituloContenedor.remove();
+		            },
+		            error: function ( ) {
+		                console.log('error');
+		                $(msj).html('No se pudo borrar');
+		            },
+		        });//cierre ajax
+			}
+		}//if confirmar
+	});//click btn-pregunta-del-item
+
+
+	//guardar cambios preguntas
+	$(document).on('click', '.btn-save-delegado-item', function(){
+		var idItem = $(this).attr('data-id');
+		//var post_type = $(this).attr('data-tipo');
+		var btn = $(this);
+		var article = this.closest('.delegados-item');
+		var type = $(article).attr('data-type');
+		var msj = $(article).find('.msj-delegados-saved');
+		var btnDel = $(article).find('.btn-del-delegado-item');
+		var titulo = $(article).find('input[name="titulo"]').val();
+		var orden = $(article).find('input[name="orden"]').val();
+		var imagen = $($(article).find('img')).attr('data-href');
+		var link = $(article).find('input[name="url"]').val();
+
+		var newArticle = false;
+		if ( idItem == 'new' ) {
+				newArticle = true;
+			}
+			
+		$.ajax( {
+            type: 'POST',
+            url: 'inc/save-delegados.php',
+            data: {
+            	idItem: idItem,
+            	titulo: titulo,
+            	orden: orden,
+            	imagen: imagen,
+            	link: link,
+				newArticle: newArticle,
+				type: type,
+            },
+            beforeSend: function() {
+            	$(msj).html('guardando, espere');
+        	},
+            success: function ( response ) {
+            	console.log(response)
+            	if ( response != 'ok' ) {
+            		$(msj).html('Cambios guardados');
+            		$(btnDel).attr('data-id', response);
+            		btn.attr('data-id', response);
+            	} 
+            	$(msj).html('Cambios guardados');
+            },
+            error: function ( ) {
+                console.log('error');
+                $(msj).html('No se pudo guardar');
+            },
+        });//cierre ajax
+	});//click guardar cambios
+
+});
