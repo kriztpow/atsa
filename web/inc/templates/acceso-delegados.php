@@ -47,38 +47,30 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
                 
                 <div class="wrapper-menu-delegados">
 
-                    <a href="https://atsa.org.ar/afiliate/afiliados/">
-                        <div class="item-menu-content">
-                            <figure>
-                                <img src="">
-                            </figure>
-                            <h3 class="title-menu">
-                                Afiliá a tus compañeros online
-                            </h3> 
-                        </div>
-                    </a>
+                <?php 
+                $items = showItemsDelegados('menu');
 
-                    <a href="http://atsa.test/afiliate/afiliados/">
-                        <div class="item-menu-content">
-                            <figure>
-                                <img src="<?php echo urlBase(); ?>/assets/images/menu-item-default.jpg">
-                            </figure>
-                            <h3 class="title-menu">
-                                Video Conferencias
-                            </h3> 
-                        </div>
-                    </a>
+                if ( $items != null ) :
                     
-                    <a href="http://atsa.test/afiliate/afiliados/">
-                        <div class="item-menu-content">
-                            <figure>
-                                <img src="">
-                            </figure>
-                            <h3 class="title-menu">
-                                Material de difusión
-                            </h3> 
-                        </div>
-                    </a>
+                    foreach ($items as $item ) {
+                        
+                        
+                        ?>
+                        
+                        <a href="<?php echo $item['url']; ?>">
+                            <div class="item-menu-content">
+                                <figure>
+                                    <img src="<?php echo $item['imagen']; ?>">
+                                </figure>
+                                <h3 class="title-menu">
+                                    <?php echo $item['titulo']; ?>
+                                </h3> 
+                            </div>
+                        </a>
+
+                    <?php }
+                
+                endif; ?>
                 </div>
             </div>
         </div>

@@ -176,19 +176,24 @@ legend {
         -ms-align-items: center;
         -o-align-items: center;
         align-items: center;
-        -webkit-justify-content: space-between;
-        -moz-justify-content: space-between;
-        -ms-justify-content: space-between;
-        -o-justify-content: space-between;
-        justify-content: space-between;
-        padding: 40px 0; 
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        -ms-justify-content: center;
+        -o-justify-content: center;
+        justify-content: center;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding: 40px 0;
 
         @media (max-width: $mq-movil) {
             flex-wrap: wrap;
         }
 
         a {
-            width: 100%;
+            width: 33%;
             display: flex;
             display: -o-flex;
             display: -ms-flex;
@@ -204,6 +209,7 @@ legend {
             -ms-justify-content: center;
             -o-justify-content: center;
             justify-content: center;
+            margin: 20px 0;
 
             @media (max-width: $mq-movil) {
                 margin: 20px 0;

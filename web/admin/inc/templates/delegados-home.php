@@ -12,7 +12,7 @@ require_once("inc/functions.php");
 	<div class="contenido-modulo">
 		<div class="container">
 			<div class="btn-main-wapper">
-				<button class="btn btn-warning btn-sm new-item-btn">Crear nueva item</button>
+				<button data-type="menu" class="btn btn-warning btn-sm new-item-btn">Crear nueva item</button>
 			</div>
 
 			<div id="laboratorioDelegados">
@@ -25,7 +25,14 @@ require_once("inc/functions.php");
                             <div class="delegados-item" data-type="menu" id="<?php echo $item['id']; ?>">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <img src="/uploads/images/<?php echo $item['imagen']; ?>" data-href="<?php echo $item['imagen']; ?>" class="img-responsive">
+                                        <?php 
+                                            if ( $item['imagen'] == '' ) {
+                                                $imagen = '';
+                                            } else {
+                                                $imagen = '/uploads/images/' . $item['imagen'];
+                                            }
+                                        ?>
+                                        <img src="<?php echo $imagen; ?>" data-href="<?php echo $item['imagen']; ?>" class="img-responsive">
                                         <button class="btn btn-xs btn-primary btn-change-image-delegado">Cambiar imagen</button>
                                     </div>
                                     <div class="col-sm-8">
