@@ -3720,6 +3720,7 @@ $(document).ready(function(){
 
 	//guardar cambios preguntas
 	$(document).on('click', '.btn-save-delegado-item', function(){
+		var fecha = '', texto = '';
 		var idItem = $(this).attr('data-id');
 		//var post_type = $(this).attr('data-tipo');
 		var btn = $(this);
@@ -3731,6 +3732,11 @@ $(document).ready(function(){
 		var orden = $(article).find('input[name="orden"]').val();
 		var imagen = $($(article).find('img')).attr('data-href');
 		var link = $(article).find('input[name="url"]').val();
+
+		if (type != 'menu') {
+			fecha = $(article).find('input[name="fecha"]').val();
+			texto = $(article).find('textarea[name="texto"]').val();
+		}
 
 		var newArticle = false;
 		if ( idItem == 'new' ) {
@@ -3747,6 +3753,8 @@ $(document).ready(function(){
             	imagen: imagen,
             	link: link,
 				newArticle: newArticle,
+				fecha: fecha,
+				texto: texto,
 				type: type,
             },
             beforeSend: function() {
@@ -3767,5 +3775,43 @@ $(document).ready(function(){
             },
         });//cierre ajax
 	});//click guardar cambios
+
+	//editor enriquecido de videos delegados
+	tinyMCE.init({
+		selector: '.tinymce-delegados',
+		toolbar1: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, undo, redo, link',
+		toolbar2: 'formatselect, cut, copy, paste, blockquote, forecolor backcolor, removeformat, code',
+		menubar: false,
+		height: 200,
+		plugins: [
+		  'code advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+		  'save table contextmenu directionality emoticons template paste textcolor colorpicker media',
+		],
+		branding: false,
+		media_live_embeds: true,
+		language: 'es',
+		language_url: 'assets/lib/tinymce/langs/es.js',
+		//mantiene sincronizado los cambios del editor con el textarea hidden
+		setup: function (editor) {
+	        editor.on('change', function () {
+	            editor.save();
+	        });
+	    },
+	    file_browser_callback : 
+		function(field_name, url, type, win){
+		var imagebrowser = "inc/templates/media-browser-tinymce.php";
+		tinymce.activeEditor.windowManager.open({
+		title : "Insertar imagen",
+		width : 780,
+		height : 600,
+		url : imagebrowser
+		}, {
+		window : win,
+		input : field_name
+		});
+		return false;
+		}
+	});
 
 });

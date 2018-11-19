@@ -411,9 +411,14 @@ legend {
             }
 
             .video-text {
+                width: 30%;
                 margin-left: 20px;
                 margin-bottom: 20px;
                 font-size: 120%;
+
+                @media (max-width: $mq-movil) {
+                    width: 100%;
+                }
             
                 .video-tittle {
                     text-transform: uppercase;
@@ -428,6 +433,7 @@ legend {
 
                 .date {
                     margin: 10px 0;
+                    text-transform: uppercase;
                 }
             }
         }//.video-wrapper-destacado

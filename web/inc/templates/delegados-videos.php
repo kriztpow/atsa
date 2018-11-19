@@ -71,7 +71,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
                                     
                                         <h5 class="date">
                                             <?php if ($item['fecha'] != '') {
-                                                echo ' - ' . $item['fecha'];
+                                                echo $item['fecha'];
                                             }
                                             ?>
                                         </h5>

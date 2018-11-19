@@ -53,6 +53,19 @@ require_once("inc/functions.php");
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label>fecha:<br>
+                                                    <input type="text" name="fecha" value="<?php echo $item['fecha']; ?>">
+                                                </label>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                            <label>Texto:<br>
+                                                <textarea class="tinymce-delegados" name="texto"><?php echo $item['texto']; ?></textarea>
+                                            </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">

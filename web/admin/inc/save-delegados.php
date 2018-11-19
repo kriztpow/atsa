@@ -14,15 +14,19 @@ if ( isAjax() ) {
 	$url = isset( $_POST['link'] ) ? $_POST['link'] : '';
 	$imagen = isset( $_POST['imagen'] ) ? $_POST['imagen'] : '';
 	$orden = isset( $_POST['orden'] ) ? $_POST['orden'] : '0';
+	$fecha = isset( $_POST['fecha'] ) ? $_POST['fecha'] : 'menu';
+	$texto = isset( $_POST['texto'] ) ? $_POST['texto'] : '';
 	$newArticle = isset( $_POST['newArticle'] ) ? $_POST['newArticle'] : 'true';
 	$idItem = isset( $_POST['idItem'] ) ? $_POST['idItem'] : '';
 	$type = isset( $_POST['type'] ) ? $_POST['type'] : 'menu';
+	
 	
 	
 	//limpieza general
 	$url = filter_var($url,FILTER_SANITIZE_URL);
 	$orden = filter_var($orden,FILTER_SANITIZE_NUMBER_INT);
 	$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
+	$fecha = filter_var($fecha,FILTER_SANITIZE_STRING);
 
 	if ( $orden == '' ) {
 		$orden = '0';
@@ -40,7 +44,7 @@ if ( isAjax() ) {
 	//si el post es nuevo se crea
 	if ( $newArticle == 'true' ) {
 
-		$queryCreateItem  = "INSERT INTO " .$tabla. " (titulo, url, imagen, type, orden) VALUES ('$titulo','$url','$imagen','$type','$orden')";
+		$queryCreateItem  = "INSERT INTO " .$tabla. " (titulo, url, imagen, texto, fecha, type, orden) VALUES ('$titulo','$url','$imagen','$fecha','$texto','$type','$orden')";
 
 		$result = mysqli_query($connection, $queryCreateItem);
 		
@@ -49,7 +53,7 @@ if ( isAjax() ) {
 	} //si el post ya existe se actualiza
 		else {
 
-		$queryUpdateItem  = "UPDATE ".$tabla." SET titulo='".$titulo."', url='".$url."', imagen='".$imagen."', type='".$type."',  orden='".$orden."' WHERE id='".$idItem."' LIMIT 1";
+		$queryUpdateItem  = "UPDATE ".$tabla." SET titulo='".$titulo."', url='".$url."', imagen='".$imagen."', fecha='".$fecha."', texto='".$texto."', type='".$type."',  orden='".$orden."' WHERE id='".$idItem."' LIMIT 1";
 
 		$result = mysqli_query($connection, $queryUpdateItem);
 		
