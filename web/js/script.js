@@ -571,3 +571,25 @@ $(document).ready(function(){
     
     });//cierra submit formulario afiliate
 });
+
+/*
+ * ACCESO A DELEGADOS
+*/
+
+$(document).ready(function(){
+
+    if (innerWidth < 768 ) {
+        $('.video-wrapper-destacado iframe').height(250);
+    }
+
+    $(document).on('click', '.togle-video', function(e) {
+        e.preventDefault();
+
+        var url = $(this).attr('data-video');
+
+        var iframe = $('.video-wrapper-destacado iframe');
+
+        $(iframe).attr('src', url);
+
+    });
+});
