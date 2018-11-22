@@ -75,11 +75,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
                                             }
                                             ?>
                                         </h5>
-                                        <p>
+                                        <div class="texto-video">
                                             <?php if ($item['texto'] != '') {
                                             echo $item['texto'];
                                             } ?>
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -100,17 +100,15 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
                                 <h3 class="video-tittle">
                                     <?php echo $item['titulo']; ?>
                                     <?php if ($item['fecha'] != '') {
-                                        echo ' - ' . $item['fecha'];
+                                        echo ' - <span class="fecha-video">' . $item['fecha'] . '</span>';
                                     }
                                     ?>
                                 </h3>
                                 <div class="video-text">
-                                    <p>
                                     <?php if ($item['texto'] != '') {
                                         echo $item['texto'];
                                     }
                                     ?>
-                                    </p>
                                 </div>
                             </div>
                         <?php

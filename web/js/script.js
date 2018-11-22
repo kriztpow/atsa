@@ -582,14 +582,30 @@ $(document).ready(function(){
         $('.video-wrapper-destacado iframe').height(250);
     }
 
+    //cambia el video al hacer clic sobre el
     $(document).on('click', '.togle-video', function(e) {
         e.preventDefault();
 
         var url = $(this).attr('data-video');
-
+        var titulo = $(this).find('.video-tittle').text();
+        var fecha = $(this).find('.fecha-video').text();
+        var texto = $(this).find('.video-text').html();
+        titulo = titulo.split('-')[0];
+        
         var iframe = $('.video-wrapper-destacado iframe');
+        var tituloDestacado = $('.video-wrapper-destacado .video-tittle');
+        var fechaDestacada = $('.video-wrapper-destacado .date');
+        var textoDestacado = $('.video-wrapper-destacado .texto-video');
+        
 
         $(iframe).attr('src', url);
+        $(tituloDestacado).text(titulo);
+        $(fechaDestacada).text(fecha);
+        $(textoDestacado).html(texto);
+                
+
+
+
 
     });
 });

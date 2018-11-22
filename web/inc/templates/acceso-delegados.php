@@ -60,7 +60,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
                         <a href="<?php echo $item['url']; ?>">
                             <div class="item-menu-content">
                                 <figure>
-                                    <img src="<?php echo $item['imagen']; ?>">
+                                    <img src="<?php echo urlBase() . '/uploads/images/' . $item['imagen']; ?>">
                                 </figure>
                                 <h3 class="title-menu">
                                     <?php echo $item['titulo']; ?>

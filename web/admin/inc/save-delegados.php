@@ -14,7 +14,7 @@ if ( isAjax() ) {
 	$url = isset( $_POST['link'] ) ? $_POST['link'] : '';
 	$imagen = isset( $_POST['imagen'] ) ? $_POST['imagen'] : '';
 	$orden = isset( $_POST['orden'] ) ? $_POST['orden'] : '0';
-	$fecha = isset( $_POST['fecha'] ) ? $_POST['fecha'] : 'menu';
+	$fecha = isset( $_POST['fecha'] ) ? $_POST['fecha'] : '';
 	$texto = isset( $_POST['texto'] ) ? $_POST['texto'] : '';
 	$newArticle = isset( $_POST['newArticle'] ) ? $_POST['newArticle'] : 'true';
 	$idItem = isset( $_POST['idItem'] ) ? $_POST['idItem'] : '';
