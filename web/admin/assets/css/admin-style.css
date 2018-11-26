@@ -19,7 +19,11 @@ h) viajes y hoteles
 i) cursos 
 j) beneficios
 k) preguntas
-l)
+l) Prevencion
+ll) lavoratorio
+m) homepage
+n) acceso a delegadois
+ñ) mujeres que hicieron historia
 */
 /* ---- 1 reset ---- */
 /* ---- 2 variables ---- */
@@ -1071,6 +1075,31 @@ aside {
 .delegados-item textarea {
   width: 100%;
   font-weight: normal;
+}
+
+/*MUJERES QUE HICIERON HISTORIA*/
+.btn-main-wapper {
+  margin: 20px 0;
+}
+
+.mujeres-item label {
+  width: 100%;
+  margin: 10px 0;
+}
+.mujeres-item input {
+  width: 100%;
+  font-weight: normal;
+}
+.mujeres-item textarea {
+  width: 100%;
+  font-weight: normal;
+}
+
+.msj-mujeres-saved {
+  font-size: 90%;
+  color: #d9534f;
+  font-style: italic;
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=admin-style.css.map */

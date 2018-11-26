@@ -2003,3 +2003,28 @@ function showItemsDelegados($type) {
 	return $respuesta;
 
 }//()
+
+//busca las mujeres q hicieron historia cargadas
+function showMujeresHistoriaAdmin() {
+	$connection = connectDB();
+	$tabla = 'mujeres';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " ORDER by orden";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
+		$mujeres = null;
+	
+	} else {
+		while ($row = $result->fetch_array()) {
+			$rows[] = $row;
+		
+		}//while
+		$mujeres = $rows;
+	}	
+	closeDataBase($connection);
+
+	return $mujeres;
+}

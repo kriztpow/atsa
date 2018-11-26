@@ -17,6 +17,8 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
+### Versión 8.4 - PAGINA NUEVA, MUJERES QUE HICIERON HISTORIA (nov.2018)
+
 ### Versión 8.3 - PAGINA EXCLUSIVA DELEGADOS (nov.2018)
 * Crear templates con accesos restringidos para usuarios legados
 * Este template se maneja desde el backend de admin
