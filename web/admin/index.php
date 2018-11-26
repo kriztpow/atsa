@@ -304,7 +304,7 @@ if ( $modulo == '') {
         <div class="jumbotron modulos">
           <div class="container">
             <h2 class="modulo-titulo">Petición</h2>
-            <p>Modificar petición, títulos, links, textos, imagenes, urls.</p>
+            <p>Modificar petición, títulos, links, etc.</p>
             <p>
               <a class="btn btn-danger btn-sm" href="index.php?admin=peticion" role="button">Modificar petición</a>
             </p>
@@ -352,6 +352,21 @@ if ( $modulo == '') {
             <p>Modificar o agregar los videos para delegados</p>
             <p>
               <a class="btn btn-warning btn-sm" href="index.php?admin=delegados-videos" role="button">Modificar</a>
+            </p>
+          </div>
+        </div>
+      </section><!-- //section galeria imágenes -->
+    </div><!-- //columna -->
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+       <!-- section galeria imágenes -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2 class="modulo-titulo">Mujeres / historia</h2>
+            <p>Modificar o agregar mujeres que hicieron historia.</p>
+            <p>
+              <a class="btn btn-success btn-sm" href="index.php?admin=mujeres-historia" role="button">Modificar</a>
             </p>
           </div>
         </div>

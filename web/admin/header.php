@@ -119,6 +119,9 @@ if(!defined("SECUREACCESS"))
                 <li>
                   <a href="index.php?admin=delegados-videos" role="button">Videos para delegados</a>
                 </li>
+                <li>
+                  <a href="index.php?admin=mujeres-historia" role="button">Mujeres que hicieron historia</a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">
