@@ -5493,6 +5493,27 @@ legend {
   -o-justify-content: center;
   justify-content: center;
 }
+@media (max-width: 1200px) {
+  #mujeres .wrapper-mujeres #mujer_info .wrapper {
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    -o-justify-content: flex-start;
+    justify-content: flex-start;
+    padding-top: 180px;
+  }
+}
+@media (max-width: 992px) {
+  #mujeres .wrapper-mujeres #mujer_info .wrapper {
+    padding-top: 100px;
+    overflow: scroll;
+  }
+}
+@media (max-width: 768px) {
+  #mujeres .wrapper-mujeres #mujer_info .wrapper {
+    padding-top: 70px;
+  }
+}
 #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido {
   position: relative;
   width: 60%;
@@ -5500,9 +5521,14 @@ legend {
   padding: 30px 25px 40px;
   background-color: #fff;
 }
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido {
     width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido {
+    width: 90%;
   }
 }
 #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .close-button {
@@ -5542,6 +5568,17 @@ legend {
 #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .mujer-contenido {
   color: #231f20;
   font-size: 130%;
+}
+@media (max-width: 992px) {
+  #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .mujer-contenido {
+    font-size: 120%;
+    line-height: 110%;
+  }
+}
+@media (max-width: 768px) {
+  #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .mujer-contenido {
+    font-size: 100%;
+  }
 }
 #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .mujer-contenido h2 {
   line-height: 100%;
