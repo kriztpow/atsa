@@ -9,6 +9,7 @@
  * 3. Slider home
  * 4. Formulario peticion
  * 5. acceso delegados
+ * 6. mujeres que hicieron historia
 */
 $(document).ready(function(){
     $('.barrita-afiliate').addClass('barrita-afiliate-opening');
@@ -603,9 +604,32 @@ $(document).ready(function(){
         $(fechaDestacada).text(fecha);
         $(textoDestacado).html(texto);
                 
-
-
-
-
     });
 });
+
+/*
+ * MUJERES Q HICIERON HISTORIA
+*/
+
+$(document).ready(function(){
+
+    $(document).on('click', '.mujer', function(e) {
+        e.preventDefault();
+        var wrapper = $('#mujer_info .wrapper');
+        var contenedor = $(wrapper).find('.mujer-contenido');
+        var id = $(this).attr('data-id');
+        var titulo = $(this).find('.titulo').text();
+        var fecha = $(this).find('.fecha').text();
+        var contenido = $(this).find('.contenido').html();
+
+        var html = '<h2><strong>'+titulo+'</strong><small>'+fecha+'</small></h2>' + contenido;
+
+        $(contenedor).empty().append( $(html) );
+        $('#mujer_info').fadeIn();
+
+    });
+
+    $(document).on('click', '.close-button', function(e) {
+        $('#mujer_info').fadeOut();
+    });
+});//MUJERES
