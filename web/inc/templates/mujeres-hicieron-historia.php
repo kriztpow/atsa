@@ -1,13 +1,28 @@
+<?php 
+$pagina = getPageData(3);
+$titulo = $pagina['page_titulo'];
+$texto = $pagina['page_text'];
+
+if ( $pagina['page_imagen'] != '') {
+    $src = urlBase() . '/uploads/images/' . $pagina['page_imagen'];
+} else {
+    $src = urlBase() . '/assets/images/mujeres-header.jpg';
+}
+if ($texto == '') {
+    $texto = '<p>Un homenaje a las compa&ntilde;eras que forjaron la historia de nuestro pa&iacute;s y que hoy siguen vivas en nuestra lucha cotidiana por una sociedad m&aacute;s justa e igualitaria.</p>';
+}
+
+?>
 <article id="mujeres" class="wrapper-home">
     <div class="wrapper-image-header">
-        <h1 class="sr-only">Mujeres q hicieron historia</h1>
+        <h1 class="sr-only"><?php echo $titulo; ?></h1>
         <figure>
-            <img src="assets/images/mujeres-header.jpg" alt="Mujeres que hicieron historia banner">
+            <img src="<?php echo $src; ?>" alt="Mujeres que hicieron historia banner">
         </figure>
 
-        <p class="headliner">
-            Un homenaje a las compañeras que forjaron la historia de nuestro país y que hoy siguen vivas en nuestra lucha cotidiana por una sociedad más justa e igualitaria.
-        </p>
+        <div class="headliner">
+        <?php echo $texto; ?>
+        </div>
         
     </div>
 

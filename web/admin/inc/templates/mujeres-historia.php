@@ -11,6 +11,11 @@ require_once("inc/functions.php");
 <div class="wrapper-modulo">
 	<!-- wrapper interno modulo -->
 	<div class="contenido-modulo">
+        <div class="container page-admin-wrapper">
+
+            <?php showPageAdmin ( 3 ); ?>
+
+        </div><!-- // container -->
 		<div class="container">
 			<div class="btn-main-wapper">
 				<button class="btn btn-warning btn-sm new-mujeres-btn">Cargar nueva</button>

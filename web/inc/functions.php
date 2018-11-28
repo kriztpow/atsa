@@ -1224,6 +1224,29 @@ function showPageHtml($id, $title=false) {
 }; //showPageHtml($id)
 
 
+//devuelve los datos de la pagina guardados en bd
+function getPageData($id) {
+	$connection = connectDB();
+	$tabla = 'pages';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " WHERE page_ID='".$id."'";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
+		$page = null;
+	
+	} else {
+		$page = $result->fetch_array(); 
+
+	}//else
+	mysqli_close($connection);
+	
+	return $page;
+
+}; //getPageData($id)
+
 
 //busca en la bd todos los parametros del home y los devuelve en una array
 function getHome() {
