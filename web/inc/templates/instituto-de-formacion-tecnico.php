@@ -6,7 +6,7 @@
 		    </h1>
 	    </div>
 	    <p class="weight-medium p-text-center">
-	    	Desde ATSA Bs As apostamos constantemente a la formación y actualización de nuestros compañeros con el fin de mejorar la calidad de nuestra actividad así como la seguridad de nuestros pacientes. En tal sentido, construimos el Instituto de Formación Técnico Profesional, un edificio exclusivo para la capacitación y perfeccionamiento de los trabajadores.El Instituto cuenta con un Laboratorio de Simulación con herramientas de última tecnología, el cual ofrece múltiples maneras de representar y analizar el entorno de trabajo. Esta reproducción del entorno real permite facilitar la toma de decisiones, haciendo hincapié en determinados aspectos y evitando la incertidumbre. Creemos que los avances científicos-tecnológicos nos desafían constantemente y por eso acompañamos a nuestros compañeros aportando las herramientas y espacios necesarios para que sigan creciendo. 
+	    	Desde ATSA Bs As apostamos constantemente a la formación y actualización de nuestros compañeros con el fin de mejorar la calidad de nuestra actividad así como la seguridad de nuestros pacientes. En tal sentido, construimos el Instituto de Formación Técnico Profesional, un edificio exclusivo para la capacitación y perfeccionamiento de los trabajadores. El Instituto cuenta con un Laboratorio de Simulación con herramientas de última tecnología, que ofrece múltiples maneras de representar y analizar el entorno de trabajo. Esta reproducción del entorno real permite facilitar la toma de decisiones, haciendo hincapié en determinados aspectos y evitando la incertidumbre. Creemos que los avances científicos-tecnológicos nos desafían constantemente y por eso acompañamos a nuestros compañeros aportando las herramientas y espacios necesarios para que sigan creciendo. 
 	    </p>
 	</div>
 
@@ -14,12 +14,12 @@
 		<div class="container">
 			<div class="title-sin-guion">
 			    <h2 class="title-azul">
-					¿Dónde se encuentra el instituto de Formación Técnico Profesional
+					¿Dónde se encuentra el Instituto de Formación Técnico Profesional?
 				</h2>
 		    </div>
 
 			<p class="weight-medium p-text-center">
-				El edificio se encuentra en la calle Alsina, a la vuelta del Sindicato. Cuenta con 5 pisos con aulas, laboratorio de simulación y todo lo necesario para que los trabajadores de Sanidad estén al día con su profesión. La Inauguración se realizará en el mes de Julio.
+				El edificio se encuentra en la calle Alsina 2607, a la vuelta del Sindicato. Cuenta con 5 pisos con aulas, laboratorio de simulación y todo lo necesario para que los trabajadores de Sanidad estén al día con su profesión. La Inauguración se realizará en el mes de Julio.
 			</p>
 		</div>
 	</section>
