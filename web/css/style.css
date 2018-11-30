@@ -1599,6 +1599,89 @@ html, body {
   }
 }
 
+.slider-recientes {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+}
+@media (max-width: 1440px) {
+  .slider-recientes {
+    height: 330px;
+  }
+}
+@media (max-width: 1200px) {
+  .slider-recientes {
+    height: 230px;
+  }
+}
+@media (max-width: 768px) {
+  .slider-recientes {
+    height: 450px;
+    background-color: #fff;
+    overflow: visible;
+  }
+}
+@media (max-width: 480px) {
+  .slider-recientes {
+    height: 330px;
+  }
+}
+
+.slide-data-recientes {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 5px 10%;
+  transform: translateY(10px);
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+}
+@media (max-width: 768px) {
+  .slide-data-recientes {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+}
+
+.slide-title-recientes {
+  font-size: 14pt !important;
+  line-height: 20pt !important;
+}
+@media (max-width: 480px) {
+  .slide-title-recientes {
+    font-size: 12pt !important;
+    line-height: 16pt !important;
+    border-bottom: none !important;
+  }
+}
+
 .menu-shorcuts-wrapper {
   position: relative;
   z-index: 1;
@@ -3631,6 +3714,68 @@ h2.info-enfermeria {
 }
 
 /*-------------- trabajadores -----------------*/
+.trabajadores-nav {
+  padding: 10px 0 14px;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #e5e5e5;
+}
+@media (max-width: 480px) {
+  .trabajadores-nav {
+    display: block;
+  }
+}
+.trabajadores-nav .trabajadores-nav-item {
+  cursor: pointer;
+  display: block;
+  margin: 5px 10px;
+  padding: 5px 25px;
+  background-color: #00acec;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px #999;
+  text-align: center;
+  font-size: 150%;
+}
+@media (max-width: 768px) {
+  .trabajadores-nav .trabajadores-nav-item {
+    font-size: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .trabajadores-nav .trabajadores-nav-item {
+    margin: 20px;
+  }
+}
+.trabajadores-nav .trabajadores-nav-item:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+
+.sombra-superior {
+  box-shadow: 0px -5px 30px #ccc;
+}
+
 .font-size-18 {
   font-size: 18pt !important;
   line-height: 24pt !important;

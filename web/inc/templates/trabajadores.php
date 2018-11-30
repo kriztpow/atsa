@@ -3,8 +3,16 @@
         <?php
             getSliders( 'trabajadores' );
         ?>
-    </header>
-    <section class="mini-padding-section">
+	</header>
+	<nav class="trabajadores-nav container">
+		<a href="<?php echo urlBase() . '/' . 'mujeres-hicieron-historia'; ?>" class="trabajadores-nav-item">
+			Mujeres que hicieron historia
+		</a>
+		<a href="<?php echo urlBase() . '/' . 'activar'; ?>" class="trabajadores-nav-item">
+			Activar
+		</a>
+	</nav>
+    <section class="mini-padding-section background-white">
 		<div class="container">
 			<h1 class="sr-only">Trabajadores</h1>
 
@@ -14,7 +22,7 @@
 		    </p>
 		</div>
 	</section>
-	<section class="background-gris mini-padding-section">
+	<section class="background-gris mini-padding-section sombra-superior">
 		<div class="container">
 			<div class="title-sin-guion">
 			    <h2 class="font-size-18">
