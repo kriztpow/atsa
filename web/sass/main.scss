@@ -1119,6 +1119,17 @@ h2.info-enfermeria {
 /*-------------- instituto de formacion tecnico profesional -----------------*/
 .loop-cursos-formacion-tecnica {
 	margin: 0px auto 80px;
+
+	> li {
+
+		@media (min-width: $mq-movil) {
+			height: 360px;
+		}
+
+		@media (min-width: $mq-tablet) {
+			height: 340px;
+		}
+	}
 }
 .curso-formacion-tecnica {
 	position: relative;

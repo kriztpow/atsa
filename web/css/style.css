@@ -3489,6 +3489,16 @@ h2.info-enfermeria {
 .loop-cursos-formacion-tecnica {
   margin: 0px auto 80px;
 }
+@media (min-width: 768px) {
+  .loop-cursos-formacion-tecnica > li {
+    height: 360px;
+  }
+}
+@media (min-width: 992px) {
+  .loop-cursos-formacion-tecnica > li {
+    height: 340px;
+  }
+}
 
 .curso-formacion-tecnica {
   position: relative;
