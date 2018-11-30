@@ -48,7 +48,8 @@
 	    					<option value="legales">Legales</option>
 	    					<option value="finanzas">Finanzas</option>
 	    					<option value="vitalicios">Vitalicios</option>
-	    					<option value="complejo_cultural">Complejo Cultural</option>
+							<option value="complejo_cultural">Complejo Cultural</option>
+							<option value="sanidad_solidaria">Sanidad Solidaria</option>
 	    				</select>
 	    			</label>
 	    		</div><!-- //.col -->

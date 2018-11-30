@@ -26,7 +26,8 @@ $AsistenciaSocial = 'web@atsa.org.ar';
 $Legales = 'web@atsa.org.ar';
 $Finanzas = 'web@atsa.org.ar';
 $Vitalicios = 'web@atsa.org.ar';
-$Complejo = 'complejocultural@atsa.org.ar';		
+$Complejo = 'complejocultural@atsa.org.ar';
+$SanidadSolidaria = 'sanidadsolidaria@atsa.org.ar';
 
 $form_type      = recogeDato('form_type'); 
 $cabeceras      = 'MIME-Version: 1.0' . "\r\n";
@@ -169,6 +170,10 @@ switch ( $form_type ) {
 
 			case 'complejo_cultural':
 				$paraContacto = $Complejo;
+				break;
+
+			case 'sanidad_solidaria':
+				$paraContacto = $SanidadSolidaria;
 				
 				break;
 		}
