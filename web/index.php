@@ -97,13 +97,22 @@ include 'head.php';
 						<h3>
 							Últimas noticias destacadas
 						</h3>
-						<ul class="loop-recientes-footer-single">
-							<?php 
+						<?php 
 							 if ( $categoriaNoticias == '' ) {
 							 	$categoriaNoticias = 'none';
 							 }
-							NoticiasRecientesHTML( '2', $categoriaNoticias, 'none', true, 3); ?>
-						</ul>
+							
+							$recientes = GetNoticiasRecientes( '3', $categoriaNoticias, 'none', true, 3);
+
+							getTemplate( 'sliders-recientes', $recientes);
+						?>
+
+						<!--<ul class="loop-recientes-footer-single">
+							<?php 
+							//NoticiasRecientesHTML( '2', $categoriaNoticias, 'none', true, 3);
+							?>	
+						</ul>-->
+
 					</aside>
 					<?php } ?>
 				</main><!------- // cierre main section ------>

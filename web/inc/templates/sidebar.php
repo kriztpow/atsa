@@ -1,5 +1,5 @@
 <!------------ noticias recientes ------------>
-<section class="section-sidebar">
+<section class="hidden-xs hidden-sm section-sidebar">
 	<h2 class="title-sidebar">
 		Noticias Recientes
 	</h2>
@@ -9,19 +9,32 @@
 </section>
 
 <!------------ etiquetas ------------>
-<section class="hidden-xs section-sidebar">
+<!--<section class="hidden-xs section-sidebar">
 	<h2 class="title-sidebar">
 		Etiquetas
 	</h2>
 	<div class="etiquetas-noticias">
 
-		<?php printTags(); ?>
+		<?php //printTags(); ?>
+		
+	</div>
+</section>-->
+
+<!------------ twitter ------------>
+<section class="hidden-xs hidden-sm section-sidebar">
+	<h2 class="title-sidebar">
+		Twitter
+	</h2>
+	<div class="twitter-noticias">
+
+		<a class="twitter-timeline" data-height="550" href="https://twitter.com/AtsaBsAs?ref_src=twsrc%5Etfw">Tweets by AtsaBsAs</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		
 	</div>
 </section>
 
+
 <!------------ archivo noticias ------------>
-<section class="hidden-xs section-sidebar archivo-noticias-menu">
+<section class="hidden-xs hidden-sm section-sidebar archivo-noticias-menu">
 	<h2>
 		Archivo Noticias
 	</h2>

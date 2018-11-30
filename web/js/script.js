@@ -367,7 +367,8 @@ $(window).on( 'load', function(){
     
     //variables
     var contenedor = $('.slides'); 
-    var slides = $('.slide-item');
+    var slider = $('.slider');
+    var slides = $(slider).find('.slide-item');
     var cantSlides = slides.length;
     var contenedorText = $('.slide-data');
     var titleSlide = $('.slide-title');
@@ -485,6 +486,139 @@ $(window).on( 'load', function(){
     
     
 });//slider superior-home
+
+
+/*
+ * slider noticiias recientes
+*/
+$(window).on( 'load', function(){
+    
+    /*
+     *preparación del slider
+    */
+    
+    //variables
+    var contenedor = $('.slides'); 
+    var slider = $('.slider-recientes');
+    var slides = $(slider).find('.slide-item');
+    var cantSlides = slides.length;
+    var contenedorText = $('.slide-data');
+    var titleSlide = $('.slide-title');
+    var textSlide = $('.slide-text');
+    var slideActual = 0;
+    var left = $('.slider-control-left');
+    var right = $('.slider-control-right');
+    var speedAuto = 6000;
+    
+    //mueve todos los slides menos el primero a la derecha, queda solo el primero para ver
+    for (i=1; i< cantSlides; i++) {
+        $(slides[i]).css({'left':'-1920px'});
+    }
+    
+    //si la ventana es mayor de 750 (tablet o pc) oculta el texto para animarlo
+    if (innerWidth >= 750) {
+        contenedorText.hide();
+    }
+    
+    /*
+     *función de funcionamiento del slider propiamente
+    */
+    
+    //slide go left or right or rewind cuando llega al final
+    function play ( where ) {
+        if ( where == 'right' ) {
+            if (slideActual == cantSlides-1) {
+               //si es el ultimo slide no puede ir a la derecha, por lo tanto no hace nada
+                return;
+           } else {
+               $(slides[slideActual]).animate({'left':'1920px'},300);
+               $(slides[slideActual+1]).animate({'left':'0px'},300);
+               
+               slideActual += 1;
+               
+               textAnimation(slideActual);
+           }
+        } else if ( where == 'left' ) {
+            if (slideActual == 0) {
+                //si es el primer slide no puede ir a la izquierda, por lo tanto no hace nada
+               return;
+           } else {
+               $(slides[slideActual-1]).animate({'left':'0'},300)
+               $(slides[slideActual]).animate({'left':'-1920'},300)
+               
+               slideActual -= 1;
+               
+               textAnimation(slideActual);
+           }
+        } else {
+            //where == 'rewind'
+            //lleva el primer slider a posicion 0
+            $(slides[0]).animate({'left':'0'},300)
+            //lleva el ultimo, es decir el actual a posición inicial
+            $(slides[cantSlides-1]).animate({'left':'-1920'},300)
+            //y pone todos en cero para volver a empezar
+            for (i=1; i < cantSlides; i++) {
+                $(slides[i]).css({'left':'-1920px'});
+            }
+            
+            slideActual = 0;
+
+        }
+    }//play()
+    
+    //animación interna del slide: texto
+    function textAnimation( actual ) {
+        var textoAnimar = contenedorText[actual];
+        $(textoAnimar).css('bottom', '-300px');
+        
+        setTimeout(function(){
+           $(textoAnimar)
+                .fadeIn()
+               .animate({
+               'bottom': '10px'
+           })
+        },500)
+        
+        setTimeout(function(){
+           $(textoAnimar).fadeOut();
+        },speedAuto-500);
+    };
+    
+    //slide automatico
+    var slideAutomatico = setInterval( playAuto, speedAuto );
+        function playAuto (){
+            if (slideActual == cantSlides-1) {
+                //si es la última retrocede todos los slider y vuelve a empezar
+                //borra el intervalo
+                clearInterval(slideAutomatico);
+                //retrocede todos los slides
+                play('rewind');
+                //velve a ejecutar intervalo
+                slideAutomatico = setInterval( playAuto, speedAuto )
+                //empieza la animación del texto
+                textAnimation(slideActual);
+            } else {
+                //sino lo pasa hacia la derecha
+                play('right');   
+            }
+        }
+        
+   
+    right.click( function() { play ( 'right' )} );
+    left.click( function() { play ( 'left' )} );
+
+    /*
+     * INICIA SLIDER
+    */
+    
+    //quita el cargardor, muestra el primer slider
+    $('.loader-slider').fadeOut();
+    //inicia animación del texto del primer slide
+    textAnimation(slideActual);
+    
+    
+});//slider superior-home
+
 
 /*
  * FORMULARIO PETICION

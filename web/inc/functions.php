@@ -246,6 +246,49 @@ function closeDataBase( $connection ){
     mysqli_close( $connection );
 }
 
+
+function GetNoticiasRecientes ( $cantPosts, $categoria = 'none', $exclude = 'none', $style = false, $offset = 0 ) {
+	$noticiasPorPagina = $cantPosts;
+	$connection = connectDB();
+	$fecha_actual = strtotime(date("d-m-Y H:i:00"));
+	$tabla = 'noticias';
+
+	if ( $offset != '0' ) {
+		$noticiasPorPagina = $offset.','.$cantPosts;
+		//$noticiasPorPagina = '3,2';
+	}
+
+	$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
+
+	if ( $categoria != 'none' ) {
+		$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' AND post_categoria = '".$categoria."' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
+	}
+
+	if ( $exclude != 'none' ) {
+		$query  = "SELECT * FROM " .$tabla. " WHERE post_url!='".$exclude."' AND post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
+	}
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		$respuesta = null;
+		
+	} else {
+
+		while ($row = $result->fetch_array()) {
+			$rows[] = $row;
+		}
+
+		$respuesta = $rows;
+	}
+
+	mysqli_close($connection);
+
+	return $respuesta;
+
+}//GetNoticiasRecientes()
+
+
 //muestra las noticias recientes se puede especificar la cant de post, la categoria y se puede excluir una noticia. Además tiene estilo columna para sidebar por default o row
 function NoticiasRecientesHTML ( $cantPosts, $categoria = 'none', $exclude = 'none', $style = false, $offset = 0 ) {
 	$noticiasPorPagina = $cantPosts;

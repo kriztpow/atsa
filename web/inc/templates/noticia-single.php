@@ -135,9 +135,16 @@ $imgGaleria = $dataNoticia['imgGaleria'];
 				<h3>
 					Últimas noticias destacadas
 				</h3>
-				<ul class="loop-recientes-footer-single">
-					<?php NoticiasRecientesHTML( '2', 'none', $dataNoticia['url'], true); ?>
-				</ul>
+
+				<?php 
+					
+					$recientes = GetNoticiasRecientes( '3', 'none', $dataNoticia['url'], true);
+
+					getTemplate( 'sliders-recientes', $recientes);
+				?>
+				<!--<ul class="loop-recientes-footer-single">
+					<?php //NoticiasRecientesHTML( '2', 'none', $dataNoticia['url'], true); ?>
+				</ul>-->
 			</aside>
 		</footer>
 	</article>
