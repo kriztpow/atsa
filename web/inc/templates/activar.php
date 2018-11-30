@@ -8,10 +8,6 @@ if ( $pagina['page_imagen'] != '') {
 } else {
     $src = urlBase() . '/assets/images/activar.png';
 }
-if ($texto == '') {
-    $texto = '<p>¿Sabías que el 70% de lxs trabajadorxs que engloba nuestro sindicato somos Mujeres?</p><p>Esto significa que somos más de 40.000 trabajadoras organizadas.</p><p>Estamos convencidxs que esto es una gran oportunidad. Somos muchas, y, si nos unimos, podemos desarrollar mucho más nuestro potencial en distintos ámbitos: personal, profesional y es decidir por dónde empezar. Para eso, estamos recorriendo los establecimientos y hablando con todas nuestras compañeras, para conocer qué les interesa, y qué actividades les gustaría que realice el sindicato. A partir de la información que reunamos, vamos a implementar distintas iniciativas.</p><p>Si todavía no pasamos por tu establecimiento, o si te quedaste con ganas de proponer algo, ¿Te gustaría sumar tu opinión?</p><h2>¡ACTIVÁ vos también! ¡Dejanos tu mensaje!</h2>';
-}
-
 ?>
 <article id="activar" class="wrapper-home">
     <header class="wrapper-image-header">
