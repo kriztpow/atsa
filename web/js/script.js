@@ -377,7 +377,7 @@ $(window).on( 'load', function(){
     var left = $('.slider-control-left');
     var right = $('.slider-control-right');
     var speedAuto = 6000;
-    
+
     //mueve todos los slides menos el primero a la derecha, queda solo el primero para ver
     for (i=1; i< cantSlides; i++) {
         $(slides[i]).css({'left':'-1920px'});
@@ -399,6 +399,7 @@ $(window).on( 'load', function(){
                //si es el ultimo slide no puede ir a la derecha, por lo tanto no hace nada
                 return;
            } else {
+               //mueve los slide
                $(slides[slideActual]).animate({'left':'1920px'},300);
                $(slides[slideActual+1]).animate({'left':'0px'},300);
                
@@ -498,7 +499,7 @@ $(window).on( 'load', function(){
     */
     
     //variables
-    var contenedor = $('.slides'); 
+    var contenedor = $('.slides');
     var slider = $('.slider-recientes');
     var slides = $(slider).find('.slide-item');
     var cantSlides = slides.length;
@@ -509,7 +510,7 @@ $(window).on( 'load', function(){
     var left = $('.slider-control-left');
     var right = $('.slider-control-right');
     var speedAuto = 6000;
-    
+
     //mueve todos los slides menos el primero a la derecha, queda solo el primero para ver
     for (i=1; i< cantSlides; i++) {
         $(slides[i]).css({'left':'-1920px'});
@@ -531,6 +532,7 @@ $(window).on( 'load', function(){
                //si es el ultimo slide no puede ir a la derecha, por lo tanto no hace nada
                 return;
            } else {
+                //mueve los slide
                $(slides[slideActual]).animate({'left':'1920px'},300);
                $(slides[slideActual+1]).animate({'left':'0px'},300);
                

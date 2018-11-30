@@ -1,5 +1,5 @@
 <article id="trabajadores" class="class="wrapper-home">
-<header class="header-home">
+<header class="header-hoteles">
         <?php
             getSliders( 'trabajadores' );
         ?>
