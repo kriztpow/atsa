@@ -15,6 +15,7 @@
 12. barrita afiliate
 13. acceso-afiliados
 14. mujeres historia
+15. activar
 */
 /* ---- 2 Extra reset ---- */
 html, body, div, span, applet, object, iframe,
@@ -5743,6 +5744,138 @@ legend {
 }
 #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .mujer-contenido p {
   margin-bottom: 10px;
+}
+
+/* ---- 15 activar ---- */
+#activar {
+  padding-top: 50px;
+}
+@media (max-width: 768px) {
+  #activar {
+    padding-top: 1px;
+  }
+}
+#activar .wrapper-image-header {
+  background-color: rgba(20, 160, 204, 0.4);
+}
+#activar .wrapper-image-header img {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px #666;
+}
+@media (max-width: 992px) {
+  #activar .wrapper-image-header img {
+    width: 100%;
+  }
+}
+#activar .wrapper-image-header .headliner {
+  color: #149fcc;
+  font-weight: bold;
+  font-size: 200%;
+  line-height: 120%;
+  background-color: #fff;
+  padding: 20px 5%;
+}
+@media (max-width: 992px) {
+  #activar .wrapper-image-header .headliner {
+    font-size: 120%;
+    line-height: 110%;
+  }
+}
+#activar .wrapper-activar .title-wrapper {
+  padding: 20px 5px;
+}
+#activar .wrapper-activar .title-wrapper h1 {
+  color: #00acec;
+  font-weight: bold;
+  font-size: 200%;
+  line-height: 120%;
+  font-weight: bold;
+  text-align: center;
+}
+#activar .wrapper-activar .wrapper-form {
+  box-shadow: 0 -5px 30px #ccc;
+  background-color: #e5e5e5;
+  padding: 20px 0;
+}
+#activar .wrapper-activar .wrapper-form .contenido-texto {
+  line-height: 155%;
+  font-size: 115%;
+}
+#activar .wrapper-activar .wrapper-form .contenido-texto strong {
+  font-weight: bold;
+}
+#activar .wrapper-activar .wrapper-form .contenido-texto em {
+  font-style: italic;
+}
+#activar .wrapper-activar .wrapper-form .contenido-texto a {
+  text-decoration: underline;
+}
+#activar .wrapper-activar .wrapper-form .contenido-texto h2 {
+  color: #00acec;
+  font-weight: bold;
+  font-size: 200%;
+  line-height: 120%;
+  font-weight: bold;
+  margin: 20px 0;
+}
+#activar .wrapper-activar .wrapper-form .contenido-texto h3 {
+  font-size: 150%;
+  line-height: 120%;
+}
+#activar .wrapper-activar .wrapper-form form {
+  margin-bottom: 30px;
+}
+#activar .wrapper-activar .wrapper-form form label {
+  display: block;
+  margin: 10px 0;
+}
+#activar .wrapper-activar .wrapper-form form label input, #activar .wrapper-activar .wrapper-form form label textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #00acec;
+  background-color: #d3d2d2;
+  padding: 5px;
+}
+#activar .wrapper-activar .wrapper-form form ::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #006a91;
+  text-transform: uppercase;
+}
+#activar .wrapper-activar .wrapper-form form ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #006a91;
+  text-transform: uppercase;
+}
+#activar .wrapper-activar .wrapper-form form :-ms-input-placeholder {
+  /* IE 10+ */
+  color: #006a91;
+  text-transform: uppercase;
+}
+#activar .wrapper-activar .wrapper-form form :-moz-placeholder {
+  /* Firefox 18- */
+  color: #006a91;
+  text-transform: uppercase;
+}
+#activar .wrapper-activar .wrapper-form form .wrapper-submit {
+  text-align: right;
+}
+#activar .wrapper-activar .wrapper-form form .wrapper-submit button {
+  cursor: pointer;
+  border: none;
+  color: #F2F2F2;
+  background-color: #00acec;
+  text-align: center;
+  padding: 3px 15px;
+  text-transform: uppercase;
+  font-size: 130%;
+  line-height: 130%;
+}
+#activar .wrapper-activar .wrapper-form form .wrapper-submit button:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
 }
 
 /*# sourceMappingURL=style.css.map */

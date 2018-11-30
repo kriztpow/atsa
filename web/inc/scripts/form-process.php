@@ -380,7 +380,7 @@ switch ( $form_type ) {
 		mail($paraAfiliate, $asunto, $mensaje, $cabeceras);
 		$exito = 1;
 		echo $exito;
-		break;
+	break;
 
 //formulario de peticion
 	case 'peticion':
@@ -428,19 +428,49 @@ switch ( $form_type ) {
 		}
 		
 
-		break;
+	break;
 
-		case 'acceso-delegados':
-		
-			$user = recogeDato('userid');
-			$pass = recogeDato('password');
-			if ( (isset($user) && $user != '') || (isset($pass) && $pass != '') ) {
-				echo autorizarAcceso($user, $pass);
-			} else {
-				echo 'Faltan datos';
-			}
+	case 'acceso-delegados':
+	
+		$user = recogeDato('userid');
+		$pass = recogeDato('password');
+		if ( (isset($user) && $user != '') || (isset($pass) && $pass != '') ) {
+			echo autorizarAcceso($user, $pass);
+		} else {
+			echo 'Faltan datos';
+		}
 			
-		break;
+	break;
+
+
+	case 'activar':
+		global $cabeceras;
+		global $paraContacto;
+		global $exito;
+		global $Mujer;
+
+		$nombre       = recogeDato('nombre');
+		$apellido     = recogeDato('apellido');
+		$dni          = recogeDato('dni');
+		$email        = recogeDato('email');
+		$telefono     = recogeDato('telefono');
+		$texto        = recogeDato('mensaje');
+		$asunto       = 'Mensaje nuevo desde el sitio web';
+
+		$cabeceras .= 'Reply-To: ' . $email . "\r\n";
+
+		$mensaje  = 'Nombre: ' . $nombre . ' '. $apellido . '<br>';
+		$mensaje .= 'DNI: ' . $dni . '<br>';
+		$mensaje .= 'Email: ' . $email . '<br>';
+		$mensaje .= 'Teléfono: ' . $telefono . '<br>';
+		$mensaje .= $texto;
+		$paraContacto = $Mujer;
+		
+		mail($paraContacto, $asunto, $mensaje, $cabeceras);
+		$exito = 1;
+		echo $exito;
+
+	break;
 
 }//switch
 

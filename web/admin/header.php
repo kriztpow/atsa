@@ -99,6 +99,9 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=page-edit&id=2" role="button">Política de privacidad</a>
                 </li>
                 <li>
+                  <a href="index.php?admin=page-edit&id=4" role="button">Activar</a>
+                </li>
+                <li>
                   <a href="index.php?admin=staff" role="button">Staff</a>
                 </li>
                 <li>
