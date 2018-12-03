@@ -138,7 +138,7 @@ $imgGaleria = $dataNoticia['imgGaleria'];
 
 				<?php 
 					
-					$recientes = GetNoticiasRecientes( '3', 'none', $dataNoticia['url'], true);
+					$recientes = GetNoticiasRecientes( '10', 'none', $dataNoticia['url'], true);
 
 					getTemplate( 'sliders-recientes', $recientes);
 				?>

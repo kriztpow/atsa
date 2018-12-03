@@ -16,7 +16,7 @@
  * 9. Convenios
  * 10. Leyes
  * 11. staff
- * 12. hoteles y viajes
+ * 12. hoteles
  * 13. cursos
  * 14. beneficios
  * 15. page edit
@@ -27,6 +27,7 @@
  * 20. peticion
  * 21. contenido delegados
  * 22. mujeres que hicieron historia
+ * 23. viajes
 */
 
 function scrollHaciaArriba() {
@@ -3979,9 +3980,9 @@ $(document).ready(function(){
 		var idItem = $(this).attr('data-id');
 		//var post_type = $(this).attr('data-tipo');
 		var btn = $(this);
-		var article = this.closest('.mujeres-item');
-		var msj = $(article).find('.msj-mujeres-saved');
-		var btnDel = $(article).find('.btn-del-mujeres-item');
+		var article = this.closest('.viajes-item');
+		var msj = $(article).find('.msj-viajes-saved');
+		var btnDel = $(article).find('.btn-del-viajes-item');
 		var inputs = $(article).find('input')
 		var titulo = $(inputs[0]).val();
 		var orden = $(inputs[2]).val();;
@@ -3999,9 +4000,9 @@ $(document).ready(function(){
             url: 'inc/save-mujeres.php',
             data: {
             	idItem: idItem,
-            	titulo: titulo,
+				titulo: titulo,
+				fecha: fecha,
             	orden: orden,
-            	fecha: fecha,
             	imagen: imagen,
             	texto: texto,
             	newArticle: newArticle,
@@ -4026,3 +4027,207 @@ $(document).ready(function(){
 	});//click guardar cambios
 
 });//ready mujeres
+
+
+/*
+VIAJES
+*/
+$(document).ready(function(){
+	$( "#viajesAdmin" ).accordion({
+			heightStyle: "content",
+			active: false,
+			collapsible: true,
+		});	
+	
+	
+	tinyEditorviajes();
+
+	function tinyEditorviajes() {
+		tinyMCE.init({
+		selector: '.tinymce-viajes',
+		toolbar1: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, undo, redo, link',
+		toolbar2: 'formatselect, cut, copy, paste, blockquote, forecolor backcolor, removeformat, code',
+		menubar: false,
+		height:100,
+		plugins: [
+		  'code advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+		  'save table contextmenu directionality emoticons template paste textcolor colorpicker media',
+		],
+		branding: false,
+		//media_live_embeds: true,
+		language: 'es',
+		language_url: 'assets/lib/tinymce/langs/es.js',
+		//mantiene sincronizado los cambios del editor con el textarea hidden
+		setup: function (editor) {
+	        editor.on('change', function () {
+	            editor.save();
+	        });
+	    },
+	    file_browser_callback : 
+		function(field_name, url, type, win){
+		var imagebrowser = "inc/templates/media-browser-tinymce.php";
+		tinymce.activeEditor.windowManager.open({
+		title : "Insertar imagen",
+		width : 780,
+		height : 600,
+		url : imagebrowser
+		}, {
+		window : win,
+		input : field_name
+		});
+		return false;
+		}
+		});
+	}
+
+	//cambiar imagen
+	$(document).on('click', '.btn-change-image-viajes', function(){
+		var div = this.closest('div');
+		var img = $(div).find('img');
+
+		$( "#dialog" ).dialog({
+			title: 'Biblioteca de imágenes',
+			autoOpen: false,
+			appendTo: '.contenido-modulo',
+			height: 600,
+			width:768,
+			modal: true,
+			buttons: [
+		    {
+		    	text: "Cerrar",
+		      	class: 'btn btn-default',
+		      	click: function() {
+		        $( this ).dialog( "close" );
+		      }
+		    },
+		    {
+		    	text: 'Insertar imagen',
+		    	class: 'btn btn-success',
+		    	click: function () {
+		    		//se toma el nombre de la imagen, siempre la primera porque es UNA imagen destacada
+		    		newImage = $('.previewAtachment')[0];
+		    		newImage =  $(newImage).val();
+		    		if ( newImage == '' ) {
+		    			$( this ).dialog( "close" );
+		    			return;
+		    		}
+		    		//se incluye el nombre de la imagen como data para guardar en base de datos, solo nombre
+					$(img).attr('data-href', newImage);
+					//se genera url completo de la imagen para mostrar ahora
+					urlimg = 'https://' + window.location.host + '/uploads/images/' + newImage;
+					//se imprime el html con el url de la imagen
+					$(img).attr('src', urlimg);
+					
+		    		//se cierra el dialogo
+		    		$( this ).dialog( "close" );
+		    	}
+		    },
+		  ],
+		});
+		$( "#dialog" ).dialog( 'open' ).load( 'inc/templates/media-browser.php' );
+	});//cambiar image 
+
+	//agregar uno
+	$('.new-viajes-btn').click(function(){
+		var contenedor = $('#viajesAdmin');
+		var titulo = prompt('Inserte el nombre');
+		var orden = 0;
+		if ( titulo == '' ) {
+			titulo = 'Ingrese un nombre'
+		}
+
+		var html = '<h3 class="viajes-item-titulo">'+titulo+'</h3><div class="viajes-item"><div class="row"><div class="col-sm-4"><img data-herf="" class="img-responsive"><button class="btn btn-xs btn-primary btn-change-image-viajes">Cambiar imagen</button></div><div class="col-sm-8"><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="viajes_titulo" value="'+titulo+'"></label></div><div class="col-sm-2"><label>Orden:<br><input type="text" name="viajes_orden" value="'+orden+'"></label></div><div class="col-sm-12"><label>Texto:<br><textarea class="tinymce-viajes" name="viajes_texto"></textarea></label></div></div></div></div><div class="row"><div class="col-sm-12"><p class="btns-item-footer"><span class="msj-viajes-saved"></span><button class="btn btn-sm btn-success btn-save-viajes-item" data-id="new">Guardar cambios</button>&nbsp;<button class="btn btn-sm btn-danger btn-del-viajes-item" data-id="new">Borrar elemento</button></p></div></div></div>';
+
+		contenedor.prepend(html);
+		tinyEditorviajes();
+	});//click new-item-curso
+
+	//borrar 
+	$(document).on('click', '.btn-del-viajes-item', function(){
+		var idItem = $(this).attr('data-id');
+		var contenedor = this.closest('.viajes-item');
+		var tituloContenedor = $(contenedor).prev();
+		var msj = $(contenedor).find('.msj-viajes-saved');
+		
+		var confirmar = confirm('¿Está seguro?');
+		if (confirmar) {
+			//si el elemento es nuevo no está guardado en la bd
+			if ( idItem == 'new' ) {
+				$(contenedor).remove();
+				tituloContenedor.remove();
+				return;
+			} else {
+				$.ajax( {
+		            type: 'POST',
+		            url: 'inc/delete-item-viajes.php',
+		            data: {
+		                idItem: idItem,
+		            },
+		            beforeSend: function() {
+		            	$(msj).html('borrando, espere');
+		        	},
+		            success: function ( response ) {
+		            	$(contenedor).remove();
+		            	tituloContenedor.remove();
+		            },
+		            error: function ( ) {
+		                console.log('error');
+		                $(msj).html('No se pudo borrar');
+		            },
+		        });//cierre ajax
+			}
+		}//if confirmar
+	});//click btn-curso-del-item
+
+
+	//guardar cambios
+	$(document).on('click', '.btn-save-viajes-item', function(){
+		var idItem = $(this).attr('data-id');
+		//var post_type = $(this).attr('data-tipo');
+		var btn = $(this);
+		var article = this.closest('.viajes-item');
+		var msj = $(article).find('.msj-viajes-saved');
+		var btnDel = $(article).find('.btn-del-viajes-item');
+		var inputs = $(article).find('input');
+		var titulo = $($(article).find('input[name="viajes_titulo"]')).val();
+		var orden =  $($(article).find('input[name="viajes_orden"]')).val();
+		var imagen = $($(article).find('img')).attr('data-href');
+		var texto = $(article).find('textarea').val();
+
+		var newArticle = false;
+		if ( idItem == 'new' ) {
+				newArticle = true;
+			}
+			
+		$.ajax( {
+            type: 'POST',
+            url: 'inc/save-viajes.php',
+            data: {
+            	idItem: idItem,
+            	titulo: titulo,
+            	orden: orden,
+            	imagen: imagen,
+            	texto: texto,
+            	newArticle: newArticle,
+            },
+            beforeSend: function() {
+            	$(msj).html('guardando, espere');
+        	},
+            success: function ( response ) {
+            	console.log(response)
+            	if ( response != 'ok' ) {
+            		$(msj).html('Cambios guardados');
+            		$(btnDel).attr('data-id', response);
+            		btn.attr('data-id', response);
+            	} 
+            	$(msj).html('Cambios guardados');
+            },
+            error: function ( ) {
+                console.log('error');
+                $(msj).html('No se pudo guardar');
+            },
+        });//cierre ajax
+	});//click guardar cambios
+
+});//ready viajes

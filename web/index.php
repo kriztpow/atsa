@@ -102,7 +102,7 @@ include 'head.php';
 							 	$categoriaNoticias = 'none';
 							 }
 							
-							$recientes = GetNoticiasRecientes( '3', $categoriaNoticias, 'none', true, 3);
+							$recientes = GetNoticiasRecientes( '5', $categoriaNoticias, 'none', true, 3);
 
 							getTemplate( 'sliders-recientes', $recientes);
 						?>

@@ -1102,4 +1102,24 @@ aside {
   margin-right: 10px;
 }
 
+.viajes-item label {
+  width: 100%;
+  margin: 10px 0;
+}
+.viajes-item input {
+  width: 100%;
+  font-weight: normal;
+}
+.viajes-item textarea {
+  width: 100%;
+  font-weight: normal;
+}
+
+.msj-viajes-saved {
+  font-size: 90%;
+  color: #d9534f;
+  font-style: italic;
+  margin-right: 10px;
+}
+
 /*# sourceMappingURL=admin-style.css.map */
