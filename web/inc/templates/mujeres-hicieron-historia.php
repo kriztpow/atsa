@@ -8,9 +8,6 @@ if ( $pagina['page_imagen'] != '') {
 } else {
     $src = urlBase() . '/assets/images/mujeres-header.jpg';
 }
-if ($texto == '') {
-    $texto = '<p>Un homenaje a las compa&ntilde;eras que forjaron la historia de nuestro pa&iacute;s y que hoy siguen vivas en nuestra lucha cotidiana por una sociedad m&aacute;s justa e igualitaria.</p>';
-}
 
 ?>
 <article id="mujeres" class="wrapper-home">
