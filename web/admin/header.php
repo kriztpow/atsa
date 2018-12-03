@@ -75,7 +75,10 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=cursos" role="button">Cultura</a>
                 </li>
                 <li>
-                  <a href="index.php?admin=hoteles" role="button">Hoteles y Viajes</a>
+                  <a href="index.php?admin=hoteles" role="button">Hoteles</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=viajes" role="button">Viajes</a>
                 </li>
                 <li>
                   <a href="index.php?admin=home-page" role="button">Home Page</a>

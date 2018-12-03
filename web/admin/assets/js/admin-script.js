@@ -1696,11 +1696,11 @@ $(document).ready(function(){
 HOTELES Y VIAJES
 */
 $(document).ready(function(){
-	$( "#hotelesyviajes" ).accordion({
+	/*$( "#hotelesyviajes" ).accordion({
 		heightStyle: "content",
 		active: false,
 			collapsible: true,
-	});
+	});*/
 
 	/*
 	 Editor de texto by tinyMCE

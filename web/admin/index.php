@@ -158,9 +158,22 @@ if ( $modulo == '') {
       <section>
         <div class="jumbotron modulos">
           <div class="container">
-            <h2>Hoteles y Viajes</h2>
-            <p>Modificar hoteles (imágenes, textos, links) y viajes.</p>
+            <h2>Hoteles</h2>
+            <p>Modificar hoteles (imágenes, textos, links, inconos, etc).</p>
             <p><a class="btn btn-danger btn-sm" href="index.php?admin=hoteles" role="button">Modificar hoteles</a></p>
+          </div>
+        </div>
+      </section><!-- //section links y pdfs -->
+    </div><!-- //columna -->
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <!-- section links y pdfs -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2>Viajes</h2>
+            <p>Modificar o agregar viajes (imágenes, textos, links).</p>
+            <p><a class="btn btn-danger btn-sm" href="index.php?admin=viajes" role="button">Modificar viajes</a></p>
           </div>
         </div>
       </section><!-- //section links y pdfs -->
@@ -237,7 +250,7 @@ if ( $modulo == '') {
         <div class="jumbotron modulos">
           <div class="container">
             <h2>Política de privacidad</h2>
-            <p>Modificar y editar el texto del contenido.</p>
+            <p>Modificar y editar el texto del contenido en cuestión.</p>
             <p><a class="btn btn-success btn-sm" href="index.php?admin=page-edit&id=2" role="button">Modificar página</a></p>
           </div>
         </div>
@@ -283,8 +296,8 @@ if ( $modulo == '') {
       </section><!-- //section programas -->
     </div><!-- //columna -->
 
-    <div class="col-sm-12 col-md-6 col-lg-4">
-       <!-- section galeria imágenes -->
+    <!--<div class="col-sm-12 col-md-6 col-lg-4">
+       
       <section>
         <div class="jumbotron modulos">
           <div class="container">
@@ -295,7 +308,7 @@ if ( $modulo == '') {
             </p>
           </div>
         </div>
-      </section><!-- //section galeria imágenes -->
+      </section>
     </div><!-- //columna -->
 
     <div class="col-sm-12 col-md-6 col-lg-4">
