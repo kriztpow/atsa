@@ -1446,3 +1446,29 @@ function showMujeresHistoria() {
 
 	return $mujeres;
 }
+
+
+//busca los viajes de la tabla de viajes
+function showViajesCargados() {
+	$connection = connectDB();
+	$tabla = 'viajes';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " ORDER by orden";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
+		$viajes = null;
+	
+	} else {
+		while ($row = $result->fetch_array()) {
+			$rows[] = $row;
+		
+		}//while
+		$viajes = $rows;
+	}	
+	closeDataBase($connection);
+
+	return $viajes;
+}
