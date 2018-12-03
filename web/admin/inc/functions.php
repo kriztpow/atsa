@@ -1632,7 +1632,8 @@ function showBeneficiosAdmin() {
 	mysqli_close($connection);
 };//showBeneficiosAdmin()
 
-function showPageAdmin ( $id ) {
+
+function showPageAdmin ( $id, $extra = false ) {
 	$connection = connectDB();
 	$tabla = 'pages';
 	
@@ -1650,6 +1651,7 @@ function showPageAdmin ( $id ) {
 		$pageTitulo = $row['page_titulo'];
 		$pageContenido = $row['page_text'];
 		$pageImagen = $row['page_imagen'];
+		$pageExtra = $row['page_extra'];
 
 		?>
 
@@ -1658,6 +1660,14 @@ function showPageAdmin ( $id ) {
 					<label>Titulo página:<br>
 					<input type="text" name="page_titulo" value="<?php echo $pageTitulo; ?>"></label>
 				</div>
+				
+				<?php if ($extra || ( isset($_GET['extra']) && $_GET['extra'] == 1 ) ) : ?>
+					<div class="col-sm-12">
+						<label>Texto Extra sin formato:<br>
+						<input type="text" name="page_extra" value="<?php echo $pageExtra; ?>"></label>
+					</div>
+				<?php endif; ?>
+				
 				<div class="col-sm-12">
 					<label>Contenido página:<br>
 						<textarea id="textoPrincipal"><?php echo $pageContenido; ?></textarea>

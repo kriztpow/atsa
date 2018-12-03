@@ -2634,7 +2634,8 @@ $(document).ready(function(){
 		var idItem = $(this).attr('data-id');
 		var btn = $(this);
 		var contenedor = this.closest('.page-admin-wrapper');
-		var titulo = $(contenedor).find('input').val();
+		var titulo = $(contenedor).find('input[name="page_titulo"]').val();
+		var extra = $(contenedor).find('input[name="page_extra"]').val();
 		var imagen = $(contenedor).find('img').attr('data-href');
 		var contenido = $(contenedor).find('textarea').val();
 		var msj = $(contenedor).find('.msj-page-saved');
@@ -2645,7 +2646,8 @@ $(document).ready(function(){
             data: {
             	idItem: idItem,
             	titulo: titulo,
-            	imagen: imagen,
+				imagen: imagen,
+				extra: extra,
             	contenido: contenido,
             },
             beforeSend: function() {
