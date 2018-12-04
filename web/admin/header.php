@@ -21,7 +21,7 @@ if(!defined("SECUREACCESS"))
 <!-- jQquery UI css -->
   <link href="assets/css/jquery-ui.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-  <link href="assets/css/admin-style.css?version=4" rel="stylesheet">
+  <link href="assets/css/admin-style.css?version=8.4" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -72,7 +72,16 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=convenios" role="button">Convenios</a>
                 </li>
                 <li>
-                  <a href="index.php?admin=cursos" role="button">Cultura</a>
+                  <a href="index.php?admin=cursos" role="button">Cursos No Formales</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=formacion-tecnico-profesional" role="button">Formacion técnica profesional</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=convenios-universitarios" role="button">Convenios Universitarios</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=instituto-amado-olmos" role="button">Instituto Amado Olmos</a>
                 </li>
                 <li>
                   <a href="index.php?admin=hoteles" role="button">Hoteles</a>

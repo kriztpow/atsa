@@ -14,40 +14,68 @@ require_once("inc/functions.php");
 		<div class="container">
 			
 			<div id="cursosacordion">
-				<h3>Formación Técnico profesional</h3>
-				<div>
-					<button class="btn btn-warning btn-sm btn-new-curso" data-tipo="formacion-tecnica">Crear nuevo Curso</button>
-					<ul class="lista-cursos" id="contenedor-formacion-tecnica">
-						<?php listCursosAdmin ( 'formacion_tecnica' ); ?>
-					</ul>
-				</div><!-- // accordion item -->
-				<h3>Cursos no formales</h3>
+				
+				<h3 class="text-center">Cursos no formales</h3>
 				<div>
 					<div class="container-fluid">
 						<button class="btn btn-warning btn-sm btn-new-curso" data-tipo="no-formal">Crear nuevo Curso</button>
 						<ul class="lista-cursos" id="contenedor-no-formal">
-							<?php listCursosAdmin ( 'no_formal' ); ?>
-						</ul>
-					</div>
-				</div><!-- // accordion item -->
-				<h3>Convenios Universitarios</h3>
-				<div>
-					<div class="container-fluid">
-						<button class="btn btn-warning btn-sm btn-new-curso" data-tipo="universitarios">Crear nuevo Convenio</button>
-						<ul class="lista-cursos" id="contenedor-universitarios">
-							<?php listCursosAdmin ( 'universitarios' ); ?>
-						</ul>
-					</div>
-				</div><!-- // accordion item -->
+							<?php $cursos = listCursosAdmin ( 'no_formal' );
+							
+								if ( $cursos != null ) :
 
-				<h3>Instituto Amado olmos</h3>
-				<div>
-					<div class="container-fluid">
-						<ul class="lista-cursos" id="contenedor-instituto">
-							<?php showInstitutoAdmin ( 'instituto' ); ?>
+									foreach ( $cursos as $curso ) { ?>
+										<h3><?php echo $curso['curso_titulo']; ?></h3>
+										<div class="curso">
+											<article class="container-fluid" id="<?php echo $curso['curso_ID']; ?>">
+												<div class="row">
+													<div class="col-sm-8">
+														<label>Título:<br>
+															<input type="text" name="cursos_titulo" value="<?php echo $curso['curso_titulo']; ?>">
+														</label>
+													</div><!-- // .col -->
+													<div class="col-sm-4">
+														<label>Orden:<br>
+															<input type="number" name="cursos_orden" value="<?php echo $curso['curso_orden']; ?>">
+														</label>
+													</div><!-- // .col -->
+												</div>
+
+												<div class="row">
+													<div class="col-sm-6">
+														<label>Duración:<br>
+															<input type="text" name="cursos_titulo" value="<?php echo $curso['curso_lugar']; ?>">
+														</label>
+													</div><!-- // .col -->
+													<div class="col-sm-6">
+														<label>Horarios:<br>
+															<input type="text" name="cursos_orden" value="<?php echo $curso['curso_horarios']; ?>">
+														</label>
+													</div><!-- // .col -->
+												</div>
+												<div class="row">
+													<div class="col-sm-12">
+														<label>Resumen:<br>
+															<textarea class="tinyeditorcursos" name="cursos_resumen"> <?php echo $curso['curso_resumen']; ?></textarea>
+														</label>
+													</div><!-- // .col -->
+												</div>
+												<div class="btn-cursos-wrapper">
+													<span class="msj-cursos-saved"></span>
+													<button class="btn btn-danger btn-curso-save-item" data-tipo="no_formal" data-id="<?php echo $curso['curso_ID']; ?>">Guardar Cambios</button>
+													<button class="btn btn-success btn-curso-del-item" data-tipo="no_formal" data-id="<?php echo $curso['curso_ID']; ?>">Borrar curso</button>
+												</div>
+											</article>
+									</div>
+									<?php }
+
+								endif;
+								
+							?>
 						</ul>
 					</div>
 				</div><!-- // accordion item -->
+				
 			</div><!-- // accordion -->
 		</div><!-- // container -->
 		<div id="dialog">

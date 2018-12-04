@@ -1215,6 +1215,31 @@ function listCursosAdmin ( $post_type ) {
 	
 	if ( $result->num_rows == 0 ) { 
 	
+		$cursos = null;
+	
+	} else {
+		while ($row = $result->fetch_array()) {
+			$rows[] = $row;
+		
+		}//while
+		$cursos = $rows;
+	}
+
+	closeDataBase($connection);
+
+	return $cursos;
+}
+
+function listCursosAdmin1 ( $post_type ) {
+	$connection = connectDB();
+	$tabla = 'cursos';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='".$post_type."' ORDER by curso_orden asc";	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
 		echo 'No hay nada cargado';
 	
 	} else {
@@ -1460,8 +1485,8 @@ function showInstitutoAdmin ( $post_type ) {
 		$row = $result->fetch_array();
 
 		?>
-		<li>
-			<article id="<?php echo $row['curso_ID']; ?>">
+		<div class="curso">
+			<article class="container-fluid" id="<?php echo $row['curso_ID']; ?>">
 
 				<div class="row">
 					<div class="col-sm-6">
@@ -1558,7 +1583,7 @@ function showInstitutoAdmin ( $post_type ) {
 
 				
 			</article>
-		</li>
+		</div>
 	<?php }//else
 	mysqli_close($connection);
 }//showInstitutoAdmin()

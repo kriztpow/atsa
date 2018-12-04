@@ -881,26 +881,26 @@ aside {
 .lista-cursos {
   list-style: none;
 }
-.lista-cursos li {
+.lista-cursos .curso {
   padding: 20px 0;
   border-bottom: 1px solid #333;
   margin-bottom: 40px;
 }
-.lista-cursos li:last-child {
+.lista-cursos .curso:last-child {
   border-bottom: none;
 }
-.lista-cursos li label {
+.lista-cursos .curso label {
   width: 100%;
   margin: 5px 0;
 }
-.lista-cursos li input, .lista-cursos li textarea {
+.lista-cursos .curso input, .lista-cursos .curso textarea {
   width: 100%;
   height: 30px;
   margin: 5px 0;
   padding: 2px;
   font-weight: normal;
 }
-.lista-cursos li textarea {
+.lista-cursos .curso textarea {
   height: 60px;
 }
 

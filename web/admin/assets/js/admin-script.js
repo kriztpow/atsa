@@ -1975,12 +1975,31 @@ CURSOS (formales y no formales)
 */
 
 $(document).ready(function(){
-	$( "#cursosacordion" ).accordion({
+	/*$( "#cursosacordion" ).accordion({
+		heightStyle: "content",
+		active: false,
+		collapsible: true,
+	});*/
+	
+	$( "#contenedor-formacion-tecnica" ).accordion({
 		heightStyle: "content",
 		active: false,
 		collapsible: true,
 	});
 
+	$( "#contenedor-no-formal" ).accordion({
+		heightStyle: "content",
+		active: false,
+		collapsible: true,
+	});
+
+	$( "#contenedor-universitarios" ).accordion({
+		heightStyle: "content",
+		active: false,
+		collapsible: true,
+	});
+
+	
 	tinyEditor();
 	function tinyEditor() {
 		tinyMCE.init({
@@ -2314,15 +2333,15 @@ $(document).ready(function(){
 		var tipo = $(this).attr('data-tipo');
 		if ( tipo == 'formacion-tecnica' ) {
 			var contenedor = $('#contenedor-formacion-tecnica');
-			var html = '<li><article><div class="row"><div class="col-sm-6"><label>Título:<br><input class="cursos_input_titulo" type="text" name="cursos_titulo" value=""></label><label>Slug:<br><input class="cursos_input_slug" type="text" name="cursos_orden" value=""></label></div><div class="col-sm-6"><label>Resumen:<br><textarea name="cursos_resumen"></textarea></label></div></div><div class="row"><div class="col-sm-6"><label>Imagen:<br><img data-href="" class="img-responsive imagen-curso" src=""><button class="btn btn-xs btn-change-image-curso">agregar imagen</button></label></div><div class="col-sm-6"><label>Certificado:<br><input type="text" name="cursos_titulo" value=""></label><label>Cursada:<br><textarea name="cursos_orden"></textarea></label><label>Horarios:<br><input type="text" name="cursos_orden" value=""></label><label>Lugar:<br><input type="text" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-6"><label>Metodología:<br><textarea name="curso_metodologia"></textarea></label></div><div class="col-sm-6"><label>Objetivo General:<br><textarea name="curso_objgeneral"></textarea></label></div><div class="col-sm-6"><label>Requisitos:<br><textarea name="curso_requisitos"></textarea></label></div><div class="col-sm-6"><label>Destinatario:<br><textarea name="curso_destinatario"></textarea></label></div></div><div class="row"><div class="col-sm-8"><label>Objetivo Específico:<br><textarea class="tinyeditorcursos" name="curso_objespecifico"></textarea></label></div><div class="col-sm-4"><div class="row"><div class="col-sm-8"><label>Destacado:<br><input type="checkbox" name="cursos_destacado"></label></div><div class="col-sm-4"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="formacion_tecnica" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="formacion_tecnica" data-id="new">Borrar curso</button></div></article></li>';
+			var html = '<div class="curso"><article><div class="row"><div class="col-sm-6"><label>Título:<br><input class="cursos_input_titulo" type="text" name="cursos_titulo" value=""></label><label>Slug:<br><input class="cursos_input_slug" type="text" name="cursos_orden" value=""></label></div><div class="col-sm-6"><label>Resumen:<br><textarea name="cursos_resumen"></textarea></label></div></div><div class="row"><div class="col-sm-6"><label>Imagen:<br><img data-href="" class="img-responsive imagen-curso" src=""><button class="btn btn-xs btn-change-image-curso">agregar imagen</button></label></div><div class="col-sm-6"><label>Certificado:<br><input type="text" name="cursos_titulo" value=""></label><label>Cursada:<br><textarea name="cursos_orden"></textarea></label><label>Horarios:<br><input type="text" name="cursos_orden" value=""></label><label>Lugar:<br><input type="text" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-6"><label>Metodología:<br><textarea name="curso_metodologia"></textarea></label></div><div class="col-sm-6"><label>Objetivo General:<br><textarea name="curso_objgeneral"></textarea></label></div><div class="col-sm-6"><label>Requisitos:<br><textarea name="curso_requisitos"></textarea></label></div><div class="col-sm-6"><label>Destinatario:<br><textarea name="curso_destinatario"></textarea></label></div></div><div class="row"><div class="col-sm-8"><label>Objetivo Específico:<br><textarea class="tinyeditorcursos" name="curso_objespecifico"></textarea></label></div><div class="col-sm-4"><div class="row"><div class="col-sm-8"><label>Destacado:<br><input type="checkbox" name="cursos_destacado"></label></div><div class="col-sm-4"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="formacion_tecnica" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="formacion_tecnica" data-id="new">Borrar curso</button></div></article></div>';
 		} else if ( tipo == 'no-formal' ) {
 			var contenedor = $('#contenedor-no-formal');
-			var html = '<li><article><div class="row"><div class="col-sm-8"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-4"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-6"><label>Duración:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-6"><label>Horarios:<br><input type="text" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-12"><label>Resumen:<br><textarea name="cursos_orden"></textarea></label></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="no_formal" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="no_formal" data-id="new">Borrar curso</button></div></article></li>';
+			var html = '<div class="curso"><article><div class="row"><div class="col-sm-8"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-4"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-6"><label>Duración:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-6"><label>Horarios:<br><input type="text" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-12"><label>Resumen:<br><textarea name="cursos_orden"></textarea></label></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="no_formal" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="no_formal" data-id="new">Borrar curso</button></div></article></div>';
 		} else {
 			var contenedor = $('#contenedor-universitarios');
-			var html = '<li><article><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-2"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-12"><label>Contenido:<br><textarea class="tinyeditorcursos" name="cursos_contenido"></textarea></label></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="universitarios" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="universitarios" data-id="new">Borrar Convenio</button></div></article></li>';
+			var html = '<div class="curso"><article><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-2"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-12"><label>Contenido:<br><textarea class="tinyeditorcursos" name="cursos_contenido"></textarea></label></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="universitarios" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="universitarios" data-id="new">Borrar Convenio</button></div></article></div>';
 		}
-		if ( $($(contenedor).find('li')).length == 0 ) {
+		if ( $($(contenedor).find('div')).length == 0 ) {
 			contenedor.empty();
 		}
 		contenedor.prepend(html);

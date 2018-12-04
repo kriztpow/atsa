@@ -145,9 +145,48 @@ if ( $modulo == '') {
       <section>
         <div class="jumbotron modulos">
           <div class="container">
-            <h2>Cultura</h2>
-            <p>Cursos profesionales, no formales, convenios e Instituto.</p>
-            <p><a class="btn btn-warning btn-sm" href="index.php?admin=cursos" role="button">Modificar Cursos</a></p>
+            <h2>Cursos</h2>
+            <p>Modificar Cursos No formales, agregar nuevos, etc.</p>
+            <p><a class="btn btn-warning btn-sm" href="index.php?admin=cursos" role="button">Modificar</a></p>
+          </div>
+        </div>
+      </section><!-- //section otras opciones -->
+    </div><!-- //columna -->
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <!-- section otras opciones -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2>Formación Técnica</h2>
+            <p>Modificar Cursos de formación técnica, agregar nuevos, etc.</p>
+            <p><a class="btn btn-warning btn-sm" href="index.php?admin=formacion-tecnico-profesional" role="button">Modificar</a></p>
+          </div>
+        </div>
+      </section><!-- //section otras opciones -->
+    </div><!-- //columna -->
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <!-- section otras opciones -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2>Instituto Amado Olmos</h2>
+            <p>Modificar página del instituto Amado Olmos, textos, imagen, etc.</p>
+            <p><a class="btn btn-warning btn-sm" href="index.php?admin=formacion-tecnico-profesional" role="button">Modificar</a></p>
+          </div>
+        </div>
+      </section><!-- //section otras opciones -->
+    </div><!-- //columna -->
+
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <!-- section otras opciones -->
+      <section>
+        <div class="jumbotron modulos">
+          <div class="container">
+            <h2>Convenios Universitarios</h2>
+            <p>Modificar convenios universitarios, agregar nuevos, etc.</p>
+            <p><a class="btn btn-warning btn-sm" href="index.php?admin=convenios-universitarios" role="button">Modificar</a></p>
           </div>
         </div>
       </section><!-- //section otras opciones -->
