@@ -4189,7 +4189,8 @@ h2.info-enfermeria {
 
 /*-------------- viajes -----------------*/
 .viajes {
-  padding: 50px 0;
+  padding: 50px 0 20px;
+  background-color: #fff;
 }
 
 .alert-viaje-norte {
@@ -4280,6 +4281,78 @@ h2.info-enfermeria {
   font-weight: 700;
   text-align: center;
   margin: -15px 0 20px;
+}
+
+/*NUEVA VERSION VIAJES*/
+.wrapper-info-viajes {
+  background-color: #e5e5e5;
+  padding: 60px 0 30px;
+}
+.wrapper-info-viajes .alert-info-viajes h2 {
+  width: 100%;
+  max-width: 350px;
+}
+.wrapper-info-viajes .alert-info-viajes p {
+  font-size: 16px;
+}
+
+.wrapper-viajes {
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -ms-justify-content: space-around;
+  -o-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .wrapper-viajes {
+    display: block;
+  }
+}
+.wrapper-viajes .alert-viaje-norte {
+  box-shadow: 10px 10px 21px #ccc;
+  margin: 60px auto 40px;
+  padding: 60px 25px 30px;
+  text-align: center;
+  width: 45%;
+}
+@media (max-width: 768px) {
+  .wrapper-viajes .alert-viaje-norte {
+    width: 90%;
+  }
+}
+.wrapper-viajes .alert-viaje-norte h2 {
+  text-transform: uppercase;
+  font-size: 24px;
+  line-height: 30px;
+}
+.wrapper-viajes .alert-viaje-norte h3 {
+  text-align: center;
+  color: #000000;
+  font-size: 20px;
+  margin: 20px 0 5px;
+}
+.wrapper-viajes .alert-viaje-norte ul {
+  font-size: 15px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 30px;
+  line-height: 24px;
+  list-style-type: none;
+}
+.wrapper-viajes .alert-viaje-norte p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 30px;
 }
 
 /*-------------- torneos y events -----------------*/

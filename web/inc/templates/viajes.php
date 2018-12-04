@@ -36,6 +36,7 @@ if ( $pagina['page_extra'] == '') {
 				<?php echo $texto; ?>
 		    </p>
 
+			<div class="wrapper-viajes">
 			<?php 
 			$viajes = showViajesCargados();
 
@@ -55,14 +56,21 @@ if ( $pagina['page_extra'] == '') {
 				<?php }
 			endif;
 			?>
-		    
 
-		    <div class="alert-info-viajes">
-		    	<h2>¿Querés saber más?</h2>
-		    	<p>
-					<?php echo $extra; ?>
-				</p>
-		    </div>
+			</div>
+
 		</div>
+
+		<div class="wrapper-info-viajes">
+			<div class="container">
+				<div class="alert-info-viajes">
+					<h2>¿Querés saber más?</h2>
+					<p>
+						<?php echo $extra; ?>
+					</p>
+				</div>
+			</div>
+		</div>
+		
 	</section>
 </article>
