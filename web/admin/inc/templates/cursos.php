@@ -11,6 +11,11 @@ require_once("inc/functions.php");
 <div class="wrapper-modulo">
 	<!-- wrapper interno modulo -->
 	<div class="contenido-modulo">
+	<div class="container page-admin-wrapper">
+
+            <?php showPageAdmin ( 6, true ); ?>
+
+        </div><!-- // container -->
 		<div class="container">
 			
 			<div id="cursosacordion">
