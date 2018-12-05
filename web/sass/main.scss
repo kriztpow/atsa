@@ -1388,9 +1388,13 @@ h2.info-enfermeria {
 	.contenido-pagina {
 		color: $azul;
 		text-align: center;
-		font-size: 120%;
-		line-height: 150%;
+		font-size: 150%;
+		line-height: 180%;
 		margin-bottom: 10px;
+		@media (max-width: $mq-movil) {
+			font-size: 120%;
+			line-height: 150%;
+		}
 
 		h2, h3 {
 			font-size: 150%;
@@ -1418,11 +1422,26 @@ h2.info-enfermeria {
 		background-color: #eeeff1;
 		box-shadow: 0 2px 20px #333;
 		margin-top: 20px;
+
+		.loop-cursos-formacion-tecnica {
+			margin: 0px auto 10px;
+		
+			> li {
+		
+				@media (min-width: $mq-movil) {
+					height: 370px;
+				}
+		
+				@media (min-width: $mq-tablet) {
+					height: 320px;
+				}
+			}
+		}
 	}//.wrapper-cursos-no-formales
 
 	.wrapper-footer-cursos {
 		background-color: #eeeff1;
-		padding: 50px 0;
+		padding: 0px 0 20px;
 
 		.info-enfermeria {
 			background-color: transparent;
@@ -1437,7 +1456,7 @@ h2.info-enfermeria {
 			font-size: 150%;
 			line-height: 130%;
 
-			@media (max-width: $mq-movil) {
+			@media (max-width: $mq-tablet) {
 				width: 90%;
 			}
 

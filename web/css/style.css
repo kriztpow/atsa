@@ -3744,9 +3744,15 @@ h2.info-enfermeria {
 #cursos-no-formales .contenido-pagina {
   color: #006a91;
   text-align: center;
-  font-size: 120%;
-  line-height: 150%;
+  font-size: 150%;
+  line-height: 180%;
   margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  #cursos-no-formales .contenido-pagina {
+    font-size: 120%;
+    line-height: 150%;
+  }
 }
 #cursos-no-formales .contenido-pagina h2, #cursos-no-formales .contenido-pagina h3 {
   font-size: 150%;
@@ -3769,9 +3775,22 @@ h2.info-enfermeria {
   box-shadow: 0 2px 20px #333;
   margin-top: 20px;
 }
+#cursos-no-formales .wrapper-cursos-no-formales .loop-cursos-formacion-tecnica {
+  margin: 0px auto 10px;
+}
+@media (min-width: 768px) {
+  #cursos-no-formales .wrapper-cursos-no-formales .loop-cursos-formacion-tecnica > li {
+    height: 370px;
+  }
+}
+@media (min-width: 992px) {
+  #cursos-no-formales .wrapper-cursos-no-formales .loop-cursos-formacion-tecnica > li {
+    height: 320px;
+  }
+}
 #cursos-no-formales .wrapper-footer-cursos {
   background-color: #eeeff1;
-  padding: 50px 0;
+  padding: 0px 0 20px;
 }
 #cursos-no-formales .wrapper-footer-cursos .info-enfermeria {
   background-color: transparent;
@@ -3785,7 +3804,7 @@ h2.info-enfermeria {
   font-size: 150%;
   line-height: 130%;
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   #cursos-no-formales .wrapper-footer-cursos .info-inscripciones {
     width: 90%;
   }
