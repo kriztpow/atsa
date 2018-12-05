@@ -50,8 +50,9 @@ if ( $pagina['page_extra'] == '') {
 						</h2>
 
 						<?php echo $viaje['texto']; ?>
-
-						<img class="img-responsive" src="<?php echo urlBase() . '/uploads/images/' . $viaje['imagen']; ?>">
+						<?php if ( $viaje['imagen'] != '' ) : ?>
+							<img class="img-responsive" src="<?php echo urlBase() . '/uploads/images/' . $viaje['imagen']; ?>">
+						<?php endif; ?>
 					</div>
 				<?php }
 			endif;
