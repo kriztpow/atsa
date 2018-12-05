@@ -13,7 +13,7 @@ require_once("inc/functions.php");
 	<div class="contenido-modulo">
 	<div class="container page-admin-wrapper">
 
-            <?php showPageAdmin ( 6, true ); ?>
+            <?php showPageAdmin ( 6 ); ?>
 
         </div><!-- // container -->
 		<div class="container">

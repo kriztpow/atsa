@@ -5,25 +5,29 @@
  * Since 2.0
  * CURSOS-FORMALES-NO-FORMALES.PHP
  * Pagina que muestra los cursos no formales
+ * re diseño v 8.4, incluye contenido dinamico de pagina y otro estilo para mostrar los cursos
 */
-
-
+$pagina = getPageData(6);
 ?>
-<article id="formales-no-formales" class="wrapper-page less-padding">
+<article id="cursos-no-formales" class="wrapper-page less-padding">
 	<div class="container">
-	    <h1>Cursos no formales</h1>
-	    <div class="row">
-	    	<div class="col-md-8">
-	    		<p>
-	    			En nuestra Sede Central brindamos Cursos no Formales, los cuales incluyen material.
-	    		</p>
-	    		
-	    		
-	    <!----------lista de cursos -------->
-	    		<div id="accordion-cursos-no-formales">
+		<?php if ($pagina['page_titulo'] != '') : ?>
+			<h1 class="titulo-pagina">
+				<?php echo $pagina['page_titulo']; ?>
+			</h1>
+		<?php endif; ?>
 
-	    		<?php
-	    		$connection = connectDB();
+		<div class="contenido-pagina">
+			<?php echo $pagina['page_text']; ?>
+		</div>
+	</div><!-- //.container -->
+
+	<div class="wrapper-cursos-no-formales">
+		<div class="container">
+			<ul class="row loop-cursos-formacion-tecnica">
+			
+			<?php
+				$connection = connectDB();
 				$tabla = 'cursos';
 				$query  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='no_formal' ORDER by curso_orden ";
 					
@@ -32,91 +36,77 @@
 				if ( $result->num_rows == 0 ) {
 					echo 'No hay ningún curso cargado';
 				} else {
-					while ($row = $result->fetch_array()) {
-	    		?>
-			   		<h3>
-			   			<span class="text-title-accordion">
-			   			<?php echo $row['curso_titulo']; ?>
-			   			<span class="icon-suma"></span>
-			   			</span>
-			   		</h3>
-			   		<div class="contenido-accordion-cursos-no-formales">
-			   			<ul>
-							<li class="info-enfermeria">
-								<span class="icon-info icon-info-3"></span>
-								<?php echo $row['curso_lugar']; ?>
-							</li>
-							<li class="info-enfermeria">
-								<span class="icon-info icon-info-6"></span>
-								<?php echo $row['curso_horarios']; ?>
-							</li>
-							<?php if ( $row['curso_archivo'] != '' ) { ?>
-							<li class="info-enfermeria">
-							<p>Conocé el programa completo haciendo clic&nbsp;<a href="../uploads/pdfs/<?php echo $row['curso_archivo']; ?>" target="_blank" rel="noopener">aquí</a>.&nbsp;</p>								
-							</li>
-							<?php } ?>
-						</ul>
-					</div>
+					while ($row = $result->fetch_array()) { ?>
+					
+					<li class="col-lg-3 col-md-4 col-sm-6">
+						<article class="curso-formacion-tecnica">
+						
+							<?php if ($row['curso_imagen'] != '') : ?>
+								
+								<img src="uploads/images/<?php echo $row['curso_imagen']; ?>" alt="Cursos ATSA">
+
+							<?php endif; ?>
+							
+							<h1>
+								<?php echo $row['curso_titulo']; ?>
+							</h1>
+							<p>
+								<?php echo $row['curso_objespecifico']; ?>
+							</p>
+
+							<?php if ($row['curso_archivo'] != '') : ?>
+								
+								<a href="<?php echo urlbase() . '/uploads/pdfs/' . $row['curso_archivo'] ?>" target="_blank">Conoce el Programa Aquí</a>
+
+							<?php endif; ?>
+							
+						</article><!-- //curso -->
+					</li><!-- //.col-md-3 .col-sm-6 -->
+
 				<?php }//while 
 				}//else
 				mysqli_close($connection);
-				?>
-			   	</div><!-- //#accordion -->
-	    	</div><!-- //.col-md-6 -->
-	    	
-	    	<div class="col-md-4">
-	    		<img class="img-responsive" src="uploads/images/enfermeria.jpg">
-	    		<div>
-	    			<h2 class="info-enfermeria"><span class="icon-info icon-info-1"></span>
-	    				Información General
-	    			</h2>
+			?>
+			</ul>
+		</div><!-- //.container -->
+	</div>
 
-	    			<ul>
-	    				<li class="info-enfermeria"><span class="icon-info icon-info-2"></span>
-	    					<strong>Requisitos de inscripción:</strong><br>
-	    					DNI Original y copia<br>
-	    					Recibo de sueldo<br>
-	    					Carnet sindical
-	    				</li>
-	    				<li class="info-enfermeria"><span class="icon-info icon-info-6"></span>
-	    					Horarios de Atencion:<br>
-	    					10 a 18hs.
-	    				</li>
-	    			</ul>
-	    		</div>
-				<div class="info-inscripciones">
-	    			<h2>
-	    				Inscripciones
-	    			</h2>
-
-	    			<p>
-	    				Saavedra 166. ATSA,<br> Secretaría de Cultura, PB.<br>
-	    				Horario de Atención: 10 a 18 horas
-	    			</p>
-	    		</div>
-	    	</div><!-- //.col-md-6 -->
-	    </div><!-- //.row -->
-	</div><!-- //.container -->
-</article>
-<script src="js/jquery-ui.min.js"></script>
-<script>
-    $(document).ready(function () {
-    	$( "#accordion-cursos-no-formales" ).accordion();
-		iconSumaOpener();
 		
-    	$('.ui-accordion-header').click(iconSumaOpener);//click
-    	
-    });//ready
+	<div class="wrapper-footer-cursos">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<h2 class="info-enfermeria"><span class="icon-info icon-info-1"></span>
+						Información General
+					</h2>
 
-function iconSumaOpener () {
-	$('.ui-accordion-header').each(function(){
-    		
-		if ($(this).hasClass('ui-accordion-header-active')) {
-			$('.icon-suma', this).addClass('icon-suma-open');
-		} else {
-			$('.icon-suma', this).removeClass('icon-suma-open');
-		}
-	});
-}
-	
-</script>
+					<ul>
+						<li class="info-enfermeria"><span class="icon-info icon-info-2"></span>
+							<strong>Requisitos de inscripción:</strong><br>
+							DNI Original y copia<br>
+							Recibo de sueldo<br>
+							Carnet sindical
+						</li>
+						<li class="info-enfermeria"><span class="icon-info icon-info-6"></span>
+							Horarios de Atencion:<br>
+							10 a 18hs.
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<div class="info-inscripciones">
+						<h2>
+							Inscripciones
+						</h2>
+
+						<p>
+							Saavedra 166. ATSA,<br> Secretaría de Cultura, PB
+						</p>
+					</div>
+
+				</div><!-- //.col-md-6 -->
+		
+			</div><!-- //.row -->
+		</div><!-- //.container -->
+	</div>
+</article>

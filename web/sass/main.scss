@@ -1368,6 +1368,89 @@ h2.info-enfermeria {
 	}
 }
 
+//nuevo disño de no formales
+#cursos-no-formales {
+	padding-bottom: 0;
+	.titulo-pagina {
+		text-align: center;
+		text-transform: uppercase;
+		color: #fff;
+		background-color: #019cde;
+		font-size: 200%;
+		line-height: 150%;
+		font-weight: bold;
+
+		@media (max-width: $mq-movil) {
+			font-size: 150%;
+		}
+	}//titulo-pagina
+
+	.contenido-pagina {
+		color: $azul;
+		text-align: center;
+		font-size: 120%;
+		line-height: 150%;
+		margin-bottom: 10px;
+
+		h2, h3 {
+			font-size: 150%;
+			margin-bottom: 15px;
+		}
+
+		h4, h5, p {
+			margin-bottom: 10px;
+		}
+
+		strong {
+			font-weight: bold;
+		}
+
+		em {
+			font-style: italic;
+		}
+
+		a {
+			text-decoration: underline;
+		}
+	}//.contenido-pagina
+
+	.wrapper-cursos-no-formales {
+		background-color: #eeeff1;
+		box-shadow: 0 2px 20px #333;
+		margin-top: 20px;
+	}//.wrapper-cursos-no-formales
+
+	.wrapper-footer-cursos {
+		background-color: #eeeff1;
+		padding: 50px 0;
+
+		.info-enfermeria {
+			background-color: transparent;
+			color: $color-menu-principal;
+			font-weight: 400;
+		}
+
+		.info-inscripciones {
+			background-color: #f6f6f8;
+			border-width: 2px;
+			padding: 15px 10px;
+			font-size: 150%;
+			line-height: 130%;
+
+			@media (max-width: $mq-movil) {
+				width: 90%;
+			}
+
+			h2 {
+				font-size: 150%;
+				margin-bottom: 25px;
+			}
+			
+		}
+	}//.wrapper-footer-cursos
+
+}//#cursos-no-formales
+
 /*-------------- trabajadores -----------------*/
 
 .trabajadores-nav {
