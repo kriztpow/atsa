@@ -50,10 +50,9 @@
 								<span class="icon-info icon-info-6"></span>
 								<?php echo $row['curso_horarios']; ?>
 							</li>
-							<?php if ( $row['curso_resumen'] != '' ) { ?>
+							<?php if ( $row['curso_archivo'] != '' ) { ?>
 							<li class="info-enfermeria">
-								
-								<?php echo $row['curso_resumen']; ?>
+							<p>Conocé el programa completo haciendo clic&nbsp;<a href="../uploads/pdfs/<?php echo $row['curso_archivo']; ?>" target="_blank" rel="noopener">aquí</a>.&nbsp;</p>								
 							</li>
 							<?php } ?>
 						</ul>

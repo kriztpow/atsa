@@ -24,6 +24,7 @@ if ( isAjax() ) {
 	$horarios = isset( $_POST['horarios'] ) ? $_POST['horarios'] : '';
 	$lugar = isset( $_POST['lugar'] ) ? $_POST['lugar'] : '';
 	$destacado = isset( $_POST['destacado'] ) ? $_POST['destacado'] : '0';
+	$archivo = isset( $_POST['archivo'] ) ? $_POST['archivo'] : '';
 	$orden = isset( $_POST['orden'] ) ? $_POST['orden'] : '0';
 	$newArticle = isset( $_POST['newArticle'] ) ? $_POST['newArticle'] : 'true';
 	$idItem = isset( $_POST['idItem'] ) ? $_POST['idItem'] : '';
@@ -64,22 +65,12 @@ if ( isAjax() ) {
 			}
 
 			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_destacado, curso_orden, curso_tipo) VALUES ('$slug','$titulo','$resumen','$metodologia','$objGeneral','$objEspecifico','$requisitos','$imagen','$certificado','$cursada','$lugar','$horarios','$destinatario','$destacado','$orden', 'formacion_tecnica')";
+		
 		} else if ( $post_type == 'no_formal' ) {
 			
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
-			//$resumen = filter_var($resumen,FILTER_SANITIZE_STRING);
-			$horarios = filter_var($horarios,FILTER_SANITIZE_STRING);
-			$lugar = filter_var($lugar,FILTER_SANITIZE_STRING);
 
-			if ( $lugar == '' ) {
-				$lugar = '&nbsp;';
-			}
-
-			if ( $horarios == '' ) {
-				$horarios = '&nbsp;';
-			}
-
-			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_destacado, curso_orden, curso_tipo) VALUES ('','$titulo','$resumen','','','','','','','','$lugar','$horarios','','0','$orden', 'no_formal')";
+			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen,curso_archivo, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_destacado, curso_orden, curso_tipo) VALUES ('','$titulo','','','','$objEspecifico','','$imagen','$archivo',','','','','','0','$orden', 'no_formal')";
 
 		} else if ( $post_type == 'universitarios' ) {
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
@@ -130,18 +121,9 @@ if ( isAjax() ) {
 		} else if ( $post_type == 'no_formal' ) {
 
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
-			//$resumen = filter_var($resumen,FILTER_SANITIZE_STRING);
-			$horarios = filter_var($horarios,FILTER_SANITIZE_STRING);
-			$lugar = filter_var($lugar,FILTER_SANITIZE_STRING);
-
-			if ( $lugar == '' ) {
-				$lugar = '&nbsp;';
-			}
-
-			if ( $horarios == '' ) {
-				$horarios = '&nbsp;';
-			}
-			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_titulo='".$titulo."', curso_resumen='".$resumen."', curso_lugar='".$lugar."', curso_horarios='".$horarios."', curso_orden='".$orden."' WHERE curso_ID='".$idItem."' LIMIT 1";
+			
+			
+			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_orden='".$orden."' WHERE curso_ID='".$idItem."' LIMIT 1";
 
 		} else if ( $post_type == 'universitarios' ) {
 

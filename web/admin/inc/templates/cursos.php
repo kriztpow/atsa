@@ -27,46 +27,56 @@ require_once("inc/functions.php");
 									foreach ( $cursos as $curso ) { ?>
 										<h3><?php echo $curso['curso_titulo']; ?></h3>
 										<div class="curso">
-											<article class="container-fluid" id="<?php echo $curso['curso_ID']; ?>">
-												<div class="row">
-													<div class="col-sm-8">
-														<label>Título:<br>
-															<input type="text" name="cursos_titulo" value="<?php echo $curso['curso_titulo']; ?>">
-														</label>
-													</div><!-- // .col -->
-													<div class="col-sm-4">
+                                            <article class="container-fluid" id="<?php echo $curso['curso_ID'];?>">
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        <label>Título:<br>
+                                                            <input class="cursos_input_titulo" type="text" name="cursos_titulo" value="<?php echo $curso['curso_titulo']; ?>">
+                                                        </label>
+                                                    </div><!-- // .col -->
+                                                    <div class="col-sm-2">
 														<label>Orden:<br>
 															<input type="number" name="cursos_orden" value="<?php echo $curso['curso_orden']; ?>">
 														</label>
-													</div><!-- // .col -->
-												</div>
+                                                    </div><!-- // .col -->
+                                                </div>
 
-												<div class="row">
-													<div class="col-sm-6">
-														<label>Duración:<br>
-															<input type="text" name="cursos_titulo" value="<?php echo $curso['curso_lugar']; ?>">
-														</label>
-													</div><!-- // .col -->
-													<div class="col-sm-6">
-														<label>Horarios:<br>
-															<input type="text" name="cursos_orden" value="<?php echo $curso['curso_horarios']; ?>">
-														</label>
-													</div><!-- // .col -->
-												</div>
-												<div class="row">
-													<div class="col-sm-12">
-														<label>Resumen:<br>
-															<textarea class="tinyeditorcursos" name="cursos_resumen"> <?php echo $curso['curso_resumen']; ?></textarea>
-														</label>
-													</div><!-- // .col -->
-												</div>
-												<div class="btn-cursos-wrapper">
-													<span class="msj-cursos-saved"></span>
-													<button class="btn btn-danger btn-curso-save-item" data-tipo="no_formal" data-id="<?php echo $curso['curso_ID']; ?>">Guardar Cambios</button>
-													<button class="btn btn-success btn-curso-del-item" data-tipo="no_formal" data-id="<?php echo $curso['curso_ID']; ?>">Borrar curso</button>
-												</div>
-											</article>
-									</div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>Imagen:<br>
+                                                            <img data-href="<?php echo $curso['curso_imagen']; ?>" class="img-responsive imagen-curso" src="/uploads/images/<?php echo $curso['curso_imagen']; ?>">
+                                                            <button class="btn btn-xs btn-change-image-curso">Cambiar imagen</button>
+
+                                                        </label>
+                                                    </div><!-- // .col -->
+                                                    <div class="col-sm-6">
+													<h4>Plan De estudios</h4>
+														<a href="/uploads/pdfs/<?php echo $curso['curso_archivo']; ?>" target="_blank" data-href="<?php echo $curso['curso_archivo']; ?>" class="archivo-curso"><?php echo $curso['curso_archivo']; ?></a>
+															<button class="btn btn-xs btn-change-archivo-curso">Cambiar/cargar archivo</button>
+
+															<?php if ( $curso['curso_archivo'] != '') : ?>
+																<button class="btn btn-xs btn-clear-archivo-curso">borrar archivo</button>
+															<?php endif; ?>
+                                                    </div><!-- // .col -->
+                                                </div>
+
+                                                
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <label>Objetivo Específico:<br>
+                                                            <textarea class="tinyeditorcursos" name="curso_objespecifico"><?php echo $curso['curso_objespecifico']; ?></textarea>
+                                                        </label>
+													</div>
+                                                </div>
+                                                
+                                                <div class="btn-cursos-wrapper">
+                                                    <span class="msj-cursos-saved"></span>
+                                                    <button class="btn btn-danger btn-curso-save-item" data-tipo="no_formal" data-id="<?php echo $curso['curso_ID']; ?>">Guardar Cambios</button>
+                                                    <button class="btn btn-success btn-curso-del-item" data-tipo="no_formal" data-id="<?php echo $curso['curso_ID']; ?>">Borrar curso</button>
+                                                </div>
+                                            </article>
+                                        </div>
 									<?php }
 
 								endif;

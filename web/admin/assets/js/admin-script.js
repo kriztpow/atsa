@@ -2124,15 +2124,15 @@ $(document).ready(function(){
 	            	newArticle: newArticle,
 	            	idItem: idItem,
 	            	post_type: post_type,
-	            }
+				}
+				
         } else if (post_type == 'no_formal') {
         	var inputs = $(article).find('input');
-			var textareas = $(article).find('textarea');
-			var titulo = $(inputs[0]).val();
-			var lugar = $(inputs[2]).val();
-			var horarios = $(inputs[3]).val();
-			var resumen = $(textareas[0]).val();
-			var orden = $(inputs[1]).val();
+			var titulo = $(article).find('input[name="cursos_titulo"]').val();
+			var orden = $(article).find('input[name="cursos_orden"]').val();
+			var resumen = $(article).find('.tinyeditorcursos').val();
+			var imagen = $(article).find('.imagen-curso').attr('data-href');
+			var archivo = $(article).find('.archivo-curso').attr('data-href');
 			
 			if ( orden == '' ) {
 				orden = 0;
@@ -2144,14 +2144,15 @@ $(document).ready(function(){
 			}
         	data = {
 	            	titulo: titulo,
-	            	horarios: horarios,
-	            	lugar: lugar,
-	            	resumen: resumen,
+	            	objEspecifico: resumen,
 	            	orden: orden,
 	            	newArticle: newArticle,
-	            	idItem: idItem,
+					idItem: idItem,
+					imagen:imagen,
+					archivo:archivo,
 	            	post_type: post_type,
-	            }
+				}
+				
         } else if (post_type == 'universitarios') {
         	var inputs = $(article).find('input');
 			var textareas = $(article).find('textarea');
@@ -2251,7 +2252,7 @@ $(document).ready(function(){
 	//borrar curso
 	$(document).on('click', '.btn-curso-del-item', function(){
 		var idItem = $(this).attr('data-id');
-		var li = this.closest('li');
+		var li = this.closest('.curso');
 		var msj = $(li).find('.msj-cursos-saved');
 
 		var confirmar = confirm('¿Está seguro?');
@@ -2393,6 +2394,17 @@ $(document).ready(function(){
 			$( "#dialog" ).dialog( 'open' ).load( 'inc/templates/media-browser.php' );
 
 	});//cambiar archivo curso
+
+	$(document).on('click', '.btn-clear-archivo-curso', function(){
+		
+		var div = this.closest('div');
+		var file = $(div).find('.archivo-curso');
+		$(file).attr('href', '');
+		$(file).attr('data-href', '');
+		$(file).html('');
+
+
+	});//clear archivo curso
 
 })//ready cursos
 
