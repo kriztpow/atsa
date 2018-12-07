@@ -16,6 +16,7 @@
 13. acceso-afiliados
 14. mujeres historia
 15. activar
+16. Deportes (nuevo)
 */
 /* ---- 2 Extra reset ---- */
 html, body, div, span, applet, object, iframe,
@@ -4491,12 +4492,44 @@ h2.info-enfermeria {
   }
 }
 
+.tittle-new-deportes {
+  background-color: rgba(0, 172, 236, 0.5);
+  color: #8c8c8c;
+}
+.tittle-new-deportes:before {
+  content: none;
+}
+.tittle-new-deportes:after {
+  content: none;
+}
+@media (max-width: 768px) {
+  .tittle-new-deportes {
+    font-size: 28pt;
+    line-height: 38pt;
+  }
+}
+
 .paragraph-deportes {
   font-weight: 500;
   text-align: center;
-  font-size: 14pt;
+  font-size: 15pt;
   line-height: 18pt;
   margin: 40px 0 !important;
+}
+@media (max-width: 768px) {
+  .paragraph-deportes {
+    font-size: 12pt;
+    line-height: 16pt;
+  }
+}
+.paragraph-deportes strong {
+  font-weight: 700;
+}
+.paragraph-deportes em {
+  font-style: italic;
+}
+.paragraph-deportes a {
+  text-decoration: underline;
 }
 
 #accordion-deportes {
@@ -4506,10 +4539,11 @@ h2.info-enfermeria {
   background-color: #00acec;
   color: #F2F2F2;
   font-size: 16pt;
-  line-height: 20pt;
   font-weight: 500;
   position: relative;
   text-align: center;
+  line-height: 26pt;
+  height: 56px;
 }
 
 .contenido-accordion-deportes ul {
@@ -6049,6 +6083,117 @@ legend {
   zoom: 1;
   filter: alpha(opacity=70);
   opacity: 0.7;
+}
+
+/* ---- 16 deportes ---- */
+.header-menu-deportes {
+  background-color: rgba(0, 172, 236, 0.5);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50px;
+}
+.header-menu-deportes .menu-items-deportes {
+  color: #F2F2F2;
+  position: relative;
+}
+.header-menu-deportes .menu-items-deportes .menu-item {
+  font-weight: bold;
+}
+.header-menu-deportes .menu-items-deportes .menu-item .submenu {
+  font-weight: normal;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 98%;
+  right: 0%;
+  transform: translateX(10%);
+  width: 250%;
+  background: #fff;
+  display: block;
+  font-size: 100%;
+  line-height: 100%;
+  padding: 0 25px;
+}
+.header-menu-deportes .menu-items-deportes .menu-item .submenu .submenu-item {
+  text-align: left;
+  border-bottom: 1px solid #00acec;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  color: #00acec;
+}
+.header-menu-deportes .menu-items-deportes .menu-item .submenu .submenu-item:first-child {
+  margin-top: 20px;
+}
+.header-menu-deportes .menu-items-deportes .menu-item .submenu .submenu-item:last-child {
+  margin-bottom: 20px;
+}
+.header-menu-deportes .menu-items-deportes .menu-item .submenu .submenu-item:hover {
+  border-bottom: 1px solid #006a91;
+  color: #006a91;
+  font-weight: 600;
+}
+.header-menu-deportes .menu-items-deportes .menu-item:hover .submenu {
+  height: auto;
+  border: 2px solid #00acec;
+}
+.header-menu-deportes .menu-items-deportes .menu-item:last-child:hover .submenu {
+  transform: initial;
+  width: max-content;
+}
+
+.menu-items-deportes {
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+  text-transform: uppercase;
+}
+.menu-items-deportes .menu-item {
+  cursor: pointer;
+  text-align: center;
+  padding: 10px 15px;
+  position: relative;
+}
+
+.footer-menu-deportes {
+  width: 80%;
+  margin: 0 auto;
+  display: none;
+}
+@media (max-width: 992px) {
+  .footer-menu-deportes {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .footer-menu-deportes {
+    width: 100%;
+  }
+}
+.footer-menu-deportes .submenu-acordion {
+  font-size: 130%;
+  line-height: 130%;
+}
+.footer-menu-deportes .submenu-acordion a {
+  display: block;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+.footer-menu-deportes .submenu-acordion a:hover {
+  text-decoration: underline;
+  color: #00acec;
 }
 
 /*# sourceMappingURL=style.css.map */

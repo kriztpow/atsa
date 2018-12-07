@@ -113,7 +113,7 @@ if ( count($dataNoticia) > 0 ) {
 <body>
     <!-- afiliate -->
     <?php if ( $pageActual != 'acceso-delegados') : ?>
-        <div class="barrita-afiliate">
+        <!--<div class="barrita-afiliate">
             <div class="button-close-wrapper">
                 <button id="close-barrita"></button>
             </div>
@@ -132,5 +132,5 @@ if ( count($dataNoticia) > 0 ) {
                     </div>
                 </div>
             </a>
-        </div>
+        </div>-->
     <?php endif; ?>

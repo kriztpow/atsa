@@ -886,6 +886,29 @@ function getSliders( $slider ) {
 	mysqli_close($connection);
 } //getSliders()
 
+//devuelve solo los datos del slider
+function getSlidersData( $slider ) {
+
+	$connection = connectDB();
+	$tabla = 'sliders';
+	$query  = "SELECT * FROM " .$tabla. " WHERE slider_ubicacion='".$slider."' ORDER by slider_orden asc";
+		
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		$dataSlider = null;
+	} else {
+
+		while ( $row = $result->fetch_array(MYSQLI_ASSOC) ) {
+			$dataSlider[] = $row;
+		}
+		
+	}//else
+	mysqli_close($connection);
+
+	return $dataSlider;
+} //getSlidersData()
+
 
 
 /*

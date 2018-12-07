@@ -11,7 +11,7 @@
 <!-- #slider -->
 <div class="slider-wrapper">
     <!-- afiliate -->
-    <div class="barrita-afiliate">
+    <!--<div class="barrita-afiliate">
         <div class="button-close-wrapper">
             <button id="close-barrita"></button>
         </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </a>
-    </div>
+    </div>-->
 
     <div class="">
         <div class="slider">

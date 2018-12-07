@@ -1,22 +1,94 @@
+<?php 
+$pagina = getPageData(7);
+$titulo = $pagina['page_titulo'];
+$texto = $pagina['page_text'];
+
+$menuDeportes = array(
+	array('href'=> 'liga', 'name' => 'Liga/resultados'),
+	array('href'=> 'liga', 'name' => 'Próxima fecha'),
+	array('href'=> 'liga', 'name' => 'Posiciones'),
+	array('href'=> 'liga', 'name' => 'Equipos'),
+);
+
+$submenu = array(
+	array('slug'=> 'futbol-11', 'name'=> 'Fútbol 11'),
+	array('slug'=> 'futbol-5-libre-liguilla', 'name'=> 'Fútbol 5 Libre y Liguilla'),
+	array('slug'=> 'futbol-5-veteranos', 'name'=> 'Fútbol 5 Veterano'),
+	array('slug'=> 'futbol-5-femenino', 'name'=> 'Fútbol 5 Femenino'),
+	array('slug'=> 'voley-femenino', 'name'=> 'Voley Femenino'),
+);
+
+?>
 <article id="torneos-y-eventos" class="wrapper-home">
 	<header class="header-hoteles">
+
         <?php
-            getSliders( 'deportes' );
+			$sliders = getSlidersData( 'deportes' );
+			
+			if ($sliders != null) {
+				getTemplate( 'sliders', $sliders);
+			} else {
+				if ( $pagina['page_imagen'] != '') {
+					echo '<img src="' . urlBase() . '/uploads/images/' . $pagina['page_imagen'] . '" class="img-responsive">'; 
+				}
+			}
         ?>
+			
+		<nav class="header-menu-deportes">
+			<div class="container-fluid">
+				<ul class="menu-items-deportes">
+					<?php foreach ($menuDeportes as $menu) { ?>
+						<li class="menu-item">
+							<?php echo $menu['name']; ?>
+							<ul class="submenu">
+								<?php foreach ($submenu as $submenuItem ) { ?>
+									<li class="submenu-item">
+										<a href="<?php echo urlBase() . '/deportes/' . $menu['href'] . '/' . $submenuItem['slug']; ?>" title="<?php echo $menu['name'] . ' - ' . $submenuItem['name']; ?>">
+											<?php echo $submenuItem['name']; ?>
+										</a>
+									</li>
+								<?php } ?>
+							</ul>
+						</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</nav>
     </header>
 	<section class="torneos-y-eventos">
 	<div class="container-fluid">
-	    <h1 class="tittle-deportes">Torneos 2018</h1>
+	    <h1 class="tittle-deportes tittle-new-deportes">
+			<?php echo $titulo; ?>
+		</h1>
 
-	    <p class="paragraph-deportes">
-	    	Desde ATSA Bs As llevamos adelante torneos de fútbol y vóley donde participan nuestros compañeros y compañeras. Tenemos Torneo de fútbol 5 y 11 1ºA y B masculino, fútbol 5 vitalicios, fútbol 11 y vóley femenino. Además, contamos con nuestras propias Selecciones de fútbol y vóley, quienes nos representan en los Encuentros entre Filiales.<br>
-	    	¡Conocé a nuestros equipos ATSA Bs As!
-	    </p>
+	    <div class="paragraph-deportes">
+			<?php echo $texto; ?>
+	    </div>
 	    <div id="accordion-deportes">
 	    <?php showLinksDeportes(); ?>
 	   	
 		</div><!-- //#acorddion -->
-
+									
+		
+		<nav id="footer-menu-deportes" class="footer-menu-deportes">
+			
+			
+			<?php foreach ($menuDeportes as $menu) { ?>
+				<h3 class="menu-item">
+					<?php echo $menu['name']; ?>
+				</h3>
+				<div class="submenu-acordion">
+					<?php foreach ($submenu as $submenuItem ) { ?>
+						<a href="<?php echo urlBase() . '/deportes/' . $menu['href'] . '/' . $submenuItem['slug']; ?>" title="<?php echo $menu['name'] . ' - ' . $submenuItem['name']; ?>">
+							<?php echo $submenuItem['name']; ?>
+						</a>
+					<?php } ?>
+				</div>
+			<?php } ?>
+			
+			
+		</nav>
+		
     </div>
 </article>
 <script src="js/jquery-ui.min.js"></script>
@@ -28,6 +100,12 @@
     		heightStyle: "content"
     	}
     	);
+		
+		$( "#footer-menu-deportes" ).accordion({
+    		collapsible: true,
+    		active : false,
+    		heightStyle: "content"
+    	}
+    	);
     });//ready
-	
 </script>
