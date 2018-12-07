@@ -89,7 +89,7 @@ global $pageActual;
         </div><!-- // .container -->
     </div><!-- // .header-nav -->
     <?php 
-        if ($pageActual != 'home' && $pageActual != 'acceso-delegados' && $pageActual != 'delegados-videos' ) {
+        if ($pageActual != 'home' && $pageActual != 'acceso-delegados' && $pageActual != 'delegados-videos' && $pageActual != 'torneos-y-eventos' ) {
             
             if ($pageActual == 'hoteles-y-espacios-recreativos' || $pageActual == 'programas-prevencion' || $pageActual == 'trabajadores' || $pageActual == 'celeste-y-blanca' || $pageActual == 'torneos-y-eventos' || $pageActual == 'viajes' || $pageActual == 'nosomospresos' || $pageActual == 'peticion-gracias' ) {
             ?>

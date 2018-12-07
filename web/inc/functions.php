@@ -88,8 +88,7 @@ function pageActual () {
 			//si este slug es curso lo que hace es actualizar la variable global curso que por defecto es none
 			if ( $slug == 'curso' ) {
 				$cursos = $parseUrl;
-				$curso  = $cursos[2];
-				echo $curso;
+				$curso  = $cursos[2];;
 			}
 		}
 	} 
