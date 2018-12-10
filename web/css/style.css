@@ -5952,6 +5952,27 @@ legend {
 #mujeres .wrapper-mujeres #mujer_info .wrapper .wrapper-mujer-contenido .mujer-contenido p {
   margin-bottom: 10px;
 }
+#mujeres .wrapper-mujeres .footliner {
+  margin: 60px 0 40px;
+  font-size: 150%;
+  line-height: 150%;
+}
+#mujeres .wrapper-mujeres .footliner strong {
+  font-weight: bold;
+}
+#mujeres .wrapper-mujeres .footliner em {
+  font-style: italic;
+}
+#mujeres .wrapper-mujeres .footliner a {
+  text-decoration: underline;
+}
+#mujeres .wrapper-mujeres .footliner h1, #mujeres .wrapper-mujeres .footliner h2 {
+  font-size: 150%;
+  line-height: 200%;
+}
+#mujeres .wrapper-mujeres .footliner h3, #mujeres .wrapper-mujeres .footliner h4, #mujeres .wrapper-mujeres .footliner h5, #mujeres .wrapper-mujeres .footliner h6, #mujeres .wrapper-mujeres .footliner p {
+  margin-bottom: 10px;
+}
 
 /* ---- 15 activar ---- */
 #activar {

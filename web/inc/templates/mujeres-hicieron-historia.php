@@ -2,6 +2,7 @@
 $pagina = getPageData(3);
 $titulo = $pagina['page_titulo'];
 $texto = $pagina['page_text'];
+$extra = $pagina['page_extra'];
 
 if ( $pagina['page_imagen'] != '') {
     $src = urlBase() . '/uploads/images/' . $pagina['page_imagen'];
@@ -18,7 +19,7 @@ if ( $pagina['page_imagen'] != '') {
         </figure>
 
         <div class="headliner">
-        <?php echo $texto; ?>
+            <?php echo $extra; ?>
         </div>
         
     </div>
@@ -77,15 +78,17 @@ if ( $pagina['page_imagen'] != '') {
             endif;
             ?>
             </ul>
+
+            <div class="footliner">
+                <?php echo $texto; ?>
+            </div>
         </div>
 
         <div id="mujer_info">
             <div class="wrapper">
                 <div class="wrapper-mujer-contenido">
                     <button class="close-button"></button>
-                    <div class="mujer-contenido">
-                        hola
-                    </div>
+                    <div class="mujer-contenido"></div>
                 </div>
             </div>
         </div>
