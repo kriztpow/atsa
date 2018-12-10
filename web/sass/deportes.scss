@@ -8,6 +8,7 @@
     .menu-items-deportes {
         color: $blanco;
         position: relative;
+        z-index: 11;
         .menu-item {
             font-weight: bold;
             .submenu {
@@ -123,3 +124,130 @@
         }
     }
 }//.footer-menu-deportes
+
+
+/*
+ * pagina deportes nueva
+*/
+.wrapper-page-deportes {
+    padding: 90px 0 30px;
+    @media (max-width: $mq-movil) {
+        padding: 100px 0 40px;
+    }
+
+    .header-deportes {
+        .header-menu-deportes {
+            .nav-title {
+                position: absolute;
+                text-transform: uppercase;
+                font-size: 150%;
+                left: 15px;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+                transform: translateY(-50%);
+                font-weight: bold;
+            }
+
+            .nav-volver {
+                display: none;
+                @media (max-width: $mq-movil) {
+                    display: block;
+                    position: absolute;
+                    text-transform: uppercase;
+                    font-size: 100%;
+                    right: 15px;
+                    top: 50%;
+                    -webkit-transform: translateY(-50%);
+                    -moz-transform: translateY(-50%);
+                    -ms-transform: translateY(-50%);
+                    -o-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    &:before {
+                        content: '<';
+                    }
+                }
+                
+
+            }
+
+            .menu-items-deportes {
+                @media (max-width: $mq-movil) {
+                    display: none;
+                }
+            }
+        }
+    }//.header-deportes
+
+    .footer-deportes {
+        padding: 20px 0;
+
+        .otros-nav-footer {
+            display: none;
+            @media (max-width: $mq-movil) {
+                display: flex;
+                display: -o-flex;
+                display: -ms-flex;
+                display: -moz-flex;
+                display: -webkit-flex;
+                -webkit-align-items: center;
+                -moz-align-items: center;
+                -ms-align-items: center;
+                -o-align-items: center;
+                align-items: center;
+                -webkit-justify-content: space-between;
+                -moz-justify-content: space-between;
+                -ms-justify-content: space-between;
+                -o-justify-content: space-between;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 150%;
+            }
+
+            a {
+                text-transform: uppercase;
+
+                &:before {
+                    content: '<';
+                }
+            }
+        }
+
+        .footer-menu-deportes {
+            display: none;
+            @media (max-width: $mq-movil) {
+                display: block;
+            }
+        }//.footer-menu-deportes
+    }//.footer-deportes
+
+
+    .deportes-main-wrapper {
+        padding: 20px 0 20px;
+        position: relative;
+        min-height: 250px;
+        .loader-ajax {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3D(-50%,-50%,0);
+            -moz-transform: translate3D(-50%,-50%,0);
+            -ms-transform: translate3D(-50%,-50%,0);
+            -o-transform: translate3D(-50%,-50%,0);
+            transform: translate3D(-50%,-50%,0);
+
+            img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }//.deportes-main-wrapper
+
+}//wrapper-page-deportes

@@ -1494,3 +1494,22 @@ function showViajesCargados() {
 
 	return $viajes;
 }
+
+
+//devuelve las variables de deportes
+function getVariablesDeportes() {
+    $url = $_SERVER['REQUEST_URI'];
+	$parseUrl = explode('/', $url);
+
+    if ( count($parseUrl) < 2 ) {
+        return null;
+    } else {
+
+        $menu = array(
+            'contenido' => $parseUrl[2],
+            'deporte' => $parseUrl[3],
+        );
+
+        return $menu;
+    }
+}
