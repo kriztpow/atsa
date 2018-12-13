@@ -820,9 +820,64 @@ $(document).ready(function(){
  * DEPORTES
 */
 
-//esta funcion carga el contenido, se carga desde el template onload:
+//esta funcion carga el contenido de deportes, todo se hace por ajax, se carga desde el template onload:
 
 function getContent(contenido, deporte) {
-    console.log(contenido);
-    console.log(deporte);
+    var intentos = 0;
+    var loader = $('.loader-ajax');
+    var contenedor = $('#contenedorAjax');
+    var tituloPag = $('.nav-title');
+    var errorMsj = 'Hubo un problema de conexion, intente nuevamente';
+    var errorDefault = '<p class="error-default">'+errorMsj+'</p>';
+    
+    if ( deporte == '' || deporte == undefined || deporte == null ) {
+        deporte = '';
+    }
+    if ( contenido == '' || contenido == undefined || contenido == null ) {
+        contenido = '';
+    } 
+      
+    $.ajax( {
+        type: 'POST',
+        url: 'inc/scripts/ajax-deportes.php',
+        data: {
+            contenido: contenido,
+            deporte: deporte,
+        },
+        beforeSend: function() {
+            $(contenedor).fadeOut().empty();
+            $(loader).fadeIn();
+        },
+        success: function ( response ) {
+            console.log(response);
+            $(loader).fadeOut();
+            if ( response ) {
+                var data = JSON.parse(response);
+
+                if ( data.error > 0 ) {
+
+                    console.log(data.error);
+                    $(contenedor).append( errorDefault ).fadeIn();
+
+                } else {
+                    //chequea que los títulos sean iguales, sino los cambia
+                    if ( data.titulo.slug !=  $(tituloPag).attr('data-slug') ) {
+                        $(tituloPag).attr('data-slug', data.titulo.slug)
+                        $(tituloPag).text(data.titulo.name)
+                    }
+                    //inserta el html en el contenedor
+                    $(contenedor).append( data.html ).fadeIn();
+
+                }
+
+            } else {
+                $(contenedor).append( errorDefault ).fadeIn();
+            }
+            
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+    
 }

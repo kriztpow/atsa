@@ -23,15 +23,14 @@ $submenu = array(
 <article id="deportes" class="wrapper-page wrapper-page-deportes">
     <header class="header-deportes">
         <nav class="header-menu-deportes">
-            <span class="nav-title">
-                <?php 
-                foreach ($submenu as $item) {
-                    if ( $item['slug'] == $variablesPaginaDeportes['deporte'] ) {
-                        echo $item['name'];
-                        break;
-                    }
-                } ?>
-            </span>
+            
+            <?php 
+            foreach ($submenu as $item) {
+                if ( $item['slug'] == $variablesPaginaDeportes['deporte'] ) {
+                    echo '<span data-slug="'.$item['slug'].'" class="nav-title">'.$item['name'].'</span>';
+                    break;
+                }
+            } ?>
             <a class="nav-volver" href="<?php echo urlBase(); ?>/torneos-y-eventos">
                 volver
             </a>
