@@ -821,9 +821,8 @@ $(document).ready(function(){
 */
 
 //esta funcion carga el contenido de deportes, todo se hace por ajax, se carga desde el template onload:
-
 function getContent(contenido, deporte) {
-    var intentos = 0;
+    var funcionAjax = 'contenido-macro';
     var loader = $('.loader-ajax');
     var contenedor = $('#contenedorAjax');
     var tituloPag = $('.nav-title');
@@ -843,13 +842,14 @@ function getContent(contenido, deporte) {
         data: {
             contenido: contenido,
             deporte: deporte,
+            funcionAjax: funcionAjax,
         },
         beforeSend: function() {
             $(contenedor).fadeOut().empty();
             $(loader).fadeIn();
         },
         success: function ( response ) {
-            console.log(response);
+            //console.log(response);
             $(loader).fadeOut();
             if ( response ) {
                 var data = JSON.parse(response);
@@ -862,11 +862,14 @@ function getContent(contenido, deporte) {
                 } else {
                     //chequea que los títulos sean iguales, sino los cambia
                     if ( data.titulo.slug !=  $(tituloPag).attr('data-slug') ) {
-                        $(tituloPag).attr('data-slug', data.titulo.slug)
-                        $(tituloPag).text(data.titulo.name)
+                        $(tituloPag).attr('data-slug', data.titulo.slug);
+                        $(tituloPag).text(data.titulo.name);
                     }
                     //inserta el html en el contenedor
                     $(contenedor).append( data.html ).fadeIn();
+                    
+                    //reinicia/inicia los acordeones
+                    initSports();
 
                 }
 
@@ -881,3 +884,45 @@ function getContent(contenido, deporte) {
     });//cierre ajax
     
 }
+
+//esta funcion inicia los deportes si el contenido se carga
+function initSports() {
+
+    //acordeones de equipos
+    $(document).on('click', '.toggle-data', function(){
+        var target = $(this).attr('data-target');
+        var wrapper = $(this).closest('article');
+        var contenedor = $(wrapper).find(target);
+
+        if ( contenedor.height() == 0 ) {
+            $(contenedor).css('height', $(contenedor).prop('scrollHeight') + 'px');
+            $(contenedor).addClass('opened');
+            $(contenedor).removeClass('closed');
+
+        } else {
+            $(contenedor).css('height', '0');
+            $(contenedor).addClass('closed');
+            $(contenedor).removeClass('opened');
+        }
+    });
+    //cierra acordeon
+    $(document).on('click', '.collapse-article', function(){
+        var target = $(this).attr('data-target');
+        var wrapper = $(this).closest('article');
+        var contenedor = $(wrapper).find(target);
+        $(contenedor).css('height', '0');
+        $(contenedor).addClass('closed');
+        $(contenedor).removeClass('opened');
+    });
+
+    //cambia el selector, este selector cambia los equipos
+    $('#submenudeportesajax').change(function(){
+        var contenido = $(this).attr('data-contenido');
+        var deporte = $(this).val();
+        
+        //luego utiliza la funcion anterior para cargar nuevo contenido
+        getContent(contenido, deporte);
+    });
+
+}
+

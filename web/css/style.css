@@ -97,6 +97,44 @@ input[type=submit] {
    -moz-
     -ms-
      -o-
+
+display: flex;
+display: -o-flex;
+display: -ms-flex;
+display: -moz-flex;
+display: -webkit-flex;
+-webkit-align-items: center;
+-moz-align-items: center;
+-ms-align-items: center;
+-o-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+-moz-justify-content: center;
+-ms-justify-content: center;
+-o-justify-content: center;
+justify-content: center;
+display: flex;
+display: -o-flex;
+display: -ms-flex;
+display: -moz-flex;
+display: -webkit-flex;
+-webkit-align-items: center;
+-moz-align-items: center;
+-ms-align-items: center;
+-o-align-items: center;
+align-items: center;
+-webkit-justify-content: space-between;
+-moz-justify-content: space-between;
+-ms-justify-content: space-between;
+-o-justify-content: space-between;
+justify-content: space-between;
+
+&:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+
 */
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -6338,6 +6376,240 @@ legend {
   font-size: 150%;
   line-height: 130%;
   padding: 40px 0;
+}
+
+@keyframes expand {
+  0% {
+    height: 0;
+    overflow: hidden;
+  }
+  100% {
+    height: 100%;
+    overflow: visible;
+    opacity: 1;
+  }
+}
+.animate-start {
+  animation-name: expand;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.deportes-inner-wrapper .header-contenido {
+  margin: 20px 0;
+}
+.deportes-inner-wrapper .header-contenido .title-content {
+  text-transform: uppercase;
+  color: #00acec;
+  font-size: 200%;
+  line-height: 150%;
+  margin-bottom: 0;
+}
+.deportes-inner-wrapper .header-contenido .selector-zona {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  padding-left: 20px;
+}
+.deportes-inner-wrapper .wrapper-zona {
+  margin-bottom: 20px;
+}
+.deportes-inner-wrapper .wrapper-zona .titulo-zona {
+  color: #00acec;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 5px;
+}
+.deportes-inner-wrapper .wrapper-zona .wrapper-equipos {
+  margin-bottom: 20px;
+}
+
+.tabla-datos {
+  width: 100%;
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 120%;
+  color: #666;
+  font-weight: 300;
+}
+.tabla-datos td {
+  padding: 10px 15px;
+}
+.tabla-datos .td-center {
+  text-align: center;
+}
+.tabla-datos .td-right {
+  text-align: right;
+}
+.tabla-datos .head-td {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.tabla-datos .td-main {
+  width: 20%;
+  min-width: 200px;
+  max-width: 280px;
+  font-size: 120%;
+  line-height: 120%;
+}
+@media (max-width: 768px) {
+  .tabla-datos .td-main {
+    min-width: initial;
+    width: auto;
+  }
+}
+@media (max-width: 480px) {
+  .tabla-datos .td-no-movil {
+    display: none;
+  }
+}
+
+.tabla-datos-vertical td {
+  padding: 5px 15px;
+}
+
+.title-section-data {
+  color: #666;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: 300;
+  padding: 20px 10px;
+}
+
+.toggle-data {
+  cursor: pointer;
+}
+.toggle-data:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+
+.closed {
+  height: 0;
+  overflow: hidden;
+}
+
+.opened {
+  overflow: hidden;
+}
+
+.transition {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+.tabla-posiciones {
+  box-shadow: 0px 5px 10px #999;
+}
+.tabla-posiciones thead {
+  border-bottom: 1px solid #00acec;
+}
+
+.equipo {
+  margin: 20px 0;
+}
+.equipo .header-equipo {
+  background-color: #F2F2F2;
+  padding: 8px 10px;
+  color: #333;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 130%;
+  line-height: 130%;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px #999;
+}
+.equipo .header-equipo:hover {
+  background-color: #8c8c8c;
+}
+.equipo .header-equipo hgroup {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+}
+.equipo .header-equipo hgroup .logo-equipo {
+  width: 25px;
+  vertical-align: text-bottom;
+  display: inline-block;
+  margin-right: 5px;
+}
+.equipo .header-equipo hgroup h1 {
+  font-weight: 400;
+}
+.equipo .footer-article {
+  margin-top: 25px;
+  text-align: center;
+}
+.equipo .footer-article .collapse-article {
+  cursor: pointer;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.equipo .footer-article .collapse-article .tog1 {
+  position: absolute;
+  top: 20px;
+  left: 4px;
+  transform: rotate(-45deg);
+  opacity: 0.6;
+  width: 25px;
+}
+.equipo .footer-article .collapse-article .tog2 {
+  position: absolute;
+  top: 20px;
+  left: initial;
+  right: 3px;
+  transform: rotate(45deg);
+  opacity: 0.6;
+  width: 25px;
+}
+.equipo .footer-article .collapse-article:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+.equipo .section-equipo {
+  margin-bottom: 20px;
+}
+.equipo .section-equipo .data-equipo-wrapper {
+  width: 100%;
+  max-width: 360px;
+  padding: 0 10px;
+  color: #666;
+  font-weight: 300;
+}
+.equipo .section-jugadores {
+  width: 100%;
+  padding: 0 20px 0 10px;
+  color: #666;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.equipo .section-jugadores .tabla-datos thead {
+  box-shadow: 0px 5px 10px #999;
+}
+.equipo .section-jugadores .tabla-datos tbody tr:first-child td {
+  padding-top: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */

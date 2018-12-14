@@ -9,6 +9,14 @@
 
 require_once 'connect.php';
 
+/**
+ * Checks if a request is a AJAX request
+ * @return bool
+ */
+function isAjax() {
+    return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']  == 'XMLHttpRequest');
+}
+
 //busca el template $name = nombre del archivo sin extensión, se le puede pasar datos por un array
 function getTemplate ( $name, $data = array() ) {
 	$error = '404';
