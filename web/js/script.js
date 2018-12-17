@@ -820,7 +820,7 @@ $(document).ready(function(){
  * DEPORTES
 */
 
-//esta funcion carga el contenido de deportes, todo se hace por ajax, se carga desde el template onload:
+//esta funcion carga el contenido de deportes la pagina completa con header y menus, todo se hace por ajax, se carga desde el template onload:
 function getContent(contenido, deporte) {
     var funcionAjax = 'contenido-macro';
     var loader = $('.loader-ajax');
@@ -866,7 +866,73 @@ function getContent(contenido, deporte) {
                         $(tituloPag).text(data.titulo.name);
                     }
                     //inserta el html en el contenedor
-                    $(contenedor).append( data.html ).fadeIn();
+                    
+                    $(contenedor).empty().append( data.html ).fadeIn();
+                    
+                    //reinicia/inicia los acordeones
+                    initSports();
+
+                }
+
+            } else {
+                $(contenedor).empty().append( errorDefault ).fadeIn();
+            }
+            
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+    
+}
+
+//esta funcion carga el contenido de deportes pero solo el contenido ya que el menu y lo demas ya esta, todo se hace por ajax:
+function getMiniContent(contenido, deporte, contenedor, variables) {
+    var loader = $('.loader-ajax');
+    var tituloDeportes = $('#nameZona');
+    var errorMsj = 'Hubo un problema de conexion, intente nuevamente';
+    var errorDefault = '<p class="error-default">'+errorMsj+'</p>';
+    
+    if ( deporte == '' || deporte == undefined || deporte == null ) {
+        deporte = '';
+    }
+    if ( contenido == '' || contenido == undefined || contenido == null ) {
+        contenido = '';
+    }
+    
+    if ( variables.zona != undefined ) {
+        var funcionAjax = 'contenido-zona';
+        var data = {
+            contenido: contenido,
+            deporte: deporte,
+            zona:variables.zona,
+            funcionAjax: funcionAjax,
+        }
+    }
+      
+    $.ajax( {
+        type: 'POST',
+        url: 'inc/scripts/ajax-deportes.php',
+        data: data,
+        beforeSend: function() {
+            $(contenedor).fadeOut().empty();
+            $(loader).fadeIn();
+        },
+        success: function ( response ) {
+            console.log(response);
+            $(loader).fadeOut();
+            if ( response ) {
+                var data = JSON.parse(response);
+
+                if ( data.error > 0 ) {
+
+                    console.log(data.error);
+                    $(contenedor).append( errorDefault ).fadeIn();
+
+                } else {
+                    
+                    //inserta el html en el contenedor
+                    $(contenedor).empty().append( data.html ).fadeIn();
                     
                     //reinicia/inicia los acordeones
                     initSports();
@@ -923,6 +989,35 @@ function initSports() {
         //luego utiliza la funcion anterior para cargar nuevo contenido
         getContent(contenido, deporte);
     });
+
+    //cambia el selector, este selector cambia los equipos
+    $('#zonadeportesajax').change(function(){
+        var contenido = $(this).attr('data-contenido');
+        var deporte = $(this).attr('data-deporte');
+        var zona = $(this).val();
+        var contenedor = $('#minicontenedorAjax');
+        var variables = {
+            zona: zona,
+        };
+        //luego utiliza la funcion anterior para cargar nuevo contenido
+        getMiniContent(contenido, deporte, contenedor, variables);
+    });
+
+    //boton que muestra resumen del partido
+    $(document).on('click', '.button-resumen-partido', function () {
+        
+        var partido = $(this).closest('article');
+        var resumen = $(partido).find('.resumen-partido');
+
+        if ( $(resumen).height() == 0 ) {
+            //var alturaResumen = '200';
+            var alturaResumen = $(resumen).prop('scrollHeight')
+            $(resumen).css('height' , alturaResumen + 'px');
+        } else {
+            $(resumen).css('height' , 0);
+        }
+    });
+
 
 }
 

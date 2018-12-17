@@ -56,11 +56,13 @@ $submenu = array(
         </nav>
     </header>
     <section class="deportes-main-wrapper">
-        <div class="container-fluid">
+        <div class="container">
+            
+            <div id="contenedorAjax"></div>
+            
             <div class="loader-ajax">
                 <img src="assets/images/loader.gif">
             </div>
-            <div id="contenedorAjax"></div>
         </div>
     </section>
 

@@ -8,7 +8,7 @@
     .menu-items-deportes {
         color: $blanco;
         position: relative;
-        z-index: 11;
+        z-index: 1;
         .menu-item {
             font-weight: bold;
             .submenu {
@@ -131,6 +131,8 @@
 */
 .wrapper-page-deportes {
     padding: 90px 0 30px;
+    background-color: #eeeff1;
+
     @media (max-width: $mq-movil) {
         padding: 100px 0 40px;
     }
@@ -284,6 +286,10 @@
     .header-contenido {
         margin: 20px 0;
 
+        @media (max-width: $mq-movil) {
+            margin: 0 0 20px;
+        }
+
         .title-content {
             text-transform: uppercase;
             color: $celeste;
@@ -297,9 +303,47 @@
             background-color: transparent;
             outline: none;
             padding-left: 20px;
+
+            @media (max-width: $mq-movil) {
+                padding-left: 0;
+                margin: 10px 0;
+            }
+            @media (max-width: $mq-mini) {
+                width: 80%;
+            }
         }//.selector-zona
     }//.header-contenido
 
+    .header-flex {
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        -o-align-items: center;
+        align-items: center;
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -ms-justify-content: space-between;
+        -o-justify-content: space-between;
+        justify-content: space-between;
+
+        @media (max-width: $mq-movil) {
+            -webkit-flex-direction: column;
+            -moz-flex-direction: column;
+            -ms-flex-direction: column;
+            -o-flex-direction: column;
+            flex-direction: column;
+            -webkit-align-items: flex-start;
+            -moz-align-items: flex-start;
+            -ms-align-items: flex-start;
+            -o-align-items: flex-start;
+            align-items: flex-start;
+        }
+    }
     
 
     .wrapper-zona {
@@ -415,6 +459,40 @@
     }
 }
 
+.collapse-article {
+    cursor: pointer;
+    display: inline-block;
+    background: transparent;
+    border: none;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    
+    .tog1 {
+        position: absolute;
+        top: 20px;
+        left: 4px;
+        transform: rotate(-45deg);
+        opacity: 0.6;
+        width: 25px;
+    }
+    .tog2 {
+        position: absolute;
+        top: 20px;
+        left: initial;
+        right: 3px;
+        transform: rotate(45deg);
+        opacity: 0.6;
+        width: 25px;
+    }
+
+    &:hover {
+        zoom: 1;
+        filter: alpha(opacity=70);
+        opacity: 0.7;
+    }
+}
+
 //article individual de equipo que contine dentro las estadísticas
 .equipo {
     margin: 20px 0;
@@ -467,43 +545,7 @@
     .footer-article {
         margin-top: 25px;
         text-align: center;
-
-        .collapse-article {
-            cursor: pointer;
-            display: inline-block;
-            background: transparent;
-            border: none;
-            position: relative;
-            width: 50px;
-            height: 50px;
-            
-            .tog1 {
-                position: absolute;
-                top: 20px;
-                left: 4px;
-                transform: rotate(-45deg);
-                opacity: 0.6;
-                width: 25px;
-            }
-            .tog2 {
-                position: absolute;
-                top: 20px;
-                left: initial;
-                right: 3px;
-                transform: rotate(45deg);
-                opacity: 0.6;
-                width: 25px;
-            }
-
-            &:hover {
-                zoom: 1;
-                filter: alpha(opacity=70);
-                opacity: 0.7;
-            }
-        }
     }
-
-    
 
     .section-equipo {
         margin-bottom: 20px;
@@ -539,3 +581,323 @@
     }//.section-jugadores
     
 }//.equipo
+
+//liga/fechas:
+
+.wrapper-externo-partido {
+    .lista-partidos {
+        > li {
+            margin: 30px 0;
+
+            @media (max-width: $mq-movil) {
+                margin: 20px 0 60px;
+            }
+        }
+    }//.lista-partidos
+}//.wrapper-externo-partido
+
+//partido individual
+.contenedor-partido {
+    position: relative;
+
+    .header-partido {
+        position: relative;
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        -webkit-justify-content: flex-start;
+        -moz-justify-content: flex-start;
+        -ms-justify-content: flex-start;
+        -o-justify-content: flex-start;
+        justify-content: flex-start;
+
+        @media (max-width: $mq-movil) {
+            -webkit-flex-wrap: wrap;
+            -moz-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            -o-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-justify-content: space-between;
+            -moz-justify-content: space-between;
+            -ms-justify-content: space-between;
+            -o-justify-content: space-between;
+            justify-content: space-between;
+        }
+
+        .bloque-equipo {
+            position: relative;
+            display: flex;
+            display: -o-flex;
+            display: -ms-flex;
+            display: -moz-flex;
+            display: -webkit-flex;
+            -webkit-align-items: flex-start;
+            -moz-align-items: flex-start;
+            -ms-align-items: flex-start;
+            -o-align-items: flex-start;
+            align-items: flex-start;
+            -webkit-justify-content: flex-start;
+            -moz-justify-content: flex-start;
+            -ms-justify-content: flex-start;
+            -o-justify-content: flex-start;
+            justify-content: flex-start;
+            background-color: #eeeff1;
+            box-shadow: 0px 5px 10px #999;
+            width: 41%;
+            margin-right: 2%;
+            padding: 5px;
+
+            @media (max-width: $mq-movil) {
+                margin-right: 0;
+                width: 47%;
+                -webkit-flex-wrap: wrap;
+                -moz-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                -o-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -webkit-flex-direction: column;
+                -moz-flex-direction: column;
+                -ms-flex-direction: column;
+                -o-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .data-partido {
+                width: 90%;
+                display: flex;
+                display: -o-flex;
+                display: -ms-flex;
+                display: -moz-flex;
+                display: -webkit-flex;
+                -webkit-justify-content: space-between;
+                -moz-justify-content: space-between;
+                -ms-justify-content: space-between;
+                -o-justify-content: space-between;
+                justify-content: space-between;
+                color: #666;
+
+                .data {
+                    text-align: right; 
+                    width: 90%;
+                    padding-right: 20px;
+                    @media (max-width: $mq-movil) {
+                        width: 100%;
+                        padding: 10px 15px 10px 5px;
+                    }
+
+                    h2 {
+                        font-size: 150%;
+                        line-height: 150%;
+
+                        @media (max-width: $mq-movil) {
+                            font-size: 100%;
+                            line-height: 120%;
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    .lista-detalles {
+                        position: relative;
+
+                        @media (max-width: $mq-movil) {
+                            font-size: 90%;
+                            line-height: 110%;
+                            opacity: 0.9;
+                        }
+
+                        &:after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            right: -30px;
+                            top: 4px;
+                            width: 10px;
+                            height: 15px;
+                            background-color: $gris-claro;
+                            @media (max-width: $mq-movil) {
+                                top: 2px;
+                                width: 7px;
+                                height: 10px;
+                                right: -15px;
+                            }
+                        }
+
+                        > li {
+                            display: inline;
+                            font-size: 80%;
+                        }
+                    }//.lista-goles
+
+                    .gol {
+                        &:after {
+                            width: 15px;
+                            background-image: url(../assets/images/pelota-gol.png);
+                            background-size: contain;
+                            background-position: center;
+                            background-color: transparent;
+                            background-repeat: no-repeat;
+                            right: -32px;
+
+                            @media (max-width: $mq-movil) {
+                                width: 12px;
+                                right: -20px;
+                            }
+                        }
+                    }//.amonestaciones
+
+                    .amarilla {
+                        &:after {
+                            background-color: yellow;
+                        }
+                    }
+
+                    .roja {
+                        &:after {
+                            background-color: red;
+                        }
+                    }
+                }//.titulares
+
+                .goles {
+                    font-size: 150%;
+                    color:$celeste;
+                    font-weight: bold;
+                    color: #00acec;
+                    width: 50px;
+                    text-align: left;
+                    padding-top: 5px;
+
+                    @media (max-width: $mq-movil) {
+                        font-size: 180%;
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                    }
+                }
+
+                .goles-inverse {
+                    text-align: right;
+                    @media (max-width: $mq-movil) {
+                        font-size: 180%;
+                        position: absolute;
+                        top: 10px;
+                        right: initial;
+                        left: 10px;
+                    }
+                }
+
+            }//.data-partido
+
+            .data-partido-inverse {
+                -webkit-flex-direction: row-reverse;
+                -moz-flex-direction: row-reverse;
+                -ms-flex-direction: row-reverse;
+                -o-flex-direction: row-reverse;
+                flex-direction: row-reverse;
+
+                .data-inverse {
+                    text-align: left;
+                    padding-left: 20px;
+                    padding-right: 0;
+
+                    .lista-detalles {
+                        &:after {
+                            right: initial;
+                            left: -30px;
+                            @media (max-width: $mq-movil) {
+                                left: -15px;
+                            }
+                        }
+                    }
+                }//.data-inverse
+            }//.data-partido-inverse
+
+            .logo-equipo {
+                width: 40px;
+                height: auto;
+                margin-right: 20px;
+                margin-left: 10px;
+            }
+        }//.bloque-equipo
+
+        .bloque-inverse {
+            -webkit-flex-direction: row-reverse;
+            -moz-flex-direction: row-reverse;
+            -ms-flex-direction: row-reverse;
+            -o-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+            
+            @media (max-width: $mq-movil) {
+                -webkit-flex-direction: column;
+                -moz-flex-direction: column;
+                -ms-flex-direction: column;
+                -o-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .logo-equipo {
+                margin-right: 10px;
+                margin-left: 20px;
+
+                @media (max-width: $mq-movil) {
+                    -webkit-align-self: flex-end;
+                    -moz-align-self: flex-end;
+                    -ms-align-self: flex-end;
+                    -o-align-self: flex-end;
+                    align-self: flex-end;
+                }
+            }
+        }
+
+        .button-resumen-partido {
+            cursor: pointer;
+            background: #eeeff1;
+            border: none;
+            outline: none;
+            @include box-shadow(0px 5px 10px #999);
+            padding: 5px 15px;
+
+            @media (max-width: $mq-movil) {
+                width: 100%;
+            }
+
+            .inner-button {
+                display: block;
+                @include border-radius(10px);
+                background-color: #fff;
+                color: #333;
+                margin: 10px 0;
+                padding: 3px 10px;
+                font-size: 80%;
+            }
+
+            &:hover {
+                zoom: 1;
+                filter: alpha(opacity=70);
+                opacity: 0.7;
+            }
+            
+        }//.button-resumen-partido
+
+    }//.header-partido
+
+    .resumen-partido {
+        height: 0;
+        overflow: hidden;
+        @include transition(all 0.5s);
+        position: relative;
+
+        .resumen-partido-interno {
+            padding: 40px 20px;
+            color: #666;
+        }
+
+    }//.resumen-partido
+
+    .footer-partido {
+        text-align: center;
+        margin-top: 20px;
+    }//.footer-partido
+}//.contenedor-partido
