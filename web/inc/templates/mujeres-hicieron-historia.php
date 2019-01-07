@@ -50,6 +50,8 @@ if ( $pagina['page_imagen'] != '') {
                                 if ( $mujer['imagen'] != '' ) {
                                     echo '<img src="' . urlBase() . '/uploads/images/' . $mujer['imagen'] . '">';
                                     echo '<span class="shutter"></span>';
+                                } else {
+                                    echo '<span class="name-default">'.$mujer['titulo'].'</span>';
                                 }
                                 ?>
                             </figure>
