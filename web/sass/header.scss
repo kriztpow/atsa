@@ -164,7 +164,7 @@
     overflow: auto;
     float: right;
     margin-top: -10px;
-    @media (max-width: $mq-tablet) {
+    @media (max-width: $mq-pc) {
         display: none;
     }
 }

@@ -36,9 +36,24 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
         <nav class="menu-shorcuts-wrapper">
             <div class="container">
                 <ul class="menu-shortcuts">
-                    <li><a href="/ccs/" target="_blank">Complejo Cultural</a></li>
-                    <li><a href="instituto-amado-olmos">Escuela de enfermería</a></li>
-                    <li><a href="laboratorio-simulacion">Laboratorio de Simulación</a></li>
+                    <li>
+                        <a href="/ccs/" target="_blank" title="Complejo Cultural Sanidad">
+                        <img src="assets/images/logos/ccs-logo.png" alt="logo">
+                            <span class="sr-only">Complejo Cultural</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="instituto-amado-olmos" title="Instituto Amado Olmos">
+                            <img src="assets/images/logos/instituto-logo.png" alt="logo">
+                            <span class="sr-only">Escuela de enfermería</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="laboratorio-simulacion" title="Laboratorio de Simulación">
+                            <img src="assets/images/logos/cesica-logo.png" alt="logo">
+                            <span class="sr-only">Laboratorio de Simulación</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -120,7 +135,7 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
             <div class="container-fluid">
                 <ul class="noticias-destacadas">
                     <li>
-                        <a href="afiliate/afiliados/">
+                        <a href="sanidad-solidaria">
                         <article class="noticia-destacada">
                             <figure>
                                 <img src="uploads/images/<?php echo $homeContent['banners'][0]; ?>" class="img-responsive">

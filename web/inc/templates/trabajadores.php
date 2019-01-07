@@ -1,4 +1,4 @@
-<article id="trabajadores" class="class="wrapper-home">
+<article id="trabajadores" class="wrapper-home">
 <header class="header-hoteles">
         <?php
             getSliders( 'trabajadores' );

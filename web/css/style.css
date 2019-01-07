@@ -335,7 +335,7 @@ html, body {
   float: right;
   margin-top: -10px;
 }
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .header-redes-sociales {
     display: none;
   }
@@ -1725,11 +1725,9 @@ html, body {
 .menu-shorcuts-wrapper {
   position: relative;
   z-index: 1;
-  background: #e5e5e5;
-}
-
-.menu-shorcuts-wrapper {
-  padding: 30px 0;
+  background: #fff;
+  padding: 20px 0;
+  box-shadow: 0px 0px 10px #666;
 }
 
 .menu-shortcuts {
@@ -1758,16 +1756,13 @@ html, body {
 .menu-shortcuts li a {
   padding-bottom: 5px;
   cursor: pointer;
+  display: flex;
   /*queries a */
 }
 .menu-shortcuts li a:hover {
-  border-bottom: 6px solid #00acec;
-  /*queries a:hover */
-}
-@media (max-width: 768px) {
-  .menu-shortcuts li a:hover {
-    border-bottom: initial;
-  }
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
 }
 @media (max-width: 768px) {
   .menu-shortcuts li a {
