@@ -43,10 +43,26 @@ require_once("inc/functions.php");
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                <label>Imagen:<br>
+                                                            <img data-href="<?php echo $curso['curso_imagen']; ?>" class="img-responsive imagen-curso" src="/uploads/images/<?php echo $curso['curso_imagen']; ?>">
+                                                            <button class="btn btn-xs btn-change-image-curso">Cambiar imagen</button>
+                                                        </label>
+                                                </div>
+                                                <div class="col-sm-8">
                                                     <label>Contenido:<br>
                                                         <textarea class="tinyeditorcursos" name="cursos_contenido"> <?php echo $curso['curso_objespecifico']; ?></textarea>
                                                     </label>
+                                                </div><!-- // .col -->
+
+                                                <div class="col-sm-12">
+													<h4>Plan De estudios (opcional)</h4>
+                                                    <a href="/uploads/pdfs/<?php echo $curso['curso_archivo']; ?>" target="_blank" data-href="<?php echo $curso['curso_archivo']; ?>" class="archivo-curso"><?php echo $curso['curso_archivo']; ?></a>
+                                                        <button class="btn btn-xs btn-change-archivo-curso">Cambiar/cargar archivo</button>
+
+                                                        <?php if ( $curso['curso_archivo'] != '') : ?>
+                                                            <button class="btn btn-xs btn-clear-archivo-curso">borrar archivo</button>
+                                                        <?php endif; ?>
                                                 </div><!-- // .col -->
                                             </div>
                                             <div class="btn-cursos-wrapper">
