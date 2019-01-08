@@ -2156,6 +2156,7 @@ $(document).ready(function(){
         } else if (post_type == 'universitarios') {
 			var inputs = $(article).find('input');
 			var titulo = $(article).find('input[name="cursos_titulo"]').val();
+			var slug = $(article).find('input[name="cursos_slug"]').val();
 			var orden = $(article).find('input[name="cursos_orden"]').val();
 			var contenido = $(article).find('.tinyeditorcursos').val();
 			var imagen = $(article).find('.imagen-curso').attr('data-href');
@@ -2169,8 +2170,16 @@ $(document).ready(function(){
 				$(msj).html('El título no puede estar vacío');
 				return;
 			}
+
+			//la url no puede estar vacía
+			if ( slug == '' ) {
+				slug = getCleanedString(titulo);
+				$(article).find('input[name="cursos_slug"]').val(slug);
+			}
+
         	data = {
-	            	titulo: titulo,
+					titulo: titulo,
+					slug: slug,
 	            	objEspecifico: contenido,
 					orden: orden,
 					imagen:imagen,
@@ -2344,7 +2353,7 @@ $(document).ready(function(){
 			var html = '<div class="curso"><article><div class="row"><div class="col-sm-8"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-4"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-6"><label>Duración:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-6"><label>Horarios:<br><input type="text" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-12"><label>Resumen:<br><textarea name="cursos_orden"></textarea></label></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="no_formal" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="no_formal" data-id="new">Borrar curso</button></div></article></div>';
 		} else {
 			var contenedor = $('#contenedor-universitarios');
-			var html = '<div class="curso"><article><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label></div><div class="col-sm-2"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-4"><label>Imagen:<br><img data-href="" class="img-responsive imagen-curso" src=""><button class="btn btn-xs btn-change-image-curso">Cambiar imagen</button></label></div><div class="col-sm-8"><label>Contenido:<br><textarea class="tinyeditorcursos" name="cursos_contenido"></textarea></label></div><div class="col-sm-12"><h4>Plan De estudios (opcional)</h4><a href="" target="_blank" data-href="" class="archivo-curso"></a><button class="btn btn-xs btn-change-archivo-curso">Cambiar/cargar archivo</button></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="universitarios" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="universitarios" data-id="new">Borrar Convenio</button></div></article></div>';
+			var html = '<div class="curso"><article><div class="row"><div class="col-sm-10"><label>Título:<br><input type="text" name="cursos_titulo" value=""></label><label>Slug: (url)<br><input class="cursos_input_slug" type="text" name="cursos_slug" value=""></label></div><div class="col-sm-2"><label>Orden:<br><input type="number" name="cursos_orden" value=""></label></div></div><div class="row"><div class="col-sm-4"><label>Imagen:<br><img data-href="" class="img-responsive imagen-curso" src=""><button class="btn btn-xs btn-change-image-curso">Cambiar imagen</button></label></div><div class="col-sm-8"><label>Contenido:<br><textarea class="tinyeditorcursos" name="cursos_contenido"></textarea></label></div><div class="col-sm-12"><h4>Plan De estudios (opcional)</h4><a href="" target="_blank" data-href="" class="archivo-curso"></a><button class="btn btn-xs btn-change-archivo-curso">Cambiar/cargar archivo</button></div></div><div class="btn-cursos-wrapper"><span class="msj-cursos-saved"></span><button class="btn btn-danger btn-curso-save-item" data-tipo="universitarios" data-id="new">Guardar Cambios</button>&nbsp;<button class="btn btn-success btn-curso-del-item" data-tipo="universitarios" data-id="new">Borrar Convenio</button></div></article></div>';
 		}
 		if ( $($(contenedor).find('div')).length == 0 ) {
 			contenedor.empty();

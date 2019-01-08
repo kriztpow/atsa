@@ -75,8 +75,9 @@ if ( isAjax() ) {
 		} else if ( $post_type == 'universitarios' ) {
 			
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
+			$slug = filter_var($slug,FILTER_SANITIZE_STRING);
 
-			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_destacado, curso_orden, curso_tipo) VALUES ('','$titulo','','','','$objEspecifico','','$imagen','$archivo','','','','','0','$orden', 'universitarios')";
+			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_destacado, curso_orden, curso_tipo) VALUES ('$slug','$titulo','','','','$objEspecifico','','$imagen','$archivo','','','','','0','$orden', 'universitarios')";
 
 		}
 
@@ -129,8 +130,9 @@ if ( isAjax() ) {
 		} else if ( $post_type == 'universitarios' ) {
 
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
+			$slug = filter_var($slug,FILTER_SANITIZE_STRING);
 
-			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_orden='".$orden."' WHERE curso_ID='".$idItem."' LIMIT 1";
+			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_slug='".$slug."', curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_orden='".$orden."' WHERE curso_ID='".$idItem."' LIMIT 1";
 			
 		} else {
 

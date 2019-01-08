@@ -34,6 +34,9 @@ require_once("inc/functions.php");
                                                     <label>Título:<br>
                                                         <input type="text" name="cursos_titulo" value="<?php echo $curso['curso_titulo']; ?>">
                                                     </label>
+                                                    <label>Slug: (url)<br>
+                                                        <input class="cursos_input_slug" type="text" name="cursos_slug" value="<?php echo $curso['curso_slug']; ?>">
+                                                    </label>
                                                 </div><!-- // .col -->
                                                 <div class="col-sm-2">
                                                     <label>Orden:<br>
