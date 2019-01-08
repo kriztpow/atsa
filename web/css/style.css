@@ -3592,6 +3592,60 @@ h2.info-enfermeria {
   background-size: cover;
 }
 
+.convenio-universitario {
+  border: none;
+  cursor: pointer;
+}
+.convenio-universitario:hover figure .shutter {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.convenio-universitario h1 {
+  color: #464846;
+  font-weight: bold;
+  font-size: 115%;
+  line-height: 120%;
+}
+.convenio-universitario figure {
+  position: relative;
+  overflow: hidden;
+  height: 190px;
+  background-color: #67a9de;
+}
+.convenio-universitario figure .shutter {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(36, 26, 20, 0.5);
+  top: 0;
+  left: 0;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.convenio-universitario figure .shutter > img {
+  width: 20%;
+  max-width: 39px;
+}
+
 #accordion-cursos {
   margin: 0 auto 50px;
 }
