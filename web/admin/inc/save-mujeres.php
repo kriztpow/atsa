@@ -17,7 +17,7 @@ if ( isAjax() ) {
 	$orden = isset( $_POST['orden'] ) ? $_POST['orden'] : '0';
 	$newArticle = isset( $_POST['newArticle'] ) ? $_POST['newArticle'] : 'true';
 	$idItem = isset( $_POST['idItem'] ) ? $_POST['idItem'] : '';
-	
+	var_dump($_POST);
 	//limpieza general
 	$orden = filter_var($orden,FILTER_SANITIZE_NUMBER_INT);
 	$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);

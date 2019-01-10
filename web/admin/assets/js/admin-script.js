@@ -3981,7 +3981,7 @@ $(document).ready(function(){
 		tinyEditorMujeres();
 	});//click new-item-curso
 
-	//borrar beneficio
+	//borrar 
 	$(document).on('click', '.btn-del-mujeres-item', function(){
 		var idItem = $(this).attr('data-id');
 		var contenedor = this.closest('.mujeres-item');
@@ -4024,15 +4024,15 @@ $(document).ready(function(){
 		var idItem = $(this).attr('data-id');
 		//var post_type = $(this).attr('data-tipo');
 		var btn = $(this);
-		var article = this.closest('.viajes-item');
-		var msj = $(article).find('.msj-viajes-saved');
-		var btnDel = $(article).find('.btn-del-viajes-item');
+		var article = this.closest('.mujeres-item');
+		var msj = $(article).find('.msj-mujeres-saved');
+		var btnDel = $(article).find('.btn-del-mujeres-item');
 		var inputs = $(article).find('input')
-		var titulo = $(inputs[0]).val();
-		var orden = $(inputs[2]).val();;
-		var fecha = $(inputs[1]).val();;
+		var titulo = $($(article).find('input[name="mujeres_titulo"]')).val();
+		var orden = $($(article).find('input[name="mujeres_orden"]')).val();
+		var fecha = $($(article).find('input[name="mujeres_fecha"]')).val();
 		var imagen = $($(article).find('img')).attr('data-href');
-		var texto = $(article).find('textarea').val();
+		var texto = $($(article).find('input[name="mujeres_texto"]')).val();
 
 		var newArticle = false;
 		if ( idItem == 'new' ) {
