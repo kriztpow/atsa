@@ -472,6 +472,35 @@ switch ( $form_type ) {
 
 	break;
 
+	case 'sanidad-solidaria':
+		global $cabeceras;
+		global $paraContacto;
+		global $exito;
+		global $SanidadSolidaria;
+
+		$nombre       = recogeDato('nombre');
+		$apellido     = recogeDato('apellido');
+		$dni          = recogeDato('dni');
+		$email        = recogeDato('email');
+		$telefono     = recogeDato('telefono');
+		$texto        = recogeDato('mensaje');
+		$asunto       = 'Mensaje nuevo desde el sitio web';
+
+		$cabeceras .= 'Reply-To: ' . $email . "\r\n";
+
+		$mensaje  = 'Nombre: ' . $nombre . ' '. $apellido . '<br>';
+		$mensaje .= 'DNI: ' . $dni . '<br>';
+		$mensaje .= 'Email: ' . $email . '<br>';
+		$mensaje .= 'Teléfono: ' . $telefono . '<br>';
+		$mensaje .= $texto;
+		$paraContacto = $SanidadSolidaria;
+		
+		mail($paraContacto, $asunto, $mensaje, $cabeceras);
+		$exito = 1;
+		echo $exito;
+
+	break;
+
 }//switch
 
 function autorizarAcceso($user, $pass) {

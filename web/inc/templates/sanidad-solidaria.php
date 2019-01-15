@@ -100,7 +100,7 @@ $texto2 = $pagina['page_extra'];
                     ¡Completá el formulario y nos ponemos en contacto con vos!
                 </p>
             </div>
-            <form method="POST" name="activar_formulario" id="activar_formulario">
+            <form method="POST" name="sanidad_formulario" id="sanidad_formulario">
                 <div class="container">
                     <label for="nombre">
                         <span class="label">Nombre:</span>

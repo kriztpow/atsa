@@ -817,7 +817,45 @@ $(document).ready(function(){
 });
 
 /* SANIDAD SOLIDARIA */
+$(document).ready(function(){
+    $( '#sanidad_formulario' ).on('submit', function( event ){
+        
+        event.preventDefault();
 
+        var formulario =  this;
+        var form_type = 'sanidad-solidaria';
+        //var imgAjax = $( '.load-ajax-suscribe' );
+
+        var formData = new FormData( formulario );
+        formData.append('form_type', form_type);
+      
+        $.ajax( {
+            type: 'POST',
+            url: 'inc/scripts/form-process.php',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                //imgAjax.fadeIn();
+                //console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                console.log(response);
+                if ( response == 1 ) {
+                    $( '.msj-exito' ).fadeIn();
+                    formulario.reset();
+                } else {
+                    $( '.msj-error' ).fadeIn();
+                }
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax
+    
+    });//cierra submit formulario afiliate
+});
 
 
 
