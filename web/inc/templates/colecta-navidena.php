@@ -1,6 +1,6 @@
 <?php 
 //$pagina = getPageData(8);
-$titulo = 'Día del niño Solidario';//$pagina['page_titulo']
+$titulo = 'Colecta navideña';//$pagina['page_titulo']
 $texto = '<p style="text-align:center">Para que ningún chicx se quede sin festejar su Navidad, realizamos una colecta de juguetes en todos los establecimientos y en todos los espacios físicos de nuestro sindicato (<strong>Complejo Cultural, CESICA, Casa Cleste y Blanca, Obra social</strong>), un mes antes. Luego, clasificamos las donaciones y las distribuimos a los chicos y chicas de distintos barrios vulnerables de la Ciudad.</p>';//$pagina['page_text']
 $imagen = '';//$pagina['page_imagen']
 

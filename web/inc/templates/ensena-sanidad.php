@@ -1,6 +1,6 @@
 <?php 
 //$pagina = getPageData(8);
-$titulo = 'Día del niño Solidario';//$pagina['page_titulo']
+$titulo = 'Enseña Sanidad';//$pagina['page_titulo']
 $texto = '<p style="text-align:center">Realizamos talleres, charlas informativas y actividades de concientización sobre distintas temáticas, relacionadas a la salud de chicos, chicas, adolescentes, adultos y mayores. Contamos con una oferta de capacitaciones en salud, emergencias, higiene,sexualidad, etc, para trabajar en donde sea necesario. Además, tomamos los datos recolectados durante las actividades <strong>Sanidad Todo Terreno</strong> y así atendemos las necesidades encontradas.</p>';//$pagina['page_text']
 $imagen = '';//$pagina['page_imagen']
 

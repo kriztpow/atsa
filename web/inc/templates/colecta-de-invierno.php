@@ -1,6 +1,6 @@
 <?php 
 //$pagina = getPageData(8);
-$titulo = 'Día del niño Solidario';//$pagina['page_titulo']
+$titulo = 'Colecta de invierno';//$pagina['page_titulo']
 $texto = '<p style="text-align:center">Antes de que llegue el invierno, realizamos una colecta en todos los establecimientos donde pedimos ropa de abrigo y calzado para chicos, chicas, adolescentes, adultos y adultos mayores. Luego, clasificamos y organizamos esta ropa, para ser distribuida por distintos barrios vulnerables de la Ciudad o para las personas en situación de calle.</p><p style="text-align:center">Para recolectar la ropa, vamos a poner unas cajas especiales en distintos espacios de nuestro sindicato (<strong>Complejo Cultural, CESICA, Casa Cleste y Blanca, Obra social</strong>) y en los establecimientos que cuentan con Comisión interna. Prestá atención a nuestras redes sociales para conocer cuándo empezamos a recolectar las donaciones.</p>';//$pagina['page_text']
 $imagen = '';//$pagina['page_imagen']
 
