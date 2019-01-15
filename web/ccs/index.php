@@ -396,6 +396,7 @@ Complejo Cultural Sanidad </title>
       <div class="mini_gap">
       </div>
       <div id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.5754509339754!2d-58.400700684841716!3d-34.61489556559656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccae6f5c7ab0d%3A0x1037f129db338154!2sVenezuela+2255%2C+C1096ABM+CABA!5e0!3m2!1ses!2sar!4v1547573857431" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
       
       <!-- <form class="eventime_contact_form" action="#">
@@ -455,7 +456,7 @@ Complejo Cultural Sanidad </title>
  //<![CDATA[
 
 // Google Map
-google.maps.event.addDomListener(window, 'load', init);
+/*google.maps.event.addDomListener(window, 'load', init);
    function init() {
    // Basic options for a simple Google Map
    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
@@ -486,7 +487,7 @@ var marker = new google.maps.Marker({
       });
 
     }
-  //]]>
+  //]]>*/
    </script>
 
    <!--<script type="text/javascript" async="async" defer="defer" data-cfasync="false" src="https://mylivechat.com/chatinline.aspx?hccid=75668146"></script>-->
