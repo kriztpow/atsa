@@ -15,7 +15,8 @@
 13. acceso-afiliados
 14. mujeres historia
 15. activar
-16. Deportes (nuevo)
+16. Sanidad solidaria
+17. Deportes (nuevo)
 */
 
 /* ---- 2 Extra reset ---- */
@@ -76,5 +77,8 @@ html, body {
 /* ---- 15 activar ---- */
 @import 'activar';
 
-/* ---- 16 deportes ---- */
+/* ---- 15 activar ---- */
+@import 'sanidad-solidaria';
+
+/* ---- 17 deportes ---- */
 @import 'deportes';

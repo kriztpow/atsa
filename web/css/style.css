@@ -16,7 +16,8 @@
 13. acceso-afiliados
 14. mujeres historia
 15. activar
-16. Deportes (nuevo)
+16. Sanidad solidaria
+17. Deportes (nuevo)
 */
 /* ---- 2 Extra reset ---- */
 html, body, div, span, applet, object, iframe,
@@ -6249,7 +6250,455 @@ legend {
   color: #fff;
 }
 
-/* ---- 16 deportes ---- */
+/* ---- 15 activar ---- */
+#sanidad-solidaria {
+  padding-top: 50px;
+}
+#sanidad-solidaria .header-solidaria {
+  padding-top: 70px;
+  position: relative;
+  text-align: right;
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .header-solidaria {
+    padding-top: 0;
+  }
+}
+#sanidad-solidaria .header-solidaria .title-wrapper {
+  position: absolute;
+  left: 8%;
+  text-align: left;
+  top: 200px;
+  width: 30%;
+}
+@media (max-width: 1440px) {
+  #sanidad-solidaria .header-solidaria .title-wrapper {
+    top: 150px;
+  }
+}
+@media (max-width: 1200px) {
+  #sanidad-solidaria .header-solidaria .title-wrapper {
+    top: 80px;
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .header-solidaria .title-wrapper {
+    top: 0;
+    width: 50%;
+  }
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .header-solidaria .title-wrapper {
+    width: 90%;
+    left: 5%;
+    position: relative;
+  }
+}
+#sanidad-solidaria .header-solidaria .title-wrapper h1 {
+  color: #062342;
+  font-size: 500%;
+  text-transform: uppercase;
+  line-height: 100%;
+  font-weight: bold;
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .header-solidaria .title-wrapper h1 {
+    font-size: 300%;
+  }
+}
+#sanidad-solidaria .header-solidaria .title-wrapper p {
+  color: #858585;
+  font-size: 120%;
+  line-height: 140%;
+  font-weight: bold;
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .header-solidaria .title-wrapper p {
+    font-size: 105%;
+  }
+}
+#sanidad-solidaria .header-solidaria .header-image-solidaria {
+  position: relative;
+  width: 50%;
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto {
+  line-height: 155%;
+  font-size: 125%;
+  padding: 30px 0;
+  color: #858585;
+  position: relative;
+}
+@media (max-width: 992px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto {
+    padding: 30px 0;
+    font-size: 110%;
+  }
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto {
+    padding: 10px 0;
+    font-size: 100%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 60%;
+  height: 3px;
+  bottom: 0;
+  background-color: #858585;
+}
+@media (max-width: 992px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto > div {
+    padding: 0 5%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto h2 {
+  font-weight: bold;
+  font-size: 250%;
+  line-height: 120%;
+  font-weight: bold;
+  margin: 20px 0;
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto h2 {
+    font-size: 180%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto h3 {
+  font-size: 250%;
+  line-height: 120%;
+  margin: 20px 0;
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto h3 {
+    font-size: 180%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto h4 {
+  font-size: 180%;
+  line-height: 120%;
+  margin: 15px 0;
+  font-weight: lighter;
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto h4 {
+    font-size: 120%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto h5 {
+  font-size: 130%;
+  line-height: 120%;
+  margin: 10px 0;
+  font-weight: lighter;
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .wrapper-sanidad .contenido-texto h5 {
+    font-size: 115%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto strong {
+  font-weight: bold;
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto em {
+  font-style: italic;
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto a {
+  text-decoration: underline;
+}
+#sanidad-solidaria .wrapper-sanidad .contenido-texto p {
+  margin: 20px 0;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper {
+  margin-top: 50px;
+  padding: 50px 0;
+  background-color: #ecf1f0;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper h2 {
+  color: #434644;
+  font-weight: bold;
+  text-align: center;
+  font-size: 250%;
+  line-height: 120%;
+  margin-bottom: 30px;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .lista-proyectos {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .lista-proyectos li {
+  width: 20%;
+  padding: 1%;
+}
+@media (max-width: 1200px) {
+  #sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .lista-proyectos li {
+    width: 30%;
+  }
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .lista-proyectos li {
+    width: 50%;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .proyecto-solidaria h1 {
+  margin: 20px 0;
+  color: #434644;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: center;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .proyecto-solidaria .image-solidaria {
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  height: 130px;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .proyecto-solidaria .image-solidaria img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3D(-50%, -50%, 0);
+  width: 130%;
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .proyecto-solidaria .image-solidaria .shutter {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url(../assets/images/icon-mas.png);
+  background-size: 39px 39px;
+  background-repeat: no-repeat;
+  background-position: center;
+  zoom: 1;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi) {
+  #sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .proyecto-solidaria .image-solidaria .shutter {
+    background-image: url(../assets/images/icon-mas@2x.png);
+    background-size: 39px 39px;
+  }
+}
+#sanidad-solidaria .wrapper-sanidad .proyectos-wrapper .proyecto-solidaria:hover .image-solidaria .shutter {
+  zoom: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form {
+  padding-top: 50px;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form h2 {
+  color: #434644;
+  font-weight: bold;
+  text-align: center;
+  font-size: 250%;
+  line-height: 120%;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form p {
+  font-weight: lighter;
+  color: #434644;
+  text-align: center;
+  font-size: 150%;
+  line-height: 150%;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form {
+  margin-top: 50px;
+  margin-bottom: 0;
+  padding: 30px 0;
+  background-color: #444644;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form label {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  margin: 10px 0;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form label .label {
+  display: block;
+  margin-right: 15px;
+  font-size: 150%;
+  line-height: 150%;
+  color: #fff;
+  font-weight: lighter;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form label input, #sanidad-solidaria .wrapper-sanidad .wrapper-form form label textarea {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form label input {
+  border-bottom: 1px solid #fff;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form .wrapper-submit {
+  margin: 40px 0 20px;
+  text-align: right;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form .wrapper-submit button {
+  cursor: pointer;
+  border: none;
+  color: #F2F2F2;
+  border: 1px solid #fff;
+  background-color: transparent;
+  text-align: center;
+  padding: 3px 15px;
+  text-transform: uppercase;
+  font-size: 130%;
+  line-height: 130%;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form form .wrapper-submit button:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+#sanidad-solidaria .wrapper-sanidad .wrapper-form .msj-exito, #sanidad-solidaria .wrapper-sanidad .wrapper-form .msj-error {
+  color: #fff;
+}
+#sanidad-solidaria .solidaria-comedor-wrapper {
+  padding: 50px 0;
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .solidaria-comedor-wrapper .upper {
+    -webkit-flex-direction: column-reverse;
+    -moz-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    -o-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper .video-wrapper {
+  width: 560px;
+  height: 315px;
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .solidaria-comedor-wrapper .upper .video-wrapper {
+    width: 320px;
+    height: 180px;
+  }
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper .contenido {
+  padding: 0 20px;
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper .contenido strong {
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  #sanidad-solidaria .solidaria-comedor-wrapper .upper .contenido {
+    margin-bottom: 50px;
+  }
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper .contenido h2 {
+  color: #5b5b5f;
+  font-weight: bold;
+  font-size: 200%;
+  line-height: 150%;
+  margin-bottom: 40px;
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper .contenido a {
+  padding: 10px 30px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #5da3d6;
+}
+#sanidad-solidaria .solidaria-comedor-wrapper .upper .contenido a:hover {
+  zoom: 1;
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+#sanidad-solidaria .galeria-fotos {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+#sanidad-solidaria .header-solidaria-individual {
+  padding-top: 70px;
+  position: relative;
+}
+#sanidad-solidaria .header-solidaria-individual .header-image-solidaria-individual {
+  width: 100%;
+  margin-bottom: 40px;
+}
+#sanidad-solidaria .header-solidaria-individual .title-wrapper img {
+  display: block;
+  margin: 0 auto;
+  width: 190px;
+  padding: 0 30px 20px;
+  border-bottom: 1px solid #4d4d4d;
+  margin-bottom: 30px;
+}
+#sanidad-solidaria .header-solidaria-individual .title-wrapper h1 {
+  text-align: center;
+  color: #062342;
+  font-size: 300%;
+  text-transform: uppercase;
+  line-height: 100%;
+  font-weight: bold;
+}
+@media (max-width: 480px) {
+  #sanidad-solidaria .header-solidaria-individual .title-wrapper h1 {
+    font-size: 200%;
+  }
+}
+#sanidad-solidaria .solidaria-fondo-suave {
+  background-color: #ecf1f0;
+}
+
+/* ---- 17 deportes ---- */
 .header-menu-deportes {
   background-color: rgba(0, 172, 236, 0.5);
   position: absolute;

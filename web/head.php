@@ -95,6 +95,12 @@ if ( count($dataNoticia) > 0 ) {
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700" rel="stylesheet">
     <!-- bootstrap -->
     <link href="<?php echo urlBase(); ?>/css/bootstrap.min.css" rel="stylesheet">
+    
+    <?php if ( $pageActual == 'sanidad-solidaria' || $pageActual == 'dia-del-nino-solidario' || $pageActual == 'sanidad-todo-terreno' || $pageActual == 'ensena-sanidad' || $pageActual == 'colecta-navidena' || $pageActual == 'colecta-de-invierno' ) : ?>
+        <!-- owlcarousel -->
+        <link href="<?php echo urlBase(); ?>/css/owl-styles/owl.carousel.min.css" rel="stylesheet">
+    <?php endif; ?>
+    
     <!-- Custom CSS -->
     <link href="<?php 
     	if ( $pageActual == 'noticias' ) {

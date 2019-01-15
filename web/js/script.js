@@ -10,7 +10,8 @@
  * 4. Formulario peticion
  * 5. acceso delegados
  * 6. mujeres que hicieron historia
- * 7. deportes
+ * 7. sanidad solidaria
+ * 8. deportes
 */
 $(document).ready(function(){
     $('.barrita-afiliate').addClass('barrita-afiliate-opening');
@@ -814,6 +815,10 @@ $(document).ready(function(){
     
     });//cierra submit formulario afiliate
 });
+
+/* SANIDAD SOLIDARIA */
+
+
 
 
 /*
