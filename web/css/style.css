@@ -5726,6 +5726,89 @@ legend {
   margin: 10px 0;
   text-transform: uppercase;
 }
+.inner-wrapper .title-material-difusion {
+  background-color: #00acec;
+  color: #F2F2F2;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 0;
+  font-size: 130%;
+}
+@media (max-width: 768px) {
+  .inner-wrapper .title-material-difusion {
+    text-align: center;
+  }
+}
+.inner-wrapper .material-difusion-wrapper {
+  padding: 2rem 0;
+}
+.inner-wrapper .material-difusion-wrapper .material-difusion-categorias {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  -ms-align-items: flex-start;
+  -o-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.inner-wrapper .material-difusion-wrapper .material-difusion-categorias li {
+  margin: 2rem 2%;
+  width: 40%;
+  height: 250px;
+  padding: 1rem;
+  background-color: #d9dade;
+  color: #00acec;
+  text-transform: uppercase;
+  font-size: 300%;
+  line-height: 130%;
+  font-weight: bold;
+  text-align: center;
+  -webkit-box-shadow: 0px 1px 30px #999;
+  -moz-box-shadow: 0px 1px 30px #999;
+  -ms-box-shadow: 0px 1px 30px #999;
+  -o-box-shadow: 0px 1px 30px #999;
+  box-shadow: 0px 1px 30px #999;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .inner-wrapper .material-difusion-wrapper .material-difusion-categorias li {
+    width: 60%;
+    height: 300px;
+  }
+}
+@media (max-width: 480px) {
+  .inner-wrapper .material-difusion-wrapper .material-difusion-categorias li {
+    width: 80%;
+    height: 250px;
+  }
+}
 
 /* ---- 14 mujeres historia ---- */
 #mujeres {

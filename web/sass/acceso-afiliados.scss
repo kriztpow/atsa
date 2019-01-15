@@ -449,4 +449,90 @@ legend {
 
     }//wrapper-videos-delegados
 
+
+    .title-material-difusion {
+        background-color: $celeste;
+        color: $blanco;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: .5rem 0;
+        font-size: 130%;
+
+        @media (max-width: $mq-movil) {
+            text-align: center;
+        }
+    }
+
+    .material-difusion-wrapper {
+        padding: 2rem 0;
+
+        .material-difusion-categorias {
+            display: flex;
+            display: -o-flex;
+            display: -ms-flex;
+            display: -moz-flex;
+            display: -webkit-flex;
+            -webkit-align-items: flex-start;
+            -moz-align-items: flex-start;
+            -ms-align-items: flex-start;
+            -o-align-items: flex-start;
+            align-items: flex-start;
+            -webkit-justify-content: center;
+            -moz-justify-content: center;
+            -ms-justify-content: center;
+            -o-justify-content: center;
+            justify-content: center;
+            -webkit-flex-wrap: wrap;
+            -moz-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            -o-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+            li {
+                margin: 2rem 2%;
+                width: 40%;
+                height: 250px;
+                padding: 1rem;
+                background-color: #d9dade;
+                color: $celeste;
+                text-transform: uppercase;
+                font-size: 300%;
+                line-height: 130%;
+                font-weight: bold;
+                text-align: center;
+                -webkit-box-shadow: 0px 1px 30px #999;
+                -moz-box-shadow: 0px 1px 30px #999;
+                -ms-box-shadow: 0px 1px 30px #999;
+                -o-box-shadow: 0px 1px 30px #999;
+                box-shadow: 0px 1px 30px #999;
+                display: flex;
+                display: -o-flex;
+                display: -ms-flex;
+                display: -moz-flex;
+                display: -webkit-flex;
+                -webkit-align-items: center;
+                -moz-align-items: center;
+                -ms-align-items: center;
+                -o-align-items: center;
+                align-items: center;
+                -webkit-justify-content: center;
+                -moz-justify-content: center;
+                -ms-justify-content: center;
+                -o-justify-content: center;
+                justify-content: center;
+
+                @media (max-width: $mq-movil) {
+                    width: 60%;
+                    height: 300px;
+                }
+
+                @media (max-width: $mq-mini) {
+                    width: 80%;
+                    height: 250px;
+                }
+            }
+        }
+
+    }
+
 }//.inner-wrapper
