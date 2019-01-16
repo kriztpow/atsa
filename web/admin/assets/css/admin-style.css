@@ -903,6 +903,13 @@ aside {
 .lista-cursos .curso textarea {
   height: 60px;
 }
+.lista-cursos .curso select {
+  background: #337ab7;
+  color: #fff;
+  height: 29px;
+  border: none;
+  padding: 5px;
+}
 
 .btn-cursos-wrapper {
   margin: 30px 0;

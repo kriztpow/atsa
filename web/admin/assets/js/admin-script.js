@@ -2161,6 +2161,13 @@ $(document).ready(function(){
 			var contenido = $(article).find('.tinyeditorcursos').val();
 			var imagen = $(article).find('.imagen-curso').attr('data-href');
 			var archivo = $(article).find('.archivo-curso').attr('data-href');
+			var dataextra1 = '0';
+			var categoria = $(article).find('select').val();
+
+			
+			if ( $(article).find('input[name="dataextra1"]').prop('checked') ) {
+				var dataextra1 = '1';
+			};
 
         	if ( orden == '' ) {
 				orden = 0;
@@ -2184,9 +2191,11 @@ $(document).ready(function(){
 					orden: orden,
 					imagen:imagen,
 					archivo:archivo,
+					dataextra1: dataextra1,
 	            	newArticle: newArticle,
 					idItem: idItem,
-	            	post_type: post_type,
+					post_type: post_type,
+					categoria:categoria,
 				}
 				
         } else if (post_type == 'instituto') {

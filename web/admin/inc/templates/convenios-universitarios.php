@@ -24,7 +24,7 @@ require_once("inc/functions.php");
                             if ( $cursos != null ) :
 
                                 foreach ( $cursos as $curso ) { ?>
-                                    <h3>
+                                    <h3 <?php if ( $curso['curso_dataextra1'] == 1 ) {echo 'style="background-color:#337ab7;color:#fff;"'; } ?>>
                                         <?php echo $curso['curso_titulo']; ?>
                                     </h3>
                                     <div class="curso">
@@ -42,6 +42,13 @@ require_once("inc/functions.php");
                                                     <label>Orden:<br>
                                                         <input type="number" name="cursos_orden" value="<?php echo $curso['curso_orden']; ?>">
                                                     </label>
+                                                    <label>Universidad (indice):<br>
+                                                        <?php if ( $curso['curso_dataextra1'] == 1 ) { ?>
+                                                            <input class="input_indice" type="checkbox" name="dataextra1" checked>
+                                                        <?php } else { ?>
+                                                            <input class="input_indice" type="checkbox" name="dataextra1">
+                                                        <?php } ?>
+                                                        </label>
                                                 </div><!-- // .col -->
                                             </div>
 
@@ -57,8 +64,9 @@ require_once("inc/functions.php");
                                                         <textarea class="tinyeditorcursos" name="cursos_contenido"> <?php echo $curso['curso_objespecifico']; ?></textarea>
                                                     </label>
                                                 </div><!-- // .col -->
-
-                                                <div class="col-sm-12">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
 													<h4>Plan De estudios (opcional)</h4>
                                                     <a href="/uploads/pdfs/<?php echo $curso['curso_archivo']; ?>" target="_blank" data-href="<?php echo $curso['curso_archivo']; ?>" class="archivo-curso"><?php echo $curso['curso_archivo']; ?></a>
                                                         <button class="btn btn-xs btn-change-archivo-curso">Cambiar/cargar archivo</button>
@@ -67,6 +75,35 @@ require_once("inc/functions.php");
                                                             <button class="btn btn-xs btn-clear-archivo-curso">borrar archivo</button>
                                                         <?php endif; ?>
                                                 </div><!-- // .col -->
+                                                <div class="col-sm-6 text-right">
+                                                    <div class="form-group">
+                                                        <label for="cursos_categoria">
+                                                            Categoria (universidad)
+                                                        </label>
+                                                        <select name="cursos_categoria">
+                                                            <option>Seleccionar categoría</option>
+                                                            <?php
+                                                                $categorias = listCursosIndiceAdmin('universitarios');
+
+                                                                if ( $categorias != 'null' ) {
+                                                                    foreach ($categorias as $categoria) {
+
+                                                                        $option = '<option value="'.$categoria["curso_ID"].'"';
+                                                                        
+                                                                        if ( $curso['curso_categoria'] ==  $categoria["curso_ID"] ) {
+                                                                            $option.= ' selected';
+                                                                        }
+                                                                        
+                                                                        $option.= '>'.$categoria["curso_titulo"].'</option>';
+
+                                                                        echo $option;
+                                                                    }
+                                                                    
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="btn-cursos-wrapper">
                                                 <span class="msj-cursos-saved"></span>

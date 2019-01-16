@@ -6,7 +6,7 @@
 */
 require_once("functions.php");
 if ( isAjax() ) {
-
+	
 	$connection = connectDB();
 	$tabla = 'cursos';
 	$post_type = isset( $_POST['post_type'] ) ? $_POST['post_type'] : 'no_formal';
@@ -26,6 +26,7 @@ if ( isAjax() ) {
 	$destacado = isset( $_POST['destacado'] ) ? $_POST['destacado'] : '0';
 	$archivo = isset( $_POST['archivo'] ) ? $_POST['archivo'] : '';
 	$orden = isset( $_POST['orden'] ) ? $_POST['orden'] : '0';
+	$categoria = isset( $_POST['categoria'] ) ? $_POST['categoria'] : '';
 	$newArticle = isset( $_POST['newArticle'] ) ? $_POST['newArticle'] : 'true';
 	$idItem = isset( $_POST['idItem'] ) ? $_POST['idItem'] : '';
 	
@@ -74,10 +75,11 @@ if ( isAjax() ) {
 
 		} else if ( $post_type == 'universitarios' ) {
 			
+			$dataextra1 = isset( $_POST['dataextra1'] ) ? $_POST['dataextra1'] : '0';
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
 			$slug = filter_var($slug,FILTER_SANITIZE_STRING);
 
-			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_destacado, curso_orden, curso_tipo) VALUES ('$slug','$titulo','','','','$objEspecifico','','$imagen','$archivo','','','','','0','$orden', 'universitarios')";
+			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_dataextra1, curso_destacado, curso_orden, curso_tipo, curso_categoria) VALUES ('$slug','$titulo','','','','$objEspecifico','','$imagen','$archivo','','','','','$dataextra1','0','$orden', 'universitarios', '$categoria')";
 
 		}
 
@@ -129,10 +131,11 @@ if ( isAjax() ) {
 
 		} else if ( $post_type == 'universitarios' ) {
 
+			$dataextra1 = isset( $_POST['dataextra1'] ) ? $_POST['dataextra1'] : '0';
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
 			$slug = filter_var($slug,FILTER_SANITIZE_STRING);
 
-			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_slug='".$slug."', curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_orden='".$orden."' WHERE curso_ID='".$idItem."' LIMIT 1";
+			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_slug='".$slug."', curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_dataextra1='".$dataextra1."',curso_orden='".$orden."',curso_categoria='".$categoria."' WHERE curso_ID='".$idItem."' LIMIT 1";
 			
 		} else {
 

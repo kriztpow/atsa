@@ -1205,12 +1205,44 @@ function searchHotelesAdmin() {
 }//searchHotelesAdmin()
 
 //buscar cursos en admin de acuerdo a post_type: no_formal o formacion_tecnica
-function listCursosAdmin ( $post_type ) {
+function listCursosAdmin ( $post_type, $categoria='' ) {
 	$connection = connectDB();
 	$tabla = 'cursos';
 	
 	//queries según parámetros 
-	$query  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='".$post_type."' ORDER by curso_orden asc";	
+	$query  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='".$post_type;	
+
+	if ( $categoria !='' ) {
+		$query .= "' AND curso_categoria='".$categoria; 	
+	}
+	
+	$query .= "' ORDER by curso_orden asc";
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) { 
+	
+		$cursos = null;
+	
+	} else {
+		while ($row = $result->fetch_array()) {
+			$rows[] = $row;
+		
+		}//while
+		$cursos = $rows;
+	}
+
+	closeDataBase($connection);
+
+	return $cursos;
+}
+
+function listCursosIndiceAdmin ( $post_type ) {
+	$connection = connectDB();
+	$tabla = 'cursos';
+	
+	//queries según parámetros 
+	$query  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='".$post_type. "' AND curso_dataextra1='1' ORDER by curso_orden asc";
+
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) { 
