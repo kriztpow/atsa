@@ -15,6 +15,9 @@ require_once("inc/functions.php");
 			
 			<div id="cursosacordion">
                 <h3 class="text-center">Convenios Universitarios</h3>
+                <p style="font-size: 80%;margin:0 2rem 2rem;">
+                    Los que se marcan con azul, son los índices (universidades) de todos los convenios. Para indicar un nuevo índice, hay que hacer clic en el checkbox debajo de órden. Sino es un índice, se debe introducir la categoría del convenio, para que se muestre en la página debajo de la universidad correspondiente. <strong>Para agregar la categoría, una vez cargado el convenio, se debe actualizar la página y luego se mostrarán las categorías a elegir.</strong>
+                </p>
 				<div>
 					<div class="container-fluid">
 						<button class="btn btn-warning btn-sm btn-new-curso" data-tipo="universitarios">Crear nuevo Convenio</button>
@@ -48,7 +51,7 @@ require_once("inc/functions.php");
                                                         <?php } else { ?>
                                                             <input class="input_indice" type="checkbox" name="dataextra1">
                                                         <?php } ?>
-                                                        </label>
+                                                    </label>
                                                 </div><!-- // .col -->
                                             </div>
 
