@@ -32,7 +32,7 @@ for ($i=0; $i < count($data); $i++) { ?>
         <div class="modal-footer">
           <a href="https://www.facebook.com/ComplejoCulturalSanidad/" class="contact_icon fa fa-facebook graybtn graytxt"></a>
           <a href="https://twitter.com/AtsaBsAs"    class="contact_icon fa fa-twitter graybtn graytxt"></a>
-          <a href="https://www.instagram.com/AtsaBsAs/" class="contact_icon fa fa-instagram graybtn graytxt"></a>
+          <a href="https://www.instagram.com/complejo.cultural/" class="contact_icon fa fa-instagram graybtn graytxt"></a>
           <div class="cursos-horarios">
             <?php echo $data[$i]['curso_horarios']; ?>
           </div>
