@@ -1255,13 +1255,51 @@ h2.info-enfermeria {
 	}
 }
 
+#convenios-universitarios {
+	.wrapper-cursos-no-formales {
+		color: #4d4d4d;
+	}
+
+	.loop-cursos-formacion-tecnica {
+		margin: 0;
+	}
+}
+
 .universidad {
 
 	figure {
 		border: 1px solid $celeste;
 		overflow: hidden;
-		height: 200px;
+		height: 100px;
+		position: relative;
+
+		@media (max-width: 766px) {
+			margin: 0 auto;
+			width: 80%;
+		}
+
+		img {
+			height: auto;
+			position: absolute;
+			width: 90%;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate3d(-50%,-50%,0);
+			-moz-transform: translate3d(-50%,-50%,0);
+			-ms-transform: translate3d(-50%,-50%,0);
+			-o-transform: translate3d(-50%,-50%,0);
+			transform: translate3d(-50%,-50%,0);
+
+			@media (max-width: 766px) {
+				width: 60%;
+			}
+		}
 	}
+}
+
+.subcategoria-cursos {
+	margin: 2rem 0 -.5rem;
+    font-size: 110%;
 }
 
 .separador-universidad {
@@ -1298,6 +1336,14 @@ h2.info-enfermeria {
 	-o-justify-content: center;
 	justify-content: center;
 
+
+	@media (max-width: 766px) {
+		height: auto;
+		position: absolute;
+		top: 64px;
+		padding: 4rem 0;
+	}
+
 	.contenedor-modal {
 		position: relative;
 		width: 80%;
@@ -1306,6 +1352,12 @@ h2.info-enfermeria {
 		color: #464846;
 		padding: 2rem;
 		border: 2px solid $celeste;
+
+		@media (max-width: 766px) {
+			width: 100%;
+			border: none;
+			padding: 3rem 1rem;
+		}
 		
 		.close-button {
 			position: absolute;
@@ -1350,6 +1402,7 @@ h2.info-enfermeria {
 		h1 {
 			font-weight: bold;
 			font-size: 150%;
+			line-height: 130%;
 		}
 
 		.contenido {
@@ -1389,6 +1442,12 @@ h2.info-enfermeria {
 					list-style: disc;
 				}
 			}
+		}
+
+		.link-wrapper {
+			margin: 3rem 0;
+			font-weight: bold;
+			text-transform: uppercase; 
 		}
 	}
 }
@@ -1620,6 +1679,7 @@ h2.info-enfermeria {
 		background-color: #eeeff1;
 		box-shadow: 0 2px 20px #333;
 		margin-top: 20px;
+
 
 		.loop-cursos-formacion-tecnica {
 			margin: 0px auto 10px;

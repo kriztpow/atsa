@@ -3647,10 +3647,46 @@ h2.info-enfermeria {
   max-width: 39px;
 }
 
+#convenios-universitarios .wrapper-cursos-no-formales {
+  color: #4d4d4d;
+}
+#convenios-universitarios .loop-cursos-formacion-tecnica {
+  margin: 0;
+}
+
 .universidad figure {
   border: 1px solid #00acec;
   overflow: hidden;
-  height: 200px;
+  height: 100px;
+  position: relative;
+}
+@media (max-width: 766px) {
+  .universidad figure {
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+.universidad figure img {
+  height: auto;
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+@media (max-width: 766px) {
+  .universidad figure img {
+    width: 60%;
+  }
+}
+
+.subcategoria-cursos {
+  margin: 2rem 0 -0.5rem;
+  font-size: 110%;
 }
 
 .separador-universidad {
@@ -3687,6 +3723,14 @@ h2.info-enfermeria {
   -o-justify-content: center;
   justify-content: center;
 }
+@media (max-width: 766px) {
+  .wrapper-modal {
+    height: auto;
+    position: absolute;
+    top: 64px;
+    padding: 4rem 0;
+  }
+}
 .wrapper-modal .contenedor-modal {
   position: relative;
   width: 80%;
@@ -3695,6 +3739,13 @@ h2.info-enfermeria {
   color: #464846;
   padding: 2rem;
   border: 2px solid #00acec;
+}
+@media (max-width: 766px) {
+  .wrapper-modal .contenedor-modal {
+    width: 100%;
+    border: none;
+    padding: 3rem 1rem;
+  }
 }
 .wrapper-modal .contenedor-modal .close-button {
   position: absolute;
@@ -3733,6 +3784,7 @@ h2.info-enfermeria {
 .wrapper-modal .contenedor-modal h1 {
   font-weight: bold;
   font-size: 150%;
+  line-height: 130%;
 }
 .wrapper-modal .contenedor-modal .contenido strong {
   font-weight: bold;
@@ -3762,6 +3814,11 @@ h2.info-enfermeria {
 }
 .wrapper-modal .contenedor-modal .contenido ul li {
   list-style: disc;
+}
+.wrapper-modal .contenedor-modal .link-wrapper {
+  margin: 3rem 0;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 #accordion-cursos {

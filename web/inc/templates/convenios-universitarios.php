@@ -30,7 +30,7 @@
 					
 					<div class="universidad row">
 						
-						<figure class="col-sm-3">
+						<figure class="col-sm-2">
 						<?php if ($row['curso_imagen'] != '') : ?>
 							
 							<img class="img-responsive" src="uploads/images/<?php echo $row['curso_imagen']; ?>" alt="<?php echo $row['curso_titulo']; ?> - logo">
@@ -47,25 +47,45 @@
 
 					<!--loop de cursos por universidad -->
 
-					<ul class="row loop-cursos-formacion-tecnica">
-						<?php
-							/*$connection = connectDB();
-							$tabla = 'cursos';*/
-							$query2  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='universitarios' AND curso_categoria='".$categoria."' ORDER by curso_orden";
-								
-							$result2 = mysqli_query($connection, $query2);
+					
+					<?php
+						/*$connection = connectDB();
+						$tabla = 'cursos';*/
+						$query2  = "SELECT * FROM " .$tabla. " WHERE curso_tipo='universitarios' AND curso_categoria='".$categoria."' ORDER by curso_orden";
 							
-							if ( $result2->num_rows != 0 ) {
+						$result2 = mysqli_query($connection, $query2);
+						$subcategoria = '';
+						if ( $result2->num_rows != 0 ) :
+						
+							while ($row2 = $result2->fetch_array()) {
 							
-								while ($row2 = $result2->fetch_array()) { ?>
+								$cursosMostrar[] = $row2;
+							}
+							
+							$contador = 0;
+
+							for ($i=0; $i < count($cursosMostrar); $i++) { 
+
+								if ( $contador == 0 || $cursosMostrar[$i]['curso_subcategoria'] != $subcategoria ) {
+
+									if ($cursosMostrar[$i]['curso_subcategoria'] != '' ) {
+										$subcategoria = $cursosMostrar[$i]['curso_subcategoria'];
+									}
+									echo '<h4 class="subcategoria-cursos">'.$subcategoria.'</h4>';
+									echo '<ul class="row loop-cursos-formacion-tecnica">';
+								}
 								
+
+								?>
+							
+							
 								<li class="col-lg-3 col-md-4 col-sm-6">
-									<a href="/convenio/<?php echo $row2['curso_slug'] ?>">
+									
 									<article class="curso-formacion-tecnica convenio-universitario">
 										<figure>
-										<?php if ($row2['curso_imagen'] != '') : ?>
+										<?php if ($cursosMostrar[$i]['curso_imagen'] != '') : ?>
 											
-											<img src="uploads/images/<?php echo $row2['curso_imagen']; ?>" alt="Cursos ATSA">
+											<img src="uploads/images/<?php echo $cursosMostrar[$i]['curso_imagen']; ?>" alt="Cursos ATSA">
 
 										<?php endif; ?>
 
@@ -76,23 +96,43 @@
 										</figure>
 
 										<h1 class="titulo-curso">
-											<?php echo $row2['curso_titulo']; ?>
+											<?php echo $cursosMostrar[$i]['curso_titulo']; ?>
 										</h1>
 
 										<div class="contenido-curso" style="display:none;">
-											<?php echo $row2['curso_objespecifico']; ?>
+											<?php echo $cursosMostrar[$i]['curso_objespecifico']; ?>
+
+											<?php if ($cursosMostrar[$i]['curso_archivo'] != '' ) : ?>
+
+												<div class="link-wrapper">
+													<a href="<?php echo urlBase() . '/uploads/pdfs/' . $cursosMostrar[$i]['curso_archivo']; ?>" target="_blank">
+														Descargar Programa
+													</a>
+												</div>
+
+											<?php endif; ?>
+
 										</div>
 
-									</article><!-- //curso -->
-									</a>
-								</li><!-- //.col-md-3 .col-sm-6 -->
+									</article>
+									
+								</li>
+							
+							<?php
+								if ( $contador == count($cursosMostrar)-1 || $cursosMostrar[$i+1]['curso_subcategoria'] != $subcategoria ) {
+									echo '</ul>';
+								}
 
-							<?php }//while 
-							}//if
-						?>
-						</ul>
+								$contador++;
+							}//for
 
-						<span class="separador-universidad"></span>
+							unset($cursosMostrar);
+
+							?>
+						
+						<?php endif;//if ?>
+
+					<span class="separador-universidad"></span>
 
 				<?php }//while 
 				}//else

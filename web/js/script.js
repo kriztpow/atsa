@@ -877,6 +877,12 @@ $(document).on('click', '.convenio-universitario', function(e) {
     $(contenedor).empty().append( $(html) );
     $('#modal-curso').fadeIn();
 
+    if ( window.innerWidth < 768 ) {
+        $('html, body').stop().animate({
+            scrollTop: 0
+        }, 'slow');
+    }
+
 });
 
 $(document).on('click', '.close-button', function(e) {
