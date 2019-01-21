@@ -27,6 +27,7 @@ if ( isAjax() ) {
 	$archivo = isset( $_POST['archivo'] ) ? $_POST['archivo'] : '';
 	$orden = isset( $_POST['orden'] ) ? $_POST['orden'] : '0';
 	$categoria = isset( $_POST['categoria'] ) ? $_POST['categoria'] : '';
+	$subcategoria = isset( $_POST['subcategoria'] ) ? $_POST['subcategoria'] : '';
 	$newArticle = isset( $_POST['newArticle'] ) ? $_POST['newArticle'] : 'true';
 	$idItem = isset( $_POST['idItem'] ) ? $_POST['idItem'] : '';
 	
@@ -79,7 +80,7 @@ if ( isAjax() ) {
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
 			$slug = filter_var($slug,FILTER_SANITIZE_STRING);
 
-			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_dataextra1, curso_destacado, curso_orden, curso_tipo, curso_categoria) VALUES ('$slug','$titulo','','','','$objEspecifico','','$imagen','$archivo','','','','','$dataextra1','0','$orden', 'universitarios', '$categoria')";
+			$queryCreateItem  = "INSERT INTO " .$tabla. " (curso_slug, curso_titulo, curso_resumen, curso_metodologia, curso_objgeneral, curso_objespecifico, curso_requisitos, curso_imagen, curso_certificado, curso_cursada, curso_lugar, curso_horarios, curso_destinatario, curso_dataextra1, curso_destacado, curso_orden, curso_tipo, curso_categoria, curso_subcategoria) VALUES ('$slug','$titulo','','','','$objEspecifico','','$imagen','$archivo','','','','','$dataextra1','0','$orden', 'universitarios', '$categoria', '$subcategoria')";
 
 		}
 
@@ -135,7 +136,7 @@ if ( isAjax() ) {
 			$titulo = filter_var($titulo,FILTER_SANITIZE_STRING);
 			$slug = filter_var($slug,FILTER_SANITIZE_STRING);
 
-			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_slug='".$slug."', curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_dataextra1='".$dataextra1."',curso_orden='".$orden."',curso_categoria='".$categoria."' WHERE curso_ID='".$idItem."' LIMIT 1";
+			$queryUpdateItem  = "UPDATE ".$tabla." SET curso_slug='".$slug."', curso_titulo='".$titulo."', curso_objespecifico='".$objEspecifico."', curso_imagen='".$imagen."', curso_archivo='".$archivo."', curso_dataextra1='".$dataextra1."',curso_orden='".$orden."',curso_categoria='".$categoria."',curso_subcategoria='".$subcategoria."' WHERE curso_ID='".$idItem."' LIMIT 1";
 			
 		} else {
 

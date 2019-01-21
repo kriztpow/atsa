@@ -108,13 +108,13 @@ require_once("inc/functions.php");
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="cursos_categoria">
+                                                        <label for="cursos_subcategoria">
                                                             Sub Categoria (opcional)
                                                         </label>
-                                                        <select name="cursos_categoria">
-                                                            <option>Seleccionar subcategoría</option>
-                                                            <option value="certificado">Cursos con certificado Oficial</option>
-                                                            <option value="no-formales">Cursos No Formales</option>
+                                                        <select name="cursos_subcategoria">
+                                                            <option value="">Seleccionar subcategoría</option>
+                                                            <option value="Cursos con certificado"<?php if ($curso['curso_subcategoria'] == 'Cursos con certificado' ) { echo ' selected'; } ?>>Cursos con certificado Oficial</option>
+                                                            <option value="Cursos no formales"<?php if ($curso['curso_subcategoria'] == 'Cursos no formales' ) { echo ' selected'; } ?>>Cursos No Formales</option>
                                                         </select>
                                                     </div>
 

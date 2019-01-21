@@ -2162,7 +2162,8 @@ $(document).ready(function(){
 			var imagen = $(article).find('.imagen-curso').attr('data-href');
 			var archivo = $(article).find('.archivo-curso').attr('data-href');
 			var dataextra1 = '0';
-			var categoria = $(article).find('select').val();
+			var categoria = $(article).find('select[name="cursos_categoria"]').val();
+			var subcategoria = $(article).find('select[name="cursos_subcategoria"]').val();
 
 			
 			if ( $(article).find('input[name="dataextra1"]').prop('checked') ) {
@@ -2196,6 +2197,7 @@ $(document).ready(function(){
 					idItem: idItem,
 					post_type: post_type,
 					categoria:categoria,
+					subcategoria:subcategoria,
 				}
 				
         } else if (post_type == 'instituto') {
