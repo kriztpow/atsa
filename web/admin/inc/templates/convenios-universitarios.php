@@ -106,6 +106,18 @@ require_once("inc/functions.php");
                                                             ?>
                                                         </select>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label for="cursos_categoria">
+                                                            Sub Categoria (opcional)
+                                                        </label>
+                                                        <select name="cursos_categoria">
+                                                            <option>Seleccionar subcategoría</option>
+                                                            <option value="certificado">Cursos con certificado Oficial</option>
+                                                            <option value="no-formales">Cursos No Formales</option>
+                                                        </select>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="btn-cursos-wrapper">
