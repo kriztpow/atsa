@@ -58,11 +58,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && isset($_SES
                 <div class="container">
                     <ul class="material-difusion-categorias">
                         <li>
-                            Sector Privado
+                            Material Privado
                         </li>
 
                         <li>
-                            Sector Público
+                            Material Público
                         </li>
                     </ul>
                 </div>    
