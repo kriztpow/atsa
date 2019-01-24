@@ -69,7 +69,6 @@ $submenu = array(
 	   	
 		</div><!-- //#acorddion -->
 									
-		
 		<nav id="footer-menu-deportes" class="footer-menu-deportes">
 			
 			

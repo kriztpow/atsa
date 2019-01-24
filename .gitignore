@@ -1,5 +1,6 @@
 web/uploads/*
 web/phpmyadmin/*
+web/administrador/*
 bd/*
 web/voces-de-sanidad/contenido/*
 web/ccs/contenido/*
