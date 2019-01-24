@@ -16,7 +16,7 @@ define('SECUREACCESS', 1);
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   $online = true;
     //define la categoria de usuario
-    if ( isset($_SESSION['user_status']) && ( $_SESSION['user_status'] == 0 || $_SESSION['user_status'] == 1 ) ) {
+    if ( isset($_SESSION['user_status'])  ) {
       $userStatus = $_SESSION['user_status'];
     } else {
       $userStatus = $_SESSION['user_status'];
@@ -31,6 +31,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 $now = time();
 if($now > $_SESSION['expire']) {
+  session_destroy();
+  echo 'Su sesion a terminado';
+  include TEMPLATEDIR . '/login.php';
+  exit;
+}
+
+if ( $_SESSION['user_status'] == 'f' ) {
   session_destroy();
   echo 'Su sesion a terminado';
   include TEMPLATEDIR . '/login.php';

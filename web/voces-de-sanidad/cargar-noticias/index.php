@@ -28,7 +28,8 @@ if($now > $_SESSION['expire']) {
   exit;
 }
 
-if ( isset($_SESSION['user_status']) && $_SESSION['user_status'] == 'd' ) {
+
+if ( isset($_SESSION['user_status']) && ( $_SESSION['user_status'] == 'd'||  $_SESSION['user_status'] == 'f') ) {
   session_destroy();
   echo 'Su sesion a terminado';
   include TEMPLATEDIR . '/login.php';
