@@ -1,0 +1,67 @@
+/* ---- 7 seccion deportes ---- */
+#accordionDeportes {
+    div {
+      position: relative;
+    }
+  }
+  .deportes-section-title {
+    small {
+        font-style: italic;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  }
+  .links-deportes {
+    list-style: none;
+  
+    li {
+      border-bottom: 1px solid $gris;
+      padding: 15px 0;
+      margin-bottom: 20px;
+      &:last-child {
+        border: none;
+      }
+    }
+  
+    h4 {
+      margin: 0;
+      display: inline-block;
+    }
+  }
+  
+  .link-deportes-texto {
+    width: 100%;
+  }
+  
+  .link-deportes-orden {
+    width: 50%;
+  }
+  .link-deportes-file {
+    a {
+      font-style: italic;
+    }
+    span {
+      text-decoration: underline;
+      color: $danger;
+      cursor: pointer;
+    }
+  }
+  
+   #new-section-deportes-btn {
+    margin: 40px 0;
+   }
+  
+   .error-msj-deportes {
+    font-size: 90%;
+    color:$danger;
+    font-style: italic;
+   }
+  
+  .orden-secciones-deportes {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    font-size: 90%;
+  }
