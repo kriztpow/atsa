@@ -17,7 +17,15 @@ Inicio: 11-06-17
 
 ## VERSIONES:
 
-### Versión 8.4 - PAGINA NUEVA, MUJERES QUE HICIERON HISTORIA (nov.2018)
+### Versión 8.5 - DEPORTES
+* Nueva base de datos deportes para contener todos los torneos
+* Aplicación para administrar el torneo que permite cargar partidos, ligas, jugadores, equipos.
+* Tiene un nuevo administrador pero los usuarios de admin se guardan en la base de datos principal 
+
+### Versión 8.4 - PAGINAS NUEVA, 
+* Cambios en los templates
+* PAGINAS NUEVAS: Mujeres, sanidad solidaria.
+* Ajuste de noticias, eliminé etiquetas.
 
 ### Versión 8.3 - PAGINA EXCLUSIVA DELEGADOS (nov.2018)
 * Crear templates con accesos restringidos para usuarios legados
