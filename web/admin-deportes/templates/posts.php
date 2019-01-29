@@ -13,26 +13,7 @@ $posts = getPosts( 'post', POSTPERPAG, '', 'fecha', 'all' );
 		Ver Posts
 	</h1>
 	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="nav-noticias-interno">
-					<label>Filtrar por categoría</label>
-					<select name="post_categoria" id="post_categoria">
-						<option value="todas">Todas</option>
-						<?php 
-							$categorias = getCategoryList( 'posts' );
-							if ( $categorias!=null ) :
-
-								for ($i=0; $i < count($categorias); $i++) { 
-									echo '<option value="'.$categorias[$i]['categoria_slug'].'">'.$categorias[$i]['categoria_nombre'].'</option>';
-								}
-
-							endif;
-						?>
-					</select>
-				</div>
-			</div>
-		</div><!-- // row -->
+		
 		<div class="row">
 			<div class="col">
 			<ul class="loop-noticias-backend">

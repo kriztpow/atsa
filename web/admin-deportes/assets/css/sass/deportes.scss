@@ -1,0 +1,48 @@
+/*EDITAR LIGA*/
+.wrapper-zonas {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    
+    .zonas {
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+
+        .zona {
+            width: 30%;
+            margin: 2%;
+            padding: 1rem;
+            border: 1px solid $resaltado;
+
+            .data-zona {
+                display: none;
+            }
+        }
+
+        .title-zona {
+            font-size: 120%;
+            margin: 1rem 0 2rem;
+        }
+
+        .title-mini {
+            font-size: 100%;
+            margin: .5rem 0;
+            text-transform: uppercase;
+        }
+
+        .lista-partidos {
+            margin: 1rem .5rem;
+
+            li {
+                margin: 1rem 0;
+            }
+        }
+    }//.zonas
+}//.wrapper-zonas
+
+.wrapper-equipos {
+    background-color: #f5f5f5;
+    padding: 1rem;
+}

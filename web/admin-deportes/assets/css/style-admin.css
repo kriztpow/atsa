@@ -1616,4 +1616,46 @@ ul.dropdown-menu li {
   font-size: 90%;
 }
 
+/*EDITAR LIGA*/
+.wrapper-zonas {
+  background-color: #f5f5f5;
+  padding: 1rem;
+}
+.wrapper-zonas .zonas {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+}
+.wrapper-zonas .zonas .zona {
+  width: 30%;
+  margin: 2%;
+  padding: 1rem;
+  border: 1px solid #337ab7;
+}
+.wrapper-zonas .zonas .zona .data-zona {
+  display: none;
+}
+.wrapper-zonas .zonas .title-zona {
+  font-size: 120%;
+  margin: 1rem 0 2rem;
+}
+.wrapper-zonas .zonas .title-mini {
+  font-size: 100%;
+  margin: 0.5rem 0;
+  text-transform: uppercase;
+}
+.wrapper-zonas .zonas .lista-partidos {
+  margin: 1rem 0.5rem;
+}
+.wrapper-zonas .zonas .lista-partidos li {
+  margin: 1rem 0;
+}
+
+.wrapper-equipos {
+  background-color: #f5f5f5;
+  padding: 1rem;
+}
+
 /*# sourceMappingURL=style-admin.css.map */

@@ -54,11 +54,15 @@ function get_footer_scripts ($modulo) { ?>
 	<!------- scripts modulos ------>
 	<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
 	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
-	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-posts.js"></script>
 	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-old-deportes.js"></script>
-	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-deportes.js"></script>
-	
-<?php }
+
+	<?php if ($modulo != 'posts') { ?>
+		
+		<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-deportes.js"></script>
+	<?php } else { ?>
+		<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-posts.js"></script>
+	<?php }
+}
 
 /*
  * Funciones con base de datos
