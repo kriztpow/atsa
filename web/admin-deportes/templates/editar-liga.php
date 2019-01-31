@@ -31,6 +31,7 @@ if ( $postId != null ) {
 		<form method="POST" id="editar-liga-form" name="editar-liga-form">		
 		<input type="hidden" name="post_ID" value="<?php echo ($post) ? $post['id'] : 'new'; ?>">
 		<input type="hidden" name="zonas_id" value="<?php echo ($post) ? $post['zonas_id'] : ''; ?>">
+		<input type="hidden" name="action" value="editar-liga">
 			<div class="error-msj-wrapper">
 				<ul class="error-msj-list">
 					
@@ -82,48 +83,25 @@ if ( $postId != null ) {
 
 					<div class="wrapper-zonas">
 						<div class="zonas">
-							<div class="zona">
-								<div class="data-zona">
-									<input type="hidden" class="zona-id" value="new">
-									<input type="hidden" class="nombre" value="">
-									<input type="hidden" class="nombre_interno" value="">
-									<input type="hidden" class="slug" value="">
-									<input type="hidden" class="liga_id" value="new">
-									<input type="hidden" class="partidos_id" value="">
-									<input type="hidden" class="equipos_id" value="">
-								</div>
-								<h2 class="title-zona">
-									Zona A
-								</h2>
 
-								<h4 class="title-mini">
-									Partidos:
-								</h4>
-								<ul class="lista-partidos">
-									<li data_id="id">
-										<a data_id="id" href="index.php?admin=editar-partido&id=" target="_blank">
-											<span class="equipo1" data-id="id">Equipo 1</span>
-											vs 
-											<span class="equipo2" data-id="id">Equipo 2</span>
-										</a>
-									</li>
-									<li data_id="id">
-										<a data_id="id" href="index.php?admin=editar-partido&id=" target="_blank">
-											<span class="equipo1" data-id="id">Equipo 1</span>
-											vs 
-											<span class="equipo2" data-id="id">Equipo 2</span>
-										</a>
-									</li>
-									<li data_id="id">
-										<a data_id="id" href="index.php?admin=editar-partido&id=" target="_blank">
-											<span class="equipo1" data-id="id">Equipo 1</span>
-											vs 
-											<span class="equipo2" data-id="id">Equipo 2</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+							<?php if ( $post['zonas_id'] == '' ) :
+							//no hay zona cargada, tiene que generar una por defecto
+							$zona = null;
+							getTemplate('loop-zona', $zona);
+							
+							else :
+
+								$zonas = $post['zonas_id'];
+								$zonas = explode(',', $zonas);
+								
+								foreach ( $zonas as $zona ) {
+									$dataZona =  getPostsFromDeportesById( $zona, 'zonas' );
+									getTemplate('loop-zona', $dataZona);
+								}
+								
+							endif; ?>
+
+						</div><!-- // zonas -->
 					</div><!-- // wrapper-zonas -->
                 </div><!-- // col -->
 			</div><!-- // row -->

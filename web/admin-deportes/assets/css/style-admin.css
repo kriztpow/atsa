@@ -1643,14 +1643,28 @@ ul.dropdown-menu li {
 }
 .wrapper-zonas .zonas .title-mini {
   font-size: 100%;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1rem;
   text-transform: uppercase;
 }
 .wrapper-zonas .zonas .lista-partidos {
   margin: 1rem 0.5rem;
+  width: 100%;
 }
-.wrapper-zonas .zonas .lista-partidos li {
-  margin: 1rem 0;
+.wrapper-zonas .zonas .lista-partidos .equipo {
+  width: 30%;
+  vertical-align: middle;
+}
+.wrapper-zonas .zonas .lista-partidos .vs {
+  width: 10%;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+.wrapper-zonas .zonas .lista-partidos .btns {
+  width: 30%;
+  vertical-align: middle;
+  font-size: 80%;
+  font-style: italic;
 }
 
 .wrapper-equipos {

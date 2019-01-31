@@ -47,15 +47,19 @@ $(document).ready(function(){
         var postToDelete = $(this).attr('href');
         var itemToDelete = this.closest('li');
         if ( confirm( '¿Está seguro de querer BORRAR la liga?' ) ) {
-            deletePost = true;
+            if ( confirm( '¿REALMENTE Está seguro? Se van a borrar todas las zonas y partidos' ) ) {
+                deletePost = true;
+            }
+            
         }
 
         if (deletePost) {
             $.ajax( {
                 type: 'POST',
-                url: ajaxFunctionDir + '/delete-liga.php',
+                url: ajaxFunctionDir + '/delete-deportes.php',
                 data: {
                     post_id: postToDelete,
+                    action: 'delete-liga'
                 },
                 success: function ( response ) {
                     console.log(response);
@@ -117,11 +121,11 @@ $(document).ready(function(){
         //datos del formulario:
         var formulario = $( this );
         var formData = new FormData( formulario[0] );
-        
+
         //envia el formulario
         $.ajax({
             type: 'POST',
-            url: ajaxFunctionDir + '/editar-liga-ajax.php',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
             data: formData,
             cache: false,
             contentType: false,
@@ -131,7 +135,7 @@ $(document).ready(function(){
                 console.log('enviando formulario');
             },
             success: function ( response ) {
-                //console.log(response);
+                console.log(response);
                 switch(response) {
 
                     case 'error-url':
@@ -143,7 +147,8 @@ $(document).ready(function(){
                         scrollHaciaArriba();
                     break;
 
-                    case 'error':
+                    case 'error-zona':
+                    case 'error-liga':
                         error.append( '<li class="error-msj-list-item-danger">Hubo un pequeño error</li>');
                     break;
                         
