@@ -7,10 +7,18 @@
         <input type="hidden" name="partidos_id" class="partidos_id" value="<?php echo isset($data['partidos_ids']) ? $data['partidos_ids'] : '' ?>">
         <input type="hidden" name="equipos_id" class="equipos_id" value="<?php echo isset($data['equipos_id']) ? $data['equipos_id'] : '' ?>">
     </div>
-    
-    <h2 class="title-zona">
-        <input type="text" name="nombre_zona" class="nombre_zona" value="<?php echo isset($data['nombre']) ? $data['nombre'] : 'Zona A' ?>">
-    </h2>
+    <div class="row">
+        <div class="col-80">
+            <h2 class="title-zona">
+                <input type="text" name="nombre_zona" class="nombre_zona" value="<?php echo isset($data['nombre']) ? $data['nombre'] : 'Zona A' ?>">
+            </h2>
+        </div>
+        
+        <button type="button" title="Borrar Zona" class="borrar-zona-btn" data-id="<?php echo isset($data['liga_id']) ? $data['liga_id'] : '' ?>">
+            <img src="assets/images/ios-trash.png">
+        </button>
+        
+    </div>
 
     <h4 class="title-mini">
         Partidos:
@@ -22,6 +30,7 @@
             if ( $data['partidos_ids'] != '' ) {
                 $partidos = $data['partidos_ids'];
                 $partidos = explode(',', $partidos);
+
                 foreach ( $partidos as $partido ) {
                     $dataPartido =  getPostsFromDeportesById( $partido, 'partidos' );
                     getTemplate('loop-partidos', $dataPartido);

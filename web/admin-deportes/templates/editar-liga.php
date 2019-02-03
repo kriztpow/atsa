@@ -79,7 +79,7 @@ if ( $postId != null ) {
                 <div class="col">
 					<h2>Zonas</h2>
 
-					<button class="btn btn-primary agregar-equipo-btn">Agregar zona</button>
+					<button type="button" class="btn btn-primary" id="agregar-zona-btn">Agregar zona</button>
 
 					<div class="wrapper-zonas">
 						<div class="zonas">
@@ -102,18 +102,10 @@ if ( $postId != null ) {
 							endif; ?>
 
 						</div><!-- // zonas -->
+						<p>Los partidos se listan aquí una vez que fueron creados desde el <a href="index.php?admin=partidos">administrador de partidos</a>.</p>
 					</div><!-- // wrapper-zonas -->
                 </div><!-- // col -->
 			</div><!-- // row -->
-			
-			<div class="row">
-                <div class="col">
-					<h2>Equipos</h2>
-					<button class="btn btn-danger agregar-equipo-btn">Agregar equipo</button>
-					<div class="wrapper-equipos">
-					</div><!-- // wrapper-zonas -->
-                </div><!-- // col -->
-            </div><!-- // row -->
 
 			<hr>
 		   	<div class="row">	

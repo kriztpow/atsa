@@ -100,7 +100,89 @@ $(document).ready(function(){
     });
 
     /*
-     * SUBMIT FORMULARIO
+     * agregar zona
+    */
+    $(document).on('click', '#agregar-zona-btn', function(e){
+        var contenedor = $('.zonas');
+        var ligaId = $('input[name="post_ID"]').val();
+        var zonasIdInput =$('input[name="zonas_id"]');
+        var zonasVal = $(zonasIdInput).val();
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+            data: {
+                action: 'nueva-zona',
+                ligaId: ligaId,
+            },
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                
+                var respuesta = JSON.parse(response)
+                //console.log(respuesta);
+                if ( respuesta.error == '' ) {
+                    //agrega el template
+                    $(contenedor).append(respuesta.html);
+                   
+                    //agrega las zonas id
+                    zonasVal += ',' + respuesta.msj;
+                    $(zonasIdInput).val(zonasVal);
+                }
+
+            },
+            error: function ( error ) {
+                console.log(error);
+            },
+        });//cierre ajax
+
+    });//on clic crear zona
+
+
+    /*
+    * BORRAR ZONA
+    */
+    $(document).on('click', '.borrar-zona-btn', function( event ){
+        var deletePost = false;
+        event.preventDefault();
+        var postToDelete = $(this).attr('data-id');
+        var itemToDelete = this.closest('.zona');
+
+        if ( confirm( '¿Está seguro de querer BORRAR la zona?' ) ) {
+            if ( confirm( '¿REALMENTE Está seguro? Se van a borrar todos los partidos' ) ) {
+                deletePost = true;
+            }
+            
+        }
+
+        if (deletePost) {
+            $.ajax( {
+                type: 'POST',
+                url: ajaxFunctionDir + '/delete-deportes.php',
+                data: {
+                    post_id: postToDelete,
+                    action: 'delete-zona'
+                },
+                success: function ( response ) {
+                    console.log(response);
+                    if (response == 'ok') {
+                    
+                        //myFunctionNoticias();
+                        window.location.reload();
+                    }
+                },
+                error: function ( ) {
+                    console.log('error');
+                },
+            });//cierre ajax
+        }
+    });//click .btn-delete-post
+
+
+    /*
+     * SUBMIT FORMULARIO GRAL DEL TEMPLATE
     */
     $(document).on('submit', '#editar-liga-form', function(e){
         e.preventDefault();
