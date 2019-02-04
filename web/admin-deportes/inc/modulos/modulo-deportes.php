@@ -76,6 +76,16 @@ function getLigas($filtro = null) {
 }
 
 /*
+ * obtiene lista de zonas
+*/
+function getZonas($filtro = null) {
+    $tabla = 'zonas';
+
+    $zonas = getPostsFromDeportes( $tabla, null, $filtro );
+    return $zonas;
+}
+
+/*
  * obtiene lista de equipos
 */
 function getEquipos($filtro = null) {
@@ -175,6 +185,78 @@ function editarLiga ($data) {
     return $respuesta;
     
 }//editarLiga();
+
+
+/*
+ * EDITAR EQUIPO, NORMALMENTE VIENE DEL FORMULARIO DE EDICION
+*/
+function editarEquipo ($data) {
+
+    //se toman los datos para variables
+    $connection   = connectDB();
+    $tabla        = 'equipos';
+    $postID       = isset( $data['post_ID'] ) ? $data['post_ID'] : 'new';
+    $nombre       = isset( $data['post_title'] ) ? $data['post_title'] : '';
+    $slug         = isset( $data['post_url'] ) ? $data['post_url'] : '';
+	$logo         = isset( $data['logo'] ) ? $data['logo'] : '';
+	$jugadoresId  = isset( $data['jugadores_id'] ) ? $data['jugadores_id'] : '';
+	$ligaId       = isset( $data['liga_id'] ) ? $data['liga_id'] : '';
+	$zonaId       = isset( $data['zona_id'] ) ? $data['zona_id'] : '';
+    $deporteId    = isset( $data['post_categoria'] ) ? $data['post_categoria'] : '';
+
+    //saneamiento
+    $nombre       = mysqli_real_escape_string($connection, $nombre);
+    $nombre       = filter_var($nombre,FILTER_SANITIZE_STRING);
+
+    /*
+    * GUARDAR POST
+    */
+
+    //es nuevo post
+    
+    if ($postID == 'new') {
+
+        //primero hay que ver si el url no está tomado y si está tomado enviar un mensaje
+        $query  = "SELECT * FROM " .$tabla. " WHERE slug='".$slug."' ";
+        $result = mysqli_query($connection, $query);
+        if ( $result->num_rows != 0 ) {
+            return 'error-url';
+            exit;
+        }
+
+        //sino se guarda
+        $query = "INSERT INTO $tabla (liga_id,zona_id,deporte_id,nombre,slug,logo,jugadores_id) VALUES ('$ligaId', '$zonaId', '$deporteId','$nombre','$slug','$logo','$jugadoresId')";
+
+        $nuevoPost = mysqli_query($connection, $query); 
+        
+        if ($nuevoPost) {
+            $postID = mysqli_insert_id($connection);
+            $respuesta = $postID;
+
+        } else  {
+            $respuesta = 'error-equipo';   
+        }
+
+    } //es viejo post
+        else {
+
+        $query = "UPDATE ".$tabla." SET liga_id='".$ligaId."', zona_id='".$zonaId."', deporte_id='".$deporteId."', nombre='".$nombre."', slug='".$slug."', logo='".$logo."', jugadores_id='".$jugadoresId."' WHERE id='".$postID."' LIMIT 1";
+
+        $updatePost = mysqli_query($connection, $query); 
+        if ($updatePost) {
+            $respuesta = 'updated';
+        } else {
+            $respuesta = 'error';
+        }	
+    }
+
+    //cierre base de datos
+    mysqli_close($connection);
+
+    return $respuesta;
+    
+}//editarEquipo();
+
 
 /*
  * crea o actualiza una zona

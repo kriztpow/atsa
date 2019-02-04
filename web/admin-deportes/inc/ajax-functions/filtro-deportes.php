@@ -11,7 +11,7 @@ if ( isAjax() ) {
 
     $categoria = isset( $_POST['categoria'] ) ? $_POST['categoria'] : '';
     $buscar = isset( $_POST['buscar'] ) ? $_POST['buscar'] : '';
-    $flitro = null;
+    $filtro = null;
 
 
     switch ($buscar) {
@@ -20,10 +20,10 @@ if ( isAjax() ) {
             $tabla = 'liga';
 
             if ($categoria != '') {
-                $flitro = 'deporte_id="'.$categoria.'"';
+                $filtro = 'deporte_id="'.$categoria.'"';
             }
             
-            $ligas = getLigas($flitro);
+            $ligas = getLigas($filtro);
                 
             if ( $ligas != null ) {
                 for ($i=0; $i < count($ligas); $i++) { 
@@ -37,14 +37,12 @@ if ( isAjax() ) {
         break;
 
         case 'equipos':
-            
-            $tabla = 'equipos';
 
             if ($categoria != '') {
-                $flitro = 'deporte_id="'.$categoria.'"';
+                $filtro = 'deporte_id="'.$categoria.'"';
             }
             
-            $equipos = getEquipos($flitro);
+            $equipos = getEquipos($filtro);
                 
             if ( $equipos != null ) {
                 for ($i=0; $i < count($equipos); $i++) { 
@@ -54,6 +52,28 @@ if ( isAjax() ) {
         
             //cierre base de datos
             mysqli_close($connection);
+
+        break;
+
+        case 'zonas-by-liga':
+
+            if ($categoria != '') {
+                $filtro = 'liga_id="'.$categoria.'"';
+            }
+            
+            $zonas = getZonas($filtro);
+            $HTMLzonas = '<option>Seleccionar Una</option>';
+            
+            if ( $zonas != null ) {
+                for ($i=0; $i < count($zonas); $i++) { 
+                    $HTMLzonas .= '<option value"' . $zonas[$i]['id'] . '">' . $zonas[$i]['nombre_interno'] . '</option>';
+                }
+            }
+
+            //cierre base de datos
+            mysqli_close($connection);
+
+            echo $HTMLzonas;
 
         break;
 

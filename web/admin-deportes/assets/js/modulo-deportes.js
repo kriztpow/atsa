@@ -9,7 +9,8 @@
 $(document).ready(function(){
     
     /*
-    * FILTRA POR DEPORTE
+    * FILTRA POR DEPORTE U OTROS
+    * la variable buscar que esta en el atributo data-filtro del selec le indica que buscar en el php
     */
    $('#post_categoria').change(function(){
         var categoria = $(this).val();//deporte
@@ -110,6 +111,11 @@ $(document).ready(function(){
         var ligaId = $('input[name="post_ID"]').val();
         var zonasIdInput =$('input[name="zonas_id"]');
         var zonasVal = $(zonasIdInput).val();
+
+        if (ligaId == 'new' ) {
+            alert('ATENCION, para crear una zona primero tiene que guardar los cambios');
+            return true;
+        }
 
         $.ajax({
             type: 'POST',
@@ -325,3 +331,211 @@ $(document).ready(function(){
 
 
 });//READY EDITAR LIGA
+
+
+/*
+* EDITAR EQUIPOS
+*/
+
+$(document).ready(function(){
+
+    /*
+     * al cambiar la liga se actualizan las zonas
+    */
+    $(document).on('change', '#liga_id', function(e){
+        var contenedor = $('#zona_id');
+        var liga_id = $('#liga_id').val();
+
+        if ( liga_id == '') {
+            $(contenedor).empty();
+            $(contenedor).append( $('<option>Elija una liga</option>') );
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxFunctionDir + '/filtro-deportes.php',
+                data: {
+                    buscar: 'zonas-by-liga',
+                    categoria: liga_id,
+                },
+                //funcion antes de enviar
+                beforeSend: function() {
+                    console.log('enviando formulario');
+                },
+                success: function ( response ) {
+                    console.log(response)
+                    $(contenedor).empty()
+                    .append( response );
+                },
+                error: function ( error ) {
+                    console.log(error);
+                },
+            });//cierre ajax
+        }
+    });
+
+    /*
+    * SUBIR IMAGEN DESTACADA
+    */
+    $(document).on('click','.btn-change-logo-equipos',function(){
+        var imagen = $('.logo-equipos');
+
+        $( "#dialog" ).dialog({
+            title: 'Biblioteca de imágenes',
+            autoOpen: false,
+            appendTo: '.contenido-modulo',
+            height: 600,
+            width:768,
+            modal: true,
+            buttons: [
+            {
+                text: "Cerrar",
+                class: 'btn btn-default',
+                click: function() {
+                $( this ).dialog( "close" );
+            }
+            },
+            {
+                text: 'Insertar imagen',
+                class: 'btn btn-success',
+                click: function () {
+                        //se toma el nombre de la imagen, siempre la primera porque es UNA imagen destacada
+                        newImage = $('.previewAtachment')[0];
+                        newImage =  $(newImage).val();
+                        if ( newImage == '' ) {
+                            $( this ).dialog( "close" );
+                            return;
+                        }
+                        //se incluye la imagen en el input a guardar en base de datos, solo nombre
+                        $('#logo').val(newImage);
+                        //se genera url completo de la imagen para mostrar ahora
+                        urlimg = uploadsDir + '/images/' + newImage;
+                        //se imprime el html con el url de la imagen
+                        $(imagen).attr( 'src', urlimg );
+                        
+                        //se cierra el dialogo
+                        $( this ).dialog( "close" );
+                    }
+                },
+            ],
+        });
+        $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/media-browser.php' );
+    });
+
+    /*
+     * agregar jugador
+    */
+    $(document).on('click', '#agregar-jugador-btn', function(e){
+        var equipoID = $('input[name="post_ID"]').val();
+        if (equipoID == 'new' ) {
+            alert('ATENCION, para crear una zona primero tiene que guardar los cambios');
+            return true;
+        }
+
+        var contenedor = $('.zonas');
+        var jugadores_input =$('input[name="jugadores_id"]');
+        var jugadores_val = $(jugadores_input).val();
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+            data: {
+                action: 'nuevo-jugador',
+                equipo_id: equipoID,
+            },
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                
+                var respuesta = JSON.parse(response)
+                //console.log(respuesta);
+                if ( respuesta.error == '' ) {
+                    //agrega el template
+                    $(contenedor).append(respuesta.html);
+                
+                    //agrega las zonas id
+                    jugadores_val += ',' + respuesta.msj;
+                    $(jugadores_input).val(jugadores_val);
+                }
+
+            },
+            error: function ( error ) {
+                console.log(error);
+            },
+        });//cierre ajax
+
+    });//on clic crear jugador
+
+
+
+
+    /*
+     * SUBMIT FORMULARIO GRAL DEL TEMPLATE
+    */
+    $(document).on('submit', '#editar-equipo-form', function(e){
+        e.preventDefault();
+        var error = $('.error-msj-list');
+        
+        //primero revalidamos que el titulo y el url esten,sino estan hay un error
+        //el título no puede estar vacío
+        if ( $('#post_title').val() == '' ) {
+            error.append( '<li class="error-msj-list-item-danger">El título no puede estar vacío</li>');
+            return;
+        }
+        //la url no puede estar vacía
+        if ( $('#post_url').val() == '' ) {
+            error.append( '<li class="error-msj-list-item-danger">La URL no puede estar vacía</li>');
+            return;
+        }
+
+        //datos del formulario:
+        var formulario = $( this );
+        var formData = new FormData( formulario[0] );
+
+        //envia el formulario
+        $.ajax({
+            type: 'POST',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                console.log(response);
+                switch(response) {
+
+                    case 'error-url':
+                        error.append( '<li class="error-msj-list-item-danger">Ya existe una entrada con ese URL</li>');
+                    break;
+
+                    case 'updated':
+                        error.append( '<li class="error-msj-list-item-danger">Los Cambios fueron guardados</li>');
+                        scrollHaciaArriba();
+                    break;
+
+                    case 'error-equipo':
+                        error.append( '<li class="error-msj-list-item-danger">Hubo un pequeño error</li>');
+                    break;
+                        
+                    //devuelve id para reload
+                    default :
+                        var url = window.location.href;
+                        url += '&id=';
+                        url += response;
+                        window.location.href = url;
+                    break;
+                }
+            },
+            error: function ( error ) {
+                console.log(error);
+            },
+        });//cierre ajax
+        
+    });//submit
+});

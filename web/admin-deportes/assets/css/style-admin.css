@@ -1689,4 +1689,9 @@ ul.dropdown-menu li {
   margin: 0 auto;
 }
 
+.btn-change-logo-equipos {
+  display: block;
+  margin: 0.8rem auto;
+}
+
 /*# sourceMappingURL=style-admin.css.map */

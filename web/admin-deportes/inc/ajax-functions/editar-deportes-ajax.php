@@ -81,6 +81,15 @@ if ( isAjax() ) {
 
         break;
 
+
+        /*
+         * guardar equipo
+        */
+        case 'editar-equipo':
+        
+            echo editarEquipo($_POST);
+
+        break;
         
         
     }//switch ajax
