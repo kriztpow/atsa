@@ -290,7 +290,11 @@ function deleteLiga($ligaId){
 	//para guardar los partidos de cada zona
 	$partidos = array();
 	$Zonasborradas = 0;
- 
+
+	if ( ! is_array($zonas) ) {
+		$zonas = array( $zonas );
+	}
+
 	foreach ($zonas as $zona ) {
 	   //se recuperan los datos de la zona
 	   $dataZona = getPostsFromDeportesById( $zona, 'zonas' );
@@ -313,7 +317,7 @@ function deleteLiga($ligaId){
 	   
 	}
  
-	if ( count($zonas) != $Zonasborradas) {
+	if ( count($zonas) != $Zonasborradas || $Zonasborradas == 0 ) {
 	   
 	   $respuesta = 'error-borrado-zonas';
  
@@ -369,16 +373,27 @@ function deleteLiga($ligaId){
 function borrarZonaFromLiga( $zonaId ) {
 	$zonas = array($zonaId);
 	
+	//se toma los datos de la zona antes de borrarla
 	$dataZona = getPostsFromDeportesById( $zonaId, 'zonas' );
-	$zonasArray = array($zonaId);
-	$zonasBorradas = deleteZona($zonasArray);
-echo $zonasBorradas;
+	
+	
+	$zonasBorradas = deleteZona($zonaId);
+	
 	//si la zona fue borrada se elimina de la liga
 	if ( $zonasBorradas == 'ok' ) {
+
 		$liga = getPostsFromDeportesById( $dataZona['liga_id'], 'liga' );
 
-		$nuevaZonasId = str_replace($zonaId, "", $liga['zonas_id']);
+		//$nuevaZonasId = str_replace($zonaId.',', '', $liga['zonas_id']);
 
+		$nuevaZonasId = explode(',', $liga['zonas_id']);
+
+		if ( ($clave = array_search($zonaId, $nuevaZonasId)) !== false ) {
+			unset($nuevaZonasId[$clave]);
+		}
+		
+		$nuevaZonasId = implode(',', $nuevaZonasId);
+		
 		$connection = connectDB();
 		$query = "UPDATE liga SET zonas_id='".$nuevaZonasId."' WHERE id='".$dataZona['liga_id']."' LIMIT 1";
 
@@ -392,9 +407,10 @@ echo $zonasBorradas;
 		mysqli_close($connection);
 	
 	} else {
+
 		$respuesta = 'error-borrando-zona';
+
 	}
-	
 	
 	//cierre base de datos
 	

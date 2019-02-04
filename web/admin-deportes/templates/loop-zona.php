@@ -14,7 +14,7 @@
             </h2>
         </div>
         
-        <button type="button" title="Borrar Zona" class="borrar-zona-btn" data-id="<?php echo isset($data['liga_id']) ? $data['liga_id'] : '' ?>">
+        <button type="button" title="Borrar Zona" class="borrar-zona-btn" data-id="<?php echo isset($data['id']) ? $data['id'] : '' ?>">
             <img src="assets/images/ios-trash.png">
         </button>
         

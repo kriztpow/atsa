@@ -12,6 +12,7 @@ $postId = isset($_GET['id']) ? $_GET['id'] : null;
 $post = null;
 $nuevo = true;
 
+
 if ( $postId != null ) {
 	$post = getPostsFromDeportesById( $postId, 'liga' );
 	$nuevo = false;

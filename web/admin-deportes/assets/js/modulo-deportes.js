@@ -39,7 +39,7 @@ $(document).ready(function(){
     });//change
 
     /*
-    * BORRAR POST
+    * BORRAR LIGA
     */
     $(document).on('click', '.btn-delete-post', function( event ){
         var deletePost = false;
@@ -145,8 +145,9 @@ $(document).ready(function(){
     * BORRAR ZONA
     */
     $(document).on('click', '.borrar-zona-btn', function( event ){
-        var deletePost = false;
         event.preventDefault();
+        
+        var deletePost = false;
         var postToDelete = $(this).attr('data-id');
         var itemToDelete = this.closest('.zona');
 
@@ -169,7 +170,7 @@ $(document).ready(function(){
                     console.log(response);
                     if (response == 'ok') {
                     
-                        //myFunctionNoticias();
+                        //se actualiza la ventana así trae los cambios hechos
                         window.location.reload();
                     }
                 },
@@ -180,6 +181,8 @@ $(document).ready(function(){
         }
     });//click .btn-delete-post
 
+
+    
 
     /*
      * SUBMIT FORMULARIO GRAL DEL TEMPLATE

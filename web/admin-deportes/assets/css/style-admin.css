@@ -1629,6 +1629,7 @@ ul.dropdown-menu li {
   display: -webkit-flex;
 }
 .wrapper-zonas .zonas .zona {
+  position: relative;
   width: 30%;
   margin: 2%;
   padding: 1rem;
@@ -1636,6 +1637,16 @@ ul.dropdown-menu li {
 }
 .wrapper-zonas .zonas .zona .data-zona {
   display: none;
+}
+.wrapper-zonas .zonas .zona .borrar-zona-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+}
+.wrapper-zonas .zonas .zona .borrar-zona-btn:hover {
+  opacity: 0.5;
 }
 .wrapper-zonas .zonas .title-zona {
   font-size: 120%;
