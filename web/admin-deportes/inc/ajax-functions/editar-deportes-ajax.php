@@ -24,6 +24,16 @@ if ( isAjax() ) {
         break;
 
         /*
+         * guarda la zona
+        */
+        case 'escribir-zona':
+        
+            $ligaId = isset($_POST['liga_id']) ? $_POST['liga_id'] : '';
+            echo editZona( $ligaId, $_POST );
+
+        break;
+
+        /*
          * Agrega una zona a la liga
         */
         case 'nueva-zona':
@@ -67,8 +77,6 @@ if ( isAjax() ) {
             }
 
             echo json_encode($respuesta);
-            
-
             
 
         break;

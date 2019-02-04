@@ -182,6 +182,73 @@ $(document).ready(function(){
     });//click .btn-delete-post
 
 
+    /*
+     * CAMBIAR NOMBRE DE ZONA
+    */
+    function escribirZona( zona ) {
+        
+        var zonaId =$(zona).find('input[name="zona_id"]').val();
+        var valor = $(zona).find('input[name="nombre_zona"]').val();
+        var partidos = $(zona).find('input[name="partidos_id"]').val();
+        var equipos = $(zona).find('input[name="equipos_id"]').val();
+        var ligaId = $('input[name="post_ID"]').val();
+        console.log(zonaId,valor,partidos,equipos,ligaId);
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+            data: {
+                action: 'escribir-zona',
+                liga_id: ligaId,
+                zona_id: zonaId,
+                nombre_zona:valor,
+                partidos_id:partidos,
+                equipos_id:equipos,
+            },
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                
+                console.log(response);
+
+            },
+            error: function ( error ) {
+                console.log(error);
+            },
+        });//cierre ajax
+    }
+
+    var intervalZonaId;
+    var editandoZona = false;
+    $(document).on('keyup', '.nombre_zona', function(e){
+
+        var zona = $(this).closest('.zona');
+
+        //chequea si esta creando o no
+        if ( editandoZona ) {
+            clearInterval(intervalZonaId);
+            intervalZonaId = setTimeout(function(){
+                escribirZona( zona );
+            },1500);
+        } else {
+            editandoZona = true;
+            intervalZonaId = setTimeout(function(){
+                escribirZona( zona );
+            },1500);
+        }
+
+    });//on clic crear zona
+
+    //al hacer clic fuera del input del nombre de la zona
+    $(document).on('blur', '.nombre_zona', function(e){
+
+        var zona = $(this).closest('.zona');
+
+        escribirZona( zona );
+
+    });//on clic crear zona
     
 
     /*

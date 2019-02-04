@@ -185,11 +185,13 @@ function editZona( $ligaId, $dataZona ) {
         $nombre = 'Zona A';
     }
 
+	$slug = myUrlEncode($nombre);
+
     //el nombre interno siempre se actualiza con el nombre de la liga y el de la zona
     $liga = getPostsFromDeportesById( $ligaId, 'liga' );
-    $nombreInterno = $nombre . '-' . $liga['nombre'];
+    $nombreInterno = $slug . '-' .  myUrlEncode($liga['nombre']);
     
-    $slug = myUrlEncode($nombre);
+    
     
 
     //crea una nueva zona
@@ -391,7 +393,7 @@ function borrarZonaFromLiga( $zonaId ) {
 		if ( ($clave = array_search($zonaId, $nuevaZonasId)) !== false ) {
 			unset($nuevaZonasId[$clave]);
 		}
-		
+
 		$nuevaZonasId = implode(',', $nuevaZonasId);
 		
 		$connection = connectDB();
