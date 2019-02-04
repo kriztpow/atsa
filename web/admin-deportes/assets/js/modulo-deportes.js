@@ -255,8 +255,13 @@ $(document).ready(function(){
 
         var zona = $(this).closest('.zona');
 
-        escribirZona( zona );
-
+        if ( editandoZona ) {
+            clearInterval(intervalZonaId);
+            escribirZona( zona );
+        } else {
+            escribirZona( zona );
+        }
+        
     });//on clic crear zona
     
 
@@ -428,11 +433,11 @@ $(document).ready(function(){
     $(document).on('click', '#agregar-jugador-btn', function(e){
         var equipoID = $('input[name="post_ID"]').val();
         if (equipoID == 'new' ) {
-            alert('ATENCION, para crear una zona primero tiene que guardar los cambios');
+            alert('ATENCION, para crear un jugador primero tiene que guardar los cambios del equipo');
             return true;
         }
 
-        var contenedor = $('.zonas');
+        var contenedor = $('.tabla-jugadores');
         var jugadores_input =$('input[name="jugadores_id"]');
         var jugadores_val = $(jugadores_input).val();
 
@@ -448,9 +453,9 @@ $(document).ready(function(){
                 console.log('enviando formulario');
             },
             success: function ( response ) {
-                
+                //console.log(response);
                 var respuesta = JSON.parse(response)
-                //console.log(respuesta);
+                
                 if ( respuesta.error == '' ) {
                     //agrega el template
                     $(contenedor).append(respuesta.html);
@@ -469,7 +474,153 @@ $(document).ready(function(){
     });//on clic crear jugador
 
 
+    /*
+     * borrar jugador
+    */
+    $(document).on('click', '.borrar-jugador-btn', function(e){
+        e.preventDefault();
+            
+        var deletePost = false;
+        var postToDelete = $(this).attr('data-id');
+        var itemToDelete = $(this).closest('tr');
 
+        if ( confirm( '¿Está seguro de querer BORRAR el jugador?' ) ) {
+            deletePost = true; 
+        }
+
+        if (deletePost) {
+            $.ajax( {
+                type: 'POST',
+                url: ajaxFunctionDir + '/delete-deportes.php',
+                data: {
+                    post_id: postToDelete,
+                    action: 'delete-jugador'
+                },
+                success: function ( response ) {
+                    console.log(response);
+                    if (response == 'ok') {
+                        //se actualiza la ventana así trae los cambios hechos
+                        window.location.reload();
+                    }
+                },
+                error: function ( ) {
+                    console.log('error');
+                },
+            });//cierre ajax
+        }
+   });
+
+   /*
+     * CAMBIAR NOMBRE DE ZONA
+    */
+   function escribirZona( zona ) {
+        
+    var zonaId =$(zona).find('input[name="zona_id"]').val();
+    var valor = $(zona).find('input[name="nombre_zona"]').val();
+    var partidos = $(zona).find('input[name="partidos_id"]').val();
+    var equipos = $(zona).find('input[name="equipos_id"]').val();
+    var ligaId = $('input[name="post_ID"]').val();
+    console.log(zonaId,valor,partidos,equipos,ligaId);
+
+    $.ajax({
+        type: 'POST',
+        url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+        data: {
+            action: 'escribir-zona',
+            liga_id: ligaId,
+            zona_id: zonaId,
+            nombre_zona:valor,
+            partidos_id:partidos,
+            equipos_id:equipos,
+        },
+        //funcion antes de enviar
+        beforeSend: function() {
+            console.log('enviando formulario');
+        },
+        success: function ( response ) {
+            
+            console.log(response);
+
+        },
+        error: function ( error ) {
+            console.log(error);
+        },
+    });//cierre ajax
+}
+
+    /*
+     * CAMBIAR NOMBRE JUGADOR
+    */
+
+    function escribirJugador( jugador, id ) {
+        
+        var id =$(jugador).find('.imagen-jugador-btn').attr('data-id');
+        var nombre = $(jugador).find('input[name="nombre_jugador"]').val();
+        var imagen = $(jugador).find('input[name="imagen_jugador"]').val();
+        var equipo = $('input[name="post_ID"]').val();
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+            data: {
+                action: 'escribir-jugador',
+                id:id,
+                nombre:nombre,
+                imagen:imagen,
+                equipo:equipo,
+            },
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                
+                console.log(response);
+
+            },
+            error: function ( error ) {
+                console.log(error);
+            },
+        });//cierre ajax
+    }
+    var intervalJugadorId;
+    var editandoJugador = false;
+    $(document).on('keyup', 'input[name="nombre_jugador"]', function(e){
+
+        var jugador = $(this).closest('tr');
+
+        //chequea si esta creando o no
+        if ( editandoJugador ) {
+            clearInterval(intervalJugadorId);
+            intervalJugadorId = setTimeout(function(){
+                escribirJugador( jugador );
+            },1500);
+        } else {
+            editandoJugador = true;
+            intervalJugadorId = setTimeout(function(){
+                escribirJugador( jugador );
+            },1500);
+        }
+
+    });//on clic crear zona
+
+    //al hacer clic fuera del input del nombre de la zona
+    $(document).on('blur', 'input[name="nombre_jugador"]', function(e){
+
+        var jugador = $(this).closest('tr');
+
+        if ( editandoJugador ) {
+            clearInterval(intervalJugadorId);
+            
+            escribirJugador( jugador );
+           
+        } else {
+            
+            escribirJugador( jugador );
+            
+        }
+
+    });//on clic crear zona
 
     /*
      * SUBMIT FORMULARIO GRAL DEL TEMPLATE

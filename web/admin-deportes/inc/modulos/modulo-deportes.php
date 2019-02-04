@@ -281,10 +281,7 @@ function editZona( $ligaId, $dataZona ) {
 
     //el nombre interno siempre se actualiza con el nombre de la liga y el de la zona
     $liga = getPostsFromDeportesById( $ligaId, 'liga' );
-    $nombreInterno = $slug . '-' .  myUrlEncode($liga['nombre']);
-    
-    
-    
+    $nombreInterno = $slug . '-' .  myUrlEncode($liga['nombre']); 
 
     //crea una nueva zona
     if ($zonaId == '' ) {
@@ -324,8 +321,11 @@ function saveZonaOnLiga( $ligaId, $zonaId ) {
 	//recupera zonas id
 	$zonas = $OlddataLiga['zonas_id'];
 
-	$zonas .= ',' . $zonaId;
-
+    if ( $zonas == '' ) {
+        $zonas = $zonaId;
+    } else {
+        $zonas .= ',' . $zonaId;
+    }
 	
 	$query = "UPDATE ".$tabla." SET zonas_id='".$zonas."' WHERE id='".$ligaId."' LIMIT 1";
 
@@ -510,4 +510,144 @@ function borrarZonaFromLiga( $zonaId ) {
 	
 	return $respuesta;
 	
-}
+}//borrarZonaFromLiga()
+
+
+/*
+ * crea o actualiza un jugador
+*/
+function editJugador( $equipoId, $dataJugador ) {
+    $connection    = connectDB();
+    $tabla         = 'jugadores';
+    $id            = isset( $dataJugador['id'] ) ? $dataJugador['id'] : '';
+    $nombre        = isset( $dataJugador['nombre'] ) ? $dataJugador['nombre'] : '';
+    $imagen        = isset( $dataJugador['imagen'] ) ? $dataJugador['imagen'] : '';
+    
+    $nombre   = mysqli_real_escape_string($connection, $nombre);
+    $nombre   = filter_var($nombre,FILTER_SANITIZE_STRING);
+
+    if ( $nombre == '' ) {
+        $nombre = 'Escribir nombre';
+    }
+
+    //crea una nueva zona
+    if ($id == '' ) {
+        
+        $query = "INSERT INTO $tabla (nombre,imagen,equipo_id) VALUES ('$nombre', '$imagen','$equipoId')";
+
+        $nueva = mysqli_query($connection, $query); 
+        $respuesta = mysqli_insert_id($connection);
+
+    } else {
+        //actualiza zona existente
+        $query = "UPDATE ".$tabla." SET nombre='".$nombre."',imagen='".$imagen."', equipo_id='".$equipoId."' WHERE id='".$id."' LIMIT 1";
+
+        $update = mysqli_query($connection, $query); 
+        if ($update) {
+            $respuesta = 'updated';
+        } else {
+            $respuesta = 'error';
+        }
+    }
+    
+    mysqli_close($connection);
+
+    return $respuesta;
+}//editJugador()
+
+
+
+/*
+ * guarda un equipo en una liga
+*/
+function saveJugadorOnEquipo( $equipo_id, $jugadorId ) {
+    $connection    = connectDB();
+	$tabla         = 'equipos';
+
+	//recupera datos de liga
+	$OlddataEquipos = getPostsFromDeportesById( $equipo_id, $tabla );
+
+	//recupera zonas id
+	$jugadores = $OlddataEquipos['jugadores_id'];
+    if ( $jugadores == '' ) {
+        $jugadores = $jugadorId;
+    } else {
+        $jugadores .= ',' . $jugadorId;
+    }
+
+	
+	$query = "UPDATE ".$tabla." SET jugadores_id='".$jugadores."' WHERE id='".$equipo_id."' LIMIT 1";
+
+	$updatePost = mysqli_query($connection, $query); 
+	if ($updatePost) {
+		$respuesta = 'updated';
+	} else {
+		$respuesta = 'error';
+	}
+
+	mysqli_close($connection);
+	return $respuesta;
+}//saveJugadorOnEquipo()
+
+
+function deleteJugador( $jugadores ) {
+	$connection = connectDB();
+ 
+	if ( ! is_array($jugadores) ) {
+		$jugadores = array( $jugadores );
+	}
+
+	foreach ($jugadores as $jugador ) {
+	   //se recuperan los datos de la zona
+	   $dataJugador = getPostsFromDeportesById( $jugador, 'jugadores' );
+	   $equipo = $dataJugador['equipo_id'];
+	   
+	   $query      = "DELETE FROM jugadores WHERE id= '".$jugador."'";
+	   $result     = mysqli_query($connection, $query);
+		  
+	   if ($result) {
+          //si tuvo resultado, ahora se borra del equipo
+          $respuesta = deleteJugadorFromEquipo($equipo, $jugador);
+
+	   } else {
+            $respuesta = 'error-borrando-jugador';
+       }
+	   
+	}
+	
+	//cierre base de datos
+	mysqli_close($connection);
+	return $respuesta;
+ 
+ }//deleteJugador()
+
+
+ function deleteJugadorFromEquipo($equipo, $jugador) {
+    $connection = connectDB();
+    
+
+    $dataEquipo = getPostsFromDeportesById( $equipo, 'equipos' );
+
+    $nuevosJugadoresId = explode(',', $dataEquipo['jugadores_id']);
+    
+    if ( ($clave = array_search($jugador, $nuevosJugadoresId)) !== false ) {
+        unset($nuevosJugadoresId[$clave]);
+    }
+    
+    $nuevosJugadoresId = implode(',', $nuevosJugadoresId);
+
+    $connection = connectDB();
+    $query = "UPDATE equipos SET jugadores_id='".$nuevosJugadoresId."' WHERE id='".$equipo."' LIMIT 1";
+
+    $updatePost = mysqli_query($connection, $query); 
+    if (! $updatePost) {
+        $respuesta = 'error-update-liga';
+    } else {
+        $respuesta = 'ok';
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $respuesta;
+    
+ }//deleteJugadorFromEquipo()

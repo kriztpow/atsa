@@ -14,10 +14,10 @@
         <input type="text" name="nombre_jugador" value="<?php echo $data['nombre']; ?>">
     </td>
     <td width=20%>
-        <button data-id="<?php $data['id']; ?>" type="button" class="btn btn-xs btn-danger imagen-jugador-btn">
+        <button data-id="<?php echo $data['id']; ?>" type="button" class="btn btn-xs btn-danger imagen-jugador-btn">
             Cambiar Imagen
         </button>
-        <button data-id="<?php $data['id']; ?>" type="button" class="btn btn-xs borrar-jugador-btn">
+        <button data-id="<?php echo $data['id']; ?>" type="button" class="btn btn-xs borrar-jugador-btn">
             <img src=<?php echo URLADMINISTRADOR . '/assets/images/delbtn.png'; ?> alt="borrar-btn" title="Borrar jugador">
         </button>
     </td>

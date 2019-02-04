@@ -24,6 +24,14 @@ if ( isAjax() ) {
          
       break;
 
+      case 'delete-jugador':
+
+         $id = isset( $_POST['post_id'] ) ? $_POST['post_id'] : '';
+
+         echo deleteJugador($id);
+         
+      break;
+
    }
 
 } //if not ajax

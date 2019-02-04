@@ -143,8 +143,6 @@ if ( $postId != null ) {
 					<button type="button" class="btn btn-primary" id="agregar-jugador-btn">Agregar jugador</button>
                     <table class="tabla-jugadores">
                         
-                        <tbody>
-
                         <?php if ( $post['jugadores_id'] == '' ) :
                         //no hay jugadores,
                         $jugadores = null;
@@ -162,7 +160,6 @@ if ( $postId != null ) {
                             
                         endif; ?>
 
-                        </tbody>
                     </table>
 					
                 </div><!-- // col -->

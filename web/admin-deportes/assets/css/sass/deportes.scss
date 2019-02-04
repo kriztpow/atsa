@@ -101,6 +101,10 @@
         vertical-align: middle;
     }
 
+    input {
+        padding: .5rem;
+    }
+
     .imagen-jugador {
         width: 70px;
         height: auto;
@@ -115,5 +119,9 @@
         img {
             width: 20px;
         }
+    }
+
+    .imagen-jugador-btn {
+        margin: 10px 5px
     }
 }

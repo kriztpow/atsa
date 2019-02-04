@@ -928,6 +928,7 @@ ul.dropdown-menu li {
 .btn-xs {
   font-size: 85%;
   line-height: 100%;
+  padding: 7px 15px;
 }
 @media (min-width: 992px) {
   .btn-xs {
@@ -1716,6 +1717,9 @@ ul.dropdown-menu li {
   padding: 1rem;
   vertical-align: middle;
 }
+.tabla-jugadores input {
+  padding: 0.5rem;
+}
 .tabla-jugadores .imagen-jugador {
   width: 70px;
   height: auto;
@@ -1728,6 +1732,9 @@ ul.dropdown-menu li {
 }
 .tabla-jugadores .borrar-jugador-btn img {
   width: 20px;
+}
+.tabla-jugadores .imagen-jugador-btn {
+  margin: 10px 5px;
 }
 
 /*# sourceMappingURL=style-admin.css.map */
