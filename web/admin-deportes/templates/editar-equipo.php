@@ -141,7 +141,29 @@ if ( $postId != null ) {
 					<h2>Jugadores</h2>
 
 					<button type="button" class="btn btn-primary" id="agregar-jugador-btn">Agregar jugador</button>
+                    <table class="tabla-jugadores">
+                        
+                        <tbody>
 
+                        <?php if ( $post['jugadores_id'] == '' ) :
+                        //no hay jugadores,
+                        $jugadores = null;
+                        
+                        else :
+
+                            $jugadores = $post['jugadores_id'];
+                            $jugadores = explode(',', $jugadores);
+                            
+                            foreach ( $jugadores as $jugador ) {
+                                $dataJugador =  getPostsFromDeportesById( $jugador, 'jugadores' );
+                                getTemplate('loop-jugadores', $dataJugador);
+                                
+                            }
+                            
+                        endif; ?>
+
+                        </tbody>
+                    </table>
 					
                 </div><!-- // col -->
 			</div><!-- // row -->

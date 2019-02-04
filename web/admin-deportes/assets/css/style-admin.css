@@ -925,6 +925,16 @@ ul.dropdown-menu li {
   }
 }
 
+.btn-xs {
+  font-size: 85%;
+  line-height: 100%;
+}
+@media (min-width: 992px) {
+  .btn-xs {
+    font-size: 70%;
+  }
+}
+
 /* ---- modulos  ---- */
 .wrapper-modulo {
   position: relative;
@@ -1692,6 +1702,32 @@ ul.dropdown-menu li {
 .btn-change-logo-equipos {
   display: block;
   margin: 0.8rem auto;
+}
+
+.tabla-jugadores {
+  margin: 1rem 0;
+  width: 100%;
+  background-color: #f9f8f8;
+}
+.tabla-jugadores tr {
+  border-bottom: 1px solid black;
+}
+.tabla-jugadores td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+.tabla-jugadores .imagen-jugador {
+  width: 70px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+.tabla-jugadores .borrar-jugador-btn {
+  border: none;
+  vertical-align: sub;
+}
+.tabla-jugadores .borrar-jugador-btn img {
+  width: 20px;
 }
 
 /*# sourceMappingURL=style-admin.css.map */

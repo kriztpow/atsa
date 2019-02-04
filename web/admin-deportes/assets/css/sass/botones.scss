@@ -44,3 +44,11 @@
 		font-size: 100%;
 	}
 }
+
+.btn-xs {
+	font-size: 85%;
+	line-height: 100%;
+	@media (min-width: $md) {
+		font-size: 70%;
+	}
+}

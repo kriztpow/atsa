@@ -86,3 +86,34 @@
     display: block;
     margin: .8rem auto;
 }
+
+.tabla-jugadores {
+    margin: 1rem 0;
+    width: 100%;
+    background-color: #f9f8f8;
+
+    tr {
+        border-bottom: 1px solid black;
+    }
+    
+    td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .imagen-jugador {
+        width: 70px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .borrar-jugador-btn {
+        border: none;
+        vertical-align: sub;
+
+        img {
+            width: 20px;
+        }
+    }
+}
