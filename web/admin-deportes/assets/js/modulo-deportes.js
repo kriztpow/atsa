@@ -16,13 +16,16 @@ $(document).ready(function(){
         if (categoria == 'todas') {
             categoria = '';
         }
-    
+        
+        var buscar = $(this).attr('data-filtro');
         var contenedorNews = $('.loop-noticias-backend');
+        
         $.ajax( {
             type: 'POST',
             url: ajaxFunctionDir + '/filtro-deportes.php',
             data: {
                 categoria: categoria,
+                buscar: buscar,
             },
             beforeSend: function() {
                 contenedorNews.empty(); 

@@ -1683,4 +1683,10 @@ ul.dropdown-menu li {
   padding: 1rem;
 }
 
+.logo-equipos {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
+
 /*# sourceMappingURL=style-admin.css.map */

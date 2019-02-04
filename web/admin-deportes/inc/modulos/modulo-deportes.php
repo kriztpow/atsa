@@ -76,6 +76,16 @@ function getLigas($filtro = null) {
 }
 
 /*
+ * obtiene lista de equipos
+*/
+function getEquipos($filtro = null) {
+    $tabla = 'equipos';
+
+    $ligas = getPostsFromDeportes( $tabla, null, $filtro );
+    return $ligas;
+}
+
+/*
  * Obtiene data del deporte mediante id
 */
 function getDataDeporte($id) {

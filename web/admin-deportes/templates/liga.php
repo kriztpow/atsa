@@ -16,7 +16,7 @@ $ligas = getLigas();
 			<div class="col">
 				<div class="nav-noticias-interno">
 					<label>Filtrar por deporte</label>
-					<select name="post_categoria" id="post_categoria">
+					<select name="post_categoria" id="post_categoria" data-filtro="liga">
 						<option value="todas">Todas</option>
 						<?php 
 							$deportes = getDeportesList( );
