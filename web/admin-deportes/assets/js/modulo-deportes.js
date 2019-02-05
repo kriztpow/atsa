@@ -505,44 +505,6 @@ $(document).ready(function(){
     });
 
     /*
-     * CAMBIAR NOMBRE DE ZONA
-    */
-    function escribirZona( zona ) {
-        
-        var zonaId =$(zona).find('input[name="zona_id"]').val();
-        var valor = $(zona).find('input[name="nombre_zona"]').val();
-        var partidos = $(zona).find('input[name="partidos_id"]').val();
-        var equipos = $(zona).find('input[name="equipos_id"]').val();
-        var ligaId = $('input[name="post_ID"]').val();
-        console.log(zonaId,valor,partidos,equipos,ligaId);
-
-        $.ajax({
-            type: 'POST',
-            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
-            data: {
-                action: 'escribir-zona',
-                liga_id: ligaId,
-                zona_id: zonaId,
-                nombre_zona:valor,
-                partidos_id:partidos,
-                equipos_id:equipos,
-            },
-            //funcion antes de enviar
-            beforeSend: function() {
-                console.log('enviando formulario');
-            },
-            success: function ( response ) {
-                
-                console.log(response);
-
-            },
-            error: function ( error ) {
-                console.log(error);
-            },
-        });//cierre ajax
-    }
-
-    /*
      * CAMBIAR NOMBRE JUGADOR
     */
     function escribirJugador( jugador, id ) {
@@ -704,10 +666,11 @@ $(document).ready(function(){
         });
         $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/media-browser.php' );
     });
+
+
     /*
      * cambiar imagen jugador
     */
-   
     $(document).on('click','.imagen-jugador-btn',function(){
         var contenedor = $(this).closest('tr');
         var inputImagen = $(contenedor).find('input[name="imagen_jugador"]');
