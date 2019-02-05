@@ -62,11 +62,11 @@ if ( isAjax() ) {
             }
             
             $zonas = getZonas($filtro);
-            $HTMLzonas = '<option>Seleccionar Una</option>';
+            $HTMLzonas = '<option value="">Seleccionar Una</option>';
             
             if ( $zonas != null ) {
                 for ($i=0; $i < count($zonas); $i++) { 
-                    $HTMLzonas .= '<option value"' . $zonas[$i]['id'] . '">' . $zonas[$i]['nombre_interno'] . '</option>';
+                    $HTMLzonas .= '<option value="' . $zonas[$i]['id'] . '">' . $zonas[$i]['nombre_interno'] . '</option>';
                 }
             }
 

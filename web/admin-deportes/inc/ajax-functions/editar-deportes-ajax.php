@@ -150,6 +150,18 @@ if ( isAjax() ) {
             echo editarEquipo($_POST);
 
         break;
+
+        /*
+         * elimina el equipo de una zona
+        */
+        case 'borrar-zona-de-equipo':
+            
+            $equipo = isset( $_POST['equipo'] ) ? $_POST['equipo'] : null;
+            $zona = isset( $_POST['zona'] ) ? $_POST['zona'] : null;
+
+            echo eliminarEquipoFromZona($equipo, $zona);
+
+        break;
         
         
     }//switch ajax

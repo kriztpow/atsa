@@ -203,7 +203,7 @@ function editarEquipo ($data) {
 	$ligaId       = isset( $data['liga_id'] ) ? $data['liga_id'] : '';
 	$zonaId       = isset( $data['zona_id'] ) ? $data['zona_id'] : '';
     $deporteId    = isset( $data['post_categoria'] ) ? $data['post_categoria'] : '';
-
+    $esupdate     = true;
     //saneamiento
     $nombre       = mysqli_real_escape_string($connection, $nombre);
     $nombre       = filter_var($nombre,FILTER_SANITIZE_STRING);
@@ -215,7 +215,7 @@ function editarEquipo ($data) {
     //es nuevo post
     
     if ($postID == 'new') {
-
+        $esupdate       = false;
         //primero hay que ver si el url no está tomado y si está tomado enviar un mensaje
         $query  = "SELECT * FROM " .$tabla. " WHERE slug='".$slug."' ";
         $result = mysqli_query($connection, $query);
@@ -252,6 +252,58 @@ function editarEquipo ($data) {
 
     //cierre base de datos
     mysqli_close($connection);
+
+
+    /* 
+     * Guardar el equipo en la zona si el equipo tiene definida una zona
+     */
+    if ( $zonaId != '' ) {
+        $zona = getPostsFromDeportesById( $zonaId, 'zonas' );
+
+        //si la zona en cuestion no tiene ningun equipo lo agrega y listo
+        if ( $zona['equipos_ids'] == '' ) {
+            
+            $equiposIds = $postID;
+
+            $connection = connectDB();
+		    $query = "UPDATE zonas SET equipos_ids='".$equiposIds."' WHERE id='".$zona['id']."' LIMIT 1";
+
+            $updateZona = mysqli_query($connection, $query); 
+            if ($updateZona) {
+                $respuesta = 'updated';
+            } else {
+                $respuesta = 'error';
+            }
+
+        } else {
+            //si la zona en cuestion tiene equipos convierte a un array y busca si esta, si no esta lo agrega
+            $equiposIds = explode(',', $zona['equipos_ids'] );
+
+            if ( ($clave = array_search($postID, $equiposIds)) === false ) {
+
+                array_push($equiposIds, $postID);
+
+                $equiposIds = implode(',', $equiposIds);
+
+                $connection = connectDB();
+                $query = "UPDATE zonas SET equipos_ids='".$equiposIds."' WHERE id='".$zona['id']."' LIMIT 1";
+                
+                $updateZona = mysqli_query($connection, $query); 
+                if ($updateZona) {
+                    if ($esupdate) {
+                        $respuesta = 'updated';
+                    } else {
+                        $respuesta = $postID;
+                    }
+                    
+                } else {
+                    $respuesta = 'error-zona';
+                }
+            }
+
+        }	
+
+    }
 
     return $respuesta;
     
@@ -514,6 +566,51 @@ function borrarZonaFromLiga( $zonaId ) {
 
 
 /*
+ * borra un equipo y sus jugadores
+ * ademas borra el equipo de la zona
+*/
+function deleteEquipo( $equipo_id ) {
+    $dataEquipo =  getPostsFromDeportesById( $equipo_id, 'equipos' );
+
+    //borrar el equipo en la zona
+    $zona = getPostsFromDeportesById( $dataEquipo['zona_id'], 'zonas' );
+
+    $nuevosEquipos = explode(',', $zona['equipos_ids']);
+    
+    if ( ($clave = array_search($equipo_id, $nuevosEquipos)) !== false ) {
+        unset($nuevosEquipos[$clave]);
+    }
+    
+    $nuevosEquipos = implode(',', $nuevosEquipos);
+
+    $connection = connectDB();
+    $query = "UPDATE zonas SET equipos_ids='".$nuevosEquipos."' WHERE id='".$dataEquipo['zona_id']."' LIMIT 1";
+
+    $updateZona = mysqli_query($connection, $query); 
+    if (! $updateZona) {
+        $respuesta = 'error-update-zona';
+    } 
+    //borrar jugadores
+    $jugadores = explode(',', $dataEquipo['jugadores_id']);
+    $respuesta = deleteJugador( $jugadores, false );
+    
+    //borrar equipo
+    $connection    = connectDB();
+    $query = "DELETE FROM equipos WHERE id= '".$equipo_id."'";
+    $result = mysqli_query($connection, $query);
+
+    if ($result) {
+        $respuesta = 'ok';
+    } else {
+        $respuesta = 'error-borrando-equipo';
+    }
+
+    mysqli_close($connection);
+    return $respuesta;
+}//deleteequipo()
+
+
+/*
  * crea o actualiza un jugador
 */
 function editJugador( $equipoId, $dataJugador ) {
@@ -590,7 +687,11 @@ function saveJugadorOnEquipo( $equipo_id, $jugadorId ) {
 }//saveJugadorOnEquipo()
 
 
-function deleteJugador( $jugadores ) {
+/*
+ * ESTA FUNCION BORRA LOS JUGADORES Y ADEMAS LOS BORRA DEL EQUIPO
+ * A NO SER QUE SE ESPECIFIQUE LA SEGUNDA VARIABLE COMO FALSE, EN ESE CASO LO DEJA EN EL EQUIPO, ESTO FUNCIONA SI SE BORRA DIRECTAMENTE EL EQUIPO, PARA NO HACER PASOS DE MAS
+*/
+function deleteJugador( $jugadores, $borrarenequipo = true ) {
 	$connection = connectDB();
  
 	if ( ! is_array($jugadores) ) {
@@ -605,9 +706,14 @@ function deleteJugador( $jugadores ) {
 	   $query      = "DELETE FROM jugadores WHERE id= '".$jugador."'";
 	   $result     = mysqli_query($connection, $query);
 		  
-	   if ($result) {
-          //si tuvo resultado, ahora se borra del equipo
-          $respuesta = deleteJugadorFromEquipo($equipo, $jugador);
+	   if ( $result ) {
+            if ( $borrarenequipo ) {
+                //si tuvo resultado, ahora se borra del equipo
+                $respuesta = deleteJugadorFromEquipo($equipo, $jugador);
+            } else {
+                $respuesta = 'ok';
+            }
+            
 
 	   } else {
             $respuesta = 'error-borrando-jugador';
@@ -622,10 +728,9 @@ function deleteJugador( $jugadores ) {
  }//deleteJugador()
 
 
- function deleteJugadorFromEquipo($equipo, $jugador) {
+function deleteJugadorFromEquipo($equipo, $jugador) {
     $connection = connectDB();
     
-
     $dataEquipo = getPostsFromDeportesById( $equipo, 'equipos' );
 
     $nuevosJugadoresId = explode(',', $dataEquipo['jugadores_id']);
@@ -650,4 +755,36 @@ function deleteJugador( $jugadores ) {
 	mysqli_close($connection);
     return $respuesta;
     
- }//deleteJugadorFromEquipo()
+}//deleteJugadorFromEquipo()
+
+/*
+* elimina un equipo de una zona
+*/
+function eliminarEquipoFromZona($equipo, $zona) {
+    $connection = connectDB();
+    
+    $dataZona = getPostsFromDeportesById( $zona, 'zonas' );
+
+    $equipos = explode(',', $dataZona['equipos_ids']);
+    
+    if ( ($clave = array_search($equipo, $equipos)) !== false ) {
+        unset($equipos[$clave]);
+    }
+    
+    $equipos = implode(',', $equipos);
+
+    $connection = connectDB();
+    $query = "UPDATE zonas SET equipos_ids='".$equipos."' WHERE id='".$zona."' LIMIT 1";
+
+    $updatePost = mysqli_query($connection, $query); 
+    if (! $updatePost) {
+        $respuesta = 'error-update-zona';
+    } else {
+        $respuesta = 'updated-zona';
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $respuesta;
+
+}//eliminarEquipoFromZona()
