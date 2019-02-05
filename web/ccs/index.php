@@ -320,7 +320,8 @@ Complejo Cultural Sanidad </title>
       <input class="wow fadeInDown" name="email" type="text" id="make_a_reservation_input_3" placeholder="Mail">
       <input class="wow fadeInDown" name="email2" type="text" id="make_a_reservation_input_4" placeholder="Repita su Mail">
       <input class="wow fadeInDown" name="msg" type="text" id="make_a_reservation_input_5" placeholder="Mensaje">
-      <input class="wow fadeInDown"  name="telephone" type="text" id="make_a_reservation_input_6" placeholder="Telefono">
+      <input class="wow fadeInDown"  name="telephone" type="text" id="make_a_reservation_input_6" placeholder="Telefono" required>
+      <input class="wow fadeInDown"  name="establecimiento" type="text" id="make_a_reservation_input_7" placeholder="Establecimiento" required>
     <div class="gap">
     </div>
 

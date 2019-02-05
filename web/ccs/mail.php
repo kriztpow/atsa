@@ -16,7 +16,8 @@ if(true) {
     $mess = $_POST['msg']; // not required
     $address = $_POST['address']; // not required
     $price = (isset($_POST['price'])) ? $_POST['price'] : ''; // required
-    $telephone =  $_POST['telephone']; // not required
+    $telephone =  $_POST['telephone']; // required
+    $establecimiento =  $_POST['establecimiento']; // required
     $error_message = "";
     $error_classes = array();
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
@@ -39,7 +40,17 @@ if(true) {
   if($email_from != $email2) {
     $error_message .= 'La dirección de Mail y la confirmación no coinciden.<br />';
       $error_classes['make_a_reservation_input_4'] = 'et-input-error';
-  }  
+  }
+
+  if($telephone == '') {
+    $error_message .= 'El teléfono es necesario.<br />';
+      $error_classes['make_a_reservation_input_6'] = 'et-input-error';
+  }
+
+  if($establecimiento == '') {
+    $error_message .= 'El establecimiento es necesario.<br />';
+      $error_classes['make_a_reservation_input_7'] = 'et-input-error';
+  }
   
   if(strlen($error_message) > 0) {
 	$valid=false; 
@@ -48,7 +59,7 @@ if(true) {
 	echo json_encode($return_array);
 	
   } else {
-    send_mail($email_to, $email_subject, $first_name, $last_name, $email_from, $telephone, $mess);
+    send_mail($email_to, $email_subject, $first_name, $last_name, $email_from, $telephone, $establecimiento, $mess);
 	$valid=true; 
 	$msg="Mensaje enviado correctamente."; 
     $return_array = array('valid' => $valid, "msg" => $msg);
@@ -63,12 +74,13 @@ function clean_string($string) {
       return str_replace($bad,"",$string);
 }
      
-function send_mail($email_to, $email_subject, $first_name, $last_name, $email_from, $telephone, $mess){
+function send_mail($email_to, $email_subject, $first_name, $last_name, $email_from, $telephone, $establecimiento, $mess){
     $email_message = "Reservacion.\n\n";
     $email_message .= "Nombre: ".clean_string($first_name)."\n";
     $email_message .= "Apellido: ".clean_string($last_name)."\n";
     $email_message .= "Email: ".clean_string($email_from)."\n";
     $email_message .= "Telefono: ".clean_string($telephone)."\n";
+    $email_message .= "Establecimiento: ".clean_string($establecimiento)."\n";
     $email_message .= "Mensaje: ".clean_string($mess)."\n";
      
 	// create email headers
@@ -82,4 +94,3 @@ function send_mail($email_to, $email_subject, $first_name, $last_name, $email_fr
 
 
 ?>
- 
