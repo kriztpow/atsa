@@ -77,6 +77,51 @@ if ( isAjax() ) {
 
         break;
 
+        case 'filtro-partidos':
+            $deporte = isset( $_POST['deporte'] ) ? $_POST['deporte'] : '';
+            $liga = isset( $_POST['liga'] ) ? $_POST['liga'] : '';
+            $zona = isset( $_POST['zona'] ) ? $_POST['zona'] : '';
+            $filtro = '';
+
+            if ( $deporte != '' ) {
+                $filtro .= 'deporte_id="'.$deporte.'"';
+            }
+
+            if ( $liga != '' ) {
+                if ( $deporte != '' ) {
+                    $filtro .= ' AND ';
+                }
+                $filtro .= 'liga_id="'.$liga.'"';
+            }
+
+            if ( $zona != '' ) {
+                if ( $liga != '' || $deporte != '') {
+                    $filtro .= ' AND ';
+                }
+                $filtro .= 'zona_id="'.$zona.'"';
+            }
+
+            if ( $filtro == '' ) {
+                $filtro = null;
+            }
+            $partidos = getPartidos($filtro);
+
+            if( $partidos == null ) : ?>
+
+					<li style="padding: 5rem 0">
+						<p>Todavía no hay ningun partido cargado, <a type="button" href="index.php?admin=editar-partido">¿Empezamos?</a></p>
+					</li>
+		
+            <?php else : 
+
+            foreach ($partidos as $partido ) {
+                getTemplate( 'loop-partido', $partido );
+            }
+
+            endif;
+
+        break;
+
     }//switch
 
 

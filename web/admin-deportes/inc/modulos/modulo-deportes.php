@@ -96,6 +96,16 @@ function getEquipos($filtro = null) {
 }
 
 /*
+ * obtiene lista de partidos
+*/
+function getPartidos($filtro = null) {
+    $tabla = 'partidos';
+
+    $partidos = getPostsFromDeportes( $tabla, null, $filtro );
+    return $partidos;
+}
+
+/*
  * Obtiene data del deporte mediante id
 */
 function getDataDeporte($id) {
@@ -788,3 +798,140 @@ function eliminarEquipoFromZona($equipo, $zona) {
     return $respuesta;
 
 }//eliminarEquipoFromZona()
+
+
+/*
+ * borrar partido
+*/
+function deletePartido($partidoId) {
+    //data del partido
+    $dataPartido = getPostsFromDeportesById( $partidoId, 'partidos' );
+
+    //borrar contenido si lo tiene
+    if ( $dataPartido['contenido_id'] != '' ) {
+        $respuestaContenido = deleteContenido( $dataPartido['contenido_id'] );
+    }
+
+    //borrar equipo en goles
+    if ( $dataPartido['goles_id'] != '' ) {
+        $goles = explode(',', $dataPartido['goles_id'] );
+        $respuestaGoles = deleteGoles($goles);
+    }
+
+    //borrar equipo en amonestaciones
+    if ( $dataPartido['amonestaciones_id'] != '' ) {
+        $amonestaciones = explode(',', $dataPartido['amonestaciones_id'] );
+        $respuestaAmonestaciones = deleteAmonestaciones($amonestaciones);
+    }
+
+    //borrar partido en zonas
+    if ( $dataPartido['zona_id'] != '' ) {
+        $respuestaZonas = deletePartidoEnZona( $partidoId, $dataPartido['zona_id'] );
+    }
+
+    //borrar partido
+    $query      = "DELETE FROM partidos WHERE id= '".$partidoId."'";
+	$result     = mysqli_query($connection, $query);
+		  
+    if ( $result ) {
+        $respuesta = 'ok';
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $respuesta;
+
+}//deletePartido()
+
+
+/*
+ * borrar contenido
+ */
+function deleteContenido( $contenido_id ) {
+    //borrar partido
+    $query      = "DELETE FROM posts WHERE id= '".$contenido_id."'";
+	$result     = mysqli_query($connection, $query);
+		  
+    if ( $result ) {
+        $respuesta = 'ok';
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $respuesta;
+
+}//deleteContenido()
+
+function deleteGoles( $goles ) {
+
+    if ( ! is_array($goles) ) {
+        $goles = array($goles);
+    }
+
+    $count = 0;
+    foreach ( $goles as $gol ) {
+        $query = "DELETE FROM posts WHERE id= '".$gol."'";
+        $result = mysqli_query($connection, $query);
+        if ( $result ) {
+            $count++;
+        }
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $count;
+
+}//deleteGoles()
+
+function deleteAmonestaciones( $amonestaciones ) {
+
+    if ( ! is_array($amonestaciones) ) {
+        $amonestaciones = array($amonestaciones);
+    }
+
+    $count = 0;
+    foreach ( $amonestaciones as $amonestacion ) {
+        $query = "DELETE FROM amonestaciones WHERE id= '".$amonestacion."'";
+        $result = mysqli_query($connection, $query);
+        if ( $result ) {
+            $count++;
+        }
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $count;
+
+}//deleteAmonestaciones
+
+
+/*
+ * borra los partidos id de una zona
+*/
+function deletePartidoEnZona( $partidoId, $zona_id ) {
+
+    $zona = getPostsFromDeportesById( $zona_id, 'zonas' );
+
+    $partidos = explode(',', $zona['partidos_ids']);
+
+    if ( ($clave = array_search($partidoId, $partidos)) !== false ) {
+        unset($partidos[$clave]);
+    }
+
+    $partidos = implode(',', $partidos);
+    
+    $connection = connectDB();
+    $query = "UPDATE zonas SET partidos_ids='".$partidos."' WHERE id='".$zona_id."' LIMIT 1";
+
+    $updatePost = mysqli_query($connection, $query); 
+    if (! $updatePost) {
+        $respuesta = 'error-update-zona';
+    } else {
+        $respuesta = 'ok';
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $respuesta;
+
+}//deletePartidoEnZona()

@@ -7,7 +7,7 @@
 */
 
 $(document).ready(function(){
-    
+    var currentPage = 0;
     /*
     * FILTRA POR DEPORTE U OTROS
     * la variable buscar que esta en el atributo data-filtro del selec le indica que buscar en el php
@@ -117,6 +117,139 @@ $(document).ready(function(){
         }
     });
 
+
+    /*
+    * borrar partido
+    */
+    $(document).on('click', '.btn-delete-partido', function(e){
+        e.preventDefault();
+            
+        var deletePost = false;
+        var postToDelete = $(this).attr('href');
+        var itemToDelete = $(this).closest('li');
+
+        if ( confirm( '¿Está seguro de querer BORRAR el equipo?' ) ) {
+            deletePost = true; 
+        }
+
+        if (deletePost) {
+            $.ajax( {
+                type: 'POST',
+                url: ajaxFunctionDir + '/delete-deportes.php',
+                data: {
+                    post_id: postToDelete,
+                    action: 'delete-partido'
+                },
+                success: function ( response ) {
+                    console.log(response);
+                    if (response == 'ok') {
+                        $(itemToDelete).remove()
+                    }
+                },
+                error: function ( ) {
+                    console.log('error');
+                },
+            });//cierre ajax
+        }
+    });
+
+    
+    /*
+     * al cambiar la liga se actualizan las zonas
+    */
+    $(document).on('change', '#post_liga', function(e){
+        var contenedor = $('#post_zona');
+        var liga_id = $('#post_liga').val();
+
+        if ( liga_id == '') {
+            $(contenedor).empty();
+            $(contenedor).append( $('<option>Elija una liga</option>') );
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxFunctionDir + '/filtro-deportes.php',
+                data: {
+                    buscar: 'zonas-by-liga',
+                    categoria: liga_id,
+                },
+                //funcion antes de enviar
+                beforeSend: function() {
+                    console.log('enviando formulario');
+                },
+                success: function ( response ) {
+                    console.log(response)
+                    $(contenedor).empty()
+                    .append( response );
+
+                    recargarPartidos();
+                },
+                error: function ( error ) {
+                    console.log(error);
+                },
+            });//cierre ajax
+        }
+    });
+
+
+    /*
+     * cambio select zona
+    */
+   $('#post_zona').change(function(){
+        var categoria = $(this).val();//deporte
+        if (categoria == 'todas') {
+            categoria = '';
+        }
+        
+        recargarPartidos();
+        
+    });//change
+
+    /*
+     * cambio deportes
+    */
+    $('#post_deportes').change(function(){
+        var categoria = $(this).val();//deporte
+        if (categoria == 'todas') {
+            categoria = '';
+        }
+        
+        recargarPartidos();
+        
+    });//change
+
+    function recargarPartidos() {
+        
+        var deporte = $('#post_deportes').val();
+        var liga =  $('#post_liga').val();
+        var zona =  $('#post_zona').val();
+
+        var buscar = 'filtro-partidos';
+        var contenedorNews = $('.loop-noticias-backend');
+        
+        $.ajax( {
+            type: 'POST',
+            url: ajaxFunctionDir + '/filtro-deportes.php',
+            data: {
+                deporte: deporte,
+                liga: liga,
+                zona: zona,
+                buscar: buscar,
+            },
+            beforeSend: function() {
+                contenedorNews.empty(); 
+                $('.info-resumen').remove();       
+            },
+            success: function ( response ) {
+                contenedorNews.append(response);
+                currentPage = 1;
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax*/
+    }
+    
 });//READY LOOP INDEX
 
 
