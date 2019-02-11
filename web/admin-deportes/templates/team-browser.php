@@ -6,76 +6,97 @@
  * 
 */
 require_once("../inc/functions.php");
-load_module( 'medios' );
-
+load_module( 'deportes' );
+$zona = isset($_POST['zona']) ? $_POST['zona'] : '';
+$equipos = getPostsFromDeportes( 'equipos', null, 'zona_id='. $zona  );
+$equipo1 = $_POST['equipos'][0];
+$equipo2 = $_POST['equipos'][1];
 ?>
 
 <article id="browser-dialog">
 	<div class="container">
+        <div class="wrapper-equipos-browser">
+            
+            <ul class="equipos equipo1">
+                <input type="hidden" name="data_equipo1" value="">
+                <h4>
+                    Equipo 1
+                </h4>
+            
+            <?php
 
+            foreach ( $equipos as $equipo ) {
+                $imagen = URLADMINISTRADOR . '/assets/images/logo.png';
+                $destacado = '';
 
-    
+                if (  $equipo['id'] == $equipo1 ) {
+                    $destacado = ' equipo-elegido';
+                }
+
+                if ( $equipo['logo'] != '' ) {
+                    $imagen = UPLOADSURLIMAGES . '/' . $equipo['logo'];
+                }
+                ?>
+                <li class="equipo<?php echo $destacado?>" data-id="<?php echo $equipo['id']; ?>">
+                    <img src="<?php echo $imagen; ?>" alt="logo equipo">
+                    <span><?php echo $equipo['nombre']; ?></span>
+                </li>
+            <?php }
+            ?>
+
+            </ul>
+
+            
+            <ul class="equipos equipo2">
+                <input type="hidden" name="data_equipo2" value="">
+                <h4>
+                    Equipo 2
+                </h4>
+            <?php
+
+            foreach ( $equipos as $equipo ) {
+                $imagen = URLADMINISTRADOR . '/assets/images/logo.png';
+                $destacado = '';
+
+                if (  $equipo['id'] == $equipo2 ) {
+                    $destacado = ' equipo-elegido';
+                }
+
+                if ( $equipo['logo'] != '' ) {
+                    $imagen = UPLOADSURLIMAGES . '/' . $equipo['logo'];
+                }
+                ?>
+                <li class="equipo<?php echo $destacado?>" data-id="<?php echo $equipo['id']; ?>">
+                    <img src="<?php echo $imagen; ?>" alt="logo equipo">
+                    <span><?php echo $equipo['nombre']; ?></span>
+                </li>
+            <?php }
+            ?>
+
+            </ul>
+        </div>
 	</div><!-- //.container-fluid -->
 </article>
 
-<script src="assets/js/modulo-medios.js"></script>
 <script type="text/javascript" language="javascript">
 
-$( function() {
-    $( "#tabs" ).tabs({
-      beforeLoad: function( event, ui ) {
-        ui.jqXHR.fail(function() {
-          ui.panel.html(
-            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
-            "If this wouldn't be a demo." );
-        });
-      }
+$(document).ready( function(){
+    
+    //al hacer clic en los medios la url se inserta en el input
+    $(document).on('click','li',function(){
+        
+        //borra los destacados
+        var ul = $(this).closest('ul');
+
+        //le quita las clases
+        $(ul).find('.equipo-elegido').removeClass('equipo-elegido');
+        $(this).addClass('equipo-elegido');
+
+        var id = $(this).attr('data-id')
+
+        var input = $(ul).find( 'input' );
+        $(input).val(id);
+        
     });
-  } );
-
-var destacado = false;
-
-//al hacer clic en los medios la url se inserta en el input
-$(document).on('click','li.medio',function(){
-	item_url = $(this).find('img').data("src");
-
-	if ( $('.ui-dialog-buttonset button').hasClass('imagenes-galerias') ) {
-		//puede haber muchos seleccionados pero al deseleccionarlos hay que borrarlos del input para que no se incluyan luego
-		//si ya tiene la clase y estaba seleccionada hay que deseleccionarla y luego borrarla del input
-		if ( $(this).hasClass('image-selected') ) {
-			$(this).removeClass('image-selected');
-			$('.previewAtachment').each(function(){
-			if ($(this).val() == item_url) {
-				$(this).remove()
-			}
-		});
-		} else {
-			//sino tiene la clase es más facil, solo hay que agregarla
-			$(this).addClass('image-selected');
-			var html = '<input type="hidden" class="previewAtachment" name="previewAtachment" value="'+item_url+'">';
-		var node = $(html);
-		$('#libreria').append(node);
-		}
-
-		//o puede haber una sola eleccion
-	} else {
-		//destacado indica que ya algo seleccionado entonces hay que encontrarlo y deseleccionarlo
-	  if (destacado) {
-	  	$.each( $('li.medio'), function(){
-	  		$(this).removeClass('image-selected');
-	  	});
-	  	//se borra la que antes estaba seleccionada
-	  	$('.previewAtachment').remove();
-	  }
-	  //una vez todos seleccionados se selecciona la adecuada
-	  $(this).toggleClass('image-selected');
-	  //y a continuación se indica que hay algo destacado
-	  destacado = true;
-	  //se agrega al input para que pueda asignarse luego
-		var html = '<input type="hidden" class="previewAtachment" name="previewAtachment" value="'+item_url+'">';
-		var node = $(html);
-		$('#libreria').append(node);
-	}
-});
-
+});//onready
 </script>

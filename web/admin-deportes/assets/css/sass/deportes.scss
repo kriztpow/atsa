@@ -241,3 +241,55 @@
 .wrapper-buttons {
     margin-top: 50px;
 }
+
+#browser-dialog {
+    .wrapper-equipos-browser {
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        
+        .equipos {
+            margin: 20px 0;
+            width: 50%;
+
+            h4 {
+                text-transform: uppercase;
+                font-size: 110%;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .equipo {
+                margin: 10px 0;
+                cursor: pointer;
+                width: 30%;
+                display: flex;
+                display: -o-flex;
+                display: -ms-flex;
+                display: -moz-flex;
+                display: -webkit-flex;
+                -webkit-align-items: center;
+                -moz-align-items: center;
+                -ms-align-items: center;
+                -o-align-items: center;
+                align-items: center;
+
+                &:hover {
+                    opacity: 0.6;
+                }
+
+                img {
+                    width: 20px;
+                    height: auto;
+                    margin-right: 10px;
+                }
+            }//equipo
+
+            .equipo-elegido {
+                color: red;
+            }
+        }//.equipos
+    }//.wrapper-equipos
+}//#browser-dialog

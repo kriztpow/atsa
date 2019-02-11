@@ -1853,4 +1853,48 @@ ul.dropdown-menu li {
   margin-top: 50px;
 }
 
+#browser-dialog .wrapper-equipos-browser {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+}
+#browser-dialog .wrapper-equipos-browser .equipos {
+  margin: 20px 0;
+  width: 50%;
+}
+#browser-dialog .wrapper-equipos-browser .equipos h4 {
+  text-transform: uppercase;
+  font-size: 110%;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .equipo {
+  margin: 10px 0;
+  cursor: pointer;
+  width: 30%;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .equipo:hover {
+  opacity: 0.6;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .equipo img {
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .equipo-elegido {
+  color: red;
+}
+
 /*# sourceMappingURL=style-admin.css.map */

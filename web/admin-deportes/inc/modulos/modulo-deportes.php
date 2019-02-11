@@ -1063,3 +1063,24 @@ function updatePartidoInZona($partidoId, $zonaId) {
     return $respuesta;
 
 }//updatePartidoInZona()
+
+
+/*
+* recupera datos extras editando el partido como por ejemplo, jugadores, equipos, etc
+*/
+function getDataExtraPartido( $tipo, $id ) {
+    
+    switch ($tipo) {
+        case 'equipo':
+            $tabla = 'equipos';
+        break;
+
+        case 'jugador':
+            $tabla = 'jugadores';
+        break;
+    }
+
+    $respuesta = getPostsFromDeportesById( $id, $tabla );
+
+    return $respuesta;
+}//getDataExtraPartido

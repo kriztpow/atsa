@@ -133,7 +133,7 @@ if ( isAjax() ) {
         break;
 
         /*
-         * nuevo jugador
+         * edita jugador
         */
         case 'escribir-jugador':
             $equipo_id = isset( $_POST['equipo'] ) ? $_POST['equipo'] : null;
@@ -163,9 +163,29 @@ if ( isAjax() ) {
 
         break;
 
+        /*
+         * crea o actualiza un partido
+        */
         case 'editar-partido':
 
             echo editarPartido( $_POST );
+
+        break;
+
+        case 'load-data-partido':
+
+            $tipo = isset( $_POST['tipo'] ) ? $_POST['tipo'] : null;
+            $id = isset( $_POST['id'] ) ? $_POST['id'] : null;
+
+            if ( $tipo != null && $id != null ) {
+
+                $respuesta['data'] = getDataExtraPartido( $tipo, $id );
+
+            } else {
+                $respuesta['error'] = 'Faltan datos para realizar request';
+            }
+
+            echo json_encode($respuesta);
 
         break;
         

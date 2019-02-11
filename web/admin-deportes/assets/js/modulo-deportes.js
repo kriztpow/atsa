@@ -934,8 +934,17 @@ $(document).ready(function(){
     //cambiar equipo
     $(document).on('click', '.btn-edit-equipo', function(e){
         e.preventDefault();
+        var oldequiposid = $( 'input[name="equipos_id"]' ).val()
 
-        var equipos = $('.equipo-wrapper');
+        //contenedor del equipo
+        var equiposWrapper = $('.equipo-wrapper');
+        var zonaId = $('select[name="zona_id"]').val();
+        var equipo1 = $(equiposWrapper[0]).attr('data-id');
+        var equipo2 = $(equiposWrapper[1]).attr('data-id');
+        var dataToLoad = {
+            zona:zonaId,
+            equipos:[equipo1, equipo2]
+        }
         
         $( "#dialog" ).dialog({
             title: 'Elegir equipos',
@@ -953,36 +962,38 @@ $(document).ready(function(){
             }
             },
             {
-                text: 'Insertar imagen',
+                text: 'Agregar Equipo/s',
                 class: 'btn btn-success',
                 click: function () {
-                        //se toma el nombre de la imagen, siempre la primera porque es UNA imagen destacada
-                        newImage = $('.previewAtachment')[0];
-                        newImage =  $(newImage).val();
-                        if ( newImage == '' ) {
-                            $( this ).dialog( "close" );
-                            return;
+                        equipoNuevo1 = $('input[name="data_equipo1"]').val();
+                        equipoNuevo2 = $('input[name="data_equipo2"]').val();
+                        var newEquiposId = oldequiposid.split(',');
+
+                        if ( equipoNuevo1 != '' ) {
+                            loadDataAjaxPartido( 'equipo', equipoNuevo1, equiposWrapper[0] ); 
+                            newEquiposId[0] = equipoNuevo1;
                         }
-                        //se incluye la imagen en el input a guardar en base de datos, solo nombre
-                        $(inputImagen).val(newImage);
-                        //se genera url completo de la imagen para mostrar ahora
-                        urlimg = uploadsDir + '/images/' + newImage;
-                        //se imprime el html con el url de la imagen
-                        $(imagen).attr( 'src', urlimg );
-                        //se guarda al jugador
-                        escribirJugador( contenedor );
+
+                        if ( equipoNuevo2 != '' ) {
+                            loadDataAjaxPartido( 'equipo', equipoNuevo2, equiposWrapper[1] );
+                            newEquiposId[1] = equipoNuevo2;
+                        }
                         
+                        //guardar los datos en el input hide de equipos id
+                        $( 'input[name="equipos_id"]' ).val( newEquiposId.toString() );
+
                         //se cierra el dialogo
                         $( this ).dialog( "close" );
                     }
                 },
             ],
         });
-        $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/team-browser.php' );
+        $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/team-browser.php', dataToLoad );
 
 
     });//cambiar equipo
 
+    
     //agregar gol
     $(document).on('click', '.btn-add-gol', function(e){
         //para agregar gol tiene que haber dos equipos
@@ -991,7 +1002,6 @@ $(document).ready(function(){
             alert('Para agregar un gol tiene que haber dos equipos guardados');
             return;
         }
-
 
     });//agregar gol
 
@@ -1104,6 +1114,11 @@ $(document).ready(function(){
             return;
         }
 
+        if ( equipos[0] == equipos[1] ) {
+            error.append( '<li class="error-msj-list-item-danger">No puede haber dos equipos iguales</li>');
+            return;
+        }
+
         //datos del formulario:
         var formulario = $( this );
         var formData = new FormData( formulario[0] );
@@ -1135,12 +1150,12 @@ $(document).ready(function(){
                     break;
                         
                     //devuelve id para reload
-                    /*case 'post-made':
+                    case 'post-made':
                         var url = window.location.href;
                         url += '&id=';
                         url += respuesta.id;
                         window.location.href = url;
-                    break;*/
+                    break;
                 }
             },
             error: function ( error ) {
@@ -1150,3 +1165,52 @@ $(document).ready(function(){
         
     });//submit
 });//READY EDITAR PARTIDO
+
+/*
+ * esta funcion agrega datos al partido, por ejemplo equipo, jugador, etc
+ * recibe dos parametros, el primero es que tiene que agregar (equipo, jugador, etc), el segundo el id de lo que va buscar
+*/
+function loadDataAjaxPartido( tipo, id, contenedor ) {
+
+    $.ajax({
+        type: 'POST',
+        url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+        data: {
+            action:'load-data-partido',
+            tipo:tipo,
+            id:id,
+        },
+        //funcion antes de enviar
+        beforeSend: function() {
+            console.log('enviando formulario');
+        },
+        success: function ( response ) {
+            console.log(response);
+            var respuesta = JSON.parse(response);
+
+            //esta funcion escribe el html
+            WriteDataOnHTML( 'equipo', respuesta.data, contenedor );
+            
+        },
+        error: function ( error ) {
+            console.log(error);
+        },
+    });//cierre ajax
+}//loadDataAjaxPartido
+
+
+function WriteDataOnHTML( tipo, data, contenedor ) {
+    switch (tipo) {
+        case 'equipo':
+            var imagen = administradorUrl + '/assets/images/logo.png';
+            if (data.logo != '' ) {
+                imagen = uploadsDir + '/images/' + data.logo;
+            }
+            console.log(data.logo);
+            $(contenedor).find('.nombre_equipo').text(data.nombre);
+            $(contenedor).find('.logo-equipos').attr('src',imagen);
+            $(contenedor).attr('data-id', data.id);
+
+        break;
+    }
+}
