@@ -8,9 +8,16 @@
 require_once("../inc/functions.php");
 load_module( 'deportes' );
 $zona = isset($_POST['zona']) ? $_POST['zona'] : '';
-$equipos = getPostsFromDeportes( 'equipos', null, 'zona_id='. $zona  );
+$condition = null;
+if ( $zona != null ) {
+    $condition =  'zona_id='. $zona;
+}
+
+$equipos = getPostsFromDeportes( 'equipos', null, $condition );
 $equipo1 = $_POST['equipos'][0];
 $equipo2 = $_POST['equipos'][1];
+
+
 ?>
 
 <article id="browser-dialog">

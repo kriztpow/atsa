@@ -945,6 +945,7 @@ $(document).ready(function(){
             zona:zonaId,
             equipos:[equipo1, equipo2]
         }
+        console.log(dataToLoad);
         
         $( "#dialog" ).dialog({
             title: 'Elegir equipos',
@@ -1185,7 +1186,7 @@ function loadDataAjaxPartido( tipo, id, contenedor ) {
             console.log('enviando formulario');
         },
         success: function ( response ) {
-            console.log(response);
+            //console.log(response);
             var respuesta = JSON.parse(response);
 
             //esta funcion escribe el html
