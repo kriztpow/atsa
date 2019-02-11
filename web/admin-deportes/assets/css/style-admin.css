@@ -403,6 +403,17 @@ h3 {
   }
 }
 
+.col-60 {
+  width: 100%;
+  padding: 5px 20px;
+}
+@media (min-width: 992px) {
+  .col-60 {
+    width: 60%;
+    padding: 5px 10px;
+  }
+}
+
 .col-40 {
   width: 100%;
   padding: 5px 20px;
@@ -1735,6 +1746,107 @@ ul.dropdown-menu li {
 }
 .tabla-jugadores .imagen-jugador-btn {
   margin: 10px 5px;
+}
+
+/*
+ * EDITAR EQUIPO
+*/
+.equipo-wrapper h1 {
+  font-size: 200%;
+  line-height: 100%;
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.equipo-wrapper .wrapper-puntuacion {
+  text-align: center;
+  font-size: 200%;
+  line-height: 100%;
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@media (min-width: 992px) {
+  .equipo-der {
+    -webkit-flex-direction: row-reverse;
+    -moz-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    -o-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+}
+
+.btn-edit-equipo {
+  margin-top: 0;
+  font-size: 70%;
+  padding: 5px 10px;
+}
+
+.date-partido-input {
+  text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+  padding: 30px 0 !important;
+}
+.date-partido-input::-webkit-inner-spin-button {
+  height: 30px;
+  display: none;
+}
+
+.wrapper-goles, .wrapper-amonestaciones {
+  margin: 0;
+  padding: 0;
+}
+.wrapper-goles h2, .wrapper-amonestaciones h2 {
+  font-size: 120%;
+  margin: 10px 0;
+}
+
+.wrapper-amonestaciones {
+  margin-top: 15px;
+}
+
+.goles, .amonestaciones {
+  font-size: 85%;
+}
+.goles li, .amonestaciones li {
+  margin: 3px 0;
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -o-justify-content: flex-start;
+  justify-content: flex-start;
+}
+.goles button, .amonestaciones button {
+  margin: 0 15px;
+  padding: 0;
+  border: none;
+  vertical-align: sub;
+}
+.goles button .img-responsive, .amonestaciones button .img-responsive {
+  width: 80%;
+}
+
+@media (min-width: 992px) {
+  .equipo-data-der li {
+    -webkit-flex-direction: row-reverse;
+    -moz-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    -o-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+  }
 }
 
 /*# sourceMappingURL=style-admin.css.map */
