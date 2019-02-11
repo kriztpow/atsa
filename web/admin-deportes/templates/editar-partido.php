@@ -28,7 +28,7 @@ $equipoBase = array(
 //la puntuación es para el voley u otros deportes
 $puntuacion = explode(',', $post['puntuacion'] );
 //el score se realiza buscando los id de los goles en el partido
-$score = array('0','2');
+$score = array('0','0');
 
 //si hay equipos hay que buscarla data de cada uno
 if ( $post['equipos_id'] != '' ) {
@@ -198,18 +198,6 @@ if ( $post['equipos_id'] != '' ) {
                                                 <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
                                             </button>
                                         </li>
-                                        <li data-id-gol data-id-jugador>
-                                            Juan Carlos Alberto
-                                            <button class="btn del-gol" type="button">
-                                                <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
-                                            </button>
-                                        </li>
-                                        <li data-id-gol data-id-jugador>
-                                            Miguel Osquiro
-                                            <button class="btn del-gol" type="button">
-                                                <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
-                                            </button>
-                                        </li>
                                     </ul>
                                 </div>
                                 <div class="wrapper-amonestaciones">
@@ -217,20 +205,8 @@ if ( $post['equipos_id'] != '' ) {
                                         Amonestaciones
                                     </h2>
                                     <ul class="amonestaciones <?php if ($counter != 0 ) { echo ' equipo-data-der'; } ?>">
-                                        <li data-id-amonestacion>
-                                            <span data-id-jugador class="jugador">Juan Carlos Mesa</span> <span class="tipo-amonestacion">Amarilla</span>
-                                            <button class="btn del-amonestacion" type="button">
-                                                <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
-                                            </button>
-                                        </li>
-                                        <li data-id-amonestacion=>
-                                            <span data-id-jugador class="jugador">Juan Carlos Alberto</span> <span class="tipo-amonestacion">Amarilla</span>
-                                            <button class="btn del-amonestacion" type="button">
-                                                <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
-                                            </button>
-                                        </li>
-                                        <li data-id-amonestacion>
-                                            <span data-id-jugador class="jugador">Miguel Osquiro</span> <span class="tipo-amonestacion">Amarilla</span>
+                                        <li data-id-amonestacion data-id-jugador>
+                                            <span class="jugador">Juan Carlos Mesa</span> <span class="tipo-amonestacion">Amarilla</span>
                                             <button class="btn del-amonestacion" type="button">
                                                 <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
                                             </button>
@@ -252,17 +228,17 @@ if ( $post['equipos_id'] != '' ) {
             </div><!-- // row -->
             
             
-            <div class="row">
+            <div class="row wrapper-buttons">
                 <div class="col">
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger btn-add-gol">
                         Agregar gol
                     </button>
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger btn-add-amonestacion">
                         Agregar amonestación
                     </button>
-                    <button type="button" class="btn btn-danger">
+                    <a href="index.php?admin=editar-post&partido=" target="_blank" class="btn btn-primary add-contenido">
                         Agregar contenido
-                    </button>
+                    </a>
                 </div><!-- // col -->
             </div><!-- // row -->
 

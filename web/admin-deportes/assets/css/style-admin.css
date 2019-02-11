@@ -1805,7 +1805,7 @@ ul.dropdown-menu li {
 }
 
 .wrapper-amonestaciones {
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .goles, .amonestaciones {
@@ -1847,6 +1847,10 @@ ul.dropdown-menu li {
     -o-flex-direction: row-reverse;
     flex-direction: row-reverse;
   }
+}
+
+.wrapper-buttons {
+  margin-top: 50px;
 }
 
 /*# sourceMappingURL=style-admin.css.map */

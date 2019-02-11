@@ -60,17 +60,6 @@ if ( $postId != null ) {
 						<label for="post_categoria">Categoría </label>
 						<select name="post_categoria" id="post_categoria">
 							<option value="">Seleccionar...</option>
-							<?php 
-								$categorias = getCategoryList( 'posts' );
-								if ( $categorias!=null ) :
-
-									for ($i=0; $i < count($categorias); $i++) { ?>
-										<option value="<?php echo $categorias[$i]['categoria_slug']; ?>"<?php if ( $post && $post['post_categoria'] == $categorias[$i]['categoria_slug'] ) { echo ' selected'; } ?>><?php echo $categorias[$i]['categoria_nombre']; ?></option>
-									<?php }
-
-								endif;
-							?>
-							
 						</select>
 					</div>
 				</div><!-- // col -->

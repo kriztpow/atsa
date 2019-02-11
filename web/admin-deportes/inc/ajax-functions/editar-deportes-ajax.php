@@ -162,6 +162,12 @@ if ( isAjax() ) {
             echo eliminarEquipoFromZona($equipo, $zona);
 
         break;
+
+        case 'editar-partido':
+
+            echo editarPartido( $_POST );
+
+        break;
         
         
     }//switch ajax

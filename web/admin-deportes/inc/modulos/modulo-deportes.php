@@ -935,3 +935,131 @@ function deletePartidoEnZona( $partidoId, $zona_id ) {
     return $respuesta;
 
 }//deletePartidoEnZona()
+
+
+/*
+* guarda el partido y la zona
+*/
+function editarPartido ($data) {
+
+    //se toman los datos para variables
+    $connection     = connectDB();
+    $tabla          = 'partidos';
+    $postID         = isset( $data['post_ID'] ) ? $data['post_ID'] : 'new';
+    $deporteID      = isset( $data['post_categoria'] ) ? $data['post_categoria'] : '';
+    $ligaID         = isset( $data['liga_id'] ) ? $data['liga_id'] : '';
+    $zonaId         = isset( $data['zona_id'] ) ? $data['zona_id'] : '';
+    $fecha          = isset( $data['fecha'] ) ? $data['fecha'] : '';
+    $equipos        = isset( $data['equipos_id'] ) ? $data['equipos_id'] : '';
+    $goles          = isset( $data['goles'] ) ? $data['goles'] : '';
+    $amonestaciones = isset( $data['amonestaciones'] ) ? $data['amonestaciones'] : '';
+    $puntuacion     = isset( $data['puntuacion'] ) ? $data['puntuacion'] : '';
+    $respuesta      = array();
+    /*
+    * GUARDAR POST
+    */
+
+    //es nuevo post
+    
+    if ($postID == 'new') {
+
+        //sino se guarda
+        $query = "INSERT INTO $tabla (deporte_id,liga_id,zona_id,fecha,equipos_id,goles_id,amonestaciones_id,puntuacion) VALUES ('$deporteID', '$ligaID', '$zonaId', '$fecha', '$equipos', '$goles', '$amonestaciones', '$puntuacion')";
+
+        $nuevoPost = mysqli_query($connection, $query); 
+        
+        if ($nuevoPost) {
+            $postID = mysqli_insert_id($connection);
+            $respuesta['id'] = $postID;
+            $respuesta['status'] = 'post-made';
+
+            //actualizar zona
+            $respuesta['zona'] = updatePartidoInZona( $postID,$zonaId );
+
+        } else  {
+            $respuesta['error'] = 'error-saving-partido'; 
+            $respuesta['status'] = 'error';  
+        }
+        
+
+    } //es viejo post
+        else {
+
+        $query = "UPDATE ".$tabla." SET deporte_id='".$deporteID."',liga_id='".$ligaID."',zona_id='".$zonaId."',fecha='".$fecha."',equipos_id='".$equipos."',goles_id='".$goles."',amonestaciones_id='".$amonestaciones."',puntuacion='".$puntuacion."' WHERE id='".$postID."' LIMIT 1";
+
+        $updatePost = mysqli_query($connection, $query); 
+        if ($updatePost) {
+            $respuesta['id'] = $postID;
+            $respuesta['status'] = 'updated';
+            //actualizar zona
+            $respuesta['zona'] = updatePartidoInZona( $postID,$zonaId );
+
+        } else {
+
+            $respuesta['status'] = 'error';
+            $respuesta['error'] = 'error-updated';
+
+        }	
+    }
+
+    //cierre base de datos
+    mysqli_close($connection);
+
+    return json_encode( $respuesta );
+
+}//editarPartido();
+
+
+/*
+ * actualiza la zona para que el partido quede registrado ahí
+*/
+function updatePartidoInZona($partidoId, $zonaId) {
+    $connection     = connectDB();
+    $tabla          = 'zonas';
+
+    $zona = getPostsFromDeportesById( $zonaId, 'zonas');
+
+    if ( $zona['partidos_ids'] == '' ) {
+        $query = "UPDATE zonas SET partidos_ids='".$partidoId."' WHERE id='".$zona['id']."' LIMIT 1";
+            
+            $updateZona = mysqli_query($connection, $query); 
+            if ($updateZona) {
+                
+                $respuesta = 'zona-saved';
+                
+            } else {
+                $respuesta = 'error-zona';
+            }
+
+    } else {
+        
+        $partidos_ids = explode(',', $zona['partidos_ids'] );
+
+        if ( ($clave = array_search($partidoId, $partidos_ids)) === false ) {
+
+            array_push($partidos_ids, $partidoId);
+
+            $partidos_ids = implode(',', $partidos_ids);
+
+            $query = "UPDATE zonas SET partidos_ids='".$partidos_ids."' WHERE id='".$zona['id']."' LIMIT 1";
+            
+            $updateZona = mysqli_query($connection, $query); 
+            if ($updateZona) {
+                
+                $respuesta = 'zona-updated';
+                
+            } else {
+                $respuesta = 'error-zona';
+            }
+
+        } else {
+            $respuesta = 'already-in-zona';
+        }
+
+    }
+
+    mysqli_close($connection);
+    
+    return $respuesta;
+
+}//updatePartidoInZona()

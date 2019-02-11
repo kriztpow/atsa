@@ -924,3 +924,229 @@ $(document).ready(function(){
         
     });//submit
 });
+
+
+/*
+ * EDITAR PARTIDO
+*/
+$(document).ready(function(){
+
+    //cambiar equipo
+    $(document).on('click', '.btn-edit-equipo', function(e){
+        e.preventDefault();
+
+        var equipos = $('.equipo-wrapper');
+        
+        $( "#dialog" ).dialog({
+            title: 'Elegir equipos',
+            autoOpen: false,
+            appendTo: '.contenido-modulo',
+            height: 600,
+            width:768,
+            modal: true,
+            buttons: [
+            {
+                text: "Cerrar",
+                class: 'btn btn-default',
+                click: function() {
+                $( this ).dialog( "close" );
+            }
+            },
+            {
+                text: 'Insertar imagen',
+                class: 'btn btn-success',
+                click: function () {
+                        //se toma el nombre de la imagen, siempre la primera porque es UNA imagen destacada
+                        newImage = $('.previewAtachment')[0];
+                        newImage =  $(newImage).val();
+                        if ( newImage == '' ) {
+                            $( this ).dialog( "close" );
+                            return;
+                        }
+                        //se incluye la imagen en el input a guardar en base de datos, solo nombre
+                        $(inputImagen).val(newImage);
+                        //se genera url completo de la imagen para mostrar ahora
+                        urlimg = uploadsDir + '/images/' + newImage;
+                        //se imprime el html con el url de la imagen
+                        $(imagen).attr( 'src', urlimg );
+                        //se guarda al jugador
+                        escribirJugador( contenedor );
+                        
+                        //se cierra el dialogo
+                        $( this ).dialog( "close" );
+                    }
+                },
+            ],
+        });
+        $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/team-browser.php' );
+
+
+    });//cambiar equipo
+
+    //agregar gol
+    $(document).on('click', '.btn-add-gol', function(e){
+        //para agregar gol tiene que haber dos equipos
+        var equiposInput = $('input[name="equipos_id"]').val().split(',');
+        if ( equipos < 2 ) {
+            alert('Para agregar un gol tiene que haber dos equipos guardados');
+            return;
+        }
+
+
+    });//agregar gol
+
+    //agregar amonestacion
+    $(document).on('click', '.btn-add-amonestacion', function(e){
+        //para agregar amonestacion tiene que haber dos equipos
+        var equipos =$('input[name="equipos_id"]').val().split(',');
+        if ( equipos < 2 ) {
+            alert('Para agregar una falta tiene que haber dos equipos guardados');
+            return;
+        }
+    });//agregar amnonestacion
+
+
+    //agregar contenido
+    $(document).on('click', '.add-contenido', function(e){
+       //para agregar contenido tiene que tener un id el partido
+        if ( $('input[name="post_ID"]').val() == 'new' ) {
+            e.preventDefault();
+            alert('Para agregar contenido necesita guardar los cambios primero.');
+            return true;
+        }
+    });//agregar contenido
+    
+
+    //borrar gol
+    $(document).on('click', '.del-gol', function(e){
+        e.preventDefault();
+        var li = $(this).closest('li');
+        var id = $(li).attr('data-id-gol');
+        var idjugador = $(li).attr('data-id-jugador');
+        
+        var deletePost = false;
+
+        if ( confirm( '¿Está seguro de querer BORRAR?' ) ) {
+            deletePost = true; 
+        }
+
+        if (deletePost) {
+            $.ajax( {
+                type: 'POST',
+                url: ajaxFunctionDir + '/delete-deportes.php',
+                data: {
+                    id: id,
+                    jugador: idjugador,
+                    action: 'delete-gol',
+                },
+                success: function ( response ) {
+                    console.log(response);
+                    if (response == 'ok') {
+                        //se actualiza la ventana así trae los cambios hechos
+                        window.location.reload();
+                    }
+                },
+                error: function ( ) {
+                    console.log('error');
+                },
+            });//cierre ajax
+        }
+    });//del-gol
+
+    //borrar amonestacion
+    $(document).on('click', '.del-amonestacion', function(e){
+        e.preventDefault();
+        var li = $(this).closest('li');
+        var id = $(li).attr('data-id-amonestacion');
+        var idjugador = $(li).attr('data-id-jugador');
+        
+        var deletePost = false;
+
+        if ( confirm( '¿Está seguro de querer BORRAR?' ) ) {
+            deletePost = true; 
+        }
+
+        if (deletePost) {
+            $.ajax( {
+                type: 'POST',
+                url: ajaxFunctionDir + '/delete-deportes.php',
+                data: {
+                    id: id,
+                    jugador: idjugador,
+                    action: 'delete-amonestacion',
+                },
+                success: function ( response ) {
+                    console.log(response);
+                    if (response == 'ok') {
+                        //se actualiza la ventana así trae los cambios hechos
+                        window.location.reload();
+                    }
+                },
+                error: function ( ) {
+                    console.log('error');
+                },
+            });//cierre ajax
+        }
+    });//del-amonestacion
+
+
+    /*
+     * SUBMIT FORMULARIO PARTIDO
+    */
+    $(document).on('submit', '#editar-partido-form', function(e){
+        e.preventDefault();
+        var error = $('.error-msj-list');
+        
+        //controla de que haya dos equipos, sino no se puede guardar
+        var equipos =$('input[name="equipos_id"]').val().split(',');
+        if ( equipos < 2 ) {
+            error.append( '<li class="error-msj-list-item-danger">Tiene que haber dos equipos</li>');
+            return;
+        }
+
+        //datos del formulario:
+        var formulario = $( this );
+        var formData = new FormData( formulario[0] );
+
+        //envia el formulario
+        $.ajax({
+            type: 'POST',
+            url: ajaxFunctionDir + '/editar-deportes-ajax.php',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            //funcion antes de enviar
+            beforeSend: function() {
+                console.log('enviando formulario');
+            },
+            success: function ( response ) {
+                console.log(response);
+                var respuesta = JSON.parse(response);
+                switch(respuesta.status) {
+
+                    case 'error':
+                        error.append( '<li class="error-msj-list-item-danger">Hubo un error, no se pudo guardar</li>');
+                    break;
+
+                    case 'updated':
+                        error.append( '<li class="error-msj-list-item-danger">Los Cambios fueron guardados</li>');
+                        scrollHaciaArriba();
+                    break;
+                        
+                    //devuelve id para reload
+                    /*case 'post-made':
+                        var url = window.location.href;
+                        url += '&id=';
+                        url += respuesta.id;
+                        window.location.href = url;
+                    break;*/
+                }
+            },
+            error: function ( error ) {
+                console.log(error);
+            },
+        });//cierre ajax
+        
+    });//submit
+});//READY EDITAR PARTIDO
