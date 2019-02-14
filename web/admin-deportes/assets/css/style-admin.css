@@ -1896,5 +1896,29 @@ ul.dropdown-menu li {
 #browser-dialog .wrapper-equipos-browser .equipos .equipo-elegido {
   color: red;
 }
+#browser-dialog .wrapper-equipos-browser .equipos .jugador {
+  width: 100%;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .jugador .selec-falta {
+  display: inline-block;
+  width: 150px;
+  margin: 0 10px;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .jugador .selec-falta input {
+  display: inline-block;
+  width: 25px;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .jugador .selec-falta .amarilla {
+  display: inline-block;
+  width: 10px;
+  height: 15px;
+  background-color: yellow;
+}
+#browser-dialog .wrapper-equipos-browser .equipos .jugador .selec-falta .roja {
+  display: inline-block;
+  width: 10px;
+  height: 15px;
+  background-color: red;
+}
 
 /*# sourceMappingURL=style-admin.css.map */

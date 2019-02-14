@@ -290,6 +290,37 @@
             .equipo-elegido {
                 color: red;
             }
+
+            .jugador {
+                width: 100%;
+
+                .selec-falta {
+                    display: inline-block;
+                    width: 150px;
+                    margin: 0 10px;
+
+                    input {
+                        display: inline-block;
+                        width: 25px;
+                    }
+
+                    .amarilla {
+                        display: inline-block;
+                        width: 10px;
+                        height: 15px;
+                        background-color: yellow;
+                    }
+
+                    .roja {
+                        display: inline-block;
+                        width: 10px;
+                        height: 15px;
+                        background-color: red;
+                    }
+                }
+            }
         }//.equipos
+
+        
     }//.wrapper-equipos
 }//#browser-dialog
