@@ -236,9 +236,22 @@ if ( $post['equipos_id'] != '' ) {
                     <button type="button" class="btn btn-danger btn-add-amonestacion">
                         Agregar amonestación
                     </button>
-                    <a href="index.php?admin=editar-post&partido=" target="_blank" class="btn btn-primary add-contenido">
+                    
+                    <?php if ( $post['contenido_id'] == '' ) : ?>
+
+                    <a href="index.php?admin=editar-post&partido=<?php echo $postId; ?>" target="_blank" class="btn btn-primary add-contenido">
                         Agregar contenido
                     </a>
+
+                    <?php else : ?>
+                        <a href="index.php?admin=editar-post&partido=<?php echo $postId; ?>" target="_blank" class="btn btn-primary add-contenido">
+                            Editar contenido
+                        </a>
+                        <button type="button" data-contenido="<?php echo $post['contenido_id']; ?>" class="btn btn-primary btn-del-contenido">
+                            Eliminar contenido
+                        </button>
+                    <?php endif; ?>
+                    
                 </div><!-- // col -->
             </div><!-- // row -->
 

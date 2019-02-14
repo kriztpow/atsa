@@ -934,7 +934,7 @@ $(document).ready(function(){
     //cambiar equipo
     $(document).on('click', '.btn-edit-equipo', function(e){
         e.preventDefault();
-        var oldequiposid = $( 'input[name="equipos_id"]' ).val()
+        var oldequiposid = $( 'input[name="equipos_id"]' ).val();
 
         //contenedor del equipo
         var equiposWrapper = $('.equipo-wrapper');
@@ -945,7 +945,7 @@ $(document).ready(function(){
             zona:zonaId,
             equipos:[equipo1, equipo2]
         }
-        console.log(dataToLoad);
+        
         
         $( "#dialog" ).dialog({
             title: 'Elegir equipos',
@@ -1000,7 +1000,7 @@ $(document).ready(function(){
         //para agregar gol tiene que haber dos equipos
         var equiposInput = $('input[name="equipos_id"]').val().split(',');
         if ( equipos < 2 ) {
-            alert('Para agregar un gol tiene que haber dos equipos guardados');
+            alert('Para agregar un gol tiene que guardar los cambios');
             return;
         }
 
@@ -1011,7 +1011,7 @@ $(document).ready(function(){
         //para agregar amonestacion tiene que haber dos equipos
         var equipos =$('input[name="equipos_id"]').val().split(',');
         if ( equipos < 2 ) {
-            alert('Para agregar una falta tiene que haber dos equipos guardados');
+            alert('Para agregar una falta tiene que guardar los cambios');
             return;
         }
     });//agregar amnonestacion
