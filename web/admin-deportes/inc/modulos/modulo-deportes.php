@@ -943,18 +943,20 @@ function deletePartidoEnZona( $partidoId, $zona_id ) {
 function editarPartido ($data) {
 
     //se toman los datos para variables
-    $connection     = connectDB();
-    $tabla          = 'partidos';
-    $postID         = isset( $data['post_ID'] ) ? $data['post_ID'] : 'new';
-    $deporteID      = isset( $data['post_categoria'] ) ? $data['post_categoria'] : '';
-    $ligaID         = isset( $data['liga_id'] ) ? $data['liga_id'] : '';
-    $zonaId         = isset( $data['zona_id'] ) ? $data['zona_id'] : '';
-    $fecha          = isset( $data['fecha'] ) ? $data['fecha'] : '';
-    $equipos        = isset( $data['equipos_id'] ) ? $data['equipos_id'] : '';
-    $goles          = isset( $data['goles'] ) ? $data['goles'] : '';
-    $amonestaciones = isset( $data['amonestaciones'] ) ? $data['amonestaciones'] : '';
-    $puntuacion     = isset( $data['puntuacion'] ) ? $data['puntuacion'] : '';
-    $respuesta      = array();
+    $connection      = connectDB();
+    $tabla           = 'partidos';
+    $postID          = isset( $data['post_ID'] ) ? $data['post_ID'] : 'new';
+    $deporteID       = isset( $data['post_categoria'] ) ? $data['post_categoria'] : '';
+    $ligaID          = isset( $data['liga_id'] ) ? $data['liga_id'] : '';
+    $zonaId          = isset( $data['zona_id'] ) ? $data['zona_id'] : '';
+    $fecha           = isset( $data['fecha'] ) ? $data['fecha'] : '';
+    $equipos         = isset( $data['equipos_id'] ) ? $data['equipos_id'] : '';
+    $goles1          = isset( $data['goles1'] ) ? $data['goles1'] : '';
+    $goles2          = isset( $data['goles2'] ) ? $data['goles2'] : '';
+    $amonestaciones1 = isset( $data['amonestaciones1'] ) ? $data['amonestaciones1'] : '';
+    $amonestaciones2 = isset( $data['amonestaciones2'] ) ? $data['amonestaciones2'] : '';
+    $puntuacion      = isset( $data['puntuacion'] ) ? $data['puntuacion'] : '';
+    $respuesta       = array();
     /*
     * GUARDAR POST
     */
@@ -964,7 +966,7 @@ function editarPartido ($data) {
     if ($postID == 'new') {
 
         //sino se guarda
-        $query = "INSERT INTO $tabla (deporte_id,liga_id,zona_id,fecha,equipos_id,goles_id,amonestaciones_id,puntuacion) VALUES ('$deporteID', '$ligaID', '$zonaId', '$fecha', '$equipos', '$goles', '$amonestaciones', '$puntuacion')";
+        $query = "INSERT INTO $tabla (deporte_id,liga_id,zona_id,fecha,equipos_id,goles_id1,goles_id2,amonestaciones_id1,amonestaciones_id2,puntuacion) VALUES ('$deporteID', '$ligaID', '$zonaId', '$fecha', '$equipos', '$goles1','$goles2', '$amonestaciones1','$amonestaciones2', '$puntuacion')";
 
         $nuevoPost = mysqli_query($connection, $query); 
         
@@ -985,7 +987,7 @@ function editarPartido ($data) {
     } //es viejo post
         else {
 
-        $query = "UPDATE ".$tabla." SET deporte_id='".$deporteID."',liga_id='".$ligaID."',zona_id='".$zonaId."',fecha='".$fecha."',equipos_id='".$equipos."',goles_id='".$goles."',amonestaciones_id='".$amonestaciones."',puntuacion='".$puntuacion."' WHERE id='".$postID."' LIMIT 1";
+        $query = "UPDATE ".$tabla." SET deporte_id='".$deporteID."',liga_id='".$ligaID."',zona_id='".$zonaId."',fecha='".$fecha."',equipos_id='".$equipos."',goles_id1='".$goles1."',goles_id2='".$goles2."',amonestaciones_id1='".$amonestaciones1."',amonestaciones_id2='".$amonestaciones2."',puntuacion='".$puntuacion."' WHERE id='".$postID."' LIMIT 1";
 
         $updatePost = mysqli_query($connection, $query); 
         if ($updatePost) {
@@ -1075,7 +1077,11 @@ function getDataExtraPartido( $tipo, $id ) {
             $tabla = 'equipos';
         break;
 
-        case 'jugador':
+        case 'gol-jugador':
+            $tabla = 'jugadores';
+        break;
+
+        case 'amonestaciones':
             $tabla = 'jugadores';
         break;
     }
@@ -1084,3 +1090,202 @@ function getDataExtraPartido( $tipo, $id ) {
 
     return $respuesta;
 }//getDataExtraPartido
+
+
+/*
+* ESTA FUNCION CREA UN NUEVO GOL
+* con el id del jugador busca todos los datos que necesita:
+* equipo, partido, jugador, deporte, liga, zona
+* devuelve el id del gol
+*/
+function newGoal( $jugadorId, $partidoId ) {
+    $connection     = connectDB();
+    $tabla          = 'goles';
+
+    $jugador = getPostsFromDeportesById( $jugadorId, 'jugadores' );
+    $equipo = getPostsFromDeportesById( $jugador['equipo_id'], 'equipos' );
+    $deporte = $equipo['deporte_id'];
+    $liga = $equipo['liga_id'];
+    $zona = $equipo['zona_id'];
+    
+    $equipoId = $equipo['id'];
+
+    $query = "INSERT INTO $tabla (equipo_id,partido_id,jugador_id,deporte_id,liga_id,zona_id) VALUES ('$equipoId', '$partidoId', '$jugadorId', '$deporte', '$liga', '$zona')";
+
+    $nuevoPost = mysqli_query($connection, $query); 
+    
+    if ($nuevoPost) {
+        $postID = mysqli_insert_id($connection);
+        $respuesta = $postID;
+    } else {
+        $respuesta = 'error';
+    }
+
+    mysqli_close($connection);
+    return $respuesta;
+
+}//newGoal()
+
+/*
+* ESTA FUNCION CREA UNA NUEVA AMONESTACION
+* con el id del jugador busca todos los datos que necesita:
+* equipo, partido, jugador, deporte, liga, zona
+* devuelve el id de la falta
+*/
+function nuevaAmonestacion( $jugadorId, $tipo, $partidoId ) {
+    $connection     = connectDB();
+    $tabla          = 'amonestaciones';
+    
+    $jugador = getPostsFromDeportesById( $jugadorId, 'jugadores' );
+    $equipo = getPostsFromDeportesById( $jugador['equipo_id'], 'equipos' );
+    $deporte = $equipo['deporte_id'];
+    $liga = $equipo['liga_id'];
+    $zona = $equipo['zona_id'];
+    $tipo = $tipo;
+    $equipoId = $equipo['id'];
+
+    $query = "INSERT INTO $tabla (jugador_id,tipo,deporte_id,equipo_id,partido_id,liga_id,zona_id) VALUES ('$jugadorId',  '$tipo', '$deporte', '$equipoId', '$partidoId', '$liga', '$zona')";
+
+    $nuevoPost = mysqli_query($connection, $query); 
+    
+    if ($nuevoPost) {
+        $postID = mysqli_insert_id($connection);
+        $respuesta = array('id'=>$postID, 'tipo' => $tipo );
+    } else {
+        $respuesta = 'error';
+    }
+
+    mysqli_close($connection);
+    return $respuesta;
+}//nuevaAmonestacion()
+
+/*
+ * borra los extra de los partidos, por ejemplo, goles, amonestaciones y contenido
+*/
+function deleteExtraPartido( $tipo, $id, $partido ) {
+    $connection     = connectDB();
+    $respuesta = '';
+
+    $respuesta = deleteExtraEnPartido( $tipo, $partido, $id );
+
+    if ( $respuesta == 'ok' ) {
+
+        switch ($tipo) {
+            case 'gol':
+                
+            $query = "DELETE FROM goles WHERE id= '".$id."'";
+            $result = mysqli_query($connection, $query);
+
+            if ( $result ) {
+                $respuesta = 'ok';
+            } else {
+                $respuesta = 'error';
+            }
+
+            break;
+            
+            case 'amonestacion':
+
+                $query = "DELETE FROM amonestaciones WHERE id= '".$id."'";
+                $result = mysqli_query($connection, $query);
+
+                if ( $result ) {
+                    $respuesta = 'ok';
+                } else {
+                    $respuesta = 'error';
+                }
+
+            break;
+
+            case 'contenido':
+                
+                $query = "DELETE FROM posts WHERE post_ID='".$id."'";
+                $result = mysqli_query($connection, $query);
+                
+                if ( $result ) {
+                    $respuesta = 'ok';
+                    
+                } else {
+                    $respuesta = 'error';
+                }
+
+            break;
+
+        }//switch
+    
+    } else {
+        $respuesta = 'error-extra';
+    }
+
+    mysqli_close($connection);
+    return $respuesta;
+    
+}//deleteExtraPartido()
+
+/*
+ * actualiza el partido para borrarle goles, amonestaciones y contenido
+*/
+function deleteExtraEnPartido( $tipo, $partidoId, $itemToDelete ) {
+    $connection = connectDB();
+    $partido = getPostsFromDeportesById( $partidoId, 'partidos' );
+
+    switch ($tipo) {
+        case 'gol':
+            $extras1 = explode(',', $partido['goles_id1']);
+            $extras2 = explode(',', $partido['goles_id2']);
+
+            if ( ($clave = array_search($itemToDelete, $extras1)) !== false ) {
+                unset($extras1[$clave]);
+            }
+    
+            if ( ($clave = array_search($itemToDelete, $extras2)) !== false ) {
+                unset($extras2[$clave]);
+            }
+    
+            $extras1 = implode(',', $extras1);
+            $extras2 = implode(',', $extras2);
+
+            $query = "UPDATE partidos SET goles_id1='".$extras1."', goles_id2='".$extras2."' WHERE id='".$partidoId."' LIMIT 1";
+
+        break;
+
+        case 'amonestacion':
+            $extras1 = explode(',', $partido['amonestaciones_id1']);
+            $extras2 = explode(',', $partido['amonestaciones_id2']);
+
+            if ( ($clave = array_search($itemToDelete, $extras1)) !== false ) {
+                unset($extras1[$clave]);
+            }
+    
+            if ( ($clave = array_search($itemToDelete, $extras2)) !== false ) {
+                unset($extras2[$clave]);
+            }
+    
+            $extras1 = implode(',', $extras1);
+            $extras2 = implode(',', $extras2);
+
+            $query = "UPDATE partidos SET amonestaciones_id1='".$extras1."', amonestaciones_id2='".$extras2."' WHERE id='".$partidoId."' LIMIT 1";
+
+        break;
+
+        case 'contenido':
+
+            $query = "UPDATE partidos SET contenido_id='' WHERE id='".$partidoId."' LIMIT 1";
+
+        break;
+        
+    }
+
+    $updatePost = mysqli_query($connection, $query); 
+
+    if ( ! $updatePost ) {
+        $respuesta = 'error';
+    } else {
+        $respuesta = 'ok';
+    }
+
+    //cierre base de datos
+	mysqli_close($connection);
+    return $respuesta;
+
+}//deletePartidoEnZona()

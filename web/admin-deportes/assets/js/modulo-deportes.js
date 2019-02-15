@@ -740,7 +740,7 @@ $(document).ready(function(){
                 },
                 success: function ( response ) {
                     
-                    console.log(response);
+                    //console.log(response);
     
                 },
                 error: function ( error ) {
@@ -892,7 +892,7 @@ $(document).ready(function(){
                 console.log('enviando formulario');
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
                 switch(response) {
 
                     case 'error-url':
@@ -946,7 +946,6 @@ $(document).ready(function(){
             equipos:[equipo1, equipo2]
         }
         
-        
         $( "#dialog" ).dialog({
             title: 'Elegir equipos',
             autoOpen: false,
@@ -999,23 +998,189 @@ $(document).ready(function(){
     $(document).on('click', '.btn-add-gol', function(e){
         //para agregar gol tiene que haber dos equipos
         var equiposInput = $('input[name="equipos_id"]').val().split(',');
-        if ( equipos < 2 ) {
+        if ( equiposInput < 2 ) {
             alert('Para agregar un gol tiene que guardar los cambios');
             return;
         }
+
+        var golesCargadosInput1 = $( 'input[name="goles1"]' );
+        var golesCargadosInput2 = $( 'input[name="goles2"]' );
+
+        var equiposWrapper = $('.equipo-wrapper');
+        var deporte = $('select[name="post_categoria"]').val();
+        var equipo1 = $(equiposWrapper[0]).attr('data-id');
+        var equipo2 = $(equiposWrapper[1]).attr('data-id');
+        var dataToLoad = {
+            deporte:deporte,
+            equipos:[equipo1, equipo2],
+            faltas:0,
+        }
+
+        $( "#dialog" ).dialog({
+            title: 'Elegir Jugador',
+            autoOpen: false,
+            appendTo: '.contenido-modulo',
+            height: 600,
+            width:768,
+            modal: true,
+            buttons: [
+            {
+                text: "Cerrar",
+                class: 'btn btn-default',
+                click: function() {
+                $( this ).dialog( "close" );
+            }
+            },
+            {
+                text: 'Agregar',
+                class: 'btn btn-success',
+                click: function () {
+                        jugadoresNuevos1 = $('input[name="data_jugador1"]').val();
+                        jugadoresNuevos2 = $('input[name="data_jugador2"]').val();
+                        
+                        if ( jugadoresNuevos1 != '' ) {
+                            
+                            var golesCargadosInput1 = $( 'input[name="goles1"]' );
+                            var contenedorGoles = $(equiposWrapper[0]).find('.goles');
+                            
+                            //se busca la data de los jugadores por ajax
+                            jugadoresNuevos1 = jugadoresNuevos1.split(',');
+
+                            for (var i = 0; i < jugadoresNuevos1.length; i++) {
+                                loadDataAjaxPartido( 'gol-jugador', jugadoresNuevos1[i], contenedorGoles, golesCargadosInput1 );
+                            }
+                         
+                        }
+
+                        if ( jugadoresNuevos2 != '' ) {
+                            
+                            var contenedorGoles = $(equiposWrapper[1]).find('.goles');
+                            var golesCargadosInput2 = $( 'input[name="goles2"]' );
+
+                            //se busca la data de los jugadores por ajax
+                            jugadoresNuevos2 = jugadoresNuevos2.split(',');
+                            
+                            for (var i = 0; i < jugadoresNuevos2.length; i++) {
+                                loadDataAjaxPartido( 'gol-jugador', jugadoresNuevos2[i], contenedorGoles, golesCargadosInput2 );
+                            }
+                         
+                        }
+
+                        //se cierra el dialogo
+                        $( this ).dialog( "close" );
+                    }
+                },
+            ],
+        });
+        $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/player-browser.php', dataToLoad );
+
 
     });//agregar gol
 
     //agregar amonestacion
     $(document).on('click', '.btn-add-amonestacion', function(e){
         //para agregar amonestacion tiene que haber dos equipos
-        var equipos =$('input[name="equipos_id"]').val().split(',');
-        if ( equipos < 2 ) {
+        var equiposInput = $('input[name="equipos_id"]').val().split(',');
+        if ( equiposInput < 2 ) {
             alert('Para agregar una falta tiene que guardar los cambios');
             return;
         }
+
+        var golesCargadosInput1 = $( 'input[name="goles1"]' );
+        var golesCargadosInput2 = $( 'input[name="goles2"]' );
+
+        var equiposWrapper = $('.equipo-wrapper');
+        var deporte = $('select[name="post_categoria"]').val();
+        var equipo1 = $(equiposWrapper[0]).attr('data-id');
+        var equipo2 = $(equiposWrapper[1]).attr('data-id');
+        var dataToLoad = {
+            deporte:deporte,
+            equipos:[equipo1, equipo2],
+            faltas:1,
+        }
+
+        $( "#dialog" ).dialog({
+            title: 'Elegir Jugador',
+            autoOpen: false,
+            appendTo: '.contenido-modulo',
+            height: 600,
+            width:768,
+            modal: true,
+            buttons: [
+            {
+                text: "Cerrar",
+                class: 'btn btn-default',
+                click: function() {
+                $( this ).dialog( "close" );
+            }
+            },
+            {
+                text: 'Agregar',
+                class: 'btn btn-success',
+                click: function () {
+                        jugadoresNuevos1 = $('input[name="data_jugador1"]').val();
+                        jugadoresNuevos2 = $('input[name="data_jugador2"]').val();
+                        
+                        if ( jugadoresNuevos1 != '' ) {
+                            
+                            var amonestacionesInput = $( 'input[name="amonestaciones1"]' );
+                            var contenedorAmonestaciones = $(equiposWrapper[0]).find('.amonestaciones');
+                            
+                            //se busca la data de los jugadores por ajax
+                            jugadoresNuevos1 = jugadoresNuevos1.split(',');
+
+                            for (var i = 0; i < jugadoresNuevos1.length; i++) {
+                                loadDataAjaxPartido( 'amonestaciones', jugadoresNuevos1[i], contenedorAmonestaciones, amonestacionesInput );
+                            }
+                         
+                        }
+
+                        if ( jugadoresNuevos2 != '' ) {
+                            
+                            var amonestacionesInput = $( 'input[name="amonestaciones2"]' );
+                            var contenedorAmonestaciones = $(equiposWrapper[1]).find('.amonestaciones');
+                            
+                            //se busca la data de los jugadores por ajax
+                            jugadoresNuevos2 = jugadoresNuevos2.split(',');
+
+                            for (var i = 0; i < jugadoresNuevos2.length; i++) {
+                                loadDataAjaxPartido( 'amonestaciones', jugadoresNuevos2[i], contenedorAmonestaciones, amonestacionesInput );
+                            }
+                         
+                        }
+
+                        //se cierra el dialogo
+                        $( this ).dialog( "close" );
+                    }
+                },
+            ],
+        });
+        $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/player-browser.php', dataToLoad );
+
     });//agregar amnonestacion
 
+
+    
+    //agregar amonestacion
+    $(document).on('click', '.btn-add-puntuacion', function(e){
+        //para agregar amonestacion tiene que haber dos equipos
+        var equiposInput = $('input[name="equipos_id"]').val().split(',');
+        if ( equiposInput < 2 ) {
+            alert('Para agregar una falta tiene que guardar los cambios');
+            return;
+        }
+
+        var equipo1 =prompt('Ingresar puntuación del equipo 1');
+        var equipo2 =prompt('Ingresar puntuación del equipo 1');
+        var inputPuntuacion = $( 'input[name="puntuacion"]' );
+
+        $(inputPuntuacion).val( equipo1+','+equipo2 );
+
+        var score = $('.score');
+        $(score[0]).text(equipo1);
+        $(score[1]).text(equipo2);
+
+    });
 
     //agregar contenido
     $(document).on('click', '.add-contenido', function(e){
@@ -1034,6 +1199,8 @@ $(document).ready(function(){
         var li = $(this).closest('li');
         var id = $(li).attr('data-id-gol');
         var idjugador = $(li).attr('data-id-jugador');
+        var error = $('.error-msj-list');
+        var partidoId = $('input[name="post_ID"]').val();
         
         var deletePost = false;
 
@@ -1047,7 +1214,7 @@ $(document).ready(function(){
                 url: ajaxFunctionDir + '/delete-deportes.php',
                 data: {
                     id: id,
-                    jugador: idjugador,
+                    partido: partidoId,
                     action: 'delete-gol',
                 },
                 success: function ( response ) {
@@ -1070,7 +1237,9 @@ $(document).ready(function(){
         var li = $(this).closest('li');
         var id = $(li).attr('data-id-amonestacion');
         var idjugador = $(li).attr('data-id-jugador');
-        
+        var error = $('.error-msj-list');
+        var partidoId = $('input[name="post_ID"]').val();
+
         var deletePost = false;
 
         if ( confirm( '¿Está seguro de querer BORRAR?' ) ) {
@@ -1083,7 +1252,7 @@ $(document).ready(function(){
                 url: ajaxFunctionDir + '/delete-deportes.php',
                 data: {
                     id: id,
-                    jugador: idjugador,
+                    partido: partidoId,
                     action: 'delete-amonestacion',
                 },
                 success: function ( response ) {
@@ -1100,6 +1269,41 @@ $(document).ready(function(){
         }
     });//del-amonestacion
 
+    //borrar contenido
+    $(document).on('click', '.btn-del-contenido', function(e){
+        e.preventDefault();
+        var id = $(this).attr('data-contenido');
+        var error = $('.error-msj-list');
+        var partidoId = $('input[name="post_ID"]').val();
+
+        var deletePost = false;
+
+        if ( confirm( '¿Está seguro de querer BORRAR?' ) ) {
+            deletePost = true; 
+        }
+
+        if (deletePost) {
+            $.ajax( {
+                type: 'POST',
+                url: ajaxFunctionDir + '/delete-deportes.php',
+                data: {
+                    id: id,
+                    partido: partidoId,
+                    action: 'delete-contenido',
+                },
+                success: function ( response ) {
+                    console.log(response);
+                    if (response == 'ok') {
+                        //se actualiza la ventana así trae los cambios hechos
+                        window.location.reload();
+                    }
+                },
+                error: function ( ) {
+                    console.log('error');
+                },
+            });//cierre ajax
+        }
+    });//del-amonestacion
 
     /*
      * SUBMIT FORMULARIO PARTIDO
@@ -1137,7 +1341,7 @@ $(document).ready(function(){
                 console.log('enviando formulario');
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
                 var respuesta = JSON.parse(response);
                 switch(respuesta.status) {
 
@@ -1171,7 +1375,9 @@ $(document).ready(function(){
  * esta funcion agrega datos al partido, por ejemplo equipo, jugador, etc
  * recibe dos parametros, el primero es que tiene que agregar (equipo, jugador, etc), el segundo el id de lo que va buscar
 */
-function loadDataAjaxPartido( tipo, id, contenedor ) {
+function loadDataAjaxPartido( tipo, id, contenedor, input ) {
+    var error = $('.error-msj-list');
+    var partidoId = $('input[name="post_ID"]').val();
 
     $.ajax({
         type: 'POST',
@@ -1180,18 +1386,49 @@ function loadDataAjaxPartido( tipo, id, contenedor ) {
             action:'load-data-partido',
             tipo:tipo,
             id:id,
+            partidoId:partidoId,
         },
         //funcion antes de enviar
         beforeSend: function() {
             console.log('enviando formulario');
         },
         success: function ( response ) {
-            //console.log(response);
+            console.log(response);
             var respuesta = JSON.parse(response);
 
-            //esta funcion escribe el html
-            WriteDataOnHTML( 'equipo', respuesta.data, contenedor );
-            
+            if (respuesta.error != 'ok') {
+                error.append( '<li class="error-msj-list-item-danger">Hubo un error, no se pudo crear el gol</li>');
+            } else {
+                //esta funcion escribe el html
+                WriteDataOnHTML( tipo, respuesta, contenedor );
+
+                //si es un gol entonces se agregan al input y se guarda el partido
+                if ( tipo == 'gol-jugador' ) {
+                    
+                    if ( $(input).val() == '' ) {
+                        $(input).val(respuesta.gol);
+                    } else {
+                        var gvalor = $(input).val();
+                        gvalor += ',' + respuesta.gol;
+                        $(input).val(gvalor);
+                    }
+
+                    $('#editar-partido-form').submit();
+                }
+
+                if ( tipo == 'amonestaciones' ) {
+                    
+                    if ( $(input).val() == '' ) {
+                        $(input).val(respuesta.falta.id);
+                    } else {
+                        var gvalor = $(input).val();
+                        gvalor += ',' + respuesta.falta.id;
+                        $(input).val(gvalor);
+                    }
+
+                    $('#editar-partido-form').submit();
+                }
+            }
         },
         error: function ( error ) {
             console.log(error);
@@ -1200,17 +1437,40 @@ function loadDataAjaxPartido( tipo, id, contenedor ) {
 }//loadDataAjaxPartido
 
 
-function WriteDataOnHTML( tipo, data, contenedor ) {
+function WriteDataOnHTML( tipo, respuesta, contenedor ) {
     switch (tipo) {
         case 'equipo':
             var imagen = administradorUrl + '/assets/images/logo.png';
-            if (data.logo != '' ) {
-                imagen = uploadsDir + '/images/' + data.logo;
+            if ( respuesta.data.logo != '' ) {
+                imagen = uploadsDir + '/images/' + respuesta.data.logo;
             }
-            console.log(data.logo);
-            $(contenedor).find('.nombre_equipo').text(data.nombre);
+            
+            $(contenedor).find('.nombre_equipo').text(respuesta.data.nombre);
             $(contenedor).find('.logo-equipos').attr('src',imagen);
-            $(contenedor).attr('data-id', data.id);
+            $(contenedor).attr('data-id', respuesta.data.id);
+
+        break;
+
+        case 'gol-jugador':
+            var imagen = administradorUrl + '/assets/images/default-staff-image.png';
+            if ( respuesta.data.imagen != '' ) {
+                imagen = uploadsDir + '/images/' + respuesta.data.imagen;
+            }
+            
+            var html = '<li data-id-gol="'+respuesta.gol+'" data-id-jugador="'+respuesta.data.id+'">'+respuesta.data.nombre+'<button class="btn del-gol" type="button"><img class="img-responsive" src="'+administradorUrl+'/assets/images/ios-trash.png" alt="del-icon"></button></li>';
+            $(contenedor).append( $(html) );
+            
+        break;
+
+        case 'amonestaciones':
+            var imagen = administradorUrl + '/assets/images/default-staff-image.png';
+            if ( respuesta.data.imagen != '' ) {
+                imagen = uploadsDir + '/images/' + respuesta.data.imagen;
+            }
+            
+            var html = '<li data-id-amonestacion="'+respuesta.falta.id+'" data-id-jugador="'+respuesta.data.id+'"><span class="jugador">'+respuesta.data.nombre+'</span> <span class="tipo-amonestacion '+respuesta.falta.tipo+'"></span><button class="btn del-amonestacion" type="button"><img class="img-responsive" src="'+administradorUrl+'/assets/images/ios-trash.png" alt="del-icon"></button></li>';
+
+            $(contenedor).append( $(html) );
 
         break;
     }

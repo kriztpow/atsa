@@ -16,8 +16,6 @@ if ( $zona != null ) {
 $equipos = getPostsFromDeportes( 'equipos', null, $condition );
 $equipo1 = $_POST['equipos'][0];
 $equipo2 = $_POST['equipos'][1];
-
-
 ?>
 
 <article id="browser-dialog">

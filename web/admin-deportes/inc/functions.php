@@ -55,13 +55,10 @@ function get_footer_scripts ($modulo) { ?>
 	<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
 	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
 	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-old-deportes.js"></script>
-
-	<?php if ($modulo != 'posts') { ?>
-		
-		<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-deportes.js"></script>
-	<?php } else { ?>
-		<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-posts.js"></script>
-	<?php }
+	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-deportes.js"></script>
+	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-posts.js"></script>
+	
+	<?php
 }
 
 function myUrlEncode($string) {

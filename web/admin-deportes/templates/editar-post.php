@@ -218,6 +218,9 @@ if ( $postId != null ) {
 			</div><!-- // row -->
 			<hr>
 		   	<div class="row">	
+			   <div class="col">
+			   	<a type="button" href="index.php?admin=editar-partido&id=<?php echo $post['partido_id']; ?>" class="btn">Ir al partido</a>
+				</div>
 				<div class="col">
 				   	<div class="form-group save-button-right">
 				   		<button type="submit" name="submit_save" class="btn btn-primary btn-submit">Guardar Cambios</button>
@@ -234,5 +237,5 @@ if ( $postId != null ) {
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
     <a type="button" href="index.php?admin=posts" class="btn">Volver a lista</a>
-	<a type="button" href="index.php?admin=editar-post" class="btn">Agregar nuevo</a>
+	<!--<a type="button" href="index.php?admin=editar-post" class="btn">Agregar nuevo</a>-->
 </footer>

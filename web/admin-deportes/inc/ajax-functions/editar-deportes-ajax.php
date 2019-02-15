@@ -179,6 +179,42 @@ if ( isAjax() ) {
 
             if ( $tipo != null && $id != null ) {
 
+                $respuesta['error'] = 'ok';
+
+                //si el tipo es de gol jugador, hay que crear un nuevo gol con ese jugador
+                if ($tipo == 'gol-jugador') {
+                    $partidoId = isset( $_POST['partidoId'] ) ? $_POST['partidoId'] : null;
+                    
+                    $respuesta['gol'] = newGoal( $id, $partidoId );
+
+                    if ($respuesta['gol'] == 'error') {
+                        $respuesta['error'] = 'No se pudo crear el gol';        
+
+                        echo json_encode($respuesta);
+
+                        return;
+                    }
+
+                }
+
+                //si el tipo es de amonestaciones hay que crear la nueva amonestaciones con ese jugador
+                if ( $tipo == 'amonestaciones' ) {
+                    $partidoId = isset( $_POST['partidoId'] ) ? $_POST['partidoId'] : null;
+                    
+                    //en el $id viene el id_tipodefalta
+                    $dataFalta = explode('_', $id);
+                    $respuesta['falta'] = nuevaAmonestacion( $dataFalta[0], $dataFalta[1], $partidoId );
+
+                    if ($respuesta['falta'] == 'error') {
+                        $respuesta['error'] = 'No se pudo crear la amonestación';        
+
+                        echo json_encode($respuesta);
+
+                        return;
+                    }
+                }
+
+                //siempre se busca la data extra para devolver
                 $respuesta['data'] = getDataExtraPartido( $tipo, $id );
 
             } else {

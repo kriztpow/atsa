@@ -11,7 +11,7 @@ load_module( 'deportes' );
 $postId = isset($_GET['id']) ? $_GET['id'] : null;
 $post = null;
 $nuevo = true;
-
+$score = array('0','0');
 
 if ( $postId != null ) {
 	$post = getPostsFromDeportesById( $postId, 'partidos' );
@@ -26,9 +26,10 @@ $equipoBase = array(
 
 //puntuacion y score
 //la puntuación es para el voley u otros deportes
-$puntuacion = explode(',', $post['puntuacion'] );
-//el score se realiza buscando los id de los goles en el partido
-$score = array('0','0');
+if ( $post['puntuacion'] != '' ) {
+    $puntuacion = explode(',', $post['puntuacion'] );
+    $score = array( $puntuacion[0], $puntuacion[1] );    
+}
 
 //si hay equipos hay que buscarla data de cada uno
 if ( $post['equipos_id'] != '' ) {
@@ -70,13 +71,13 @@ if ( $post['equipos_id'] != '' ) {
 		<input type="hidden" name="post_ID" value="<?php echo ($post) ? $post['id'] : 'new'; ?>">
         <input type="hidden" name="equipos_id" value="<?php echo ($post) ? $post['equipos_id'] : ''; ?>">
         <input type="hidden" name="puntuacion" value="<?php echo ($post) ? $post['puntuacion'] : ''; ?>">
-        <input type="hidden" name="goles" value="<?php echo ($post) ? $post['goles_id'] : ''; ?>">
-        <input type="hidden" name="amonestaciones" value="<?php echo ($post) ? $post['amonestaciones_id'] : ''; ?>">
-		<input type="hidden" name="action" value="editar-partido">
+        <input type="hidden" name="goles1" value="<?php echo ($post) ? $post['goles_id1'] : ''; ?>">
+        <input type="hidden" name="goles2" value="<?php echo ($post) ? $post['goles_id2'] : ''; ?>">
+        <input type="hidden" name="amonestaciones1" value="<?php echo ($post) ? $post['amonestaciones_id1'] : ''; ?>">
+        <input type="hidden" name="amonestaciones2" value="<?php echo ($post) ? $post['amonestaciones_id2'] : ''; ?>">
+        <input type="hidden" name="action" value="editar-partido">
 			<div class="error-msj-wrapper">
-				<ul class="error-msj-list">
-					
-				</ul>
+				<ul class="error-msj-list"></ul>
             </div>
             
             <div class="row">
@@ -192,12 +193,30 @@ if ( $post['equipos_id'] != '' ) {
                                         Goles
                                     </h2>
                                     <ul class="goles <?php if ($counter != 0 ) { echo ' equipo-data-der'; } ?>">
-                                        <li data-id-gol data-id-jugador>
-                                            Juan Carlos Mesa
-                                            <button class="btn del-gol" type="button">
-                                                <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
-                                            </button>
-                                        </li>
+                                        <?php
+                                        if ( $counter == 0  ) {
+                                            $goles = $post['goles_id1'];
+                                        } else {
+                                            $goles = $post['goles_id2'];
+                                        }
+                                        
+                                        if ( $goles != '' ) :
+                                            $goles = explode(',',$goles);
+                                            
+                                            foreach ( $goles as $gol ) {
+                                                $dataGol = getPostsFromDeportesById( $gol, 'goles' );
+                                                $jugador = getPostsFromDeportesById( $dataGol['jugador_id'], 'jugadores' );
+
+                                                ?>
+                                                <li data-id-gol="<?php echo $gol; ?>" data-id-jugador="<?php echo $jugador['id']; ?>">
+                                                    <?php echo $jugador['nombre']; ?>
+                                                    <button class="btn del-gol" type="button"><img class="img-responsive" src="<?php echo URLADMINISTRADOR; ?>/assets/images/ios-trash.png" alt="del-icon"></button>
+                                                </li>
+                                            
+                                            <?php }
+                                        
+                                        endif; ?>
+
                                     </ul>
                                 </div>
                                 <div class="wrapper-amonestaciones">
@@ -205,12 +224,32 @@ if ( $post['equipos_id'] != '' ) {
                                         Amonestaciones
                                     </h2>
                                     <ul class="amonestaciones <?php if ($counter != 0 ) { echo ' equipo-data-der'; } ?>">
-                                        <li data-id-amonestacion data-id-jugador>
-                                            <span class="jugador">Juan Carlos Mesa</span> <span class="tipo-amonestacion">Amarilla</span>
-                                            <button class="btn del-amonestacion" type="button">
-                                                <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
-                                            </button>
-                                        </li>
+
+                                        <?php
+                                        if ( $counter == 0  ) {
+                                            $amonestaciones = $post['amonestaciones_id1'];
+                                        } else {
+                                            $amonestaciones = $post['amonestaciones_id2'];
+                                        }
+                                        
+                                        if ( $amonestaciones != '' ) :
+                                            $amonestaciones = explode(',',$amonestaciones);
+                                            
+                                            foreach ( $amonestaciones as $falta ) {
+                                                $Datafalta = getPostsFromDeportesById( $falta, 'amonestaciones' );
+                                                $jugador = getPostsFromDeportesById( $Datafalta['jugador_id'], 'jugadores' );
+
+                                                ?>
+                                                <li data-id-amonestacion="<?php echo $Datafalta['id']; ?>" data-id-jugador="<?php echo $jugador['id']; ?>">
+                                                    <span class="jugador"><?php echo $jugador['nombre']; ?></span> <span class="tipo-amonestacion <?php echo $Datafalta['tipo']; ?>"></span>
+                                                    <button class="btn del-amonestacion" type="button">
+                                                        <img class="img-responsive" src="<?php echo URLADMINISTRADOR . '/assets/images/ios-trash.png'?>" alt="del-icon">
+                                                    </button>
+                                                </li>
+                                            
+                                            <?php }
+                                        
+                                        endif; ?>
                                     </ul>
                                 </div>
                                 
@@ -226,8 +265,7 @@ if ( $post['equipos_id'] != '' ) {
             }//foreach ?>
 
             </div><!-- // row -->
-            
-            
+
             <div class="row wrapper-buttons">
                 <div class="col">
                     <button type="button" class="btn btn-danger btn-add-gol">
@@ -236,18 +274,21 @@ if ( $post['equipos_id'] != '' ) {
                     <button type="button" class="btn btn-danger btn-add-amonestacion">
                         Agregar amonestación
                     </button>
+                    <button type="button" class="btn btn-primary btn-add-puntuacion">
+                        Escribir puntuación
+                    </button>
                     
                     <?php if ( $post['contenido_id'] == '' ) : ?>
 
-                    <a href="index.php?admin=editar-post&partido=<?php echo $postId; ?>" target="_blank" class="btn btn-primary add-contenido">
+                    <a href="index.php?admin=editar-post&id=<?php echo $post['contenido_id']; ?>&partido=<?php echo $postId; ?>" class="btn add-contenido">
                         Agregar contenido
                     </a>
 
                     <?php else : ?>
-                        <a href="index.php?admin=editar-post&partido=<?php echo $postId; ?>" target="_blank" class="btn btn-primary add-contenido">
+                        <a href="index.php?admin=editar-post&id=<?php echo $post['contenido_id']; ?>&partido=<?php echo $postId; ?>" class="btn add-contenido">
                             Editar contenido
                         </a>
-                        <button type="button" data-contenido="<?php echo $post['contenido_id']; ?>" class="btn btn-primary btn-del-contenido">
+                        <button type="button" data-contenido="<?php echo $post['contenido_id']; ?>" class="btn btn-del-contenido">
                             Eliminar contenido
                         </button>
                     <?php endif; ?>

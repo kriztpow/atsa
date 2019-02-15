@@ -48,6 +48,32 @@ if ( isAjax() ) {
          
       break;
 
+      case 'delete-gol':
+
+         $id = isset( $_POST['id'] ) ? $_POST['id'] : '';
+         $partido = isset( $_POST['partido'] ) ? $_POST['partido'] : '';
+         
+         echo deleteExtraPartido( 'gol', $id, $partido );
+         
+      break;
+
+      case 'delete-amonestacion':
+
+         $id = isset( $_POST['id'] ) ? $_POST['id'] : '';
+         $partido = isset( $_POST['partido'] ) ? $_POST['partido'] : '';
+
+         echo deleteExtraPartido( 'amonestacion', $id, $partido );
+         
+      break;
+
+      case 'delete-contenido':
+
+         $id = isset( $_POST['id'] ) ? $_POST['id'] : '';
+         $partido = isset( $_POST['partido'] ) ? $_POST['partido'] : '';
+
+         echo deleteExtraPartido( 'contenido', $id, $partido );
+         
+      break;
    }
 
 } //if not ajax
