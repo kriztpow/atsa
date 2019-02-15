@@ -1488,7 +1488,7 @@ function WriteDataOnHTML( tipo, respuesta, contenedor ) {
             //anotar un gol en el html
             var score = $($(contenedor).closest('article')).find('.score');
 
-            score.text( parseInt( score.text() + 1 ) );
+            score.text( parseInt( score.text() ) + parseInt(1) );
 
             
         break;
