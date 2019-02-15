@@ -128,8 +128,10 @@ $(document).ready(function(){
         var postToDelete = $(this).attr('href');
         var itemToDelete = $(this).closest('li');
 
-        if ( confirm( '¿Está seguro de querer BORRAR el equipo?' ) ) {
-            deletePost = true; 
+        if ( confirm( '¿Está seguro de querer BORRAR el partido?' ) ) {
+            if ( confirm( '¿REALMENTE Está seguro de querer BORRAR el partido? Se borrarán todos los goles, amonestaciones y contenidos.' ) ) {
+                deletePost = true; 
+            }  
         }
 
         if (deletePost) {
@@ -142,8 +144,11 @@ $(document).ready(function(){
                 },
                 success: function ( response ) {
                     console.log(response);
-                    if (response == 'ok') {
+                    var respuesta = JSON.parse(response);
+                    if (respuesta.status == 'ok') {
                         $(itemToDelete).remove()
+                    } else {
+                        alert('Hubo un error, no se pudo borrar');
                     }
                 },
                 error: function ( ) {

@@ -44,7 +44,8 @@ if ( isAjax() ) {
 
          $id = isset( $_POST['post_id'] ) ? $_POST['post_id'] : '';
 
-         echo deletePartido($id);
+         $respuesta = deletePartido($id);
+         echo json_encode($respuesta);
          
       break;
 

@@ -24,7 +24,6 @@
                 </a>
                 | <a href="<?php echo $data['id']; ?>" class="btn-delete-partido">Borrar</a>
             </p>
-            
         </div>
     </article>
 </li>

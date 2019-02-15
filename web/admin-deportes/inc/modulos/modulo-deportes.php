@@ -771,7 +771,6 @@ function deleteJugadorFromEquipo($equipo, $jugador) {
 * elimina un equipo de una zona
 */
 function eliminarEquipoFromZona($equipo, $zona) {
-    $connection = connectDB();
     
     $dataZona = getPostsFromDeportesById( $zona, 'zonas' );
 
@@ -803,42 +802,52 @@ function eliminarEquipoFromZona($equipo, $zona) {
 /*
  * borrar partido
 */
-function deletePartido($partidoId) {
+function deletePartido( $partidoId ) {
+    $respuesta = array( 'status'=> 'error' );
     //data del partido
     $dataPartido = getPostsFromDeportesById( $partidoId, 'partidos' );
 
     //borrar contenido si lo tiene
     if ( $dataPartido['contenido_id'] != '' ) {
-        $respuestaContenido = deleteContenido( $dataPartido['contenido_id'] );
+        $respuesta['contenido'] = deleteContenido( $dataPartido['contenido_id'] );
     }
 
     //borrar equipo en goles
-    if ( $dataPartido['goles_id'] != '' ) {
-        $goles = explode(',', $dataPartido['goles_id'] );
-        $respuestaGoles = deleteGoles($goles);
+    if ( $dataPartido['goles_id1'] != '' || $dataPartido['goles_id2'] != '' ) {
+        $goles1 = explode(',', $dataPartido['goles_id1'] );
+        $goles2 = explode(',', $dataPartido['goles_id2'] );
+        $goles = array_merge ($goles1, $goles2);
+        $respuesta['goles'] = deleteGoles($goles);
     }
 
     //borrar equipo en amonestaciones
-    if ( $dataPartido['amonestaciones_id'] != '' ) {
-        $amonestaciones = explode(',', $dataPartido['amonestaciones_id'] );
-        $respuestaAmonestaciones = deleteAmonestaciones($amonestaciones);
+    if ( $dataPartido['amonestaciones_id1'] != '' || $dataPartido['amonestaciones_id2'] != '' ) {
+        $amonestaciones1 = explode(',', $dataPartido['amonestaciones_id1'] );
+        $amonestaciones2 = explode(',', $dataPartido['amonestaciones_id2'] );
+        $amonestaciones = array_merge ($amonestaciones1, $amonestaciones2);
+        $respuesta['amonestaciones'] = deleteAmonestaciones($amonestaciones);
     }
 
     //borrar partido en zonas
     if ( $dataPartido['zona_id'] != '' ) {
-        $respuestaZonas = deletePartidoEnZona( $partidoId, $dataPartido['zona_id'] );
+        $respuesta['zonas'] = deletePartidoEnZona( $partidoId, $dataPartido['zona_id'] );
     }
 
-    //borrar partido
-    $query      = "DELETE FROM partidos WHERE id= '".$partidoId."'";
-	$result     = mysqli_query($connection, $query);
-		  
-    if ( $result ) {
-        $respuesta = 'ok';
-    }
+    //si lo anterior esta bien, entonces borran el partido
+    if ( $respuesta['contenido'] == 'ok' && $respuesta['goles'] > 0  && $respuesta['amonestaciones'] > 0 && $respuesta['zonas'] == 'ok' ) {
+        //borrar partido
+        $connection = connectDB();
+        $query      = "DELETE FROM partidos WHERE id= '".$partidoId."'";
+        $result     = mysqli_query($connection, $query);
+            
+        if ( $result ) {
+            $respuesta['status'] = 'ok';
+        }
 
-    //cierre base de datos
-	mysqli_close($connection);
+         //cierre base de datos
+	    mysqli_close($connection);
+    }
+   
     return $respuesta;
 
 }//deletePartido()
@@ -848,13 +857,15 @@ function deletePartido($partidoId) {
  * borrar contenido
  */
 function deleteContenido( $contenido_id ) {
+    $respuesta = 'error';
+    $connection = connectDB();
     //borrar partido
-    $query      = "DELETE FROM posts WHERE id= '".$contenido_id."'";
+    $query      = "DELETE FROM posts WHERE post_ID= '".$contenido_id."'";
 	$result     = mysqli_query($connection, $query);
 		  
     if ( $result ) {
         $respuesta = 'ok';
-    }
+    } 
 
     //cierre base de datos
 	mysqli_close($connection);
@@ -862,7 +873,11 @@ function deleteContenido( $contenido_id ) {
 
 }//deleteContenido()
 
+/*
+ * borra todos los goles pasadas en un array
+*/
 function deleteGoles( $goles ) {
+    $connection = connectDB();
 
     if ( ! is_array($goles) ) {
         $goles = array($goles);
@@ -870,7 +885,7 @@ function deleteGoles( $goles ) {
 
     $count = 0;
     foreach ( $goles as $gol ) {
-        $query = "DELETE FROM posts WHERE id= '".$gol."'";
+        $query = "DELETE FROM goles WHERE id= '".$gol."'";
         $result = mysqli_query($connection, $query);
         if ( $result ) {
             $count++;
@@ -883,7 +898,11 @@ function deleteGoles( $goles ) {
 
 }//deleteGoles()
 
+/*
+ * borra todas las amonestaciones pasadas en un array
+*/
 function deleteAmonestaciones( $amonestaciones ) {
+    $connection = connectDB();
 
     if ( ! is_array($amonestaciones) ) {
         $amonestaciones = array($amonestaciones);
