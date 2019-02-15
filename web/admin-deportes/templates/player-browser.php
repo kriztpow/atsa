@@ -10,7 +10,7 @@ load_module( 'deportes' );
 $deporte = isset($_POST['deporte']) ? $_POST['deporte'] : '';
 $equipos = isset($_POST['equipos']) ? $_POST['equipos'] : '';
 $amonestacion = isset($_POST['faltas']) ? $_POST['faltas'] : 0;
-$instrucciones = 'Para agregar un gol, seleccionar el jugador o los jugadores si fueron muchos goles y hacer clic en agregar.';
+$instrucciones = 'Para agregar un gol, seleccionar un jugador. Una vez que el jugador seleccionado esté en rojo, hacer clic en agregar. Se puede agregar dos jugadores si es uno de cada equipo.';
 
 if ( $amonestacion == true ) {
     $instrucciones = '';
@@ -42,51 +42,53 @@ $jugadores2 = getPostsFromDeportes( 'jugadores', null, $condition2 );
         <div class="wrapper-equipos-browser">
             
             <ul class="equipos equipo1">
-                <input type="hidden" name="data_jugador1" value="">
+                <input type="hidden" name="data_jugador1" value>
                 <h4>
                     Jugadores
                 </h4>
             
             <?php
             if ( $jugadores1 != null ) : 
-            foreach ( $jugadores1 as $jugador ) {
-                $imagen = URLADMINISTRADOR . '/assets/images/default-staff-image.png';
+                foreach ( $jugadores1 as $jugador ) {
+                    $imagen = URLADMINISTRADOR . '/assets/images/default-staff-image.png';
 
-                if ( $jugador['imagen'] != '' ) {
-                    $imagen = UPLOADSURLIMAGES . '/' . $jugador['imagen'];
+                    if ( $jugador['imagen'] != '' ) {
+                        $imagen = UPLOADSURLIMAGES . '/' . $jugador['imagen'];
+                    }
+                    
+                    //template para amonestaciones
+                    if ($amonestacion == true) : ?>
+                    
+                        <li class="equipo jugador">
+                            <img src="<?php echo $imagen; ?>" alt="logo equipo">
+                            <span><?php echo $jugador['nombre']; ?></span>
+                            <div class="selec-falta">
+                                <span class="amarilla"></span><input data-id="<?php echo $jugador['id']; ?>" name="amarilla" class="falta-input" type="checkbox">
+                                <span class="roja"></span><input data-id="<?php echo $jugador['id']; ?>" name="roja" class="falta-input" type="checkbox">
+                            </div>
+                        </li>  
+                    
+                    <?php else :
+                    //template para goles
+                    ?>
+
+                        <li class="equipo jugador" data-id="<?php echo $jugador['id']; ?>">
+                            <img src="<?php echo $imagen; ?>" alt="logo equipo">
+                            <span><?php echo $jugador['nombre']; ?></span>
+                        </li>
+                    
+                    <?php 
+                    endif;
                 }
-                
-                //template para amonestaciones
-                if ($amonestacion == true) : ?>
-                
-                    <li class="equipo jugador">
-                        <img src="<?php echo $imagen; ?>" alt="logo equipo">
-                        <span><?php echo $jugador['nombre']; ?></span>
-                        <div class="selec-falta">
-                            <span class="amarilla"></span><input data-id="<?php echo $jugador['id']; ?>" name="amarilla" class="falta-input" type="checkbox">
-                            <span class="roja"></span><input data-id="<?php echo $jugador['id']; ?>" name="roja" class="falta-input" type="checkbox">
-                        </div>
-                    </li>  
-                
-                <?php else :
-                //template para goles
-                ?>
-
-                    <li class="equipo jugador" data-id="<?php echo $jugador['id']; ?>">
-                        <img src="<?php echo $imagen; ?>" alt="logo equipo">
-                        <span><?php echo $jugador['nombre']; ?></span>
-                    </li>
-                
-                <?php 
-                endif;
-            }
+            else :
+                echo '<p style="font-size:80%;">No hay jugadores cargados para este equipo</p>';
             endif;
             ?>
 
             </ul>
 
             <ul class="equipos equipo1">
-                <input type="hidden" name="data_jugador2" value="">
+                <input type="hidden" name="data_jugador2" value>
                 <h4>
                     Jugadores
                 </h4>
@@ -135,10 +137,12 @@ $jugadores2 = getPostsFromDeportes( 'jugadores', null, $condition2 );
 <script type="text/javascript" language="javascript">
 
 var amonestaciones = <?php echo $amonestacion; ?>;
+
 $(document).ready( function(){
-    
     //al hacer clic en los medios la url se inserta en el input
-    $(document).on('click','li',function(){
+    //$(document).on('click','li',function(){//al usar on me duplicaba los click
+    
+    $('li').click(function(){
 
         if(amonestaciones) {
             return true;
@@ -187,7 +191,7 @@ $(document).ready( function(){
 
     //al hacer clic en los radios de las amonestaciones
     $(document).on('click','.falta-input',function(){
-
+        var nuevoValor = '';
         var ul = $(this).closest('ul');
         var input = $(ul).find( 'input' );
         var inputData = $(input).val();
@@ -197,7 +201,7 @@ $(document).ready( function(){
         
         var checked = $( this ).prop( "checked" )
 
-        var nuevoValor = id+'_'+amonestacion;
+        nuevoValor = id+'_'+amonestacion;
         
         if ( checked ) {
             //hay que agrarlo
@@ -206,8 +210,15 @@ $(document).ready( function(){
             $(input).val(nuevoValor);
             } else {
                 //sino esta vacío, entonces primero hay que ver si esta y hay que borrarlo
+                inputData = inputData.split(',');
 
-                inputData += ','+nuevoValor;
+                if ( inputData.indexOf(nuevoValor) > -1 ) {
+                inputData.splice(inputData.indexOf(nuevoValor) , 1);
+                }
+                
+                inputData.push(nuevoValor)
+
+                inputData = inputData.toString();
                 
                 $(input).val(inputData);
             }
@@ -226,6 +237,8 @@ $(document).ready( function(){
             $(input).val(inputData);
 
         }
+
+        return true;
 
     });
 

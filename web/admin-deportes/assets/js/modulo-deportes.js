@@ -543,7 +543,7 @@ $(document).ready(function(){
                     console.log('enviando formulario');
                 },
                 success: function ( response ) {
-                    console.log(response)
+                    //console.log(response)
                     $(contenedor).empty()
                     .append( response );
                 },
@@ -803,6 +803,7 @@ $(document).ready(function(){
             ],
         });
         $( "#dialog" ).dialog( 'open' ).load( templatesDir + '/media-browser.php' );
+        
     });
 
 
@@ -1084,6 +1085,7 @@ $(document).ready(function(){
 
     //agregar amonestacion
     $(document).on('click', '.btn-add-amonestacion', function(e){
+        
         //para agregar amonestacion tiene que haber dos equipos
         var equiposInput = $('input[name="equipos_id"]').val().split(',');
         if ( equiposInput < 2 ) {
@@ -1116,7 +1118,7 @@ $(document).ready(function(){
                 text: "Cerrar",
                 class: 'btn btn-default',
                 click: function() {
-                $( this ).dialog( "close" );
+                    $(this).dialog('close');
             }
             },
             {
@@ -1155,7 +1157,7 @@ $(document).ready(function(){
                         }
 
                         //se cierra el dialogo
-                        $( this ).dialog( "close" );
+                        $(this).dialog('close');
                     }
                 },
             ],
@@ -1166,25 +1168,25 @@ $(document).ready(function(){
 
 
     
-    //agregar amonestacion
+    //agregar PUNTUACION
     $(document).on('click', '.btn-add-puntuacion', function(e){
-        //para agregar amonestacion tiene que haber dos equipos
+        //para agregar PUNTUACION tiene que haber dos equipos
         var equiposInput = $('input[name="equipos_id"]').val().split(',');
         if ( equiposInput < 2 ) {
-            alert('Para agregar una falta tiene que guardar los cambios');
+            alert('Para agregar la puntuación tiene que guardar los cambios');
             return;
         }
+        if ( confirm( 'ATENCIÓN: Al habilitar la puntuación se borra el recuento mediante goles.' )  ) {
+            var equipo1 =prompt('Ingresar puntuación del equipo 1');
+            var equipo2 =prompt('Ingresar puntuación del equipo 2');
+            var inputPuntuacion = $( 'input[name="puntuacion"]' );
 
-        var equipo1 =prompt('Ingresar puntuación del equipo 1');
-        var equipo2 =prompt('Ingresar puntuación del equipo 1');
-        var inputPuntuacion = $( 'input[name="puntuacion"]' );
+            $(inputPuntuacion).val( equipo1+','+equipo2 );
 
-        $(inputPuntuacion).val( equipo1+','+equipo2 );
-
-        var score = $('.score');
-        $(score[0]).text(equipo1);
-        $(score[1]).text(equipo2);
-
+            var score = $('.score');
+            $(score[0]).text(equipo1);
+            $(score[1]).text(equipo2);
+        }
     });
 
     //agregar contenido
@@ -1398,7 +1400,7 @@ function loadDataAjaxPartido( tipo, id, contenedor, input ) {
             console.log('enviando formulario');
         },
         success: function ( response ) {
-            console.log(response);
+            //console.log(response);
             var respuesta = JSON.parse(response);
 
             if (respuesta.error != 'ok') {
@@ -1480,3 +1482,5 @@ function WriteDataOnHTML( tipo, respuesta, contenedor ) {
         break;
     }
 }
+
+

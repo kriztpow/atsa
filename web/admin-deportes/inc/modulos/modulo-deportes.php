@@ -803,7 +803,7 @@ function eliminarEquipoFromZona($equipo, $zona) {
  * borrar partido
 */
 function deletePartido( $partidoId ) {
-    $respuesta = array( 'status'=> 'error' );
+    $respuesta = array( 'status'=> 'error', 'contenido' => '', 'goles' => '', 'amonestaciones' => '', 'zonas' => '' );
     //data del partido
     $dataPartido = getPostsFromDeportesById( $partidoId, 'partidos' );
 
@@ -834,7 +834,7 @@ function deletePartido( $partidoId ) {
     }
 
     //si lo anterior esta bien, entonces borran el partido
-    if ( $respuesta['contenido'] == 'ok' && $respuesta['goles'] > 0  && $respuesta['amonestaciones'] > 0 && $respuesta['zonas'] == 'ok' ) {
+    if ( $respuesta['contenido'] != 'error' && $respuesta['goles'] != 0  && $respuesta['amonestaciones'] != 0 && $respuesta['zonas'] != 'error-update-zona' ) {
         //borrar partido
         $connection = connectDB();
         $query      = "DELETE FROM partidos WHERE id= '".$partidoId."'";
@@ -889,7 +889,7 @@ function deleteGoles( $goles ) {
         $result = mysqli_query($connection, $query);
         if ( $result ) {
             $count++;
-        }
+        } 
     }
 
     //cierre base de datos
