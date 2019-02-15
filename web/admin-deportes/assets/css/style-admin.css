@@ -1812,7 +1812,7 @@ ul.dropdown-menu li {
   font-size: 85%;
 }
 .goles li, .amonestaciones li {
-  margin: 3px 0;
+  margin: 5px 0;
   display: flex;
   display: -o-flex;
   display: -ms-flex;
@@ -1830,13 +1830,26 @@ ul.dropdown-menu li {
   justify-content: flex-start;
 }
 .goles button, .amonestaciones button {
-  margin: 0 15px;
+  margin: 0 5px;
   padding: 0;
   border: none;
   vertical-align: sub;
 }
 .goles button .img-responsive, .amonestaciones button .img-responsive {
   width: 80%;
+}
+.goles .tipo-amonestacion, .amonestaciones .tipo-amonestacion {
+  background-color: green;
+  width: 10px;
+  height: 15px;
+  display: inline-block;
+  margin: 0 15px;
+}
+.goles .tipo-amonestacion.amarilla, .amonestaciones .tipo-amonestacion.amarilla {
+  background-color: yellow;
+}
+.goles .tipo-amonestacion.roja, .amonestaciones .tipo-amonestacion.roja {
+  background-color: red;
 }
 
 @media (min-width: 992px) {

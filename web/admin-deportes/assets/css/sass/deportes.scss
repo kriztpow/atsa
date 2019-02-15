@@ -190,13 +190,15 @@
 
 .wrapper-amonestaciones {
     margin-top: 25px;
+
+
 }
 
 .goles, .amonestaciones {
     font-size: 85%;
 
     li {
-        margin: 3px 0;
+        margin: 5px 0;
         display: flex;
         display: -o-flex;
         display: -ms-flex;
@@ -215,7 +217,7 @@
     }
 
     button {
-        margin: 0 15px;
+        margin: 0 5px;
         padding: 0;
         border: none;
         vertical-align: sub;
@@ -224,7 +226,24 @@
             width: 80%;
         }
     }
-}
+
+    .tipo-amonestacion {
+        background-color: green;
+        width: 10px;
+        height: 15px;
+        display: inline-block;
+        margin: 0 15px;
+    }
+
+    .tipo-amonestacion.amarilla {
+        background-color: yellow;
+    }
+
+    .tipo-amonestacion.roja {
+        background-color: red;
+    }
+
+}//.amonestacion //.goles
 
 .equipo-data-der {
     li {
@@ -321,6 +340,7 @@
             }
         }//.equipos
 
+        
         
     }//.wrapper-equipos
 }//#browser-dialog
