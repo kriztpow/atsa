@@ -14,7 +14,7 @@
                 <a href="index.php?admin=editar-liga&id=<?php echo $data['id']; ?>" title="Editar" class="btn-edit-news">
                     Editar
                 </a>
-                | <a href="<?php echo $data['id']; ?>" class="btn-delete-post">Borrar</a>
+                | <a href="<?php echo $data['id']; ?>" class="btn-delete-liga">Borrar</a>
             </p>
             
         </div>

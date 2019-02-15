@@ -43,7 +43,7 @@ $posts = getPosts( 'post', POSTPERPAG, '', 'fecha', 'all' );
 <!-- botones del modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
-    <a type="button" href="index.php?admin=editar-post" class="btn">Agregar nueva</a>
+    <a type="button" href="index.php?admin=partidos" class="btn">Ir a partidos</a>
 </footer>
 
 <!---------- fin noticias ---------------->

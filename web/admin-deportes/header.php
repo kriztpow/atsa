@@ -47,17 +47,17 @@ if(!defined("SECUREACCESS"))
   <!--menu modulo asinado-->
           <ul class="menu-top menu-left">
             <li>
-              <a href="index.php?admin=partidos" role="button">Partidos</a>
+              <a href="index.php?admin=posts" role="button">Contenidos</a>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contenidos<span class="caret"></span></a>
+              <a href="index.php?admin=partidos" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Partidos<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="index.php?admin=editar-post" role="button">Agregar nuevo</a>
+                  <a href="index.php?admin=editar-partido" role="button">Agregar nuevo</a>
                   </li>
-                <li>
-                  <a href="index.php?admin=posts" role="button">Ver lista</a>
-                </li>
+                  <li>
+                    <a href="index.php?admin=partidos" role="button">Lista Partidos</a>
+                  </li>
               </ul>
             </li>
 

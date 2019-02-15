@@ -27,7 +27,7 @@
                 else if ( $data['post_type'] == 'celebrities' ) {
                     $url = 'index.php?admin=editar-celebrities&id=' . $data['post_ID'];
                 } else {
-                    $url = 'index.php?admin=editar-posts&id=' . $data['post_ID'];
+                    $url = 'index.php?admin=editar-post&id=' . $data['post_ID'];
                 }
                 ?>
                 <a href="<?php echo $url; ?>" title="Editar" class="btn-edit-news">

@@ -13,7 +13,8 @@ if ( isAjax() ) {
 	$tabla               = 'posts';
 	$user                = $_SESSION['user_id'];
 	$postID              = isset( $_POST['post_ID'] ) ? $_POST['post_ID'] : 'new';
-	$postType            = isset( $_POST['post_type'] ) ? $_POST['post_type'] : 'post';
+    $postType            = isset( $_POST['post_type'] ) ? $_POST['post_type'] : 'post';
+    $partidoid           = isset( $_POST['partido_id'] ) ? $_POST['partido_id'] : '';
     $postTitulo          = isset( $_POST['post_title'] ) ? $_POST['post_title'] : '';
 	$postCategoria       = isset( $_POST['post_categoria'] ) ? $_POST['post_categoria'] : '';
 	$postUrl             = isset( $_POST['post_url'] ) ? $_POST['post_url'] : '';
@@ -77,13 +78,13 @@ if ( isAjax() ) {
 		}
 
         //sino se guarda
-        $query = "INSERT INTO $tabla (post_autor,post_titulo,post_url,post_contenido,post_resumen,post_imagen,post_video,post_categoria,post_galeria,post_imagenesGal,post_head,post_status,post_orden,post_type";
+        $query = "INSERT INTO $tabla (post_autor,post_titulo,post_url,post_contenido,post_resumen,post_imagen,post_video,post_categoria,post_galeria,post_imagenesGal,post_head,post_status,post_orden,post_type,partido_id";
         
         if ( $fechaPost != null ) {
             $query .= ",post_timestamp";
         }
 
-        $query .= ") VALUES ('$user', '$postTitulo', '$postUrl', '$postContenido', '$postResumen', '$postImagen', '$postVideo', '$postCategoria', '$postGaleria', '$imagenesGaleria','$postHead','$postStatus', '$orden','$postType'";
+        $query .= ") VALUES ('$user', '$postTitulo', '$postUrl', '$postContenido', '$postResumen', '$postImagen', '$postVideo', '$postCategoria', '$postGaleria', '$imagenesGaleria','$postHead','$postStatus', '$orden','$postType','$partidoid'";
 
         if ( $fechaPost != null ) {
             $query .= ", '".$fechaPost."'";
@@ -95,7 +96,19 @@ if ( isAjax() ) {
         
         if ($nuevoPost) {
             $postID = mysqli_insert_id($connection);
-            echo $postID;
+            
+            //guarda el post en la tabla de partidos para asociarlos
+            $queryPartido = "UPDATE partidos SET contenido_id='".$postID."' WHERE id='".$partidoid."' LIMIT 1";
+            
+            $updatePartido = mysqli_query($connection, $queryPartido); 
+            
+            if ( ! $updatePartido ) {
+                    $respuesta = 'error-asociacion-contenido-partido';
+            } else {
+                    //$respuesta = 'ok';
+                    echo $postID;
+            }
+
         } else  {
             echo 'error';
             
@@ -104,7 +117,7 @@ if ( isAjax() ) {
 	} //es viejo post
 		else {
 
-        $query = "UPDATE ".$tabla." SET post_autor='".$user."',post_titulo='".$postTitulo."',post_url='".$postUrl."',post_contenido='".$postContenido."',post_resumen='".$postResumen."',post_imagen='".$postImagen."',post_video='".$postVideo."',post_categoria='".$postCategoria."',post_galeria='".$postGaleria."',post_imagenesGal='".$imagenesGaleria."',post_head='".$postHead."', post_status='".$postStatus."',post_orden='".$orden."',post_type='".$postType."'";
+        $query = "UPDATE ".$tabla." SET post_autor='".$user."',post_titulo='".$postTitulo."',post_url='".$postUrl."',post_contenido='".$postContenido."',post_resumen='".$postResumen."',post_imagen='".$postImagen."',post_video='".$postVideo."',post_categoria='".$postCategoria."',post_galeria='".$postGaleria."',post_imagenesGal='".$imagenesGaleria."',post_head='".$postHead."', post_status='".$postStatus."',post_orden='".$orden."',post_type='".$postType."',partido_id='".$partidoid."'";
 
         if ( $fechaPost != null ) {
             $query .= ",post_timestamp='".$fechaPost."'";

@@ -45,7 +45,7 @@ $(document).ready(function(){
     /*
     * BORRAR LIGA
     */
-    $(document).on('click', '.btn-delete-post', function( event ){
+    $(document).on('click', '.btn-delete-liga', function( event ){
         var deletePost = false;
         event.preventDefault();
         var postToDelete = $(this).attr('href');

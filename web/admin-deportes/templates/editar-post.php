@@ -4,6 +4,7 @@
  * Since 3.0
  * 
 */
+
 require_once("inc/functions.php");
 load_module( 'posts' );
 
@@ -11,6 +12,7 @@ load_module( 'posts' );
 $postId = isset($_GET['id']) ? $_GET['id'] : null;
 $post = null;
 $nuevo = true;
+
 
 if ( $postId != null ) {
 	$post = getPostById($postId);
@@ -31,6 +33,15 @@ if ( $postId != null ) {
 		<form method="POST" id="editar-post-form" name="editar-post-form">		
 		<input type="hidden" name="post_ID" value="<?php echo ($post) ? $post['post_ID'] : 'new'; ?>">
 		<input type="hidden" name="post_type" value="post">
+		<?php
+		$partidoId = isset($_GET['partido']) ? $_GET['partido'] : '';
+		if ($partidoId == '' && $post['partido_id'] == '' ) {
+			echo '<script>window.location.href="'.URLADMINISTRADOR.'/"</script>';
+		} else {
+			$partidoId = ($post['partido_id'] != '') ? $post['partido_id'] : $partidoId;
+			echo '<input type="hidden" name="partido_id" value="'.$partidoId.'">';
+		}
+		?>
 			<div class="error-msj-wrapper">
 				<ul class="error-msj-list">
 					

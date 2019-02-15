@@ -86,7 +86,7 @@ $(document).ready(function(){
         event.preventDefault();
         var postToDelete = $(this).attr('href');
         var itemToDelete = this.closest('li');
-        if ( confirm( '¿Está seguro de querer BORRAR la noticia?' ) ) {
+        if ( confirm( '¿Está seguro de querer BORRAR?' ) ) {
             deletePost = true;
         }
 
