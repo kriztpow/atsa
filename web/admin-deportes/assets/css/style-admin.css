@@ -1686,6 +1686,7 @@ ul.dropdown-menu li {
 .wrapper-zonas .zonas .lista-partidos .equipo {
   width: 30%;
   vertical-align: middle;
+  padding: 5px 0;
 }
 .wrapper-zonas .zonas .lista-partidos .vs {
   width: 10%;
@@ -1698,6 +1699,20 @@ ul.dropdown-menu li {
   vertical-align: middle;
   font-size: 80%;
   font-style: italic;
+}
+
+.fecha-loop-partidos {
+  margin: 15px 0;
+  font-weight: bold;
+  font-size: 120%;
+  color: red;
+}
+
+.score-loop-partidos {
+  font-weight: bold;
+  font-size: 120%;
+  margin: 15px 0;
+  color: #337ab7;
 }
 
 .wrapper-equipos {

@@ -117,7 +117,6 @@ $(document).ready(function(){
         }
     });
 
-
     /*
     * borrar partido
     */
@@ -143,7 +142,7 @@ $(document).ready(function(){
                     action: 'delete-partido'
                 },
                 success: function ( response ) {
-                    console.log(response);
+                    //console.log(response);
                     var respuesta = JSON.parse(response);
                     if (respuesta.status == 'ok') {
                         $(itemToDelete).remove()
@@ -183,7 +182,7 @@ $(document).ready(function(){
                     console.log('enviando formulario');
                 },
                 success: function ( response ) {
-                    console.log(response)
+                    //console.log(response)
                     $(contenedor).empty()
                     .append( response );
 
@@ -229,9 +228,18 @@ $(document).ready(function(){
         var liga =  $('#post_liga').val();
         var zona =  $('#post_zona').val();
 
+        if ( deporte == 'todas' ) {
+            deporte = '';
+        }
+
+        if ( liga == 'todas' ) {
+            liga = '';
+        }
+
+
         var buscar = 'filtro-partidos';
         var contenedorNews = $('.loop-noticias-backend');
-        
+
         $.ajax( {
             type: 'POST',
             url: ajaxFunctionDir + '/filtro-deportes.php',
@@ -246,6 +254,7 @@ $(document).ready(function(){
                 $('.info-resumen').remove();       
             },
             success: function ( response ) {
+               
                 contenedorNews.append(response);
                 currentPage = 1;
             },

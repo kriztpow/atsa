@@ -82,7 +82,7 @@ if ( isAjax() ) {
             $liga = isset( $_POST['liga'] ) ? $_POST['liga'] : '';
             $zona = isset( $_POST['zona'] ) ? $_POST['zona'] : '';
             $filtro = '';
-
+            
             if ( $deporte != '' ) {
                 $filtro .= 'deporte_id="'.$deporte.'"';
             }
@@ -104,7 +104,9 @@ if ( isAjax() ) {
             if ( $filtro == '' ) {
                 $filtro = null;
             }
-            $partidos = getPartidos($filtro);
+            
+            $orden = 'fecha desc';
+            $partidos = getPartidos($filtro, $orden);
 
             if( $partidos == null ) : ?>
 

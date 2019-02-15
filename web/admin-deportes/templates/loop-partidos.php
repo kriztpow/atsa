@@ -14,7 +14,7 @@
         <?php echo $equipo2['nombre']; ?>
     </td>
     <td class="btns">
-        <a data_id="id" href="index.php?admin=editar-partidos&id=<?php echo $data['id']; ?>" target="_blank">
+        <a data_id="id" href="index.php?admin=editar-partido&id=<?php echo $data['id']; ?>">
             Editar
         </a>
     </td>

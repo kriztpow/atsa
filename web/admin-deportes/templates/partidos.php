@@ -5,13 +5,21 @@
  * 
 */
 load_module( 'deportes' );
+$filtro = null;
+$orden = 'fecha desc';
+
 $liga = isset($_GET['liga']) ? $_GET['liga'] : '';
 $zona = isset($_GET['zona']) ? $_GET['zona'] : '';
 if ( $liga != '') {
 	$filtro ='liga_id="'.$liga.'"';
 }
 
-$partidos = getPartidos();
+if ( $zona != '') {
+	$filtro ='zona_id="'.$zona.'"';
+}
+
+
+$partidos = getPartidos( $filtro, $orden);
 ?>
 <div class="contenido-modulo">
 	<h1 class="titulo-modulo">

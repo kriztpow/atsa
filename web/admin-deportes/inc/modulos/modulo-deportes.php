@@ -16,7 +16,7 @@ function getPostsFromDeportes( $tabla, $limit = null, $condition = null, $orden 
     
     //order
     if ( $orden != null ) {
-        $query  .= " ORDER by ";
+        $query  .= " ORDER by ".$orden;
     }
 
     //limite
@@ -98,10 +98,10 @@ function getEquipos($filtro = null) {
 /*
  * obtiene lista de partidos
 */
-function getPartidos($filtro = null) {
+function getPartidos($filtro = null, $orden = null) {
     $tabla = 'partidos';
 
-    $partidos = getPostsFromDeportes( $tabla, null, $filtro );
+    $partidos = getPostsFromDeportes( $tabla, null, $filtro, $orden );
     return $partidos;
 }
 
