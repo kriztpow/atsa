@@ -24,11 +24,35 @@ $equipoBase = array(
     'logo' => 'logo-equipo-default.png',
 );
 
-//puntuacion y score
-//la puntuación es para el voley u otros deportes
+/* 
+ * puntuacion y score
+*/
+
+//la puntuación es para el voley u otros deportes o si no queres cargar goles
+//si hay puntuación se anula el conteo de goles
 if ( $post['puntuacion'] != '' ) {
+    
     $puntuacion = explode(',', $post['puntuacion'] );
-    $score = array( $puntuacion[0], $puntuacion[1] );    
+    $score = array( $puntuacion[0], $puntuacion[1] );
+
+} else {
+
+    if ( $post['goles_id1'] != '' ) {
+        $goles1 = explode(',', $post['goles_id1'] );    
+        $goles1 =count($goles1);
+    } else {
+        $goles1 = 0;
+    }
+
+    if ( $post['goles_id2'] != '' ) {
+        $goles2 = explode(',', $post['goles_id2'] );
+        $goles2 = count($goles2);
+    } else {
+        $goles2 = 0;
+    }
+
+    $score = array( $goles1, $goles2 );
+
 }
 
 //si hay equipos hay que buscarla data de cada uno

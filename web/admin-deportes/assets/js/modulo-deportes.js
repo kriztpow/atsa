@@ -1176,16 +1176,25 @@ $(document).ready(function(){
             alert('Para agregar la puntuación tiene que guardar los cambios');
             return;
         }
+
+        var score = $('.score');
+
         if ( confirm( 'ATENCIÓN: Al habilitar la puntuación se borra el recuento mediante goles.' )  ) {
             var equipo1 =prompt('Ingresar puntuación del equipo 1');
             var equipo2 =prompt('Ingresar puntuación del equipo 2');
             var inputPuntuacion = $( 'input[name="puntuacion"]' );
 
-            $(inputPuntuacion).val( equipo1+','+equipo2 );
+            if ( equipo1 == '' || equipo2 == '' ) {
+                alert('Si se omite entrada de datos, la  puntuación se anula');
+                $(inputPuntuacion).val( '' );    
+                $(score[0]).text('0');
+                $(score[1]).text('0');
 
-            var score = $('.score');
-            $(score[0]).text(equipo1);
-            $(score[1]).text(equipo2);
+            } else {
+                $(inputPuntuacion).val( equipo1+','+equipo2 );
+                $(score[0]).text(equipo1);
+                $(score[1]).text(equipo2);
+            }
         }
     });
 
@@ -1466,6 +1475,12 @@ function WriteDataOnHTML( tipo, respuesta, contenedor ) {
             
             var html = '<li data-id-gol="'+respuesta.gol+'" data-id-jugador="'+respuesta.data.id+'">'+respuesta.data.nombre+'<button class="btn del-gol" type="button"><img class="img-responsive" src="'+administradorUrl+'/assets/images/ios-trash.png" alt="del-icon"></button></li>';
             $(contenedor).append( $(html) );
+            
+            //anotar un gol en el html
+            var score = $($(contenedor).closest('article')).find('.score');
+
+            score.text( parseInt( score.text() + 1 ) );
+
             
         break;
 
