@@ -231,7 +231,7 @@ $(document).ready(function(){
 					
 					if (response.length == 2) {
 						//url de imagen por defecto
-						var previewHtml = uploadsDir+'/'+response[0];
+						var previewHtml = uploadsDir+'/images/'+response[0];
 						if ( is_file(response[0]) ) {
 							//si es un archivo en vez de mostrar la imagen subida mostramos un icono:
 							previewHtml = administradorUrl+'/assets/images/icon-file.png';
@@ -242,7 +242,7 @@ $(document).ready(function(){
 					} else {
 						for (var i = 0; i < response.length; i+=2) {
 							//url de imagen por defecto
-							var previewHtml = uploadsDir+'/'+response[i];
+							var previewHtml = uploadsDir+'/images/'+response[i];
 							if ( is_file(response[i]) ) {
 								//si es un archivo en vez de mostrar la imagen subida mostramos un icono:
 								previewHtml = administradorUrl+'/assets/images/icon-file.png';

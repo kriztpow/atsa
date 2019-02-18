@@ -7,9 +7,9 @@ define('DB_NAME', 'deportes');
 //CARPETAS
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 define ( 'MODULOSDIR', dirname( __FILE__ ) . '/modulos' );
-define ( 'UPLOADS', dirname( __FILE__ ) . '/../../contenido' );
-define ( 'UPLOADSIMAGES', UPLOADS . '' );
-define ( 'UPLOADSFILES', UPLOADS . '' );
+define ( 'UPLOADS', dirname( __FILE__ ) . '/../../uploads' );
+define ( 'UPLOADSIMAGES', UPLOADS . '/images' );
+define ( 'UPLOADSFILES', UPLOADS . '/pdfs' );
 //URL
 define ('CARPETASERVIDOR', '' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
 define ('MAINURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
