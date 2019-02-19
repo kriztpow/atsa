@@ -834,7 +834,8 @@ function deletePartido( $partidoId ) {
     }
 
     //si lo anterior esta bien, entonces borran el partido
-    if ( $respuesta['contenido'] != 'error' && $respuesta['goles'] != 0  && $respuesta['amonestaciones'] != 0 && $respuesta['zonas'] != 'error-update-zona' ) {
+    if ( $respuesta['contenido'] != 'error' && $respuesta['goles'] != '0'  && $respuesta['amonestaciones'] != '0' && $respuesta['zonas'] != 'error-update-zona'  ) {
+
         //borrar partido
         $connection = connectDB();
         $query      = "DELETE FROM partidos WHERE id= '".$partidoId."'";

@@ -142,7 +142,7 @@ $(document).ready(function(){
                     action: 'delete-partido'
                 },
                 success: function ( response ) {
-                    //console.log(response);
+                    console.log(response);
                     var respuesta = JSON.parse(response);
                     if (respuesta.status == 'ok') {
                         $(itemToDelete).remove()
