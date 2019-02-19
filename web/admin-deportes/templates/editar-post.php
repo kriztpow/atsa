@@ -149,13 +149,13 @@ if ( $postId != null ) {
 					<div id="accordion-post">
 
 	<!------ HEAD ---------->
-						<h3>Head</h3>
+						<!--<h3>Head</h3>
 						<div>
 							<div class="form-group">
 								<label for="post_contenido" class="larger-label">Etiqueta para incluir html en el head</label>
 								<textarea name="post_head"><?php echo ($post) ? $post['post_head'] : ''; ?></textarea>
 							</div>
-						</div>
+						</div>-->
 	<!------ VIDEO DESTACADO ---------->
 						<h3>Video destacado</h3>
 						<div>

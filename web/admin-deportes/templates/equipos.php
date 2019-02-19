@@ -12,11 +12,11 @@ $equipos = getEquipos();
 		Equipos
 	</h1>
 	<div class="container">
-		<div class="row">
+	<div class="row">
 			<div class="col">
 				<div class="nav-noticias-interno">
 					<label>Filtrar por deporte</label>
-					<select name="post_categoria" id="post_categoria" data-filtro="equipos">
+					<select name="post_deportes" id="post_deportes" data-filtro="equipos">
 						<option value="todas">Todas</option>
 						<?php 
 							$deportes = getDeportesList( );
@@ -27,6 +27,55 @@ $equipos = getEquipos();
 								}
 
 							endif;
+						?>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div style="margin-bottom: .5rem;" class="nav-noticias-interno">
+					<label>Filtrar por liga</label>
+					<select name="post_liga" id="post_liga" data-filtro="zonas-by-liga">
+						<?php 
+							echo '<option value="todas">Todas</option>';
+
+							
+							$filtro = 'liga_id="'.$liga.'"';
+							$ligas = getLigas();	
+
+							if ( $ligas!=null ) {
+
+								for ($i=0; $i < count($ligas); $i++) { 
+									echo '<option value="'.$ligas[$i]['id'].'">'.$ligas[$i]['nombre'].'</option>';
+								}
+
+							}
+							 
+						?>
+					</select>
+				</div>
+
+				<div class="nav-noticias-interno">
+					<label>Filtrar por Zona</label>
+					<select name="post_zona" id="post_zona" data-filtro="equipos-zonas">
+						<?php 
+							if ($liga != '') {
+								$filtro = 'liga_id="'.$liga.'"';
+								$zonas = getZonas($filtro);
+								
+								echo '<option value="todas">Todas</option>';
+
+								if ( $zonas!=null ) {
+
+									for ($i=0; $i < count($zonas); $i++) { 
+										echo '<option value="'.$zonas[$i]['id'].'">'.$zonas[$i]['nombre_interno'].'</option>';
+									}
+
+								}
+							} else {
+								echo '<option value="">Seleccionar Liga</option>';
+							}
 						?>
 					</select>
 				</div>
