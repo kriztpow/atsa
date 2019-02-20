@@ -95,6 +95,13 @@ $menuModulos = array(
 		'slug' => '',
 		'user' => 'f',
 	),
+	array(
+		'titulo' => 'Tabla posiciones',
+		'texto' => 'Ver las posiciones.',
+		'template' => 'tabla-posiciones',
+		'slug' => '',
+		'user' => 'f',
+	),
 	/*array(
 		'titulo' => 'Galería de Imágenes',
 		'texto' => 'Manipular las distintas galerias de imagenes.',

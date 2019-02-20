@@ -1949,4 +1949,58 @@ ul.dropdown-menu li {
   background-color: red;
 }
 
+.wrapper-zona {
+  margin-bottom: 20px;
+}
+.wrapper-zona .titulo-zona {
+  color: #337ab7;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 5px;
+}
+.wrapper-zona .wrapper-equipos {
+  margin-bottom: 20px;
+}
+
+.tabla-datos {
+  width: 100%;
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 120%;
+  color: #666;
+  font-weight: 300;
+}
+.tabla-datos td {
+  padding: 10px 15px;
+}
+.tabla-datos .td-center {
+  text-align: center;
+}
+.tabla-datos .td-right {
+  text-align: right;
+}
+.tabla-datos .head-td {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.tabla-datos .td-main {
+  width: 20%;
+  min-width: 200px;
+  max-width: 280px;
+  font-size: 120%;
+  line-height: 120%;
+}
+
+.tabla-datos-vertical td {
+  padding: 5px 15px;
+}
+
+.tabla-posiciones {
+  box-shadow: 0px 5px 10px #999;
+}
+.tabla-posiciones thead {
+  border-bottom: 1px solid #337ab7;
+}
+
 /*# sourceMappingURL=style-admin.css.map */

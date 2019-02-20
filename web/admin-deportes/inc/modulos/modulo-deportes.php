@@ -1309,3 +1309,281 @@ function deleteExtraEnPartido( $tipo, $partidoId, $itemToDelete ) {
     return $respuesta;
 
 }//deletePartidoEnZona()
+
+/*
+ * ARMA LA LISTA DE POSICIONES DE ACUERDO A LA LIGA Y ZONA
+ * es necesaria la liga, la zona es opcional
+*/
+function getPosiciones( $liga, $zona=null) {
+    $connection = connectDB();
+    $respuesta = array( 'error'=> '', 'status' => 'ok', 'html' => '' );
+    
+    //1. buscar datos de zona y guardar cada zona en un array
+    $zonas = array();
+    if ( $zona != null ) {
+        $zona = getPostsFromDeportesById( $zona, 'zonas' );
+        $zonas[] = $zona;
+    } else {
+        $dataLiga = getPostsFromDeportesById( $liga, 'liga' );
+        $zonasIds = explode(',', $dataLiga['zonas_id']);
+        foreach ($zonasIds as $zonaId) {
+            $zona = getPostsFromDeportesById( $zonaId, 'zonas' );
+            if ( $zona != null ) {
+                $zonas[] = $zona;
+            }
+        }
+    }
+    
+    if ( empty($zonas) ) {
+        $respuesta['status'] = 'error';
+        $respuesta['error'] = 'error: no hay zonas';
+        return $respuesta;
+    }
+
+    //se hace el bucle por zonas si hay una sola se hace una sola vez
+    foreach ( $zonas as $zona ) {
+        
+        $equipos = array();
+        
+        //2. Buscar equipos de cada zona y armar un array de equipos
+        $equiposIds = explode( ',', $zona['equipos_ids'] );
+        foreach ($equiposIds as $id) {
+            
+            
+            $equipo = getPostsFromDeportesById( $id, 'equipos' );
+            if ( $equipo != null ) {
+                //le agrego estos datos para sumarlos luego
+                $equipo['pj'] = 0;
+                $equipo['g'] = 0;
+                $equipo['e'] = 0;
+                $equipo['p'] = 0;
+                $equipo['gf'] = 0;
+                $equipo['gc'] = 0;
+                $equipo['dg'] = 0;
+                $equipo['puntos'] = 0;
+
+                $equipos[] = $equipo;
+            }
+
+        }//for each de equipos
+        
+        if ( empty($equipos) ) {
+            $respuesta['status'] = 'error';
+            $respuesta['error'] = 'error: no hay equipos';
+            return $respuesta;
+        }
+
+        //3. Buscar partidos y contrastarlos con equipos para agregarle los datos puntaje
+        $partidos = explode( ',', $zona['partidos_ids'] );
+
+        if ( empty($partidos) ) {
+            $respuesta['status'] = 'error';
+            $respuesta['error'] = 'error: no hay partidos';
+            return $respuesta;
+        }
+
+        foreach ( $partidos as $partido ) {
+            
+            //data partido
+            $partido = getPostsFromDeportesById( $partido, 'partidos' );
+            
+            //si la fecha es mayor, entonces toma en cuenta el partido porque ya se ha jugado
+            $fechaHoy = date('Y-m-d');
+
+            if ($fechaHoy > $partido['fecha'] ) {
+                
+                //1. busca los equipos participantes
+                $equiposParticipantes = explode(',', $partido['equipos_id']);
+                $equipo1['id'] = $equiposParticipantes[0];
+                $equipo2['id'] = $equiposParticipantes[1];
+                
+                //2. en los equipos solo va a buscar los goles y con esto se arma toda la tabla
+
+                //si está la puntuacion se anulan los goles
+                if ( $partido['puntuacion'] == '' ) {
+                    //equipo1
+                    if ( $partido['goles_id1'] == '' ) {
+                        $equipo1['goles'] = 0;
+                    } else {
+                        //cuenta los goles
+                        $equipo1['goles'] = count( explode(',', $partido['goles_id1']) );
+                    }
+                    //equipo2
+                    if ( $partido['goles_id2'] == '' ) {
+                        $equipo2['goles'] = 0;
+                    } else {
+                        //cuenta los goles
+                        $equipo2['goles'] = count( explode(',', $partido['goles_id2']) );
+                    }
+                    
+                } else {
+                    //sino, toma la puntuacion
+                    $puntuacion = explode(',', $partido['puntuacion']);
+                    $equipo1['goles'] = $puntuacion[0];
+                    $equipo2['goles'] = $puntuacion[1];
+                }
+
+                //3. ahora que estan los datos tomados del partido se procesa la informacion
+                $puntos = getPuntosTablaData( $equipo1, $equipo2 );
+
+               
+                //4. ahora q estan los datos tomados del partido armamos una nueva array de equipos con estos datos;
+
+                $equiposConPuntos = array();
+                foreach ($equipos as $equipo) {
+                    //si el id de un equipo coincide con el dewl partido le agrega los datos
+                    
+                    if ( $equipo['id'] == $equipo1['id'] ) {
+                            
+                        $equipo['pj'] = $puntos[0]['pj'];
+                        $equipo['g'] += $puntos[0]['g'];
+                        $equipo['e'] +=  $puntos[0]['e'];
+                        $equipo['p'] +=  $puntos[0]['p'];
+                        $equipo['gf'] +=  $puntos[0]['gf'];
+                        $equipo['gc'] +=  $puntos[0]['gc'];
+                        $equipo['dg'] += $puntos[0]['dg'];
+                        $equipo['puntos'] +=  $puntos[0]['puntos'];
+
+                    }
+
+                    if ( $equipo['id'] == $equipo2['id'] ) {
+                        
+                        $equipo['pj'] += $puntos[1]['pj'];
+                        $equipo['g'] += $puntos[1]['g'];
+                        $equipo['e'] +=  $puntos[1]['e'];
+                        $equipo['p'] +=  $puntos[1]['p'];
+                        $equipo['gf'] +=  $puntos[1]['gf'];
+                        $equipo['gc'] +=  $puntos[1]['gc'];
+                        $equipo['dg'] += $puntos[1]['dg'];
+                        $equipo['puntos'] +=  $puntos[1]['puntos'];
+                    }
+
+                    array_push($equiposConPuntos, $equipo);
+
+                }//foreach equipos para asignarles data
+                
+                $equiposOrdenados = ordenarEquipos($equiposConPuntos);
+            
+            }//if fecha
+        }//foreach partidos
+       
+        //4. arma el html de la zona y lo guarda en la respuesta pasa el array con los equipos ya ordenados por puntos
+        $dataHtml = array( 'equipos' => $equiposOrdenados, 'zona'=> $zona );
+        
+        ob_start();
+        getTemplate('tabla-posiciones-zona', $dataHtml);
+        $respuesta['html'] .= ob_get_contents();
+        ob_end_clean();
+
+    }//foreach de zonas
+    
+    
+    mysqli_close($connection);
+    return $respuesta;
+}
+/*
+ * con los goles de cada equipo procesa la data de la tabla
+ * los datos del voley se toman distintos pero todos los de futbol funciona igual
+*/
+function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
+    //arma la variable a devolver
+
+    $puntos = array( array('pj'=> 1), array('pj'=> 1));
+
+    //se define quien gano y los puntos
+    if ( $equipo1['goles'] > $equipo2['goles'] ) {
+        //si gano equipo1
+        $puntos[0]['g'] = 1;
+        $puntos[1]['g'] = 0;
+        $puntos[0]['p'] = 0;
+        $puntos[1]['p'] = 1;
+        $puntos[0]['e'] = 0;
+        $puntos[1]['e'] = 0;
+        //ademas define los puntos
+        $puntos[0]['puntos'] = 3;
+        $puntos[1]['puntos'] = 0;
+
+        //se definen los goles
+        $puntos[0]['gf'] = $equipo1['goles'];
+        $puntos[0]['gc'] = $equipo2['goles'];
+        $puntos[0]['dg'] = $equipo1['goles'] - $equipo2['goles'];
+
+        $puntos[1]['gf'] = $equipo2['goles'];
+        $puntos[1]['gc'] = $equipo1['goles'];
+        $puntos[1]['dg'] = $equipo1['goles'] - $equipo2['goles'];
+
+    } elseif ( $equipo1['goles'] > $equipo2['goles'] ) {
+        //si gano equipo2
+        $puntos[0]['g'] = 0;
+        $puntos[1]['g'] = 1;
+        $puntos[0]['p'] = 1;
+        $puntos[1]['p'] = 0;
+        $puntos[0]['e'] = 0;
+        $puntos[1]['e'] = 0;
+        //ademas define los puntos
+        $puntos[0]['puntos'] = 0;
+        $puntos[1]['puntos'] = 3;
+
+        //se definen los goles
+        $puntos[0]['gf'] = $equipo1['goles'];
+        $puntos[0]['gc'] = $equipo2['goles'];
+        $puntos[0]['dg'] = $equipo2['goles'] - $equipo1['goles'];
+
+        $puntos[1]['gf'] = $equipo2['goles'];
+        $puntos[1]['gc'] = $equipo1['goles'];
+        $puntos[1]['dg'] = $equipo2['goles'] - $equipo1['goles'];
+
+    } else {
+        //si empataron
+        $puntos[0]['g'] = 0;
+        $puntos[1]['g'] = 0;
+        $puntos[0]['p'] = 0;
+        $puntos[1]['p'] = 0;
+        $puntos[0]['e'] = 1;
+        $puntos[1]['e'] = 1;
+        //ademas define los puntos
+        $puntos[0]['puntos'] = 1;
+        $puntos[1]['puntos'] = 1;
+
+        $puntos[0]['gf'] = $equipo1['goles'];
+        $puntos[0]['gc'] = $equipo2['goles'];
+        $puntos[0]['dg'] = 0;
+
+        $puntos[1]['gf'] = $equipo2['goles'];
+        $puntos[1]['gc'] = $equipo1['goles'];
+        $puntos[1]['dg'] = $equipo2['goles'] - $equipo1['goles'];
+    }
+
+    return $puntos;
+}
+
+/*
+ *  Esta funcion ordena los equipos
+ * recibe un array de equipos ya con los puntos, goles y estadísticas
+ * * los datos del voley se toman distintos pero todos los de futbol funciona igual
+*/
+function ordenarEquipos( $equipos, $deporte=null ) {
+
+    //1.ordena por puntos
+    $puntos = array();
+    foreach ($equipos as $key => $row)
+    {
+        $puntos[$key] = $row['puntos'];
+        
+    }
+
+    array_multisort($puntos, SORT_DESC, $equipos);
+
+    //2.ordena por partidos jugados
+
+    $jugados = array();
+    foreach ($equipos as $key => $row)
+    {
+        $jugados[$key] = $row['pj'];
+        
+    }
+
+    array_multisort($jugados, SORT_DESC, $equipos);
+
+    return $equipos;
+}

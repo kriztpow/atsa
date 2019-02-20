@@ -124,6 +124,17 @@ if ( isAjax() ) {
 
         break;
 
+        case 'posiciones':
+
+            $liga = isset( $_POST['liga'] ) ? $_POST['liga'] : '';
+            $zona = isset( $_POST['zona'] ) ? $_POST['zona'] : '';
+            
+            $respuesta = getPosiciones($liga, $zona);
+
+            echo json_encode( $respuesta );
+
+        break;
+
     }//switch
 
 

@@ -263,6 +263,44 @@ $(document).ready(function(){
             },
         });//cierre ajax*/
     }
+
+    /*
+    * CLIC BOTON POSICIONESs
+    */
+    $(document).on('click', '#btn-posiciones', function(){
+        var liga = $('select[name="post_liga"]').val();
+        var zona = $('select[name="post_zona"]').val();
+
+        if ( liga == 'todas' ) {
+            alert('Debe seleccionar una liga');
+            return true;
+        }
+
+        var buscar = 'posiciones';
+        var contenedor = $('.wrapper-tabla-posiciones');
+
+        $.ajax( {
+            type: 'POST',
+            url: ajaxFunctionDir + '/filtro-deportes.php',
+            data: {
+                liga: liga,
+                zona: zona,
+                buscar: buscar,
+            },
+            beforeSend: function() {
+                contenedor.empty(); 
+                contenedor.append($('<p>Cargando...</p>'));
+            },
+            success: function ( response ) {
+                //console.log(response);
+                var respuesta = JSON.parse(response);
+                contenedor.empty().append(respuesta.html);
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+        });//cierre ajax*/
+    });
     
 });//READY LOOP INDEX
 
