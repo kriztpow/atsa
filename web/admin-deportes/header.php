@@ -89,13 +89,6 @@ if(!defined("SECUREACCESS"))
                     Equipos
                   </a>
                 </li>
-
-
-                <li>
-                  <a href="index.php?admin=deporte" role="button">
-                    Deporte
-                  </a>
-                </li>
                 <li>
                   <a href="index.php?admin=archivos" role="button">
                     Archivos

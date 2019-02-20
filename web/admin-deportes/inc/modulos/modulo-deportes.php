@@ -1316,6 +1316,7 @@ function deleteExtraEnPartido( $tipo, $partidoId, $itemToDelete ) {
 */
 function getPosiciones( $liga, $zona=null) {
     $connection = connectDB();
+    $fechaHoy = date('Y-m-d');
     $respuesta = array( 'error'=> '', 'status' => 'ok', 'html' => '' );
     
     //1. buscar datos de zona y guardar cada zona en un array
@@ -1348,7 +1349,6 @@ function getPosiciones( $liga, $zona=null) {
         //2. Buscar equipos de cada zona y armar un array de equipos
         $equiposIds = explode( ',', $zona['equipos_ids'] );
         foreach ($equiposIds as $id) {
-            
             
             $equipo = getPostsFromDeportesById( $id, 'equipos' );
             if ( $equipo != null ) {
@@ -1388,8 +1388,7 @@ function getPosiciones( $liga, $zona=null) {
             $partido = getPostsFromDeportesById( $partido, 'partidos' );
             
             //si la fecha es mayor, entonces toma en cuenta el partido porque ya se ha jugado
-            $fechaHoy = date('Y-m-d');
-
+        
             if ($fechaHoy > $partido['fecha'] ) {
                 
                 //1. busca los equipos participantes
@@ -1423,50 +1422,14 @@ function getPosiciones( $liga, $zona=null) {
                     $equipo2['goles'] = $puntuacion[1];
                 }
 
-                //3. ahora que estan los datos tomados del partido se procesa la informacion
-                $puntos = getPuntosTablaData( $equipo1, $equipo2 );
+                //3. ahora que estan los datos tomados del partido se procesa la informacion y se lo carga al array de los $equipos
+                $equipos = asignarpuntosaequipos( $equipos,  $equipo1, $equipo2  );
 
-               
-                //4. ahora q estan los datos tomados del partido armamos una nueva array de equipos con estos datos;
-
-                $equiposConPuntos = array();
-                foreach ($equipos as $equipo) {
-                    //si el id de un equipo coincide con el dewl partido le agrega los datos
-                    
-                    if ( $equipo['id'] == $equipo1['id'] ) {
-                            
-                        $equipo['pj'] = $puntos[0]['pj'];
-                        $equipo['g'] += $puntos[0]['g'];
-                        $equipo['e'] +=  $puntos[0]['e'];
-                        $equipo['p'] +=  $puntos[0]['p'];
-                        $equipo['gf'] +=  $puntos[0]['gf'];
-                        $equipo['gc'] +=  $puntos[0]['gc'];
-                        $equipo['dg'] += $puntos[0]['dg'];
-                        $equipo['puntos'] +=  $puntos[0]['puntos'];
-
-                    }
-
-                    if ( $equipo['id'] == $equipo2['id'] ) {
-                        
-                        $equipo['pj'] += $puntos[1]['pj'];
-                        $equipo['g'] += $puntos[1]['g'];
-                        $equipo['e'] +=  $puntos[1]['e'];
-                        $equipo['p'] +=  $puntos[1]['p'];
-                        $equipo['gf'] +=  $puntos[1]['gf'];
-                        $equipo['gc'] +=  $puntos[1]['gc'];
-                        $equipo['dg'] += $puntos[1]['dg'];
-                        $equipo['puntos'] +=  $puntos[1]['puntos'];
-                    }
-
-                    array_push($equiposConPuntos, $equipo);
-
-                }//foreach equipos para asignarles data
-                
-                $equiposOrdenados = ordenarEquipos($equiposConPuntos);
-            
             }//if fecha
         }//foreach partidos
-       
+        
+        $equiposOrdenados = ordenarEquipos($equipos);
+
         //4. arma el html de la zona y lo guarda en la respuesta pasa el array con los equipos ya ordenados por puntos
         $dataHtml = array( 'equipos' => $equiposOrdenados, 'zona'=> $zona );
         
@@ -1512,7 +1475,7 @@ function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
         $puntos[1]['gc'] = $equipo1['goles'];
         $puntos[1]['dg'] = $equipo1['goles'] - $equipo2['goles'];
 
-    } elseif ( $equipo1['goles'] > $equipo2['goles'] ) {
+    } elseif ( $equipo1['goles'] < $equipo2['goles'] ) {
         //si gano equipo2
         $puntos[0]['g'] = 0;
         $puntos[1]['g'] = 1;
@@ -1574,16 +1537,50 @@ function ordenarEquipos( $equipos, $deporte=null ) {
 
     array_multisort($puntos, SORT_DESC, $equipos);
 
-    //2.ordena por partidos jugados
-
-    $jugados = array();
-    foreach ($equipos as $key => $row)
-    {
-        $jugados[$key] = $row['pj'];
-        
-    }
-
-    array_multisort($jugados, SORT_DESC, $equipos);
-
     return $equipos;
+}
+
+/*
+* esta funcion asigna a una array de equipo nuevos datos que serían los puntos
+* internamente procesa los datos de equipo1 y equipo2 con una funcion para adquirir los puntos que asignarles a los equipos
+*/
+function asignarpuntosaequipos( $equipos, $equipo1, $equipo2, $deporte=null ){
+    $equiposConPuntos = array();
+
+    //procesamos la info
+    $puntos = getPuntosTablaData( $equipo1, $equipo2);
+
+    foreach ($equipos as $equipo) {
+        //si el id de un equipo coincide con el dewl partido le agrega los datos
+        
+        if ( $equipo['id'] == $equipo1['id'] ) {
+                
+            $equipo['pj'] += $puntos[0]['pj'];
+            $equipo['g'] += $puntos[0]['g'];
+            $equipo['e'] +=  $puntos[0]['e'];
+            $equipo['p'] +=  $puntos[0]['p'];
+            $equipo['gf'] +=  $puntos[0]['gf'];
+            $equipo['gc'] +=  $puntos[0]['gc'];
+            $equipo['dg'] += $puntos[0]['dg'];
+            $equipo['puntos'] +=  $puntos[0]['puntos'];
+
+        }
+
+        if ( $equipo['id'] == $equipo2['id'] ) {
+            
+            $equipo['pj'] += $puntos[1]['pj'];
+            $equipo['g'] += $puntos[1]['g'];
+            $equipo['e'] +=  $puntos[1]['e'];
+            $equipo['p'] +=  $puntos[1]['p'];
+            $equipo['gf'] +=  $puntos[1]['gf'];
+            $equipo['gc'] +=  $puntos[1]['gc'];
+            $equipo['dg'] += $puntos[1]['dg'];
+            $equipo['puntos'] +=  $puntos[1]['puntos'];
+        }
+
+        array_push($equiposConPuntos, $equipo);
+
+    }//foreach equipos para asignarles data
+
+    return $equiposConPuntos;
 }

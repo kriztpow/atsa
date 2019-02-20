@@ -81,13 +81,13 @@ $menuModulos = array(
 		'slug' => '',
 		'user' => 'f',
 	),
-	array(
+	/*array(
 		'titulo' => 'Deporte',
 		'texto' => 'Administrar los contenidos de los partidos.',
 		'template' => 'deporte',
 		'slug' => '',
 		'user' => 'f',
-	),
+	),*/
 	array(
 		'titulo' => 'Archivos',
 		'texto' => 'Administrar los contenidos de los partidos.',

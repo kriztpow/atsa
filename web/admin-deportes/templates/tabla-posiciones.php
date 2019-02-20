@@ -5,7 +5,8 @@
  * 
 */
 load_module( 'deportes' );
-//$posts = getPosts( 'post', POSTPERPAG, '', 'fecha', 'all' );
+$ligaURL = isset( $_GET['liga'] ) ? $_GET['liga'] : null;
+$zonaURL = isset( $_GET['zona'] ) ? $_GET['zona'] : '';
 ?>
 <!---------- noticias ---------------->
 <div class="contenido-modulo">
@@ -73,7 +74,41 @@ load_module( 'deportes' );
 		<div class="row">
 			<div class="col">
                 <div class="wrapper-tabla-posiciones">
-                    
+					<?php 
+						if ($ligaURL != '') { ?>
+							<script>
+								$(document).ready( function(){
+
+									var buscar = 'posiciones';
+									var contenedor = $('.wrapper-tabla-posiciones');
+									var liga = '<?php echo $ligaURL; ?>';
+									var zona = '<?php echo $zonaURL; ?>';
+
+									$.ajax( {
+										type: 'POST',
+										url: '<?php echo URLADMINISTRADOR . '/inc/ajax-functions/'; ?>filtro-deportes.php',
+										data: {
+											liga: liga,
+											zona: zona,
+											buscar: buscar,
+										},
+										beforeSend: function() {
+											contenedor.empty(); 
+											contenedor.append($('<p>Cargando...</p>'));
+										},
+										success: function ( response ) {
+											//console.log(response);
+											var respuesta = JSON.parse(response);
+											contenedor.empty().append(respuesta.html);
+										},
+										error: function ( ) {
+											console.log('error');
+										},
+									});//cierre ajax*/
+								});
+							</script>
+						<?php } ?>
+					
                 </div>
         	</div><!-- // col -->
         </div><!-- // row -->
