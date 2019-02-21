@@ -1823,10 +1823,10 @@ ul.dropdown-menu li {
   margin-top: 25px;
 }
 
-.goles, .amonestaciones {
+.goles, .amonestaciones, .sets {
   font-size: 85%;
 }
-.goles li, .amonestaciones li {
+.goles li, .amonestaciones li, .sets li {
   margin: 5px 0;
   display: flex;
   display: -o-flex;
@@ -1844,26 +1844,26 @@ ul.dropdown-menu li {
   -o-justify-content: flex-start;
   justify-content: flex-start;
 }
-.goles button, .amonestaciones button {
+.goles button, .amonestaciones button, .sets button {
   margin: 0 5px;
   padding: 0;
   border: none;
   vertical-align: sub;
 }
-.goles button .img-responsive, .amonestaciones button .img-responsive {
+.goles button .img-responsive, .amonestaciones button .img-responsive, .sets button .img-responsive {
   width: 80%;
 }
-.goles .tipo-amonestacion, .amonestaciones .tipo-amonestacion {
+.goles .tipo-amonestacion, .amonestaciones .tipo-amonestacion, .sets .tipo-amonestacion {
   background-color: green;
   width: 10px;
   height: 15px;
   display: inline-block;
   margin: 0 15px;
 }
-.goles .tipo-amonestacion.amarilla, .amonestaciones .tipo-amonestacion.amarilla {
+.goles .tipo-amonestacion.amarilla, .amonestaciones .tipo-amonestacion.amarilla, .sets .tipo-amonestacion.amarilla {
   background-color: yellow;
 }
-.goles .tipo-amonestacion.roja, .amonestaciones .tipo-amonestacion.roja {
+.goles .tipo-amonestacion.roja, .amonestaciones .tipo-amonestacion.roja, .sets .tipo-amonestacion.roja {
   background-color: red;
 }
 
@@ -2001,6 +2001,15 @@ ul.dropdown-menu li {
 }
 .tabla-posiciones thead {
   border-bottom: 1px solid #337ab7;
+}
+
+.campo-especial {
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.campo-oculto {
+  opacity: 0;
 }
 
 /*# sourceMappingURL=style-admin.css.map */

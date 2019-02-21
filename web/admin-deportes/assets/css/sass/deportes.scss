@@ -209,7 +209,7 @@
 
 }
 
-.goles, .amonestaciones {
+.goles, .amonestaciones, .sets {
     font-size: 85%;
 
     li {
@@ -423,4 +423,13 @@
     thead {
         border-bottom: 1px solid $resaltado;
     }
+}
+
+.campo-especial {
+    opacity: 1;
+    transition: all 500ms;
+}
+
+.campo-oculto {
+    opacity: 0;
 }

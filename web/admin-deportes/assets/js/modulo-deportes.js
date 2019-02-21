@@ -983,6 +983,155 @@ $(document).ready(function(){
  * EDITAR PARTIDO
 */
 $(document).ready(function(){
+    //calcula la puntuacion
+    calcularPuntuaciondeVoley();
+
+    /*
+     * calcula la puntuacion en voley
+    */
+    function calcularPuntuaciondeVoley() {
+        var deporte = $('select[name="post_categoria"]').val();
+        if ( deporte != 3 ) {
+            //sino es voley no se aplica
+            return true;
+        }
+
+        var score = $('.score');
+        var score1 = 0;
+        var score2 = 0;
+        var input = $('input[name="sets1"]').val();
+        var input2 = $('input[name="sets2"]').val();
+        
+        if ( input == '' && input2 == '' ) {
+
+            $(score[0]).text(score1);
+            $(score[1]).text(score2);
+
+        } else {
+
+            input = input.split(',');
+            input2 = input2.split(',');
+
+            var recorrido = input.length;
+            if (input.length < input2.length) {
+                recorrido = input2.length;
+            }
+
+            
+            for (var i = 0; i < recorrido; i++) {
+               
+                if ( input[i] == undefined ){
+                    input[i] = 0;
+                }
+                if ( input2[i] == undefined ){
+                    input2[i] = 0;
+                }
+
+                if ( input[i] < input2[i] ) {
+                    score2++;
+                } 
+                if ( input[i] > input2[i] ) {
+                    score1++;
+                }
+                
+            }
+            
+            $(score[0]).text(score1);
+            $(score[1]).text(score2);
+        }
+    }
+
+    //si es voley muestra agregar set, si es futbol agregar gol
+    $('select[name="post_categoria"]').change(function(){
+        var deporte = $(this).val();
+
+        $('.campo-especial').toggleClass('campo-oculto');
+
+        if (deporte == 3 ) {
+            $('.campo-especial-voley').removeClass('campo-oculto');
+            $('.campo-especial-futbol').addClass('campo-oculto');
+            
+            calcularPuntuaciondeVoley();
+
+        } else {
+            $('.campo-especial-voley').addClass('campo-oculto');
+            $('.campo-especial-futbol').removeClass('campo-oculto');
+        }
+    });
+
+    //hacer clic en agregar set
+    $(document).on('click', '.btn-add-set', function(e){
+        var wrapper = $(this).closest('.wrapper-goles');
+        var input = $('input[name="sets1"]');
+        
+        var ul = $(wrapper).find('.sets');
+
+        var index = $(ul).find('li').length;
+
+        if ( $(ul).hasClass('equipo-data-der') ) {
+            input = $('input[name="sets2"]');
+        }
+
+        var set = prompt('Ingrese los puntos de este set');
+
+        if (set == null || set == undefined || set == ''){
+            return true;
+        }
+
+        var html = '<li data-index="'+index+'">'+set+'<button class="btn del-set" type="button"><img class="img-responsive" src="'+administradorUrl+'/assets/images/ios-trash.png" alt="del-icon"></button></li>'
+
+        $(ul).append( $(html) );
+
+        //grabamos en el input
+        var valores = $(input).val();
+        if (valores == '') {
+            $(input).val(set);
+        } else {
+            valores = valores.split(',');
+            valores.push(set);
+            valores = valores.join();
+            $(input).val(valores);
+        }
+
+        calcularPuntuaciondeVoley();
+    });
+
+    //borra el set
+    $(document).on('click', '.del-set', function(e){
+        var input = $('input[name="sets1"]');
+        var li = $(this).closest('li');
+        var ul = $(this).closest('.sets');
+        var index = $(li).attr('data-index');
+       
+
+        if ( $(ul).hasClass('equipo-data-der') ) {
+            input = $('input[name="sets2"]');
+        }
+
+        $(li).remove();
+        
+        //borro del input
+        var valores = $(input).val();
+        valores = valores.split(',');
+
+        if (valores.length == 1) {
+            $(input).val('');
+        } else {
+            valores.splice(index, 1);
+            valores = valores.join();
+            $(input).val(valores);
+        }
+
+        var newLis = $(ul).find('li');
+        var count=0;
+        newLis.each(function(){
+            $(this).attr('data-index', count);
+            count++;
+        });
+
+        calcularPuntuaciondeVoley();
+
+    });
 
     //cambiar equipo
     $(document).on('click', '.btn-edit-equipo', function(e){

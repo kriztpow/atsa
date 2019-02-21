@@ -95,6 +95,8 @@ if ( $post['equipos_id'] != '' ) {
 		<input type="hidden" name="post_ID" value="<?php echo ($post) ? $post['id'] : 'new'; ?>">
         <input type="hidden" name="equipos_id" value="<?php echo ($post) ? $post['equipos_id'] : ''; ?>">
         <input type="hidden" name="puntuacion" value="<?php echo ($post) ? $post['puntuacion'] : ''; ?>">
+        <input type="hidden" name="sets1" value="<?php echo ($post) ? $post['sets1'] : ''; ?>">
+        <input type="hidden" name="sets2" value="<?php echo ($post) ? $post['sets2'] : ''; ?>">
         <input type="hidden" name="goles1" value="<?php echo ($post) ? $post['goles_id1'] : ''; ?>">
         <input type="hidden" name="goles2" value="<?php echo ($post) ? $post['goles_id2'] : ''; ?>">
         <input type="hidden" name="amonestaciones1" value="<?php echo ($post) ? $post['amonestaciones_id1'] : ''; ?>">
@@ -182,7 +184,7 @@ if ( $post['equipos_id'] != '' ) {
                     $imagen = $equipo['logo'];
                 }
                 ?>
-                    
+
                 <div class="col-50">
                     <article class="equipo-wrapper" data-id="<?php echo $equipo['id']; ?>">
                         
@@ -212,7 +214,8 @@ if ( $post['equipos_id'] != '' ) {
                             </div><!-- // col -->
 
                             <div class="col">
-                                <div class="wrapper-goles">
+
+                                <div class="wrapper-goles campo-especial campo-especial-futbol<?php if ( $post && $post['deporte_id'] == 3 ) { echo ' campo-oculto'; } ?><?php if ( $postId == null ) { echo ' campo-oculto'; } ?>">
                                     <h2>
                                         Goles
                                     </h2>
@@ -243,6 +246,38 @@ if ( $post['equipos_id'] != '' ) {
 
                                     </ul>
                                 </div>
+
+                                <div class="wrapper-goles campo-especial campo-especial-voley<?php if ( $postId == null ) { echo ' campo-oculto'; } ?><?php if ( $post && $post['deporte_id'] != 3 ) { echo ' campo-oculto'; } ?>">
+                                    <h2>
+                                        Sets
+                                    </h2>
+                                    <button type="button" class="btn btn-xs btn-primary btn-add-set">
+                                        Agregar set
+                                    </button>
+                                    <ul class="sets <?php if ($counter != 0 ) { echo ' equipo-data-der'; } ?>">
+
+                                    <?php
+                                        if ( $counter == 0  ) {
+                                            $tantos = $post['sets1'];
+                                        } else {
+                                            $tantos = $post['sets2'];
+                                        }
+                                        
+                                        if ( $tantos != '' ) :
+                                            $tantos = explode(',',$tantos);
+                                            $index = 0;
+                                            foreach ( $tantos as $punto ) {
+                                                ?>
+                                                <li data-index="<?php echo $index; ?>"><?php echo $punto; ?><button class="btn del-set" type="button"><img class="img-responsive" src="<?php echo URLADMINISTRADOR; ?>/assets/images/ios-trash.png" alt="del-icon"></button>
+                                                </li>
+                                            
+                                            <?php }
+                                        
+                                        endif; ?>
+
+                                    </ul>
+                                </div>
+
                                 <div class="wrapper-amonestaciones">
                                     <h2>
                                         Amonestaciones
@@ -292,7 +327,7 @@ if ( $post['equipos_id'] != '' ) {
 
             <div class="row wrapper-buttons">
                 <div class="col">
-                    <button type="button" class="btn btn-danger btn-add-gol">
+                    <button type="button" class="btn btn-danger btn-add-gol campo-especial<?php if ( $postId == null ) { echo ' campo-oculto'; } ?><?php if ( $post && $post['deporte_id'] == 3 ) { echo ' campo-oculto'; } ?>">
                         Agregar gol
                     </button>
                     <button type="button" class="btn btn-danger btn-add-amonestacion">

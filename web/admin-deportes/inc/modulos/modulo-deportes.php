@@ -973,6 +973,8 @@ function editarPartido ($data) {
     $equipos         = isset( $data['equipos_id'] ) ? $data['equipos_id'] : '';
     $goles1          = isset( $data['goles1'] ) ? $data['goles1'] : '';
     $goles2          = isset( $data['goles2'] ) ? $data['goles2'] : '';
+    $sets1           = isset( $data['sets1'] ) ? $data['sets1'] : '';
+    $sets2           = isset( $data['sets2'] ) ? $data['sets2'] : '';
     $amonestaciones1 = isset( $data['amonestaciones1'] ) ? $data['amonestaciones1'] : '';
     $amonestaciones2 = isset( $data['amonestaciones2'] ) ? $data['amonestaciones2'] : '';
     $puntuacion      = isset( $data['puntuacion'] ) ? $data['puntuacion'] : '';
@@ -986,7 +988,7 @@ function editarPartido ($data) {
     if ($postID == 'new') {
 
         //sino se guarda
-        $query = "INSERT INTO $tabla (deporte_id,liga_id,zona_id,fecha,equipos_id,goles_id1,goles_id2,amonestaciones_id1,amonestaciones_id2,puntuacion) VALUES ('$deporteID', '$ligaID', '$zonaId', '$fecha', '$equipos', '$goles1','$goles2', '$amonestaciones1','$amonestaciones2', '$puntuacion')";
+        $query = "INSERT INTO $tabla (deporte_id,liga_id,zona_id,fecha,equipos_id,goles_id1,goles_id2,sets1,sets2,amonestaciones_id1,amonestaciones_id2,puntuacion) VALUES ('$deporteID', '$ligaID', '$zonaId', '$fecha', '$equipos', '$goles1','$goles2','$sets1','$sets2', '$amonestaciones1','$amonestaciones2', '$puntuacion')";
 
         $nuevoPost = mysqli_query($connection, $query); 
         
@@ -1007,7 +1009,7 @@ function editarPartido ($data) {
     } //es viejo post
         else {
 
-        $query = "UPDATE ".$tabla." SET deporte_id='".$deporteID."',liga_id='".$ligaID."',zona_id='".$zonaId."',fecha='".$fecha."',equipos_id='".$equipos."',goles_id1='".$goles1."',goles_id2='".$goles2."',amonestaciones_id1='".$amonestaciones1."',amonestaciones_id2='".$amonestaciones2."',puntuacion='".$puntuacion."' WHERE id='".$postID."' LIMIT 1";
+        $query = "UPDATE ".$tabla." SET deporte_id='".$deporteID."',liga_id='".$ligaID."',zona_id='".$zonaId."',fecha='".$fecha."',equipos_id='".$equipos."',goles_id1='".$goles1."',goles_id2='".$goles2."',sets1='".$sets1."',sets2='".$sets2."',amonestaciones_id1='".$amonestaciones1."',amonestaciones_id2='".$amonestaciones2."',puntuacion='".$puntuacion."' WHERE id='".$postID."' LIMIT 1";
 
         $updatePost = mysqli_query($connection, $query); 
         if ($updatePost) {
