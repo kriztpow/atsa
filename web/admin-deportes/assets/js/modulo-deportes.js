@@ -990,6 +990,13 @@ $(document).ready(function(){
      * calcula la puntuacion en voley
     */
     function calcularPuntuaciondeVoley() {
+        var puntuacion = $('input[name="puntuacion"]').val();
+
+        if (puntuacion != '') {
+            //si tiene puntuacion se anula el calculo
+            return;
+        }
+
         var deporte = $('select[name="post_categoria"]').val();
         if ( deporte != 3 ) {
             //sino es voley no se aplica
@@ -1016,10 +1023,9 @@ $(document).ready(function(){
             if (input.length < input2.length) {
                 recorrido = input2.length;
             }
-
             
             for (var i = 0; i < recorrido; i++) {
-               
+                
                 if ( input[i] == undefined ){
                     input[i] = 0;
                 }
@@ -1027,10 +1033,10 @@ $(document).ready(function(){
                     input2[i] = 0;
                 }
 
-                if ( input[i] < input2[i] ) {
+                if ( parseInt(input[i]) < parseInt(input2[i]) ) {
                     score2++;
                 } 
-                if ( input[i] > input2[i] ) {
+                if ( parseInt(input[i]) > parseInt(input2[i]) ) {
                     score1++;
                 }
                 
@@ -1061,6 +1067,9 @@ $(document).ready(function(){
 
     //hacer clic en agregar set
     $(document).on('click', '.btn-add-set', function(e){
+        //al hacer clic en agregar set se anula la puntuacion
+        $('input[name="puntuacion"]').val('');
+
         var wrapper = $(this).closest('.wrapper-goles');
         var input = $('input[name="sets1"]');
         

@@ -1586,3 +1586,65 @@ function asignarpuntosaequipos( $equipos, $equipo1, $equipo2, $deporte=null ){
 
     return $equiposConPuntos;
 }
+
+function getScoreVoley($data1, $data2) {
+    $puntos = array(0,0);
+
+    if ( $data1 == '' ) {
+        $puntos[0] = 0;    
+    }
+
+    if ( $data2 == '' ) {
+        $puntos[1] = 0;    
+    } 
+    
+    if ( $data1 != '' && $data2 != '' ) {
+        $data1 = explode(',', $data1);
+        $data2 = explode(',', $data2);
+
+        $recorrido = count($data1);
+        if (count($data1) < count($data2)) {
+            $recorrido = count($data2);
+        }
+            
+        for ($i = 0; $i < $recorrido; $i++) {
+            
+            if ( ! isset($data1[$i]) ){
+                $data1[$i] = 0;
+            }
+            if ( ! isset($data2[$i]) ){
+                $data2[$i] = 0;
+            }
+
+            if ( (int)$data1[$i] < (int)$data2[$i] ) {
+                $puntos[1]++;
+            }
+            if ( (int)$data1[$i] > (int)$data2[$i] ) {
+                $puntos[0]++;
+            }
+            
+        }
+    }
+
+    return $puntos;
+}
+
+function getScoreFutbol ($goles1, $goles2) {
+    $goles = array();
+
+    if ( $goles1 == '' ) {
+        $goles[0] = '0';    
+    } else {
+        $goles1 = explode(',', $goles1);
+        $goles[0] = count($goles1);
+    }
+    
+    if ( $goles2 == '' ) {
+        $goles[1] = '0';    
+    } else {
+        $goles2 = explode(',', $goles2);
+        $goles[1] = count($goles2);
+    }
+
+    return $goles;
+}

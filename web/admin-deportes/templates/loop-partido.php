@@ -30,22 +30,21 @@
                             $puntos = explode( ',', $data['puntuacion'] );
                             echo $puntos[0] . ' a ' . $puntos[1];
                         } else {
-                            if ( $data['goles_id1'] == '' ) {
-                                $goles1 = '0';    
-                            } else {
-                                $goles1 = explode(',', $data['goles_id1']);
-                                $goles1 = count($goles1);
-                            }
-                            
-                            if ( $data['goles_id2'] == '' ) {
-                                $goles2 = '0';    
-                            } else {
-                                $goles2 = explode(',', $data['goles_id2']);
-                                $goles2 = count($goles2);
-                            }
+                            if ( $data['deporte_id'] == 3 ) {
+                                //voley
+                                $puntos = getScoreVoley($data['sets1'], $data['sets2']);
+    
+                                echo $puntos[0] . ' a ' . $puntos[1];
 
-                            echo $goles1 . ' a ' . $goles2;
+                            } else {
+                                //futbol
+                                $goles = getScoreFutbol ($data['goles_id1'], $data['goles_id2']);
+    
+                                echo $goles[0] . ' a ' . $goles[1];
+                            }
+                              
                         }
+
                     } else {
                         echo '<em>Sin resultados</em>';
                     }
