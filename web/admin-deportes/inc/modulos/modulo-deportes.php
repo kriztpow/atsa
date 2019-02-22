@@ -1320,7 +1320,7 @@ function getPosiciones( $liga, $zona=null) {
     $connection = connectDB();
     $fechaHoy = date('Y-m-d');
     $respuesta = array( 'error'=> '', 'status' => 'ok', 'html' => '' );
-    
+    $deporte = 0;
     //1. buscar datos de zona y guardar cada zona en un array
     $zonas = array();
     if ( $zona != null ) {
@@ -1393,6 +1393,8 @@ function getPosiciones( $liga, $zona=null) {
         
             if ($fechaHoy > $partido['fecha'] ) {
                 
+                $deporte = $partido['deporte_id'];
+            
                 //1. busca los equipos participantes
                 $equiposParticipantes = explode(',', $partido['equipos_id']);
                 $equipo1['id'] = $equiposParticipantes[0];
@@ -1401,31 +1403,46 @@ function getPosiciones( $liga, $zona=null) {
                 //2. en los equipos solo va a buscar los goles y con esto se arma toda la tabla
 
                 //si está la puntuacion se anulan los goles
-                if ( $partido['puntuacion'] == '' ) {
-                    //equipo1
-                    if ( $partido['goles_id1'] == '' ) {
-                        $equipo1['goles'] = 0;
-                    } else {
-                        //cuenta los goles
-                        $equipo1['goles'] = count( explode(',', $partido['goles_id1']) );
-                    }
-                    //equipo2
-                    if ( $partido['goles_id2'] == '' ) {
-                        $equipo2['goles'] = 0;
-                    } else {
-                        //cuenta los goles
-                        $equipo2['goles'] = count( explode(',', $partido['goles_id2']) );
-                    }
-                    
-                } else {
-                    //sino, toma la puntuacion
+                if ( $partido['puntuacion'] != '' ) {
                     $puntuacion = explode(',', $partido['puntuacion']);
-                    $equipo1['goles'] = $puntuacion[0];
-                    $equipo2['goles'] = $puntuacion[1];
-                }
+                    $equipo1['goles'] = (int)$puntuacion[0];
+                    $equipo2['goles'] = (int)$puntuacion[1];
 
+                } else {
+                    //sino esta la puntuacion se cuentan goles y sets
+
+                    if ( $deporte == '3' ) {
+                        //si el deporte es voley entonces se miran los sets
+                        $equipo1['sets'] = $partido['sets1'];
+                        $equipo2['sets'] = $partido['sets2'];
+                    
+                    } else {
+                        //si deporte no es voley entonces se computa como futbol
+                        //equipo1
+                        if ( $partido['goles_id1'] == '' ) {
+                            $equipo1['goles'] = 0;
+                        } else {
+                            //cuenta los goles
+                            $equipo1['goles'] = count( explode(',', $partido['goles_id1'] ) );
+                        }
+                        //equipo2
+                        if ( $partido['goles_id2'] == '' ) {
+                            $equipo2['goles'] = 0;
+                        } else {
+                            //cuenta los goles
+                            $equipo2['goles'] = count( explode(',', $partido['goles_id2'] ) );
+                        }
+
+                    } 
+                    
+                }
+                
                 //3. ahora que estan los datos tomados del partido se procesa la informacion y se lo carga al array de los $equipos
-                $equipos = asignarpuntosaequipos( $equipos,  $equipo1, $equipo2  );
+                if ( $deporte == '3' ) {
+                    $equipos = asignarpuntosaequipos( $equipos,  $equipo1, $equipo2, 'voley' );
+                } else {
+                    $equipos = asignarpuntosaequipos( $equipos,  $equipo1, $equipo2 );
+                }
 
             }//if fecha
         }//foreach partidos
@@ -1433,8 +1450,8 @@ function getPosiciones( $liga, $zona=null) {
         $equiposOrdenados = ordenarEquipos($equipos);
 
         //4. arma el html de la zona y lo guarda en la respuesta pasa el array con los equipos ya ordenados por puntos
-        $dataHtml = array( 'equipos' => $equiposOrdenados, 'zona'=> $zona );
-        
+        $dataHtml = array( 'equipos' => $equiposOrdenados, 'zona'=> $zona, 'deporte'=> $deporte );
+
         ob_start();
         getTemplate('tabla-posiciones-zona', $dataHtml);
         $respuesta['html'] .= ob_get_contents();
@@ -1446,28 +1463,26 @@ function getPosiciones( $liga, $zona=null) {
     mysqli_close($connection);
     return $respuesta;
 }
+
 /*
  * con los goles de cada equipo procesa la data de la tabla
- * los datos del voley se toman distintos pero todos los de futbol funciona igual
+ * esta funcion es para el futbol
 */
 function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
     //arma la variable a devolver
 
     $puntos = array( array('pj'=> 1), array('pj'=> 1));
-
+    
     //se define quien gano y los puntos
-    if ( $equipo1['goles'] > $equipo2['goles'] ) {
-        //si gano equipo1
+    if ( (int)$equipo1['goles'] > (int)$equipo2['goles'] ) {
+        //si gano equipo1: (los goles o los sets son iguales en todos los deportes)
         $puntos[0]['g'] = 1;
         $puntos[1]['g'] = 0;
         $puntos[0]['p'] = 0;
         $puntos[1]['p'] = 1;
         $puntos[0]['e'] = 0;
         $puntos[1]['e'] = 0;
-        //ademas define los puntos
-        $puntos[0]['puntos'] = 3;
-        $puntos[1]['puntos'] = 0;
-
+        
         //se definen los goles
         $puntos[0]['gf'] = $equipo1['goles'];
         $puntos[0]['gc'] = $equipo2['goles'];
@@ -1477,17 +1492,18 @@ function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
         $puntos[1]['gc'] = $equipo1['goles'];
         $puntos[1]['dg'] = $equipo1['goles'] - $equipo2['goles'];
 
-    } elseif ( $equipo1['goles'] < $equipo2['goles'] ) {
-        //si gano equipo2
+        //deporte futbol puntos
+        $puntos[0]['puntos'] = 3;
+        $puntos[1]['puntos'] = 0;
+
+    } elseif ( (int)$equipo1['goles'] < (int)$equipo2['goles'] ) {
+        //si gano equipo2 (los goles o los sets son iguales en todos los deportes)
         $puntos[0]['g'] = 0;
         $puntos[1]['g'] = 1;
         $puntos[0]['p'] = 1;
         $puntos[1]['p'] = 0;
         $puntos[0]['e'] = 0;
         $puntos[1]['e'] = 0;
-        //ademas define los puntos
-        $puntos[0]['puntos'] = 0;
-        $puntos[1]['puntos'] = 3;
 
         //se definen los goles
         $puntos[0]['gf'] = $equipo1['goles'];
@@ -1497,6 +1513,9 @@ function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
         $puntos[1]['gf'] = $equipo2['goles'];
         $puntos[1]['gc'] = $equipo1['goles'];
         $puntos[1]['dg'] = $equipo2['goles'] - $equipo1['goles'];
+
+        $puntos[0]['puntos'] = 0;
+        $puntos[1]['puntos'] = 3;
 
     } else {
         //si empataron
@@ -1510,9 +1529,10 @@ function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
         $puntos[0]['puntos'] = 1;
         $puntos[1]['puntos'] = 1;
 
+        //y los goles
         $puntos[0]['gf'] = $equipo1['goles'];
         $puntos[0]['gc'] = $equipo2['goles'];
-        $puntos[0]['dg'] = 0;
+        $puntos[0]['dg'] = $equipo1['goles'] - $equipo2['goles'];
 
         $puntos[1]['gf'] = $equipo2['goles'];
         $puntos[1]['gc'] = $equipo1['goles'];
@@ -1521,6 +1541,82 @@ function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
 
     return $puntos;
 }
+
+
+/*
+ * con los goles de cada equipo procesa la data de la tabla
+ * esta funcion es la misma de arriba pero esta es para el voley que es distinto
+*/
+function getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte=null ) {
+    //arma la variable a devolver
+
+    $puntos = array( array('pj'=> 1), array('pj'=> 1));
+    $cantidadsets = 3;
+
+    if ( $equipo1['sets'] == '' ) {
+        $sets1 = array(0,0,0);
+    } else {
+        $sets1 = explode(',', $equipo1['sets'] );
+    }
+    if ( $equipo2['sets'] == '' ) {
+        $sets2 = array(0,0,0);
+    } else {
+        $sets2 = explode(',', $equipo2['sets'] );
+    }
+
+    $score1 = 0;
+    $score2 = 0;
+    $suma1 = 0;
+    $suma2 = 0;
+
+    for ($i=0; $i < count($cantidadsets); $i++) {
+
+        if ( (int)$sets1[$i] > (int)$sets2[$i] ) {
+            $score1 = $score1 + 1;
+        } elseif ( (int)$sets1[$i] < (int)$sets2[$i] ) {
+            $score2 = $score2 + 1;
+        }
+
+        $suma1 = $suma1 + $sets1[$i];
+        $suma2 = $suma2 + $sets2[$i];
+    }
+
+    //las variables internas son las mismas que en futbol, solo cambia la nomenclatura que se ve
+    $puntos[0]['g'] = ( $score1 > $score2 ) ? 1 : 0;
+    $puntos[1]['g'] = ( $score1 > $score2 ) ? 0 : 1;
+    $puntos[0]['p'] = ( $score1 > $score2 ) ? 0 : 1;
+    $puntos[1]['p'] = ( $score1 > $score2 ) ? 1 : 0;
+    $puntos[0]['e'] = 0;
+    $puntos[1]['e'] = 0;
+    //se definen los goles
+    $puntos[0]['gf'] = $suma1;
+    $puntos[0]['gc'] = $suma2;
+    $puntos[0]['dg'] = $suma1 - $suma2;
+
+    $puntos[1]['gf'] = $suma2;
+    $puntos[1]['gc'] = $suma1;
+    $puntos[1]['dg'] = $suma2 - $suma1;
+
+    //los puntos se toman como ganados 3, perdidos: si ganaron un set 1, si perdieron todos 0
+    if ( $score1 > $score2 ) {
+        $puntos[0]['puntos'] = 3;
+    } elseif ( ($score1 < $score2) && $score2 > 0 ) {
+        $puntos[0]['puntos'] = 1;
+    } else {
+        $puntos[0]['puntos'] = 0;
+    }
+
+    if ( $score2 > $score1 ) {
+        $puntos[1]['puntos'] = 3;
+    } elseif ( ($score2 < $score1) && $score1 > 0 ) {
+        $puntos[1]['puntos'] = 1;
+    } else {
+        $puntos[1]['puntos'] = 0;
+    }
+    
+    return $puntos;
+}
+
 
 /*
  *  Esta funcion ordena los equipos
@@ -1550,8 +1646,13 @@ function asignarpuntosaequipos( $equipos, $equipo1, $equipo2, $deporte=null ){
     $equiposConPuntos = array();
 
     //procesamos la info
-    $puntos = getPuntosTablaData( $equipo1, $equipo2);
-
+    if ( $deporte == 'voley' ) {
+        //si es voley
+        $puntos = getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte);
+    } else {
+        $puntos = getPuntosTablaData( $equipo1, $equipo2, $deporte);
+    }
+    
     foreach ($equipos as $equipo) {
         //si el id de un equipo coincide con el dewl partido le agrega los datos
         
@@ -1587,6 +1688,9 @@ function asignarpuntosaequipos( $equipos, $equipo1, $equipo2, $deporte=null ){
     return $equiposConPuntos;
 }
 
+/*
+ esta funcion muestra los puntos del voley en el loop de equipos cuando se ven los partidos
+*/
 function getScoreVoley($data1, $data2) {
     $puntos = array(0,0);
 

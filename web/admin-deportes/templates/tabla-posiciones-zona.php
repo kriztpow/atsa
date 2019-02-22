@@ -16,20 +16,38 @@
                     <td width="7%" class="head-td td-center td-no-movil">
                         G
                     </td>
-                    <td width="7%" class="head-td td-center td-no-movil">
-                        E
-                    </td>
+                    
+                    <?php if ( $data['deporte'] != '3' ) : ?>
+                    
+                        <td width="7%" class="head-td td-center td-no-movil">
+                            E
+                        </td>
+
+                    <?php endif; ?>
+                    
                     <td width="7%" class="head-td td-center td-no-movil">
                         P
                     </td>
                     <td width="7%" class="head-td td-center td-no-movil">
-                        GF
+                        <?php if ( $data['deporte'] == '3' ) : ?>
+                            TF
+                        <?php else : ?>
+                            GF
+                        <?php endif; ?>
                     </td>
                     <td width="7%" class="head-td td-center td-no-movil">
-                        GC
+                        <?php if ( $data['deporte'] == '3' ) : ?>
+                            TE
+                        <?php else : ?>
+                            GC
+                        <?php endif; ?>
                     </td>
                     <td width="7%" class="head-td td-center td-no-movil">
-                        DG
+                        <?php if ( $data['deporte'] == '3' ) : ?>
+                            DT
+                        <?php else : ?>
+                            DG
+                        <?php endif; ?>
                     </td>
                     <td width="21%" class="head-td td-center">
                         Puntos
@@ -50,9 +68,13 @@
                         <td width="7%" class="td-center head-td td-no-movil">
                             <?php echo isset($equipo['g']) ? $equipo['g'] : '0'; ?>
                         </td>
-                        <td width="7%" class="td-center head-td td-no-movil">
-                            <?php echo isset($equipo['e']) ? $equipo['e'] : '0'; ?>
-                        </td>
+
+                        <?php if ( $data['deporte'] != '3' ) : ?>
+                            <td width="7%" class="td-center head-td td-no-movil">
+                                <?php echo isset($equipo['e']) ? $equipo['e'] : '0'; ?>
+                            </td>
+                        <?php endif; ?>
+                        
                         <td width="7%" class="td-center head-td td-no-movil">
                             <?php echo isset($equipo['p']) ? $equipo['p'] : '0'; ?>
                         </td>

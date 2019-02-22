@@ -301,14 +301,13 @@ $(document).ready(function(){
             },
         });//cierre ajax*/
     });
-    
+
 });//READY LOOP INDEX
 
 
 /*
 * EDITAR LIGA
 */
-
 $(document).ready(function(){
 
     /*
