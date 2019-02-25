@@ -1218,7 +1218,23 @@ h2.info-enfermeria {
 		position: relative;
 		overflow: hidden;
 		height: 190px;
-		background-color: #67a9de;
+		//background-color: #67a9de;
+
+		img {
+			width: 130%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate3d(-50%,-50%,0);
+			-moz-transform: translate3d(-50%,-50%,0);
+			-ms-transform: translate3d(-50%,-50%,0);
+			-o-transform: translate3d(-50%,-50%,0);
+			transform: translate3d(-50%,-50%,0);
+
+			@media (max-width: $mq-movil) {
+				width: 110%;
+			}
+		}
 		
 
 		.shutter {
