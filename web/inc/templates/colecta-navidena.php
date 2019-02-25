@@ -40,11 +40,11 @@ $imagen = '';//$pagina['page_imagen']
                 <ul id="galeria-comedor" class="owl-carousel">
                     <?php 
                     $imagenes = array(
-                        array('src'=>'cpf-foto1.jpg', 'alt'=> 'Comedor "Papa Francisco"' ),
-                        array('src'=>'cpf-foto2.jpg', 'alt'=> 'Comedor "Papa Francisco"' ),
-                        array('src'=>'cpf-foto3.jpg', 'alt'=> 'Comedor "Papa Francisco"' ),
-                        array('src'=>'cpf-foto4.jpg', 'alt'=> 'Comedor "Papa Francisco"' ),
-                        array('src'=>'cpf-foto5.jpg', 'alt'=> 'Comedor "Papa Francisco"' ),
+                        array('src'=>'cnav1.jpg', 'alt'=> 'Colecta Navideña' ),
+                        array('src'=>'cnav2.jpg', 'alt'=> 'Colecta Navideña' ),
+                        //array('src'=>'cnav1.jpg', 'alt'=> 'Colecta Navideña' ),
+                        //array('src'=>'cnav1.jpg', 'alt'=> 'Colecta Navideña' ),
+                        //array('src'=>'cnav1.jpg', 'alt'=> 'Colecta Navideña' ),
                     );
 
                     foreach ($imagenes as $imagen ) { ?>
