@@ -60,7 +60,7 @@ $imagen = '';//$pagina['page_imagen']
             <div class="container">
                 <div class="upper">
                     <div class="video-wrapper">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/J2-oQO6y_7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/AlUgLQRFsmc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="contenido">
                         <h2>
