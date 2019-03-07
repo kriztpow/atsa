@@ -1549,7 +1549,6 @@ function getPuntosTablaData( $equipo1, $equipo2, $deporte=null ) {
 */
 function getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte=null ) {
     //arma la variable a devolver
-
     $puntos = array( array('pj'=> 1), array('pj'=> 1));
     $cantidadsets = 3;
 
@@ -1569,7 +1568,7 @@ function getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte=null ) {
     $suma1 = 0;
     $suma2 = 0;
 
-    for ($i=0; $i < count($cantidadsets); $i++) {
+    for ($i=0; $i < $cantidadsets; $i++) {
 
         if ( (int)$sets1[$i] > (int)$sets2[$i] ) {
             $score1 = $score1 + 1;
@@ -1582,10 +1581,18 @@ function getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte=null ) {
     }
 
     //las variables internas son las mismas que en futbol, solo cambia la nomenclatura que se ve
-    $puntos[0]['g'] = ( $score1 > $score2 ) ? 1 : 0;
-    $puntos[1]['g'] = ( $score1 > $score2 ) ? 0 : 1;
-    $puntos[0]['p'] = ( $score1 > $score2 ) ? 0 : 1;
-    $puntos[1]['p'] = ( $score1 > $score2 ) ? 1 : 0;
+    if ( $score1 > $score2 ) {
+        $puntos[0]['g'] = 1;
+        $puntos[0]['p'] = 0;
+        $puntos[1]['g'] = 0;
+        $puntos[1]['p'] = 1;
+    } else {
+        $puntos[1]['g'] = 1;
+        $puntos[1]['p'] = 0;
+        $puntos[0]['g'] = 0;
+        $puntos[0]['p'] = 1;
+    }
+    //no se puede empatar en voley así que siempre es igual
     $puntos[0]['e'] = 0;
     $puntos[1]['e'] = 0;
     //se definen los goles
@@ -1600,18 +1607,22 @@ function getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte=null ) {
     //los puntos se toman como ganados 3, perdidos: si ganaron un set 1, si perdieron todos 0
     if ( $score1 > $score2 ) {
         $puntos[0]['puntos'] = 3;
-    } elseif ( ($score1 < $score2) && $score2 > 0 ) {
-        $puntos[0]['puntos'] = 1;
     } else {
-        $puntos[0]['puntos'] = 0;
+        if ($score1 > 0 ) {
+            $puntos[0]['puntos'] = 1;
+        } else {
+            $puntos[0]['puntos'] = 0;
+        }
     }
 
     if ( $score2 > $score1 ) {
         $puntos[1]['puntos'] = 3;
-    } elseif ( ($score2 < $score1) && $score1 > 0 ) {
-        $puntos[1]['puntos'] = 1;
     } else {
-        $puntos[1]['puntos'] = 0;
+        if ($score2 > 0 ) {
+            $puntos[1]['puntos'] = 1;
+        } else {
+            $puntos[1]['puntos'] = 0;
+        }
     }
     
     return $puntos;
