@@ -949,7 +949,7 @@ function getContent(contenido, liga) {
                 }
 
             } else {
-                $(contenedor).empty().append( errorDefault ).fadeIn();
+                $(contenedor).empty().hide().append( errorDefault ).fadeIn();
             }
             
         },
@@ -1058,7 +1058,7 @@ function getEstadisticas( equipo ) {
             $(loader).fadeIn();
         },
         success: function ( response ) {
-            console.log(response);
+            //console.log(response);
             $(loader).fadeOut();
             if ( response ) {
                 var data = JSON.parse(response);
