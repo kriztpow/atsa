@@ -7,13 +7,7 @@
 */
 //var_dump($data);
 
-$submenu = array(
-	array('slug'=> 'futbol-11', 'name'=> 'Fútbol 11'),
-	array('slug'=> 'futbol-5-libre-liguilla', 'name'=> 'Fútbol 5 Libre y Liguilla'),
-	array('slug'=> 'futbol-5-veteranos', 'name'=> 'Fútbol 5 Veterano'),
-	array('slug'=> 'futbol-5-femenino', 'name'=> 'Fútbol 5 Femenino'),
-	array('slug'=> 'voley-femenino', 'name'=> 'Voley Femenino'),
-);
+$submenu = getLigas();
 
 ?>
 <div class="deportes-inner-wrapper">
@@ -25,7 +19,11 @@ $submenu = array(
         <select id="submenudeportesajax" name="submenudeportesajax" data-contenido="equipos" class="selector-zona">
             <?php 
             foreach ($submenu as $item) {
-                echo '<option value="'.$item['slug'].'">'.$item['name'].'</option>';
+                echo '<option value="'.$item['slug'].'"';
+                if ( isset( $data[0]['liga']) && $data[0]['liga'] ==  $item['slug'] ) {
+                    echo 'selected';
+                }
+                echo '>'.$item['nombre'].'</option>';
             } ?>
         </select>
     </div>
@@ -33,25 +31,29 @@ $submenu = array(
     <div class="wrapper-contenido">
         
         <?php 
-        foreach ($data as $zona ) { ?>
+        if ($data == null ) {
+            echo 'Todavía no hay nada cargado';
+        } else {
+            foreach ($data as $zona ) { ?>
 
-            <div class="wrapper-zona">
-                <h3 class="titulo-zona">
-                    <?php echo $zona['name']; ?>
-                </h3>
-                <div class="wrapper-equipos">
+                <div class="wrapper-zona">
+                    <h3 class="titulo-zona">
+                        <?php echo $zona['name']; ?>
+                    </h3>
+                    <div class="wrapper-equipos">
 
-                    <?php 
-                    foreach ($zona['content'] as $equipo) {
-                        getTemplate('equipo', $equipo );
-                    }//foreach equipos
-                    ?>
-                    
+                        <?php 
+                        foreach ($zona['content'] as $equipo) {
+                            getTemplate('equipo', $equipo );
+                        }//foreach equipos
+                        ?>
+                        
+                    </div>
                 </div>
-            </div>
-        
-        <?php
-        }//foreach zonas
+            
+            <?php
+            }//foreach zonas
+        }
         ?>
     </div>
 </div>

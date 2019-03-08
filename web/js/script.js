@@ -895,7 +895,7 @@ $(document).on('click', '.close-button', function(e) {
 */
 
 //esta funcion carga el contenido de deportes la pagina completa con header y menus, todo se hace por ajax, se carga desde el template onload:
-function getContent(contenido, deporte) {
+function getContent(contenido, liga) {
     var funcionAjax = 'contenido-macro';
     var loader = $('.loader-ajax');
     var contenedor = $('#contenedorAjax');
@@ -903,19 +903,19 @@ function getContent(contenido, deporte) {
     var errorMsj = 'Hubo un problema de conexion, intente nuevamente';
     var errorDefault = '<p class="error-default">'+errorMsj+'</p>';
     
-    if ( deporte == '' || deporte == undefined || deporte == null ) {
-        deporte = '';
+    if ( liga == '' || liga == undefined || liga == null ) {
+        liga = '';
     }
     if ( contenido == '' || contenido == undefined || contenido == null ) {
         contenido = '';
     } 
-      
+      console.log(contenido, liga);
     $.ajax( {
         type: 'POST',
         url: 'inc/scripts/ajax-deportes.php',
         data: {
             contenido: contenido,
-            deporte: deporte,
+            liga: liga,
             funcionAjax: funcionAjax,
         },
         beforeSend: function() {
@@ -961,14 +961,14 @@ function getContent(contenido, deporte) {
 }
 
 //esta funcion carga el contenido de deportes pero solo el contenido ya que el menu y lo demas ya esta, todo se hace por ajax:
-function getMiniContent(contenido, deporte, contenedor, variables) {
+function getMiniContent(contenido, liga, contenedor, variables) {
     var loader = $('.loader-ajax');
     var tituloDeportes = $('#nameZona');
     var errorMsj = 'Hubo un problema de conexion, intente nuevamente';
     var errorDefault = '<p class="error-default">'+errorMsj+'</p>';
     
-    if ( deporte == '' || deporte == undefined || deporte == null ) {
-        deporte = '';
+    if ( liga == '' || liga == undefined || liga == null ) {
+        liga = '';
     }
     if ( contenido == '' || contenido == undefined || contenido == null ) {
         contenido = '';
@@ -978,7 +978,7 @@ function getMiniContent(contenido, deporte, contenedor, variables) {
         var funcionAjax = 'contenido-zona';
         var data = {
             contenido: contenido,
-            deporte: deporte,
+            liga: liga,
             zona:variables.zona,
             funcionAjax: funcionAjax,
         }
@@ -993,7 +993,7 @@ function getMiniContent(contenido, deporte, contenedor, variables) {
             $(loader).fadeIn();
         },
         success: function ( response ) {
-            console.log(response);
+            //console.log(response);
             $(loader).fadeOut();
             if ( response ) {
                 var data = JSON.parse(response);
@@ -1025,7 +1025,79 @@ function getMiniContent(contenido, deporte, contenedor, variables) {
     
 }
 
+
+/*
+ * busca y arma las estadíscitas del equipo por ajax cuando se hace clic y luego lo incerta en el lugar
+ recibe como parametro el "article" del html que es donde están todos los datos para ir a buscar todo
+*/
+function getEstadisticas( equipo ) {
+    var loader = $('.loader-ajax');
+    var equipoId = $(equipo).attr('data-id');
+    var zonaId = $(equipo).attr('data-liga');
+    var ligaId = $(equipo).attr('data-zona');
+    var contenedorEstadistica = $(equipo).find('.tabla-datos-vertical')
+    var contenedorJugadores = $(equipo).find('.tbody-jugadores')
+    var target = $( $(equipo).find('.toggle-data') ).attr('data-target');
+    var contenedor = $(equipo).find(target);
+
+    //agrega la marca de que ya esta cargada la estadística para que no haya que cargarlo otra vez
+    $(equipo).attr('data-estadistica', 'true');
+    
+    var data = {
+        funcionAjax: 'estadisticas-equipo',
+        equipo: equipoId,
+        liga: ligaId,
+        zona: zonaId,
+    };
+
+    $.ajax( {
+        type: 'POST',
+        url: 'inc/scripts/ajax-deportes.php',
+        data: data,
+        beforeSend: function() {
+            $(loader).fadeIn();
+        },
+        success: function ( response ) {
+            console.log(response);
+            $(loader).fadeOut();
+            if ( response ) {
+                var data = JSON.parse(response);
+
+                if ( data.error > 0 ) {
+
+                    console.log(data.error);
+                    $(contenedorEstadistica).append( errorDefault ).fadeIn();
+                    $(contenedorJugadores).append( errorDefault ).fadeIn();
+
+                } else {
+                    
+                    //inserta el html de los jugadoresen el contenedor
+                    $(contenedorJugadores).empty().append( data.html_jugadores ).fadeIn();
+                    //inserta el html de estadisticas en el contenedor
+                    $(contenedorEstadistica).empty().append( data.html_estadisticas ).fadeIn();
+                    //luego agranda la altura del contenedor para verlo bien
+                    $(contenedor).css('height', $(contenedor).prop('scrollHeight') + 'px');
+                    
+                    //reinicia/inicia los acordeones
+                    initSports();
+
+                }
+
+            } else {
+                $(contenedor).append( errorDefault ).fadeIn();
+            }
+            
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+
+}
+
+
 //esta funcion inicia los deportes si el contenido se carga
+//tiene los clicks y los change y todos los eventos
 function initSports() {
 
     //acordeones de equipos
@@ -1039,12 +1111,19 @@ function initSports() {
             $(contenedor).addClass('opened');
             $(contenedor).removeClass('closed');
 
+            //si las estadisticas no estan cargadas, entonces la buscan por ajax
+            if ( $(wrapper).attr('data-estadistica') == 'false' ) {
+                getEstadisticas( wrapper );
+            }
+
         } else {
             $(contenedor).css('height', '0');
             $(contenedor).addClass('closed');
             $(contenedor).removeClass('opened');
         }
+
     });
+
     //cierra acordeon
     $(document).on('click', '.collapse-article', function(){
         var target = $(this).attr('data-target');
@@ -1092,6 +1171,4 @@ function initSports() {
         }
     });
 
-
 }
-

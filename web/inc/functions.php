@@ -1503,6 +1503,9 @@ function showViajesCargados() {
 	return $viajes;
 }
 
+/*
+ * APLICACION DEPORTES
+*/
 
 //devuelve las variables de deportes
 function getVariablesDeportes() {
@@ -1520,4 +1523,110 @@ function getVariablesDeportes() {
 
         return $menu;
     }
+}
+
+//para conectarse a la bd de deportes
+define("DB_USERD", "dbuser");
+define("DB_PASSD", "123");
+define("DB_NAMED", "deportes");
+
+function connectDBDeportes () {
+	global $connection;
+  $connection = mysqli_connect(DB_SERVER, DB_USERD, DB_PASSD, DB_NAMED);
+  // Test if connection succeeded
+  if( mysqli_connect_errno() ) {
+    die("Database connection failed: " . mysqli_connect_error() . 
+         " (" . mysqli_connect_errno() . ")"
+    );
+  }
+
+  if (!mysqli_set_charset($connection, "utf8")) {
+    printf("Error cargando el conjunto de caracteres utf8: %s\n", mysqli_error($connection));
+    exit();
+	} else {
+		mysqli_character_set_name($connection);
+	}
+  return $connection;
+}
+
+//esta funcion llama a elementos de deportes en tabla deportes
+function getPostsFromDeportes( $tabla, $limit = null, $condition = null, $orden = null ) {
+	$connection = connectDBDeportes();
+
+	//queries según parámetros
+    $query = "SELECT * FROM " .$tabla;
+    
+	//condicion
+	if ( $condition != null ) {
+		$query  .= " WHERE " . $condition;
+	}
+    
+    //order
+    if ( $orden != null ) {
+        $query  .= " ORDER by ".$orden;
+    }
+
+    //limite
+    if ($limit != null ) {
+        $query  .= " LIMIT ".$limit;
+    }
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		return null;
+	} else {
+
+		while ( $row = $result->fetch_array() ) {
+			$posts[] = $row;
+        }
+
+        return $posts;
+    }
+}
+
+
+//recupera post, por el slug
+function getPostsFromDeportesBySlug( $slug, $tabla ) {
+	$connection = connectDBDeportes();
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE slug='".$slug."'";
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result ) {
+		$post = $result->fetch_array();
+	} else {
+		$post = null;
+	}
+	return $post;
+}
+
+//recupera post, por el id
+function getPostsFromDeportesById( $id, $tabla ) {
+	$connection = connectDBDeportes();
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE id='".$id."'";
+	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result ) {
+		$post = $result->fetch_array();
+	} else {
+		$post = null;
+	}
+
+	return $post;
+}
+
+/*
+ * obtiene lista de ligas
+*/
+function getLigas($filtro = null) {
+    $tabla = 'liga';
+
+    $ligas = getPostsFromDeportes( $tabla, null, $filtro );
+    return $ligas;
 }

@@ -10,13 +10,15 @@ $menuDeportes = array(
 	array('href'=> 'liga', 'name' => 'Equipos'),
 );
 
-$submenu = array(
+/*$submenu = array(
 	array('slug'=> 'futbol-11', 'name'=> 'Fútbol 11'),
 	array('slug'=> 'futbol-5-libre-liguilla', 'name'=> 'Fútbol 5 Libre y Liguilla'),
 	array('slug'=> 'futbol-5-veteranos', 'name'=> 'Fútbol 5 Veterano'),
 	array('slug'=> 'futbol-5-femenino', 'name'=> 'Fútbol 5 Femenino'),
 	array('slug'=> 'voley-femenino', 'name'=> 'Voley Femenino'),
-);
+);*/
+
+$submenu = getLigas();
 
 ?>
 <article id="torneos-y-eventos" class="wrapper-home">
@@ -43,8 +45,8 @@ $submenu = array(
 							<ul class="submenu">
 								<?php foreach ($submenu as $submenuItem ) { ?>
 									<li class="submenu-item">
-										<a href="<?php echo urlBase() . '/deportes/' . $menu['href'] . '/' . $submenuItem['slug']; ?>" title="<?php echo $menu['name'] . ' - ' . $submenuItem['name']; ?>">
-											<?php echo $submenuItem['name']; ?>
+										<a href="<?php echo urlBase() . '/deportes/' . $menu['href'] . '/' . $submenuItem['slug']; ?>" title="<?php echo $menu['name'] . ' - ' . $submenuItem['nombre']; ?>">
+											<?php echo $submenuItem['nombre']; ?>
 										</a>
 									</li>
 								<?php } ?>
@@ -71,20 +73,18 @@ $submenu = array(
 									
 		<nav id="footer-menu-deportes" class="footer-menu-deportes">
 			
-			
 			<?php foreach ($menuDeportes as $menu) { ?>
 				<h3 class="menu-item">
 					<?php echo $menu['name']; ?>
 				</h3>
 				<div class="submenu-acordion">
 					<?php foreach ($submenu as $submenuItem ) { ?>
-						<a href="<?php echo urlBase() . '/deportes/' . $menu['href'] . '/' . $submenuItem['slug']; ?>" title="<?php echo $menu['name'] . ' - ' . $submenuItem['name']; ?>">
-							<?php echo $submenuItem['name']; ?>
+						<a href="<?php echo urlBase() . '/deportes/' . $menu['href'] . '/' . $submenuItem['slug']; ?>" title="<?php echo $menu['name'] . ' - ' . $submenuItem['nombre']; ?>">
+							<?php echo $submenuItem['nombre']; ?>
 						</a>
 					<?php } ?>
 				</div>
 			<?php } ?>
-			
 			
 		</nav>
 		

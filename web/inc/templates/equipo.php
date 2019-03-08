@@ -10,22 +10,20 @@
 foreach ($data['jugadores'] as $jugador) {
     echo $jugador . '<br>';
 }*/
+
 ?>
-<article class="equipo" data-id="<?php echo $data['id']; ?>" data-slug="<?php echo $data['slug']; ?>">
-    <input type="hidden" name="jugadores-ids" value="<?php foreach ($data['jugadores'] as $jugador) {
-    echo $jugador . ',';
-}?>">
+<article class="equipo" data-id="<?php echo $data['id']; ?>" data-slug="<?php echo $data['slug']; ?>" data-liga="<?php echo $data['liga_id']; ?>" data-zona="<?php echo $data['zona_id']; ?>" data-estadistica="false">
     <header class="header-equipo toggle-data" data-target=".wrapper-datos-duros">
         <hgroup>
             <h1>
-                <img src="<?php if ( $data['imagen'] != '' ) { 
-                    echo urlbase() . '/uploads/images/' . $data['imagen']; 
+                <img src="<?php if ( $data['logo'] != '' ) { 
+                    echo urlbase() . '/uploads/images/' . $data['logo']; 
                     } else {
                         echo urlbase() . '/assets/images/equipologodefault.png'; 
                     }
                     ?>" class="logo-equipo">
                 <span class="titulo-equipo">
-                    <?php echo $data['name']; ?>
+                    <?php echo $data['nombre']; ?>
                 </span>
             </h1>
             <h2 class="subtitle">
@@ -41,70 +39,7 @@ foreach ($data['jugadores'] as $jugador) {
             </h2>
             <div class="data-equipo-wrapper">
                 <table class="tabla-datos tabla-datos-vertical">
-                    <tr>
-                        <td class="head-td">
-                            Partidos Jugados:
-                        </td>
-                        <td>
-                            2
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            Pj:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            G:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            E:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            P:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            GF:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            GC:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            DG:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
-                        <td class="head-td">
-                            Puntos:
-                        </td>
-                        <td>
-                            0
-                        </td>
-                    </tr>
+                    <div class="loader-ajax"></div>
                 </table>
             </div>
         </section>
@@ -118,40 +53,20 @@ foreach ($data['jugadores'] as $jugador) {
                     <thead>
                         <tr>
                             <td class="head-td">
-                                Partidos Jugados
+                                Nombre
                             </td>
                             <td class="td-center head-td">
-                                Goles
+                                <?php if ( $data['deporte_id'] != '3' )  {echo 'Goles'; } ?>
                             </td>
                             <td class="td-center head-td">
-                                Amarillas
+                                <?php if ( $data['deporte_id'] != '3' )  {echo 'Amarillas'; } ?>
                             </td>
                             <td class="td-right head-td">
-                                Rojas
+                                <?php if ( $data['deporte_id'] != '3' )  {echo 'Rojas'; } ?>
                             </td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php 
-                        //for para gener contenido que no existe
-                        for ($i=0; $i < 11; $i++) { ?>
-                            <tr>
-                                <td>
-                                    Jugador <?php echo $i+1; ?>
-                                </td>
-                                <td class="td-center">
-                                    10
-                                </td>
-                                <td class="td-center">
-                                    1
-                                </td>
-                                <td class="td-right">
-                                    0
-                                </td>
-                            </tr>
-                        <?php }
-                        ?>
-                        
+                    <tbody class="tbody-jugadores">
                     </tbody>
                 </table>
             </div>
