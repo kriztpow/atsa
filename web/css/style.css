@@ -7790,4 +7790,13 @@ legend {
   margin-top: 20px;
 }
 
+.fecha-partido-liga {
+  text-align: left;
+  display: block;
+  font-size: 120%;
+  color: #333;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */

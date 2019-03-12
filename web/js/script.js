@@ -173,7 +173,7 @@ $(document).ready(function(){
                 console.log('enviando formulario');
             },
             success: function ( response ) {
-                console.log(response);
+                //console.log(response);
                 imgAjax.text(response);
                 imgAjax.fadeIn();
                 //$(formulario).reset();
@@ -909,7 +909,7 @@ function getContent(contenido, liga) {
     if ( contenido == '' || contenido == undefined || contenido == null ) {
         contenido = '';
     } 
-      console.log(contenido, liga);
+      
     $.ajax( {
         type: 'POST',
         url: 'inc/scripts/ajax-deportes.php',
@@ -960,7 +960,7 @@ function getContent(contenido, liga) {
     
 }
 
-//esta funcion carga el contenido de deportes pero solo el contenido ya que el menu y lo demas ya esta, todo se hace por ajax:
+//esta funcion carga el contenido de deportes pero solo el contenido ya que el menu y lo demas ya esta, todo se hace por ajax: sirve por ejemplo para filtrar por zonas
 function getMiniContent(contenido, liga, contenedor, variables) {
     var loader = $('.loader-ajax');
     var tituloDeportes = $('#nameZona');
@@ -974,12 +974,12 @@ function getMiniContent(contenido, liga, contenedor, variables) {
         contenido = '';
     }
     
-    if ( variables.zona != undefined ) {
+    if ( variables != undefined ) {
         var funcionAjax = 'contenido-zona';
         var data = {
             contenido: contenido,
             liga: liga,
-            zona:variables.zona,
+            variables:variables,
             funcionAjax: funcionAjax,
         }
     }
@@ -1096,6 +1096,58 @@ function getEstadisticas( equipo ) {
 }
 
 
+/* Recupera por ajax el resumen del partido, puede tener fotos y videos.
+*el id para buscar el contenido, el contenedor es donde se va a ubicar la data y el wrapper es lo que hay que ajustar o hacer crecer en altura para que se muestre bien el contenido
+*/
+function getResumenPartido(id, contenedor, wrapper) {
+    var errorMsj = 'Hubo un problema de conexion, intente nuevamente';
+    var errorDefault = '<p class="error-default">'+errorMsj+'</p>';
+
+    var data = {
+        funcionAjax: 'resumen-partido',
+        contenido_id: id,
+    };
+
+    $.ajax( {
+        type: 'POST',
+        url: 'inc/scripts/ajax-deportes.php',
+        data: data,
+        success: function ( response ) {
+            //console.log(response);
+            
+            if ( response ) {
+                var data = JSON.parse(response);
+
+                if ( data.status != 'ok' ) {
+
+                    console.log(data.error);
+                    $(contenedor).empty().append( errorDefault ).fadeIn();
+
+                } else {
+                    
+                    //inserta el html de los jugadoresen el contenedor
+                    $(contenedor).empty().append( data.html ).fadeIn();
+                    
+                    $(wrapper).css('height', $(wrapper).prop('scrollHeight') + 'px');
+                    
+                    //reinicia/inicia los acordeones
+                    initSports();
+
+                }
+
+            } else {
+                $(contenedor).append( errorDefault ).fadeIn();
+            }
+            
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+    
+}
+
+
 //esta funcion inicia los deportes si el contenido se carga
 //tiene los clicks y los change y todos los eventos
 function initSports() {
@@ -1146,21 +1198,30 @@ function initSports() {
     //cambia el selector, este selector cambia los equipos
     $('#zonadeportesajax').change(function(){
         var contenido = $(this).attr('data-contenido');
-        var deporte = $(this).attr('data-deporte');
+        var liga = $('#submenudeportesajax').val();
         var zona = $(this).val();
         var contenedor = $('#minicontenedorAjax');
-        var variables = {
-            zona: zona,
-        };
+    
+        
         //luego utiliza la funcion anterior para cargar nuevo contenido
-        getMiniContent(contenido, deporte, contenedor, variables);
+        getMiniContent(contenido, liga, contenedor, zona);
     });
 
     //boton que muestra resumen del partido
     $(document).on('click', '.button-resumen-partido', function () {
-        
+        var contenidoId = $(this).attr('data-contenido');
         var partido = $(this).closest('article');
         var resumen = $(partido).find('.resumen-partido');
+        var wrapperResumen = $(partido).find('.resumen-partido-interno');
+        var data = $(partido).find('.resumen-wrapper');
+        
+        if ( data.length == 0 ) {
+            var loader = '<div class="loader-ajax"><img src="assets/images/loader.gif"></div>';
+            $(wrapperResumen).append( $(loader) );
+
+            getResumenPartido(contenidoId, wrapperResumen, resumen);
+            
+        } 
 
         if ( $(resumen).height() == 0 ) {
             //var alturaResumen = '200';
@@ -1169,6 +1230,8 @@ function initSports() {
         } else {
             $(resumen).css('height' , 0);
         }
-    });
+        
+    });//clic en resumen
 
-}
+}//initsports()
+    

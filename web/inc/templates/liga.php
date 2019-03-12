@@ -5,17 +5,10 @@
  * Since 8.4
  * template de liga
 */
-$submenu = array(
-	array('slug'=> 'futbol-11', 'name'=> 'Fútbol 11'),
-	array('slug'=> 'futbol-5-libre-liguilla', 'name'=> 'Fútbol 5 Libre y Liguilla'),
-	array('slug'=> 'futbol-5-veteranos', 'name'=> 'Fútbol 5 Veterano'),
-	array('slug'=> 'futbol-5-femenino', 'name'=> 'Fútbol 5 Femenino'),
-	array('slug'=> 'voley-femenino', 'name'=> 'Voley Femenino'),
-);
-$zonas = array(
-    array('slug'=> 'zona-a', 'name'=> 'Zona A'),
-    array('slug'=> 'zona-b', 'name'=> 'Zona B'),
-);
+$submenu = getLigas();
+$zonas = getZonas("liga_id='".$data[0]['liga']."'");
+
+//var_dump($data);
 ?>
 <div class="deportes-inner-wrapper">
     <div class="header-contenido header-flex">
@@ -23,55 +16,47 @@ $zonas = array(
             Liga<span id="nameZona"></span>
         </h1>
 
-        <select id="fechaajax" name="fechaajax" data-contenido="liga" data-deporte="<?php echo $submenu[0]['slug']; ?>" class="selector-zona">
+        <!--<select id="fechaajax" name="fechaajax" data-contenido="liga" data-deporte="<?php echo $data[0]['deporte']; ?>" data-liga="<?php echo $data[0]['liga']; ?>" class="selector-zona">
+            <option value="todos">Todos los resultados</option>
             <option value="ultimos">Última Fecha</option>
             <option value="mes">Últimas 4 fechas</option>
             <option value="trimestre">Últimas trimestre</option>
             <option value="semestre">Últimas semestre</option>
-            <option value="todos">Todos los resultados</option>
-        </select>
-
-        <select id="zonadeportesajax" name="zonadeportesajax" data-contenido="liga" data-deporte="<?php echo $submenu[0]['slug']; ?>" class="selector-zona">
-            <option>Todas las zonas</option>
-            <?php 
-            foreach ($zonas as $zona) {
-                echo '<option value="'.$zona['slug'].'">'.$zona['name'].'</option>';
-            } ?>
-        </select>
+        </select>-->
 
         <select id="submenudeportesajax" name="submenudeportesajax" data-contenido="liga" class="selector-zona">
             <?php 
             foreach ($submenu as $item) {
-                echo '<option value="'.$item['slug'].'">'.$item['name'].'</option>';
+                echo '<option value="'.$item['slug'].'"';
+                if ( isset( $data[0]['liga']) && $data[0]['liga'] ==  $item['id'] ) {
+                    echo 'selected';
+                }
+                echo '>'.$item['nombre'].'</option>';
             } ?>
         </select>
 
+        <select id="zonadeportesajax" name="zonadeportesajax" data-contenido="liga" class="selector-zona">
+            <option>Todas las zonas</option>
+            <?php 
+            foreach ($zonas as $zona) {
+                echo '<option value="'.$zona['nombre_interno'].'">'.$zona['nombre'].'</option>';
+            } ?>
+        </select>
+        
     </div><!--//.header-contenido-->
 
     <div id="minicontenedorAjax" class="wrapper-contenido">
         
-        <?php 
-        foreach ($data as $zona ) { ?>
-
-            <div class="wrapper-zona">
-                <h3 class="titulo-zona">
-                    <?php echo $zona['name']; ?>
-                </h3>
-                <div class="wrapper-externo-partido">
-                    <ul class="lista-partidos">
-                            <?php 
-                            foreach ($zona['partidos'] as $partido) {
-                                echo '<li>';
-                                getTemplate('partido', $partido );
-                                echo '</li>';
-                            }
-                            ?>
-                    </ul>
-                </div>
-            </div>
-        
         <?php
-        }//foreach zonas
+       
+        if ($data == null ) :
+            echo 'Todavía no hay nada cargado.';
+        else :
+            foreach ($data as $zona ) { 
+                getTemplate('loop-zona-en-liga' , $zona);
+
+            }//foreach zonas
+        endif;
         ?>
     </div>
 

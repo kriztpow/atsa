@@ -24,9 +24,10 @@ if( isAjax() || $funcionAjax != null ) :
         break;
 
         case 'contenido-zona' :
+        sleep(2);
             $liga = isset($_POST['liga']) ? $_POST['liga'] : '';
             $contenido = isset($_POST['contenido']) ? $_POST['contenido'] : '';
-            $zona = isset($_POST['zona']) ? $_POST['zona'] : '';
+            $zona = isset($_POST['variables']) ? $_POST['variables'] : '';
             
             $variables = array('zona'=> $zona);
 
@@ -34,7 +35,7 @@ if( isAjax() || $funcionAjax != null ) :
         break;
 
         case 'estadisticas-equipo':
-            sleep(1);
+            
             $liga = isset($_POST['liga']) ? $_POST['liga'] : '';
             $equipo = isset($_POST['equipo']) ? $_POST['equipo'] : '';
             $zona = isset($_POST['zona']) ? $_POST['zona'] : '';
@@ -43,6 +44,30 @@ if( isAjax() || $funcionAjax != null ) :
 
             echo json_encode( $respuesta );
 
+        break;
+
+        case 'resumen-partido' :
+        
+            $contenido = isset($_POST['contenido_id']) ? $_POST['contenido_id'] : '';
+            $respuesta = array('status'=> 'ok', 'error'=> '');
+            if ($contenido != '') {
+                $post = getContenidoFromPosts($contenido);
+
+                if ($post != null) {
+                    ob_start(); 
+
+                    getTemplate('resumen-partido', $post);
+
+                    $respuesta['html'] = ob_get_contents();
+                    ob_end_clean();
+
+                } else {
+                    $respuesta['status'] = 'error';
+                    $respuesta['error'] = 'No se encontró el contenido';
+                }
+
+                echo json_encode( $respuesta );
+            }
         break;
     }
 //sino es peticion ajax se cancela
@@ -342,7 +367,7 @@ function golesPorJugador($jugador) {
 
 //función basica que busca el contenido
 function getContent($contenido, $liga, $variables = '') {
-
+    
     $html;
     $error = 0;
     $arraytitulo = array(
@@ -357,7 +382,9 @@ function getContent($contenido, $liga, $variables = '') {
      * a) si es array, entonces tiene variables y opciones, normalmnete mini cargas o semi cargas por ejemplo zona, o equipo
     */
     if ( is_array($variables) && ! empty($variables) ) {
-        $html = 'Aca debería cargar la zona';
+        
+        $html = renderMiniContent($data[0], $contenido );
+        
     } else {
         $html = renderFullContent($data, $contenido );
     }
@@ -427,6 +454,36 @@ function renderFullContent($ArrayConData = '', $contenido ) {
     return $html;
 }
 
+function renderMiniContent($ArrayConData = '', $contenido ) {
+
+    switch ($contenido) {
+        case 'liga':
+            
+            ob_start(); 
+
+            getTemplate( 'loop-zona-en-liga', $ArrayConData );
+
+            $html = ob_get_contents();
+            ob_end_clean();
+
+        break;
+
+        case 'proxima-fecha':
+           
+            ob_start();
+
+            getTemplate( 'proxima-fecha', $ArrayConData );
+
+            $html = ob_get_contents();
+            ob_end_clean(); 
+
+        break;
+        
+    }//switch
+
+    return $html;
+}
+
 
 //esta función busca los datos en la base de datos de acuerdo a las variables
 function getData($contenido, $liga, $variables = '') {
@@ -475,421 +532,77 @@ function getData($contenido, $liga, $variables = '') {
         break;
 
         case 'liga':
-            $data = array(
-                //zona 1
-                array(
-                    'slug' => 'zona-a',
-                    'name' => 'Zona A', 
-                    'deporte' => 'futbol-11',
-                    //contenido por zona
-                    'partidos' => array(
-                        array(
-                            //detalle gral partido
-                            'id' => '1',
-                            'fecha' => '2018-10-20',
-                            'slug' => 'zona-a',
-                            'name' => 'Zona A', 
-                            'deporte' => 'futbol-11',
-                            'resumen' => array(
-                                'videos' => array('https://www.youtube.com/watch?v=wYXnPHXW0-E'),
-                                'imagenes' => array(),
-                                'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                            ),
-                            //detalle y resultado equipos
-                            'equipos' => array(
-                                array(
-                                    'id' => 1,
-                                    'imagen' => '',
-                                    'name' => 'Droguería Asoproforma',
-                                    'puntos' => 3,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '20',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                        array(
-                                            'id' => '2',
-                                            'tiempo' => '113',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                    ),
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '55',
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    'id' => 2,
-                                    'imagen' => '',
-                                    'name' => 'Clínica Baxterrica B',
-                                    'puntos' => 1,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '10',
-                                            'jugador' => 'Julio Francisco',
-                                        ),
-                                    ),
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '95',
-                                        ),
-                                        array(
-                                            'id' => '4',
-                                            'jugador' => 'Julio Francisco',
-                                            'tiempo' => '115',
-                                        ),
-                                    ),
-                                ),  
-                            ), 
-                        ),
 
-                        //partido 2
-                        array(
-                            //detalle gral partido
-                            'id' => '1',
-                            'fecha' => '2018-10-20',
-                            'slug' => 'zona-a',
-                            'name' => 'Zona A', 
-                            'deporte' => 'futbol-11',
-                            'resumen' => array(
-                                'videos' => array('https://www.youtube.com/watch?v=wYXnPHXW0-E'),
-                                'imagenes' => array(),
-                                'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                            ),
-                            //detalle y resultado equipos
-                            'equipos' => array(
-                                array(
-                                    'id' => 1,
-                                    'imagen' => '',
-                                    'name' => 'Clinica Fitz Roy',
-                                    'puntos' => 3,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '20',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                        array(
-                                            'id' => '2',
-                                            'tiempo' => '113',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                    ),
-                                    'rojas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '55',
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    'id' => 2,
-                                    'imagen' => '',
-                                    'name' => 'I.M.A.C.',
-                                    'puntos' => 1,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '10',
-                                            'jugador' => 'Julio Francisco',
-                                        ),
-                                    ),
-                                ),  
-                            ), 
-                        ),
-
-                        //partido 3
-                        array(
-                            //detalle gral partido
-                            'id' => '1',
-                            'fecha' => '2018-10-20',
-                            'slug' => 'zona-a',
-                            'name' => 'Zona A', 
-                            'deporte' => 'futbol-11',
-                            'resumen' => array(
-                                'videos' => array('https://www.youtube.com/watch?v=wYXnPHXW0-E'),
-                                'imagenes' => array(),
-                                'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                            ),
-                            //detalle y resultado equipos
-                            'equipos' => array(
-                                array(
-                                    'id' => 1,
-                                    'imagen' => '',
-                                    'name' => 'Vital',
-                                    'puntos' => 3,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '20',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                        array(
-                                            'id' => '2',
-                                            'tiempo' => '113',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                    ),
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '55',
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    'id' => 2,
-                                    'imagen' => '',
-                                    'name' => 'Centro de Diag. ROSSI',
-                                    'puntos' => 1,
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '95',
-                                        ),
-                                        array(
-                                            'id' => '4',
-                                            'jugador' => 'Julio Francisco',
-                                            'tiempo' => '115',
-                                        ),
-                                    ),
-                                    'rojas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Fulano Lopez',
-                                            'tiempo' => '95',
-                                        ),
-                                    ),
-                                ),  
-                            ), 
-                        ),
-                    ),//partidos
+            if ( is_array($variables) && ! empty($variables) ) {
+                //si tiene variables busca si hay una zona a buscar
+                if ( $variables['zona'] == '' ) {
+                    $zonas = null;
+                } else {
+                    //busca la zona específica por el nombre interno
+                    $zona = getZonabyNameInter($variables['zona'], 'zonas');
                     
-                ),//zona
+                    if ($zona != null ) {
+                        //si la puede recuperar la agrega a un array de zonas para que pueda continuar la funcion sin problemas
+                        $zonas = array($zona);
+                    } else {
+                        $zonas = null;
+                    }
+                }
+                
+            } else {
+                //si no hay variable zonas busca todas las zonas de la liga y hace lo mismo con todas las zonas
+                $zonas = getPostsFromDeportes( 'zonas', null, 'liga_id="'.$dataLiga['id'].'"' );
+            }
 
-                //zona 2
-                array(
-                    'slug' => 'zona-b',
-                    'name' => 'Zona B', 
-                    'deporte' => 'futbol-11',
-                    //contenido por zona
-                    'partidos' => array(
-                        array(
-                            //detalle gral partido
-                            'id' => '1',
-                            'fecha' => '2018-10-20',
-                            'slug' => 'zona-a',
-                            'name' => 'Zona A', 
-                            'deporte' => 'futbol-11',
-                            'resumen' => array(
-                                'videos' => array('https://www.youtube.com/watch?v=wYXnPHXW0-E'),
-                                'imagenes' => array(),
-                                'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                            ),
-                            //detalle y resultado equipos
-                            'equipos' => array(
-                                array(
-                                    'id' => 1,
-                                    'imagen' => '',
-                                    'name' => 'Droguería Asoproforma',
-                                    'puntos' => 3,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '20',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                        array(
-                                            'id' => '2',
-                                            'tiempo' => '113',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                    ),
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '55',
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    'id' => 2,
-                                    'imagen' => '',
-                                    'name' => 'Clínica Baxterrica B',
-                                    'puntos' => 1,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '10',
-                                            'jugador' => 'Julio Francisco',
-                                        ),
-                                    ),
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '95',
-                                        ),
-                                        array(
-                                            'id' => '4',
-                                            'jugador' => 'Julio Francisco',
-                                            'tiempo' => '115',
-                                        ),
-                                    ),
-                                ),  
-                            ), 
-                        ),
+            if ($zonas == null ) {
 
-                        //partido 2
-                        array(
-                            //detalle gral partido
-                            'id' => '1',
-                            'fecha' => '2018-10-20',
-                            'slug' => 'zona-a',
-                            'name' => 'Zona A', 
-                            'deporte' => 'futbol-11',
-                            'resumen' => array(
-                                'videos' => array('https://www.youtube.com/watch?v=wYXnPHXW0-E'),
-                                'imagenes' => array(),
-                                'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                            ),
-                            //detalle y resultado equipos
-                            'equipos' => array(
-                                array(
-                                    'id' => 1,
-                                    'imagen' => '',
-                                    'name' => 'Clinica Fitz Roy',
-                                    'puntos' => 3,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '20',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                        array(
-                                            'id' => '2',
-                                            'tiempo' => '113',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                    ),
-                                    'rojas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '55',
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    'id' => 2,
-                                    'imagen' => '',
-                                    'name' => 'I.M.A.C.',
-                                    'puntos' => 1,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '10',
-                                            'jugador' => 'Julio Francisco',
-                                        ),
-                                    ),
-                                ),  
-                            ), 
-                        ),
+                $data = null;
+                return;
 
-                        //partido 3
-                        array(
-                            //detalle gral partido
-                            'id' => '1',
-                            'fecha' => '2018-10-20',
-                            'slug' => 'zona-a',
-                            'name' => 'Zona A', 
-                            'deporte' => 'futbol-11',
-                            'resumen' => array(
-                                'videos' => array('https://www.youtube.com/watch?v=wYXnPHXW0-E'),
-                                'imagenes' => array(),
-                                'texto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                            ),
-                            //detalle y resultado equipos
-                            'equipos' => array(
-                                array(
-                                    'id' => 1,
-                                    'imagen' => '',
-                                    'name' => 'Vital',
-                                    'puntos' => 3,
-                                    'goles' => array(
-                                        //tabla de goles, en el array se guarda solo los ids
-                                        array(
-                                            'id' => '1',
-                                            'tiempo' => '20',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                        array(
-                                            'id' => '2',
-                                            'tiempo' => '113',
-                                            'jugador' => 'Carlos Perez',
-                                        ),
-                                    ),
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '55',
-                                        ),
-                                    ),
-                                ),
-                                array(
-                                    'id' => 2,
-                                    'imagen' => '',
-                                    'name' => 'Centro de Diag. ROSSI',
-                                    'puntos' => 1,
-                                    'amarillas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Federico Lopez',
-                                            'tiempo' => '95',
-                                        ),
-                                        array(
-                                            'id' => '4',
-                                            'jugador' => 'Julio Francisco',
-                                            'tiempo' => '115',
-                                        ),
-                                    ),
-                                    'rojas' => array(
-                                        array(
-                                            'id' => '3',
-                                            'jugador' => 'Fulano Lopez',
-                                            'tiempo' => '95',
-                                        ),
-                                    ),
-                                ),  
-                            ), 
-                        ),
-                    ),//partidos
+            } else {
+
+                $data = array();
+
+                foreach ( $zonas as $zona ) {
                     
-                ),//zona
+                    $arrayZona = array(
+                        'id' => $zona['id'],
+                        'slug' => $zona['slug'],
+                        'name' => $zona['nombre'],
+                        'inname' => $zona['nombre_interno'],
+                        'deporte' => $dataLiga['deporte_id'],
+                        'liga' => $zona['liga_id'],
+                    );
+
+                    $partidos = $zona['partidos_ids'];
+
+                    if ( $partidos == '' ) {
+                        
+                        $data=null;
+                        return;
+
+                    } else {
+
+                        $dataPartidos = array();
+                        $partidos = explode(',', $partidos);
+
+                        foreach ( $partidos as $partido ) {
+                            
+                            $dataPartidos[] = getPostsFromDeportesById( $partido, 'partidos');
+
+                        }//foreachpartidos
+
+                        //ordeno los partidos antes de sumarlos
+                        $arrayZona['partidos'] = ordenarPartidosPorFecha($dataPartidos);
+
+                    }
+
+                    array_push( $data, $arrayZona );
+
+                }//foreach zonas
                 
-            );
-                
+            }//if zona = null
+
         break;
 
         case 'proxima-fecha':
@@ -1495,4 +1208,25 @@ function getPuntosTablaDataVoley( $equipo1, $equipo2, $deporte=null ) {
     }
     
     return $puntos;
+}
+
+/*ordena los partidos por la variable indicada*/
+function ordenarPartidosPorFecha($partidos, $tipo='asc') {
+    //1.ordena por puntos
+    $partidosNuevos = array();
+    foreach ($partidos as $key => $row)
+    {
+        $partidosNuevos[$key] = $row['fecha'];
+        
+    }
+    if ($tipo == 'desc' ) {
+        array_multisort($partidosNuevos, SORT_DESC, $partidos);
+    }
+    
+    if ($tipo == 'asc' ) {
+        array_multisort($partidosNuevos, SORT_ASC, $partidos);
+    }
+    
+
+    return $partidos;
 }

@@ -6,13 +6,18 @@
  * template de partido (individual)
 */
 
+//var_dump($data);
+$idsequipos = explode(',',$data['equipos_id']);
+$equipo1 = getPostsFromDeportesById($idsequipos[0], 'equipos');
+$equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
+
 ?>
-<article class="contenedor-partido" data-id="<?php echo $data['id']; ?>" <?php echo $data['fecha']; ?>>
+<article class="contenedor-partido" data-id="<?php echo $data['id']; ?>" data-fecha="<?php echo $data['fecha']; ?>">
     <header class="header-partido">
 
         <div class="bloque-equipo">
-            <img src="<?php if ( $data['equipos'][0]['imagen'] != '' ) { 
-                    echo urlbase() . '/uploads/images/' . $data['equipos'][0]['imagen']; 
+            <img src="<?php if ( $equipo1['logo'] != '' ) { 
+                    echo urlbase() . '/uploads/images/' . $equipo1['logo']; 
                     } else {
                         echo urlbase() . '/assets/images/equipologodefault.png'; 
                     }
@@ -21,52 +26,86 @@
             <div class="data-partido">
                 <div class="data">
                     <h2>
-                        <?php echo $data['equipos'][0]['name']; ?>
+                        <?php echo $equipo1['nombre']; ?>
                     </h2>
 
                     <?php 
-                        if ( isset($data['equipos'][0]['goles']) && is_array($data['equipos'][0]['goles']) && ! empty($data['equipos'][0]['goles']) ) : ?>
+                        if ( $data['goles_id1'] != '' ) :
+                            $goles1 = explode(',', $data['goles_id1'] );
+                        ?>
                         
                         <ul class="lista-detalles gol">
-                            <?php foreach ( $data['equipos'][0]['goles'] as $gol ) {
-                                echo '<li id-jugador="'.$gol['id'].'">'.$gol['jugador'].'('.$gol['tiempo'].')</li>';
-                            } ?>
-                        </ul>
-                        
-                    <?php endif; ?>
-                        
-                    <?php 
-                        if ( isset($data['equipos'][0]['amarillas']) && is_array($data['equipos'][0]['amarillas']) && ! empty($data['equipos'][0]['amarillas']) ) : ?>
-                        
-                        <ul class="lista-detalles amarilla">
-                            <?php foreach ( $data['equipos'][0]['amarillas'] as $tarjeta ) {
-                                echo '<li id-jugador="'.$tarjeta['id'].'">'.$tarjeta['jugador'].'('.$tarjeta['tiempo'].')</li>';
-                            } ?>
-                        </ul>
-                        
-                    <?php endif; ?>
+                            <?php foreach ( $goles1 as $gol ) {
 
-                    <?php 
-                        if ( isset($data['equipos'][0]['rojas']) && is_array($data['equipos'][0]['rojas']) && ! empty($data['equipos'][0]['rojas']) ) : ?>
-                        
-                        <ul class="lista-detalles roja">
-                            <?php foreach ( $data['equipos'][0]['rojas'] as $tarjeta ) {
-                                echo '<li id-jugador="'.$tarjeta['id'].'">'.$tarjeta['jugador'].'('.$tarjeta['tiempo'].')</li>';
+                                $gol = getPostsFromDeportesById($gol, 'goles');
+                                $jugador = getPostsFromDeportesById($gol['jugador_id'], 'jugadores');
+
+                                echo '<li id-jugador="'.$gol['id'].'">'.$jugador['nombre'].'</li>';
                             } ?>
                         </ul>
                         
+                    <?php endif; ?>
+                        
+                    <?php 
+                    if ( $data['amonestaciones_id1'] != '' ) :
+                        $amonestaciones = explode(',', $data['amonestaciones_id1']);
+
+                        foreach ($amonestaciones as $amonestacion) {
+
+                            $amonestacion = getPostsFromDeportesById($amonestacion, 'amonestaciones');
+                            $jugador = getPostsFromDeportesById($amonestacion['jugador_id'], 'jugadores');
+                            $amarillas = '';
+                            $rojas = '';
+
+                            if ($amonestacion['tipo'] == 'amarilla') {
+                                $amarillas .= '<li id-jugador="'.$jugador['id'].'">'.$jugador['nombre'].'</li>';
+                            }
+
+                            if ($amonestacion['tipo'] == 'roja') {
+                                $rojas .= '<li id-jugador="'.$jugador['id'].'">'.$jugador['nombre'].'</li>';
+                            }
+                        
+                        }//foreach amonestaciones
+
+                        if ( $amarillas != '' ) { ?>
+                            <ul class="lista-detalles amarilla">
+                                <?php echo $amarillas; ?>
+                            </ul>
+                        <?php } ?>
+                        
+                        <?php if ( $rojas != '' ) { ?>
+                            <ul class="lista-detalles roja">
+                                <?php echo $rojas; ?>
+                            </ul>
+                        <?php } ?>
+
                     <?php endif; ?>
 
                 </div>
                 
                 <h4 class="goles">
-                    <?php 
-                    if ( isset($data['equipos'][0]['goles']) && is_array($data['equipos'][0]['goles'])) {
-                        echo count($data['equipos'][0]['goles']);
-                    } elseif ( isset($data['equipos'][1]['goles']) && $data['equipos'][1]['goles'] === false ) {
-                        echo '';
+                <?php 
+                    if ($data['puntuacion'] != '') {
+                        //si tiene la puntuacion se anulan goles y sets
+                        $puntuacion = explode(',', $data['puntuacion']);
+                        echo $puntuacion[0];
+
                     } else {
-                        echo '0';
+                        //ino tiene la puntuacion depende, si es voley:
+                        if ( $data['deporte_id'] == '3') {
+
+                            $puntos = getScoreVoley($data['sets1'], $data['sets2']);
+                            echo $puntos[0];
+                            
+                        } else {
+                            //si es futbol
+                            if ( $data['goles_id1'] == '' ) {
+                                echo '0';
+                            } else {
+                                $goles = explode(',', $data['goles_id1']);
+                            echo count( $goles );
+                            }
+                        }
                     }
                     ?>
                 </h4>
@@ -76,8 +115,8 @@
 
         <div class="bloque-equipo bloque-inverse">
 
-            <img src="<?php if ( $data['equipos'][1]['imagen'] != '' ) { 
-                    echo urlbase() . '/uploads/images/' . $data['equipos'][1]['imagen']; 
+            <img src="<?php if ( $equipo2['logo'] != '' ) { 
+                    echo urlbase() . '/uploads/images/' . $equipo2['logo']; 
                     } else {
                         echo urlbase() . '/assets/images/equipologodefault.png'; 
                     }
@@ -86,54 +125,86 @@
             <div class="data-partido data-partido-inverse">
                 <div class="data data-inverse">
                     <h2>
-                        <?php echo $data['equipos'][1]['name']; ?>
+                        <?php echo $equipo2['nombre']; ?>
                     </h2>
                     
                     <?php 
-                        if ( isset($data['equipos'][1]['goles']) && is_array($data['equipos'][1]['goles']) && ! empty($data['equipos'][0]['goles']) ) : ?>
+                        if ( $data['goles_id2'] != '' ) :
+                            $goles1 = explode(',', $data['goles_id2'] );
+                        ?>
                         
                         <ul class="lista-detalles gol">
-                            <?php foreach ( $data['equipos'][1]['goles'] as $gol ) {
-                                echo '<li id-jugador="'.$gol['id'].'">'.$gol['jugador'].'('.$gol['tiempo'].')</li>';
-                            } ?>
-                        </ul>
-                        
-                    <?php endif; ?>
-                        
-                    <?php 
-                        if ( isset($data['equipos'][1]['amarillas']) && is_array($data['equipos'][1]['amarillas']) && ! empty($data['equipos'][0]['amarillas']) ) : ?>
-                        
-                        <ul class="lista-detalles amarilla">
-                            <?php foreach ( $data['equipos'][1]['amarillas'] as $tarjeta ) {
-                                echo '<li id-jugador="'.$tarjeta['id'].'">'.$tarjeta['jugador'].'('.$tarjeta['tiempo'].')</li>';
-                            } ?>
-                        </ul>
-                        
-                    <?php endif; ?>
+                            <?php foreach ( $goles1 as $gol ) {
 
-                    <?php 
-                        if ( isset($data['equipos'][1]['rojas']) && is_array($data['equipos'][1]['rojas']) && ! empty($data['equipos'][1]['rojas']) ) : ?>
-                        
-                        <ul class="lista-detalles roja">
-                            <?php foreach ( $data['equipos'][1]['rojas'] as $tarjeta ) {
-                                echo '<li id-jugador="'.$tarjeta['id'].'">'.$tarjeta['jugador'].'('.$tarjeta['tiempo'].')</li>';
+                                $gol = getPostsFromDeportesById($gol, 'goles');
+                                $jugador = getPostsFromDeportesById($gol['jugador_id'], 'jugadores');
+
+                                echo '<li id-jugador="'.$gol['id'].'">'.$jugador['nombre'].'</li>';
                             } ?>
                         </ul>
                         
+                    <?php endif; ?>
+                        
+                    <?php 
+                    if ( $data['amonestaciones_id2'] != '' ) :
+                        $amonestaciones = explode(',', $data['amonestaciones_id2']);
+
+                        foreach ($amonestaciones as $amonestacion) {
+
+                            $amonestacion = getPostsFromDeportesById($amonestacion, 'amonestaciones');
+                            $jugador = getPostsFromDeportesById($amonestacion['jugador_id'], 'jugadores');
+                            $amarillas = '';
+                            $rojas = '';
+
+                            if ($amonestacion['tipo'] == 'amarilla') {
+                                $amarillas .= '<li id-jugador="'.$jugador['id'].'">'.$jugador['nombre'].'</li>';
+                            }
+
+                            if ($amonestacion['tipo'] == 'roja') {
+                                $rojas .= '<li id-jugador="'.$jugador['id'].'">'.$jugador['nombre'].'</li>';
+                            }
+                        
+                        }//foreach amonestaciones
+
+                        if ( $amarillas != '' ) { ?>
+                            <ul class="lista-detalles amarilla">
+                                <?php echo $amarillas; ?>
+                            </ul>
+                        <?php } ?>
+                        
+                        <?php if ( $rojas != '' ) { ?>
+                            <ul class="lista-detalles roja">
+                                <?php echo $rojas; ?>
+                            </ul>
+                        <?php } ?>
+
                     <?php endif; ?>
 
                 </div>
                 
-
                 <h4 class="goles goles-inverse">
                     <?php 
-                    if ( isset($data['equipos'][1]['goles']) && is_array($data['equipos'][1]['goles'])) {
-                        echo count($data['equipos'][1]['goles']);
-                    } elseif ( isset($data['equipos'][1]['goles']) && $data['equipos'][1]['goles'] === false ) {
-                        echo '';
-                    } 
-                    else {
-                        echo '0';
+                    if ($data['puntuacion'] != '') {
+                        //si tiene la puntuacion se anulan goles y sets
+                        $puntuacion = explode(',', $data['puntuacion']);
+                        echo $puntuacion[1];
+
+                    } else {
+                        //ino tiene la puntuacion depende, si es voley:
+                        if ( $data['deporte_id'] == '3') {
+
+                            $puntos = getScoreVoley($data['sets1'], $data['sets2']);
+                            echo $puntos[1];
+                            
+                        } else {
+                            //si es futbol
+                            if ( $data['goles_id2'] == '' ) {
+                                echo '0';
+                            } else {
+                                $goles = explode(',', $data['goles_id2']);
+                            echo count( $goles );
+                            }
+                        }
                     }
                     ?>
                 </h4>
@@ -142,9 +213,9 @@
 
         </div>
         
-        <?php if ( isset($data['resumen']) && ! empty($data['resumen'] ) ) : ?>
+        <?php if ( $data['contenido_id'] != '' ) : ?>
         
-            <button class="button-resumen-partido">
+            <button data-contenido="<?php echo $data['contenido_id']; ?>" class="button-resumen-partido">
                 <span class="inner-button">
                     Resumen
                 </span>
@@ -156,17 +227,11 @@
         <?php endif; ?>
     </header>
 
-    
-
     <div class="resumen-partido">
 
-        <?php if ( isset($data['resumen']) && ! empty($data['resumen'] ) ) : ?>
-
         <div class="resumen-partido-interno">
-            <?php echo $data['resumen']['texto']; ?>
+            
         </div>
-
-        <?php endif; ?>
 
         <footer class="footer-partido">
             <button class="collapse-article" data-target=".resumen-partido">
@@ -175,7 +240,4 @@
             </button>
         </footer>
     </div>
-
-    
-
 </article>

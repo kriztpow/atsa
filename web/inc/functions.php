@@ -1603,12 +1603,47 @@ function getPostsFromDeportesBySlug( $slug, $tabla ) {
 	return $post;
 }
 
+//recupera post, por el slug
+function getZonabyNameInter( $slug, $tabla ) {
+	$connection = connectDBDeportes();
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE nombre_interno='".$slug."'";
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result ) {
+		$post = $result->fetch_array();
+	} else {
+		$post = null;
+	}
+	return $post;
+}
+
 //recupera post, por el id
 function getPostsFromDeportesById( $id, $tabla ) {
 	$connection = connectDBDeportes();
 
 	//queries según parámetros
 	$query  = "SELECT * FROM " .$tabla. " WHERE id='".$id."'";
+	
+	$result = mysqli_query($connection, $query);
+
+	if ( $result ) {
+		$post = $result->fetch_array();
+	} else {
+		$post = null;
+	}
+
+	return $post;
+}
+
+//recupera el contenido de la tabla posts
+function getContenidoFromPosts( $id ) {
+	$connection = connectDBDeportes();
+
+	//queries según parámetros
+	$query  = "SELECT * FROM posts WHERE post_ID='".$id."'";
 	
 	$result = mysqli_query($connection, $query);
 
@@ -1629,4 +1664,57 @@ function getLigas($filtro = null) {
 
     $ligas = getPostsFromDeportes( $tabla, null, $filtro );
     return $ligas;
+}
+
+function getZonas($filtro = null) {
+    $tabla = 'zonas';
+
+    $zonas = getPostsFromDeportes( $tabla, null, $filtro );
+    return $zonas;
+}
+
+
+/*
+ esta funcion muestra los puntos del voley en el loop de equipos cuando se ven los partidos
+*/
+function getScoreVoley($data1, $data2) {
+    $puntos = array(0,0);
+
+    if ( $data1 == '' ) {
+        $puntos[0] = 0;    
+    }
+
+    if ( $data2 == '' ) {
+        $puntos[1] = 0;    
+    } 
+    
+    if ( $data1 != '' && $data2 != '' ) {
+        $data1 = explode(',', $data1);
+        $data2 = explode(',', $data2);
+
+        $recorrido = count($data1);
+        if (count($data1) < count($data2)) {
+            $recorrido = count($data2);
+        }
+            
+        for ($i = 0; $i < $recorrido; $i++) {
+            
+            if ( ! isset($data1[$i]) ){
+                $data1[$i] = 0;
+            }
+            if ( ! isset($data2[$i]) ){
+                $data2[$i] = 0;
+            }
+
+            if ( (int)$data1[$i] < (int)$data2[$i] ) {
+                $puntos[1]++;
+            }
+            if ( (int)$data1[$i] > (int)$data2[$i] ) {
+                $puntos[0]++;
+            }
+            
+        }
+    }
+
+    return $puntos;
 }
