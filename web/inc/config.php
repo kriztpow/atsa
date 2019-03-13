@@ -16,4 +16,5 @@ define ( 'DEFAULTDESCRIPTION', 'Asociación de trabajadores de la Sanidad Argent
 //CARPETAS
 define ( 'UPLOADS', dirname( __FILE__ ) . '/uploads' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/templates' );
+define ( 'CANTPARTIDOS_FECHA', '5' );
 

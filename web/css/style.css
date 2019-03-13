@@ -7799,4 +7799,30 @@ legend {
   margin-top: 20px;
 }
 
+.wrapper-nav-fechas {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  /*-webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;*/
+  margin-top: 80px;
+}
+.wrapper-nav-fechas button {
+  border: none;
+  background: #00acec;
+  color: #F2F2F2;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

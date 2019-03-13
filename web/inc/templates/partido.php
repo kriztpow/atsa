@@ -5,8 +5,7 @@
  * Since 8.4
  * template de partido (individual)
 */
-
-//var_dump($data);
+$fechaHoy = date('Y-m-d');
 $idsequipos = explode(',',$data['equipos_id']);
 $equipo1 = getPostsFromDeportesById($idsequipos[0], 'equipos');
 $equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
@@ -83,6 +82,8 @@ $equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
 
                 </div>
                 
+                <?php if ( $data['fecha'] < $fechaHoy ) : ?>
+
                 <h4 class="goles">
                 <?php 
                     if ($data['puntuacion'] != '') {
@@ -109,6 +110,8 @@ $equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
                     }
                     ?>
                 </h4>
+
+                <?php endif; ?>
             </div>
 
         </div>
@@ -182,6 +185,7 @@ $equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
 
                 </div>
                 
+                <?php if ( $data['fecha'] < $fechaHoy ) : ?>
                 <h4 class="goles goles-inverse">
                     <?php 
                     if ($data['puntuacion'] != '') {
@@ -208,7 +212,7 @@ $equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
                     }
                     ?>
                 </h4>
-
+                <?php endif; ?>
             </div>
 
         </div>

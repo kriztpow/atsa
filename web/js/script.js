@@ -14,6 +14,9 @@
  * 8. cursos
  * 9. deportes
 */
+
+var currentPageDeportes = 0;
+
 $(document).ready(function(){
     $('.barrita-afiliate').addClass('barrita-afiliate-opening');
 
@@ -1190,6 +1193,7 @@ function initSports() {
     $('#submenudeportesajax').change(function(){
         var contenido = $(this).attr('data-contenido');
         var deporte = $(this).val();
+        currentPageDeportes = 0;
         
         //luego utiliza la funcion anterior para cargar nuevo contenido
         getContent(contenido, deporte);
@@ -1201,7 +1205,7 @@ function initSports() {
         var liga = $('#submenudeportesajax').val();
         var zona = $(this).val();
         var contenedor = $('#minicontenedorAjax');
-    
+        currentPageDeportes = 0;
         
         //luego utiliza la funcion anterior para cargar nuevo contenido
         getMiniContent(contenido, liga, contenedor, zona);
@@ -1233,5 +1237,68 @@ function initSports() {
         
     });//clic en resumen
 
+    /*
+    * POR AJAX NAVEGA ENTRE LAS FECHAS
+    */
+    $(document).on('click', '.nav-fechas-btn', function (e) {
+        e.preventDefault();
+
+        var direccion = $(this).attr('data-direccion');
+        var liga = $('#submenudeportesajax').val();
+
+        getNewFecha(direccion, liga);
+
+    });
+
+
 }//initsports()
-    
+
+
+function getNewFecha(direccion, liga) {
+    var contenedor = $('#minicontenedorAjax');
+
+    //avanza o retrocede la pagina
+    if (direccion=='prev') {
+        currentPageDeportes--;
+    } else {
+        currentPageDeportes++;
+    }
+
+    console.log('Page: '+currentPageDeportes, 'Direccion: '+direccion);
+    var data = {
+        funcionAjax: 'cambiar-fecha',
+        liga: liga,
+        direccion: direccion,
+        page:currentPageDeportes,
+    };
+
+    $.ajax( {
+        type: 'POST',
+        url: 'inc/scripts/ajax-deportes.php',
+        data: data,
+        success: function ( response ) {
+            console.log(response);
+            
+            if ( response ) {
+                var data = JSON.parse(response);
+
+                if ( data.status != 'ok' ) {
+
+                    console.log(data.error);
+                    $(contenedor).empty().append( errorDefault ).fadeIn();
+
+                } else {
+                    
+                    //inserta el html de los jugadoresen el contenedor
+                    $(contenedor).empty().append( data.html ).fadeIn();
+                }
+            } else {
+                $(contenedor).append( errorDefault ).fadeIn();
+            }
+            
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+}

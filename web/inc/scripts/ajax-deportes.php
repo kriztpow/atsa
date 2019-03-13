@@ -24,7 +24,7 @@ if( isAjax() || $funcionAjax != null ) :
         break;
 
         case 'contenido-zona' :
-        sleep(2);
+        
             $liga = isset($_POST['liga']) ? $_POST['liga'] : '';
             $contenido = isset($_POST['contenido']) ? $_POST['contenido'] : '';
             $zona = isset($_POST['variables']) ? $_POST['variables'] : '';
@@ -68,6 +68,24 @@ if( isAjax() || $funcionAjax != null ) :
 
                 echo json_encode( $respuesta );
             }
+        break;
+
+        case 'cambiar-fecha':
+
+            $pageActual = isset( $_POST['page'] ) ? intval( $_POST['page'] ) : 2;
+            $liga = isset($_POST['liga']) ? $_POST['liga'] : '';
+            $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+
+            /*if ($pageActual > 0 && $direccion == 'prev') {
+                (int)$pageActual--;
+            }*/
+
+            $respuesta = array('status'=> 'ok', 'error'=> '', 'page'=> $pageActual);
+
+            $respuesta['html'] = cambiarFecha( $pageActual, $liga, $direccion );
+
+            echo json_encode( $respuesta );
+            
         break;
     }
 //sino es peticion ajax se cancela
@@ -363,8 +381,6 @@ function golesPorJugador($jugador) {
 }
 
 
-
-
 //función basica que busca el contenido
 function getContent($contenido, $liga, $variables = '') {
     
@@ -470,12 +486,24 @@ function renderMiniContent($ArrayConData = '', $contenido ) {
 
         case 'proxima-fecha':
            
-            ob_start();
+        
+            if ($ArrayConData == null) : 
+                $html = '<p>No hay próxima fecha</p>';
+            else :
 
-            getTemplate( 'proxima-fecha', $ArrayConData );
+                ob_start();
+                foreach ($ArrayConData as $zona ) {
+                    
+                    getTemplate( 'loop-zona-en-proxima-fecha', $zona );
 
-            $html = ob_get_contents();
-            ob_end_clean(); 
+                }//foreach zonas
+
+                $html = ob_get_contents();
+                ob_end_clean(); 
+
+            endif;
+            
+            
 
         break;
         
@@ -606,177 +634,63 @@ function getData($contenido, $liga, $variables = '') {
         break;
 
         case 'proxima-fecha':
-        $data = array(
-            //zona 1
-            array(
-                'slug' => 'zona-a',
-                'name' => 'Zona A', 
-                'deporte' => 'futbol-11',
-                //contenido por zona
-                'partidos' => array(
-                    array(
-                        //detalle gral partido
-                        'id' => '1',
-                        'fecha' => '2018-10-20',
-                        'slug' => 'zona-a',
-                        'name' => 'Zona A', 
-                        'deporte' => 'futbol-11',
-                        //detalle y resultado equipos
-                        'equipos' => array(
-                            array(
-                                'id' => 1,
-                                'imagen' => '',
-                                'name' => 'Droguería Asoproforma',
-                                'goles' => false,
-                            ),
-                            array(
-                                'id' => 2,
-                                'imagen' => '',
-                                'name' => 'Clínica Baxterrica B',
-                                'goles' => false,
-                            ),  
-                        ), 
-                    ),
-
-                    //partido 2
-                    array(
-                        //detalle gral partido
-                        'id' => '1',
-                        'fecha' => '2018-10-20',
-                        'slug' => 'zona-a',
-                        'name' => 'Zona A', 
-                        'deporte' => 'futbol-11',
-                        //detalle y resultado equipos
-                        'equipos' => array(
-                            array(
-                                'id' => 1,
-                                'imagen' => '',
-                                'name' => 'Clinica Fitz Roy',
-                                'goles' => false,
-                            ),
-                            array(
-                                'id' => 2,
-                                'imagen' => '',
-                                'name' => 'I.M.A.C.',
-                                'goles' => false,
-                            ),  
-                        ), 
-                    ),
-
-                    //partido 3
-                    array(
-                        //detalle gral partido
-                        'id' => '1',
-                        'fecha' => '2018-10-20',
-                        'slug' => 'zona-a',
-                        'name' => 'Zona A', 
-                        'deporte' => 'futbol-11',
-                        //detalle y resultado equipos
-                        'equipos' => array(
-                            array(
-                                'id' => 1,
-                                'imagen' => '',
-                                'name' => 'Vital',
-                                'goles' => false,
-                            ),
-                            array(
-                                'id' => 2,
-                                'imagen' => '',
-                                'name' => 'Centro de Diag. ROSSI',
-                                'goles' => false,
-                            ),  
-                        ), 
-                    ),
-                ),//partidos
+        $data = array();
+        
+        if ( is_array($variables) && ! empty($variables) ) {
+            //si tiene variables busca si hay una zona a buscar
+            if ( $variables['zona'] == '' ) {
+                $zonas = null;
+            } else {
+                //busca la zona específica por el nombre interno
+                $zona = getZonabyNameInter($variables['zona'], 'zonas');
                 
-            ),//zona
+                if ($zona != null ) {
+                    //si la puede recuperar la agrega a un array de zonas para que pueda continuar la funcion sin problemas
+                    $zonas = array($zona);
+                } else {
+                    $zonas = null;
+                }
+            }
+            
+        } else {
+            //si no hay variable zonas busca todas las zonas de la liga y hace lo mismo con todas las zonas
+            $zonas = getPostsFromDeportes( 'zonas', null, 'liga_id="'.$dataLiga['id'].'"' );
+        }
 
-            array(
-                'slug' => 'zona-b',
-                'name' => 'Zona B', 
-                'deporte' => 'futbol-11',
-                //contenido por zona
-                'partidos' => array(
-                    array(
-                        //detalle gral partido
-                        'id' => '1',
-                        'fecha' => '2018-10-20',
-                        'slug' => 'zona-b',
-                        'name' => 'Zona B', 
-                        'deporte' => 'futbol-11',
-                        //detalle y resultado equipos
-                        'equipos' => array(
-                            array(
-                                'id' => 1,
-                                'imagen' => '',
-                                'name' => 'Droguería Asoproforma',
-                                'goles' => false,
-                            ),
-                            array(
-                                'id' => 2,
-                                'imagen' => '',
-                                'name' => 'Clínica Baxterrica B',
-                                'goles' => false,
-                            ),  
-                        ), 
-                    ),
+        if ( $zonas == null ) {
+            $data = null;
+            return;
+        }
+        
+        foreach ( $zonas as $zona ) {
+            $arrayZona = array(
+                'id' => $zona['id'],
+                'slug' => $zona['slug'],
+                'name' => $zona['nombre'],
+                'inname' => $zona['nombre_interno'],
+                'deporte' => $dataLiga['deporte_id'],
+                'liga' => $zona['liga_id'],
+            );
 
-                    //partido 2
-                    array(
-                        //detalle gral partido
-                        'id' => '1',
-                        'fecha' => '2018-10-20',
-                        'slug' => 'zona-b',
-                        'name' => 'Zona B', 
-                        'deporte' => 'futbol-11',
-                        //detalle y resultado equipos
-                        'equipos' => array(
-                            array(
-                                'id' => 1,
-                                'imagen' => '',
-                                'name' => 'Clinica Fitz Roy',
-                                'goles' => false,
-                            ),
-                            array(
-                                'id' => 2,
-                                'imagen' => '',
-                                'name' => 'I.M.A.C.',
-                                'goles' => false,
-                            ),  
-                        ), 
-                    ),
+            //busca los partidos de la zona que este entre las fechas seleccionadas
+            $fechahoy = date('Y-m-d');
+            $filtro = 'zona_id="'.$zona['id'].'" AND fecha > "'.$fechahoy.'"';
+            $partidos = getPostsFromDeportes( 'partidos', CANTPARTIDOS_FECHA, $filtro );
+            
+            if ( $partidos == null ) {
+                $arrayZona = null;
+                continue;
+            } else {
+        
+                //ordeno los partidos antes de sumarlos
+                $arrayZona['partidos'] = ordenarPartidosPorFecha($partidos);
+            }
+            $arrayZona['fecha'] = $partidos[0]['fecha'];
+            $data[] = $arrayZona;
+        }//foreach zonas
 
-                    //partido 3
-                    array(
-                        //detalle gral partido
-                        'id' => '1',
-                        'fecha' => '2018-10-20',
-                        'slug' => 'zona-b',
-                        'name' => 'Zona B', 
-                        'deporte' => 'futbol-11',
-                        //detalle y resultado equipos
-                        'equipos' => array(
-                            array(
-                                'id' => 1,
-                                'imagen' => '',
-                                'name' => 'Vital',
-                                'goles' => false,
-                            ),
-                            array(
-                                'id' => 2,
-                                'imagen' => '',
-                                'name' => 'Centro de Diag. ROSSI',
-                                'goles' => false,
-                            ),  
-                        ), 
-                    ),
-                ),//partidos
-            ),
-        );
-                
         break;
     }
-
 
     return $data;
 }
@@ -1226,7 +1140,77 @@ function ordenarPartidosPorFecha($partidos, $tipo='asc') {
     if ($tipo == 'asc' ) {
         array_multisort($partidosNuevos, SORT_ASC, $partidos);
     }
-    
 
     return $partidos;
+}
+
+//busca las distintas paginas en proxima fecha o anterior fecha
+function cambiarFecha( $pageActual, $liga, $direccion ) {
+    $fechahoy = date('Y-m-d');
+    $dataLiga = getPostsFromDeportesBySlug( $liga, 'liga' );
+
+    $data = array();
+
+    //si no hay variable zonas busca todas las zonas de la liga y hace lo mismo con todas las zonas
+    $zonas = getPostsFromDeportes( 'zonas', null, 'liga_id="'.$dataLiga['id'].'"' );
+
+    if ( $zonas == null ) {
+        $data = null;
+        return;
+    }
+
+    foreach ( $zonas as $zona ) {
+
+        $arrayZona = array(
+            'id' => $zona['id'],
+            'slug' => $zona['slug'],
+            'name' => $zona['nombre'],
+            'inname' => $zona['nombre_interno'],
+            'deporte' => $dataLiga['deporte_id'],
+            'liga' => $zona['liga_id'],
+        );
+
+        //si la pagina es negativo el filtro de las fechas es menor
+        if ($pageActual < 0) {
+            
+            $filtro = 'zona_id="'.$zona['id'].'" AND fecha < "'.$fechahoy.'"';
+            $orden = 'fecha desc';
+
+            $limit = ( (abs($pageActual) )*CANTPARTIDOS_FECHA).", ".CANTPARTIDOS_FECHA;
+
+        } else {
+            //si la pagina es positiva o 0 el filtro de las fechas es mayor
+            $filtro = 'zona_id="'.$zona['id'].'" AND fecha > "'.$fechahoy.'"';
+            $orden = 'fecha asc';
+
+            $limit = ( ($pageActual )*CANTPARTIDOS_FECHA).", ".CANTPARTIDOS_FECHA;
+        }
+
+        /*if ( $direccion == 'next' ) {
+            //si es siguiente
+            $limit = ( ($pageActual )*CANTPARTIDOS_FECHA).", ".CANTPARTIDOS_FECHA;
+        } else {
+            $limit = ( (abs($pageActual) )*CANTPARTIDOS_FECHA).", ".CANTPARTIDOS_FECHA;
+        }*/
+
+        //busca los partidos de la zona que este entre las fechas seleccionadas y con las instrucciones de arriba
+        $partidos = getPostsFromDeportes( 'partidos', $limit, $filtro, $orden );
+        
+        if ( $partidos == null ) {
+            
+            $arrayZona = null;
+            
+            continue;
+        } else {
+
+            $arrayZona['partidos'] = $partidos;
+        }
+
+        $arrayZona['fecha'] = $partidos[0]['fecha'];
+        $data[] = $arrayZona;
+    }//foreach zonas
+    
+    $respuesta = renderMiniContent($data, 'proxima-fecha');
+    
+    return $respuesta;
 }
