@@ -1150,6 +1150,56 @@ function getResumenPartido(id, contenedor, wrapper) {
     
 }
 
+//esta funcion va cambiando de fecha en la pagina de proxima fecha
+function getNewFecha(direccion, liga) {
+    var contenedor = $('#minicontenedorAjax');
+
+    //avanza o retrocede la pagina
+    if (direccion=='prev') {
+        currentPageDeportes--;
+    } else {
+        currentPageDeportes++;
+    }
+
+    //console.log('Page: '+currentPageDeportes, 'Direccion: '+direccion);
+    var data = {
+        funcionAjax: 'cambiar-fecha',
+        liga: liga,
+        direccion: direccion,
+        page:currentPageDeportes,
+    };
+
+    $.ajax( {
+        type: 'POST',
+        url: 'inc/scripts/ajax-deportes.php',
+        data: data,
+        success: function ( response ) {
+            //console.log(response);
+            
+            if ( response ) {
+                var data = JSON.parse(response);
+
+                if ( data.status != 'ok' ) {
+
+                    console.log(data.error);
+                    $(contenedor).empty().append( errorDefault ).fadeIn();
+
+                } else {
+                    
+                    //inserta el html de los jugadoresen el contenedor
+                    $(contenedor).empty().append( data.html ).fadeIn();
+                }
+            } else {
+                $(contenedor).append( errorDefault ).fadeIn();
+            }
+            
+        },
+        error: function ( ) {
+            console.log('error');
+        },
+    });//cierre ajax
+}
+
 
 //esta funcion inicia los deportes si el contenido se carga
 //tiene los clicks y los change y todos los eventos
@@ -1252,53 +1302,3 @@ function initSports() {
 
 
 }//initsports()
-
-
-function getNewFecha(direccion, liga) {
-    var contenedor = $('#minicontenedorAjax');
-
-    //avanza o retrocede la pagina
-    if (direccion=='prev') {
-        currentPageDeportes--;
-    } else {
-        currentPageDeportes++;
-    }
-
-    console.log('Page: '+currentPageDeportes, 'Direccion: '+direccion);
-    var data = {
-        funcionAjax: 'cambiar-fecha',
-        liga: liga,
-        direccion: direccion,
-        page:currentPageDeportes,
-    };
-
-    $.ajax( {
-        type: 'POST',
-        url: 'inc/scripts/ajax-deportes.php',
-        data: data,
-        success: function ( response ) {
-            console.log(response);
-            
-            if ( response ) {
-                var data = JSON.parse(response);
-
-                if ( data.status != 'ok' ) {
-
-                    console.log(data.error);
-                    $(contenedor).empty().append( errorDefault ).fadeIn();
-
-                } else {
-                    
-                    //inserta el html de los jugadoresen el contenedor
-                    $(contenedor).empty().append( data.html ).fadeIn();
-                }
-            } else {
-                $(contenedor).append( errorDefault ).fadeIn();
-            }
-            
-        },
-        error: function ( ) {
-            console.log('error');
-        },
-    });//cierre ajax
-}
