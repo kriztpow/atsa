@@ -61,7 +61,7 @@ foreach ($data['jugadores'] as $jugador) {
                             <td class="td-center head-td">
                                 <?php if ( $data['deporte_id'] != '3' )  {echo 'Amarillas'; } ?>
                             </td>
-                            <td class="td-right head-td">
+                            <td class="td-center head-td">
                                 <?php if ( $data['deporte_id'] != '3' )  {echo 'Rojas'; } ?>
                             </td>
                         </tr>
