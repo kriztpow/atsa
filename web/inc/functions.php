@@ -1718,3 +1718,18 @@ function getScoreVoley($data1, $data2) {
 
     return $puntos;
 }
+
+//funcion que analiza la url del video para devolver solo el código
+function sanitizevideoUrl($url) {
+	//primero se sanitiza el video
+	$url = filter_var($url,FILTER_SANITIZE_URL);
+	$urlbasica = 'https://www.youtube.com/watch?v=';
+
+	if ( $url != '' && strpos($url, '=') === false ) {
+		$url = $urlbasica . explode('/',$url)[3];
+	}
+
+	$url = explode('=', $url );
+
+	return $url[1];
+}

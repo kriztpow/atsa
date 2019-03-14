@@ -52,3 +52,4 @@ $submenu = getLigas();
     <?php endif; ?>
 
 </div><!--//.deportes-inner-wrapper-->
+<script src="<?php echo urlBase() . '/js/owl.carousel.min.js'; ?>"></script>

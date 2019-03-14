@@ -96,7 +96,7 @@ if ( count($dataNoticia) > 0 ) {
     <!-- bootstrap -->
     <link href="<?php echo urlBase(); ?>/css/bootstrap.min.css" rel="stylesheet">
     
-    <?php if ( $pageActual == 'sanidad-solidaria' || $pageActual == 'dia-del-nino-solidario' || $pageActual == 'sanidad-todo-terreno' || $pageActual == 'ensena-sanidad' || $pageActual == 'colecta-navidena' || $pageActual == 'colecta-de-invierno' ) : ?>
+    <?php if ( $pageActual == 'sanidad-solidaria' || $pageActual == 'dia-del-nino-solidario' || $pageActual == 'sanidad-todo-terreno' || $pageActual == 'ensena-sanidad' || $pageActual == 'colecta-navidena' || $pageActual == 'colecta-de-invierno' || $pageActual == 'deportes' ) : ?>
         <!-- owlcarousel -->
         <link href="<?php echo urlBase(); ?>/css/owl-styles/owl.carousel.min.css" rel="stylesheet">
     <?php endif; ?>

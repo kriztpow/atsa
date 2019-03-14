@@ -1135,6 +1135,11 @@ function getResumenPartido(id, contenedor, wrapper) {
                     
                     //reinicia/inicia los acordeones
                     initSports();
+                    var carousel = $(contenedor).find('.nuevocarousel');
+                    if (carousel.length > 0) {
+                        initfotosSliders(carousel);
+                    }
+                    
 
                 }
 
@@ -1148,6 +1153,22 @@ function getResumenPartido(id, contenedor, wrapper) {
         },
     });//cierre ajax
     
+}
+
+//inicia el owl carousel
+var idcarousel = 0;
+function initfotosSliders(carousel) {
+    idcarousel++;
+    var nuevoid = 'fotos-resumen-'+idcarousel;
+    $(carousel).attr('id', nuevoid);
+    $('#'+nuevoid).owlCarousel({
+        items:1,
+        margin:10,
+        autoHeight:true,
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:true,
+    });
 }
 
 //esta funcion va cambiando de fecha en la pagina de proxima fecha

@@ -61,3 +61,4 @@ $zonas = getZonas("liga_id='".$data[0]['liga']."'");
     </div>
 
 </div><!--//.deportes-inner-wrapper-->
+<script src="<?php echo urlBase() . '/js/owl.carousel.min.js'; ?>"></script>

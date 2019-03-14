@@ -233,9 +233,7 @@ $equipo2 = getPostsFromDeportesById($idsequipos[1], 'equipos');
 
     <div class="resumen-partido">
 
-        <div class="resumen-partido-interno">
-            
-        </div>
+        <div class="resumen-partido-interno"></div>
 
         <footer class="footer-partido">
             <button class="collapse-article" data-target=".resumen-partido">
