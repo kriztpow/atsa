@@ -307,7 +307,7 @@ $(document).ready(function(){
                     //se incluye la imagen en el input a guardar en base de datos, solo nombre
                     $('#post_imagen').val(newImage);
                     //se genera url completo de la imagen para mostrar ahora
-                    urlimg = uploadsDir + '/' + newImage;
+                    urlimg = uploadsDir + '/images/' + newImage;
                     //se imprime el html con el url de la imagen
                     var innherHtml = '<img src="'+urlimg+'" class="img-responsive post_imagen"><button id="del-post_imagen" class="btn btn-danger">Borrar imagen</button>'
                     var html = $(innherHtml);
@@ -398,7 +398,7 @@ $(document).ready(function(){
                     }
                     for (var i = 0; i < newImages.length; i++) {
                         nombreArchivo = $(newImages[i]).val();
-                        var html = '<li><input type="hidden" name="imgGaleriaItem" value="'+nombreArchivo+'"><figure><img src="'+uploadsDir+'/'+nombreArchivo+'" class="img-responsive"><span class="imgGaleriaItemOrden">0</span></figure><button class="btn btn-primary imgGaleriaItemDelBTN">Borrar imagen</button></li>';
+                        var html = '<li><input type="hidden" name="imgGaleriaItem" value="'+nombreArchivo+'"><figure><img src="'+uploadsDir+'/images/'+nombreArchivo+'" class="img-responsive"><span class="imgGaleriaItemOrden">0</span></figure><button class="btn btn-primary imgGaleriaItemDelBTN">Borrar imagen</button></li>';
                         var node = $(html);
                         contenedor.append(node);
                     }

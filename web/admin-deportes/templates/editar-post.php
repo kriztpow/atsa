@@ -67,12 +67,12 @@ if ( $postId != null ) {
 
 	<!------ CATEGORIAS DE LA NOTICIA ---------->
 				<div class="col-30">
-					<div class="form-group">
+					<!--<div class="form-group">
 						<label for="post_categoria">Categoría </label>
 						<select name="post_categoria" id="post_categoria">
 							<option value="">Seleccionar...</option>
 						</select>
-					</div>
+					</div>-->
 				</div><!-- // col -->
 			</div>
 
@@ -83,30 +83,30 @@ if ( $postId != null ) {
 						<textarea id="post_resumen" name="post_resumen"><?php echo ($post) ? $post['post_resumen'] : ''; ?></textarea>
 					</div>	
 				</div>
-				<div class="col-30">
+				<div class="col-20">
 					<div class="form-group">
 						<label for="post_url">Personalizar Url </label>
 						<input id="post_url" name="post_url" value="<?php echo ($post) ? $post['post_url'] : ''; ?>">
 					</div>
 
-					<div class="form-group form-group-checkbox">
+					<!--<div class="form-group form-group-checkbox">
 						<label for="post_destacado">
 							Destacado
 						</label>
 						<input name="post_destacado" type="checkbox"<?php if ($post && $post['post_destacado'] == 1) { echo 'checked';}?>>
-					</div>
+					</div>-->
 					
 				</div><!-- // col -->
 
-				<div class="col-20">
-					<div class="form-group">
+				<div class="col-30">
+					<!--<div class="form-group">
 						<label for="change_status">Estado: </label>
 						<select id="change_status" name="change_status">
 							<option value="publicado"><?php if ($nuevo) { echo 'PUBLICAR'; } else { echo 'Publicado'; } ?></option>
 							<option value="borrador">Borrador</option>
 						</select>
 						<input type="hidden" id="post_status" name="post_status" value="<?php echo ($post) ? $post['post_status'] : 'publicado'; ?>">
-					</div>
+					</div>-->
 				</div><!-- // col -->
 
 
