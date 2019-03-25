@@ -3,3 +3,4 @@ web/phpmyadmin/*
 bd/*
 web/voces-de-sanidad/contenido/*
 web/ccs/contenido/*
+.DS_Store
