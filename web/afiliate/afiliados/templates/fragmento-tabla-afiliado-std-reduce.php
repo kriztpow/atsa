@@ -7,6 +7,10 @@
 <td>
 	<span class="numeracion-rows"></span>
 </td>
+
+<td>
+	<?php echo date( "Y-m-d", strtotime( $data['member_date_registro'] ) ); ?>
+</td>
 <td>
 	<a href="<?php echo URLADMINISTRADOR .'/index.php?admin=edit-contacts&slug=' . $data['member_cuil']; ?>" title="Editar/ver Afiliado">
 		<?php echo $data['member_cuil']; ?>
@@ -23,9 +27,14 @@
 	<?php
 	if ( $data['member_telefono'] != '' ) {
 		echo $data['member_telefono']. ' - ';
+
+		if ( $data['member_movil'] != '' ) {
+			echo ' - ';
+		}
 	}
+
 	if ( $data['member_movil'] != '' ) {
-		echo ' - ' . $data['member_movil'];
+		echo $data['member_movil'];
 	}
 	?>
 </td>

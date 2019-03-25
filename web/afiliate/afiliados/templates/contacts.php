@@ -133,22 +133,33 @@ if ( isset($_GET['by']) ) {
 			<table class="tabla-suscriptores">
 				<thead>
 					<tr>
-						<td width="5%">
+						<td width="2%">
 							#
+						</td>
+						<?php 
+						if ($userStatus != 'a' ) { ?>
+							<td>
+								Delegado
+							</td>
+						<?php } 
+						?>
+						
+						<td width="10%">
+							Fecha Registro
 						</td>
 						<td width="10%">
 							cuil:
 						</td>
-						<td width="15%">
+						<td width="10%">
 							Apellido, Nombre:
 						</td>
 						<td width="10">
 							Tel/cel:
 						</td>		
-						<td width="15%">
+						<td width="10%">
 							Empresa:
 						</td>
-						<td width="10%">
+						<td width="8%">
 							Fecha: <small>(ingreso)</small>
 						</td>
 						<td width="10%">
@@ -157,7 +168,7 @@ if ( isset($_GET['by']) ) {
 						<td width="10%">
 							Notas:
 						</td>
-						<td width="15%">
+						<td width="30%">
 							
 						</td>
 						

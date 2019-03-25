@@ -44,9 +44,13 @@
 	<?php
 	if ( $data['member_telefono'] != '' ) {
 		echo $data['member_telefono'];
+		
+		if ( $data['member_movil'] != '' ) {
+			echo ' - ';
+		}
 	}
 	if ( $data['member_movil'] != '' ) {
-		echo ' - ' . $data['member_movil'];
+		echo $data['member_movil'];
 	}
 	?>
 </td>
