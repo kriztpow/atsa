@@ -59,7 +59,7 @@ global $pageActual;
 		<div class="form-group">
 			
 			<input type="number" name="cuit" required>
-			<label for="cuit" class="">CUIT*</label>
+			<label for="cuit" class="">CUIT de la empresa *</label>
 			<span class="icon-input"></span>
 			<span class="msj-error-input">
 				Formato inválido (xxxxxxxxxxx)
