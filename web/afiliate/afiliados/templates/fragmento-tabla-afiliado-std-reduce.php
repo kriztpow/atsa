@@ -22,10 +22,12 @@
 <td>
 	<?php
 	if ( $data['member_telefono'] != '' ) {
-		echo $data['member_telefono']. '<br>';
+		echo $data['member_telefono']. ' - ';
 	}
-	
-	echo $data['member_movil']; ?>
+	if ( $data['member_movil'] != '' ) {
+		echo ' - ' . $data['member_movil'];
+	}
+	?>
 </td>
 <td>
 	<em>
