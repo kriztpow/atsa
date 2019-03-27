@@ -218,6 +218,10 @@ $(document).ready(function(){
             categoria = '';
         }
         
+        //modifica el select de ligas para mostrar solo las de ese deporte
+        modificaSelectLigas();
+        
+        //recarga los partidos filtrando por voley
         recargarPartidos();
         
     });//change
@@ -262,6 +266,40 @@ $(document).ready(function(){
                 console.log('error');
             },
         });//cierre ajax*/
+    }
+
+    function modificaSelectLigas() {
+        var contenedor = $('#post_liga');
+        var deporte_id = $('#post_deportes').val();
+
+        if ( deporte_id == '') {
+            $(contenedor).empty();
+            $(contenedor).append( $('<option>Elija un deporte</option>') );
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxFunctionDir + '/filtro-deportes.php',
+                data: {
+                    buscar: 'ligas-by-deportes',
+                    categoria: deporte_id,
+                },
+                //funcion antes de enviar
+                beforeSend: function() {
+                    console.log('enviando formulario');
+                },
+                success: function ( response ) {
+                    console.log(response)
+                    $(contenedor).empty()
+                    .append( response );
+
+                    recargarPartidos();
+                },
+                error: function ( error ) {
+                    console.log(error);
+                },
+            });//cierre ajax
+        }
     }
 
     /*

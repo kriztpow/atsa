@@ -77,6 +77,28 @@ if ( isAjax() ) {
 
         break;
 
+        case 'ligas-by-deportes':
+
+            if ($categoria != '') {
+                $filtro = 'deporte_id="'.$categoria.'"';
+            }
+            
+            $ligas = getLigas($filtro);
+            $HTMLdeportes = '<option value="">Seleccionar Una</option>';
+            
+            if ( $ligas != null ) {
+                for ($i=0; $i < count($ligas); $i++) { 
+                    $HTMLdeportes .= '<option value="' . $ligas[$i]['id'] . '">' . $ligas[$i]['nombre'] . '</option>';
+                }
+            }
+
+            //cierre base de datos
+            mysqli_close($connection);
+
+            echo $HTMLdeportes;
+
+        break;
+
         case 'filtro-partidos':
             $deporte = isset( $_POST['deporte'] ) ? $_POST['deporte'] : '';
             $liga = isset( $_POST['liga'] ) ? $_POST['liga'] : '';

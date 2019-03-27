@@ -14,19 +14,19 @@
                         PJ
                     </td>
                     <td width="7%" class="head-td td-center td-no-movil">
-                        G
+                        PG
                     </td>
                     
                     <?php if ( $data['deporte'] != '3' ) : ?>
                     
                         <td width="7%" class="head-td td-center td-no-movil">
-                            E
+                            PE
                         </td>
 
                     <?php endif; ?>
                     
                     <td width="7%" class="head-td td-center td-no-movil">
-                        P
+                        PP
                     </td>
                     <td width="7%" class="head-td td-center td-no-movil">
                         <?php if ( $data['deporte'] == '3' ) : ?>
