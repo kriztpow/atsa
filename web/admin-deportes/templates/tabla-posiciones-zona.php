@@ -85,7 +85,10 @@
                             <?php echo isset($equipo['gc']) ? $equipo['gc'] : '0'; ?>
                         </td>
                         <td width="7%" class="td-center head-td td-no-movil">
-                            <?php echo isset($equipo['dg']) ? $equipo['dg'] : '0'; ?>
+                            <?php 
+                                //echo isset($equipo['dg']) ? $equipo['dg'] : '0'; 
+                                echo (int)$equipo['gf'] - (int)$equipo['gc'];
+                            ?>
                         </td>
                         <td width="21%" class="td-center head-td">
                             <?php echo isset($equipo['puntos']) ? $equipo['puntos'] : '0'; ?>

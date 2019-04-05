@@ -114,7 +114,10 @@ $submenu = getLigas();
                                     <?php echo $equipo['gc']; ?>
                                 </td>
                                 <td class="td-center head-td td-no-movil">
-                                    <?php echo $equipo['dg']; ?>
+                                    <?php 
+                                    //echo $equipo['dg'];
+                                        echo (int)$equipo['gf'] - (int)$equipo['gc'];
+                                    ?>
                                 </td>
                                 <td class="td-center head-td">
                                     <?php echo $equipo['puntos']; ?>
