@@ -38,7 +38,7 @@ $conectadosVideo = explode('=', $homeContent['conectados']['video']);
                 <ul class="menu-shortcuts">
                     <li>
                         <a href="/ccs/" target="_blank" title="Complejo Cultural Sanidad">
-                        <img src="assets/images/logos/ccs-logo.png" alt="logo">
+                        <img src="assets/images/logos/ccs-logo-nuevo.png" alt="logo">
                             <span class="sr-only">Complejo Cultural</span>
                         </a>
                     </li>
