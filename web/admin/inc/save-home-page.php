@@ -10,14 +10,15 @@ if ( isAjax() ) {
 	$connection = connectDB();
 	$tabla = 'homepage';
 	
-	$conectados_texto= $_POST['conectados_texto'];
+	$conectados_texto = isset($_POST['conectados_texto']) ? $_POST['conectados_texto'] : '';
+	$frase = isset($_POST['frase']) ? $_POST['frase'] : '';
 	$audiovisual_titulo = mysqli_real_escape_string($connection, $_POST['audiovisual_titulo']);
 	$audiovisual_parrafo = mysqli_real_escape_string($connection, $_POST['audiovisual_parrafo']);
 	$voces_titulo = mysqli_real_escape_string($connection, $_POST['voces_titulo']);
 	$voces_parrafo= mysqli_real_escape_string($connection, $_POST['voces_parrafo']);
 	$afiliate_titulo = mysqli_real_escape_string($connection, $_POST['afiliate_titulo']);
 	$afiliate_parrafo = mysqli_real_escape_string($connection, $_POST['afiliate_parrafo']);
-	$frase= mysqli_real_escape_string($connection, $_POST['frase']);
+	$frase= mysqli_real_escape_string($connection, $frase);
 
 	$audiovisual_titulo = filter_var($audiovisual_titulo,FILTER_SANITIZE_STRING);
 	$audiovisual_parrafo = filter_var($audiovisual_parrafo,FILTER_SANITIZE_STRING);

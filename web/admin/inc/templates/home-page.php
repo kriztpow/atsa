@@ -129,9 +129,7 @@ $homeContent = showhomeAdmin();
 					
 
 						<div class="form-group">
-							<textarea name="frase" class="textarea-medium">
-								<?php echo $homeContent['frase']; ?>
-							</textarea>
+							<textarea name="frase" class="textarea-medium"><?php echo $homeContent['frase']; ?></textarea>
 						</div>
 					</div>
 				</div>
