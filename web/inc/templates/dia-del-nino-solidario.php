@@ -2,7 +2,7 @@
 //$pagina = getPageData(8);
 $titulo = 'Día del niño Solidario';//$pagina['page_titulo']
 $texto = '<p style="text-align:center">El día del niño es una fecha donde se celebra la infancia y se reivindican los derechos d elos niños y niñas. Todos los años desde el sindicato organizamos un festiejo por el Dïa del Niño para nuestros afiliados y sus familias. Lamentablemente, hay muchos chicos que viven en barrios vulnerables en nuestra Ciudad, con grandes necesidades, y que no cuentan con la oportunidad de celebrar su día. Por eso, desde Sanidad Solidaria decidimos organizar y festejar el Día del Niño también en estos barrios.</p>';//$pagina['page_text']
-$imagen = '';//$pagina['page_imagen']
+$imagen = 'sanidad-solidaria-header5.jpg';//$pagina['page_imagen']
 
 ?>
 <article id="sanidad-solidaria" class="wrapper-home">

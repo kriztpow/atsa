@@ -2,7 +2,7 @@
 //$pagina = getPageData(8);
 $titulo = 'Sanidad todo terreno';//$pagina['page_titulo']
 $texto = '<p style="text-align:center">Nuestra meta es estar presentes en lugares donde exista una necesidad que podamos atender, con nuestros conocimientos y compromiso solidario</p><p style="text-align:center">Recorremos distintos barrios de la Ciudad de Buenos Aires para realizar relevamientos de peso, talla y características socio culturales del entorno. Luego, en función de los datos obtenidos, identificamos condiciones de crecimiento y desarrollo de los chicos y chicas de cada barrio y actuamos en respuesta a las necesidades que existan.</p><p style="text-align:center">Instalamos un carpa de asistencia sanitaria en la peregrinación a Luján, donde curamos, auxiliamos y contenemos a los caminantes en su desafío.</p><p style="text-align:center">Estamos planificando nuevas acciones para poder brindar una mano en distintos lugares. ¡Esto recién empieza!</p>';//$pagina['page_text']
-$imagen = '';//$pagina['page_imagen']
+$imagen = 'sanidad-solidaria-header1.jpg';//$pagina['page_imagen']
 
 ?>
 <article id="sanidad-solidaria" class="wrapper-home">
